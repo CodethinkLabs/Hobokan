@@ -221,7 +221,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, lane, last_editor, owner" param/>
+            <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, state, lane, last_editor, owner" param/>
           </section>
     </content:>
 
@@ -337,7 +337,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="max_items, position, warn_limit, urgent_limit, project, super_lane" param/>
+            <field-list fields="title, max_items, position, warn_limit, urgent_limit, project, super_lane" param/>
           </section>
     </content:>
 
