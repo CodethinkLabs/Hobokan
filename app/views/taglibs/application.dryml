@@ -1,0 +1,19 @@
+<!-- Global taglib - these tags are shared across all subsites -->
+
+<include src="rapid" gem="hobo"/>
+
+<include src="taglibs/auto/rapid/cards"/>
+<include src="taglibs/auto/rapid/pages"/>
+<include src="taglibs/auto/rapid/forms"/>
+
+<set-theme name="clean"/>
+
+<extend tag="page">
+  <old-page merge>
+    <footer:>
+      <a href="&admin_users_url" if="&current_user.administrator?">
+        <t key="hobo.admin.subsite_name">Admin</t>
+      </a>
+    </footer:>
+  </old-page>
+</extend>

@@ -1,0 +1,28 @@
+<!-- Tag definitions for the admin subsite -->
+
+<include src="rapid" gem="hobo"/>
+
+<include src="taglibs/auto/admin/rapid/cards"/>
+<include src="taglibs/auto/admin/rapid/pages"/>
+<include src="taglibs/auto/admin/rapid/forms"/>
+
+<set-theme name="clean"/>
+
+
+
+<extend tag="page">
+  <old-page merge>
+    <append-stylesheets:>
+      <stylesheet name="admin"/>
+    </append-stylesheets:>
+    <footer:>
+      <a href="#{base_url}/"><t key="hobo.subsite.back_link">View Site</t></a>
+    </footer:>
+  </old-page>
+</extend>
+
+<extend tag="card" for="User">
+  <old-card merge>
+    <append-header:><%= h this.state.titleize %></append-header:>
+  </old-card>
+</extend>
