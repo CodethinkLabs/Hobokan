@@ -27,6 +27,15 @@ class Item < ActiveRecord::Base
 
   acts_as_list :scope => :lane
 
+  WIP_TOTAL_WARN = 3600*24*10 # 10 days
+  WIP_TOTAL_URGENT = 3600*24*20 # 20 days
+
+  lifecycle do
+    state :normal, :default => :true
+    state :warn
+    state :urgent
+  end
+
   # --- Permissions --- #
 
   def create_permitted?

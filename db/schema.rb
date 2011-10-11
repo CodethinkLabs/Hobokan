@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011134928) do
+ActiveRecord::Schema.define(:version => 20111011161315) do
 
   create_table "history_entries", :force => true do |t|
     t.string   "action"
@@ -40,11 +40,14 @@ ActiveRecord::Schema.define(:version => 20111011134928) do
     t.integer  "lane_id"
     t.integer  "last_editor_id"
     t.integer  "owner_id"
+    t.string   "state",              :default => "normal"
+    t.datetime "key_timestamp"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
   add_index "items", ["last_editor_id"], :name => "index_items_on_last_editor_id"
   add_index "items", ["owner_id"], :name => "index_items_on_owner_id"
+  add_index "items", ["state"], :name => "index_items_on_state"
 
   create_table "lanes", :force => true do |t|
     t.string   "title"
@@ -63,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20111011134928) do
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
   add_index "lanes", ["super_lane_id"], :name => "index_lanes_on_super_lane_id"
+  add_index "lanes", ["type"], :name => "index_lanes_on_type"
 
   create_table "projects", :force => true do |t|
     t.string   "name"
