@@ -1,9 +1,69 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="form" for="HistoryEntry">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="action, trigger_type, delta, item, trigger" param/>
+    <div param="actions">
+      <submit label="#{ht 'history_entry.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Item">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="start_date, end_date, title, text, estimation, position, wip_total, current_lane_entry, lane, last_editor, owner" param/>
+    <div param="actions">
+      <submit label="#{ht 'item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Lane">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="title, max_items, position, counts_wip, warn_limit, urgent_limit, dashboard, project, super_lane" param/>
+    <div param="actions">
+      <submit label="#{ht 'lane.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Project">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name" param/>
+    <div param="actions">
+      <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+<def tag="form" for="Statistic">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="entry_time, leave_time, duration, item, lane, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'statistic.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="name, email_address, administrator, state" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

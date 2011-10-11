@@ -5,7 +5,8 @@ gem 'rails', '3.0.10'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem "sqlite3", :group => :development
+# gem "acts_as_list-rails3"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -29,4 +30,7 @@ gem 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
-gem "hobo", ">= 1.3.0.RC"
+# gem "hobo", ">= 1.3.0.RC"
+gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
+gem "hobo-jquery", :git => "git://github.com/bryanlarsen/hobo-jquery.git", :branch => "rails3"
+

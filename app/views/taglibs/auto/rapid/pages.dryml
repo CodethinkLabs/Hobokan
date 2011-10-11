@@ -5,8 +5,608 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&HistoryEntry"><ht key="history_entry.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Item"><ht key="item.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Lane"><ht key="lane.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Statistic"><ht key="statistic.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== HistoryEntry Pages ====== -->
+
+<def tag="index-page" for="HistoryEntry">
+  <page merge title="#{ht 'history_entry.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page history-entry" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="history_entry.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="history_entry.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="history_entry.actions.new">New History entry</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="HistoryEntry">
+  <page merge title="#{ht 'history_entry.new.title', :default=>[' New History entry'] }">
+    <body: class="new-page history-entry" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="history_entry.new.heading">
+            New History entry
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'history_entry.actions.create', :default=>['Create History entry']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="HistoryEntry">
+  <page merge title="#{ht 'history_entry.show.title', :default=>['History entry'], :name => name(:no_wrapper => true) }">
+
+    <body: class="show-page history-entry" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="history_entry.show.heading" name="#{name(:no_wrapper => true)}">
+                History entry <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="history_entry.actions.edit" name="#{name(:no_wrapper => true)}">
+                Edit History entry
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="action, trigger_type, delta, item, trigger" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="HistoryEntry">
+  <page merge title="#{ht 'history_entry.edit.title', :default=>['Edit History entry'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page history-entry" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="history_entry.edit.heading" name="#{name(:no_wrapper => true)}">
+            Edit History entry
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'history_entry.actions.delete', :default=>['Remove This History entry']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Item Pages ====== -->
+
+<def tag="index-page" for="Item">
+  <page merge title="#{ht 'item.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page item" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="item.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="item.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="item.actions.new">New Item</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Item">
+  <page merge title="#{ht 'item.new.title', :default=>[' New Item'] }">
+    <body: class="new-page item" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="item.new.heading">
+            New Item
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'item.actions.create', :default=>['Create Item']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Item">
+  <page merge title="#{ht 'item.show.title', :default=>['Item'], :name => name(:no_wrapper => true) }">
+
+    <body: class="show-page item" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="item.show.heading" name="#{name(:no_wrapper => true)}">
+                Item <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="item.actions.edit" name="#{name(:no_wrapper => true)}">
+                Edit Item
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, lane, last_editor, owner" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Item">
+  <page merge title="#{ht 'item.edit.title', :default=>['Edit Item'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page item" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="item.edit.heading" name="#{name(:no_wrapper => true)}">
+            Edit Item
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'item.actions.delete', :default=>['Remove This Item']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Lane Pages ====== -->
+
+<def tag="index-page" for="Lane">
+  <page merge title="#{ht 'lane.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page lane" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="lane.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="lane.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="lane.actions.new">New Lane</ht>
+        </a>
+
+        <sortable-collection param="collection"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Lane">
+  <page merge title="#{ht 'lane.new.title', :default=>[' New Lane'] }">
+    <body: class="new-page lane" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="lane.new.heading">
+            New Lane
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'lane.actions.create', :default=>['Create Lane']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Lane">
+  <page merge title="#{ht 'lane.show.title', :default=>['Lane'], :name => name(:no_wrapper => true) }">
+
+    <body: class="show-page lane" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="lane.show.heading" name="#{name(:no_wrapper => true)}">
+                Lane <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="counts_wip, dashboard" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="lane.actions.edit" name="#{name(:no_wrapper => true)}">
+                Edit Lane
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="max_items, position, warn_limit, urgent_limit, project, super_lane" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Lane">
+  <page merge title="#{ht 'lane.edit.title', :default=>['Edit Lane'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page lane" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="lane.edit.heading" name="#{name(:no_wrapper => true)}">
+            Edit Lane
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'lane.actions.delete', :default=>['Remove This Lane']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Project Pages ====== -->
+
+<def tag="index-page" for="Project">
+  <page merge title="#{ht 'project.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page project" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="project.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="project.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="project.actions.new">New Project</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Project">
+  <page merge title="#{ht 'project.new.title', :default=>[' New Project'] }">
+    <body: class="new-page project" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="project.new.heading">
+            New Project
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'project.actions.create', :default=>['Create Project']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Project">
+  <page merge title="#{ht 'project.show.title', :default=>['Project'], :name => name(:no_wrapper => true) }">
+
+    <body: class="show-page project" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="project.show.heading" name="#{name(:no_wrapper => true)}">
+                Project <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="project.actions.edit" name="#{name(:no_wrapper => true)}">
+                Edit Project
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Project">
+  <page merge title="#{ht 'project.edit.title', :default=>['Edit Project'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page project" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="project.edit.heading" name="#{name(:no_wrapper => true)}">
+            Edit Project
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'project.actions.delete', :default=>['Remove This Project']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Statistic Pages ====== -->
+
+<def tag="index-page" for="Statistic">
+  <page merge title="#{ht 'statistic.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page statistic" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="statistic.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="statistic.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="statistic.actions.new">New Statistic</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Statistic">
+  <page merge title="#{ht 'statistic.new.title', :default=>[' New Statistic'] }">
+    <body: class="new-page statistic" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="statistic.new.heading">
+            New Statistic
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'statistic.actions.create', :default=>['Create Statistic']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Statistic">
+  <page merge title="#{ht 'statistic.show.title', :default=>['Statistic'], :name => name(:no_wrapper => true) }">
+
+    <body: class="show-page statistic" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="statistic.show.heading" name="#{name(:no_wrapper => true)}">
+                Statistic <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="statistic.actions.edit" name="#{name(:no_wrapper => true)}">
+                Edit Statistic
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="entry_time, leave_time, duration, item, lane, user" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Statistic">
+  <page merge title="#{ht 'statistic.edit.title', :default=>['Edit Statistic'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page statistic" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="statistic.edit.heading" name="#{name(:no_wrapper => true)}">
+            Edit Statistic
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'statistic.actions.delete', :default=>['Remove This Statistic']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 
@@ -78,28 +678,29 @@
 
 
 <def tag="show-page" for="User">
-  <page merge title="#{ht 'user.show.title', :default=>['User'] }">
+  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page user" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="user.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
+                User <name/>
               </ht>
             </h2>
 
-            <record-flags fields="" param/>
+            <record-flags fields="administrator" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="user.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit User
               </ht>
             </a>
           </header>
 
           <section param="content-body">
+            <field-list fields="email_address, state" param/>
           </section>
     </content:>
 
@@ -108,14 +709,14 @@
 
 
 <def tag="edit-page" for="User">
-  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'] }">
+  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page user" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="user.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="user.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit User
           </ht>
         </h2>
