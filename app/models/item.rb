@@ -36,6 +36,59 @@ class Item < ActiveRecord::Base
     state :urgent
   end
 
+  def wip_current
+    return 0 if !self.current_lane_entry
+    return (Time.now - self.current_lane_entry)
+  end
+
+  before_save :update_time_counters
+  after_save :update_statistics
+
+  def update_statistics
+    unless changed? and !changes["lane_id"].nil?
+      Statistic.create(:lane => self.lane, :user => self.owner, :item => self, :entry_time => Time.now) if self.new_record? && self.lane
+      if !self.new_record? && !changes["owner_id"].nil?
+        stat = Statistic.find(:first, :order => 'id DESC', :conditions => {:lane_id => self.lane, :item_id => self})
+        stat.update_attribute(:user_id, changes["owner_id"][1]) if stat
+      end
+      return
+    end
+    old_lane_id,new_lane_id = changes["lane_id"]
+
+    old_lane = old_lane_id.to_lane if old_lane_id
+    new_lane =  new_lane_id.to_lane if new_lane_id
+    if old_lane
+      stat = Statistic.find(:first, :order => 'id DESC', :conditions => {:lane_id => old_lane, :item_id => self})
+      stat.update_attribute(:leave_time, Time.now) if stat
+    end
+    Statistic.create(:lane => new_lane, :user => self.owner, :item => self, :entry_time => Time.now) if new_lane
+  end
+
+  # wip counters - needed to determine the current and the overall WIP
+  # wip_current - for the current lane
+  # wip_total - for all lanes
+  def update_time_counters
+    unless changed? and !changes["lane_id"].nil?
+      self.current_lane_entry = Time.now if self.new_record? && self.lane && self.lane.counts_wip
+      return
+    end
+    old_lane_id,new_lane_id = changes["lane_id"]
+
+    old_lane = old_lane_id.to_lane if old_lane_id
+    new_lane =  new_lane_id.to_lane if new_lane_id
+
+    # add the time spent in the old_lane to the wip_total
+    if old_lane and  current_lane_entry #and old_lane.counts_wip # not_needed?
+      self.wip_total ||= 0
+      self.wip_total += (Time.now - self.current_lane_entry)
+      self.current_lane_entry=nil
+    end
+    # start new counter for the new lane, if needed
+    if new_lane and new_lane.counts_wip
+      self.current_lane_entry=Time.now
+    end
+  end
+
   # --- Permissions --- #
 
   def create_permitted?

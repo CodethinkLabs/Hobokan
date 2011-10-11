@@ -32,6 +32,32 @@ class Lane < ActiveRecord::Base
   scope :standard, :conditions => {:type => 'StandardLane', :super_lane_id => nil}, :order => :position
   scope :restricted, :conditions => {:type => 'RestrictedLane', :super_lane_id => nil}, :order => :position
 
+  def is_super_lane?
+    sub_lanes.count > 0
+  end
+
+  def name
+    title.gsub(/\s/, "_").downcase
+  end
+
+  def can_take_more_items?
+    max_items == 0 ||  items.count < max_items
+  end
+
+  def self.test_lane_id
+    lane = find_by_title "Testing"
+    lane ? lane.id : -1
+  end
+
+  def self.progress_lane_id
+    lane = find_by_title "In progress"
+    lane ? lane.id : -1
+  end
+
+  def self.ids_not_wip_relevant
+    find(:all, :conditions => ["title IN (?)", ["Backlog", "Live", "Selected", "Live - Junkyard"]]).map_by_id
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
