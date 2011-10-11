@@ -41,6 +41,10 @@ class Item < ActiveRecord::Base
     return (Time.now - self.current_lane_entry)
   end
 
+  def to_lane(lane)
+    Lane.find(lane)
+  end
+
   before_save :update_time_counters
   after_save :update_statistics
 
@@ -55,8 +59,8 @@ class Item < ActiveRecord::Base
     end
     old_lane_id,new_lane_id = changes["lane_id"]
 
-    old_lane = old_lane_id.to_lane if old_lane_id
-    new_lane =  new_lane_id.to_lane if new_lane_id
+    old_lane = to_lane(old_lane_id) if old_lane_id
+    new_lane =  to_lane(new_lane_id) if new_lane_id
     if old_lane
       stat = Statistic.find(:first, :order => 'id DESC', :conditions => {:lane_id => old_lane, :item_id => self})
       stat.update_attribute(:leave_time, Time.now) if stat
@@ -74,8 +78,8 @@ class Item < ActiveRecord::Base
     end
     old_lane_id,new_lane_id = changes["lane_id"]
 
-    old_lane = old_lane_id.to_lane if old_lane_id
-    new_lane =  new_lane_id.to_lane if new_lane_id
+    old_lane = to_lane(old_lane_id) if old_lane_id
+    new_lane =  to_lane(new_lane_id) if new_lane_id
 
     # add the time spent in the old_lane to the wip_total
     if old_lane and  current_lane_entry #and old_lane.counts_wip # not_needed?
