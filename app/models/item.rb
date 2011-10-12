@@ -16,6 +16,9 @@ class Item < ActiveRecord::Base
     timestamps
   end
 
+  validates_date :start_date, :on_or_after => Date.today
+  validates_date :end_date, :on_or_after => Date.today
+
   # children :statistics, :history_entries
 
   has_many :statistics, :dependent => :destroy
