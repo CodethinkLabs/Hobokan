@@ -7,13 +7,15 @@ class Project < ActiveRecord::Base
     timestamps
   end
 
-  # children :lanes
+  children :lanes
   # children :backlogs, :livelogs, :parkings
 
   has_many :lanes, :order => :position
   has_one :backlog, :class_name => 'Lane', :conditions => {:title => 'Backlog'}
   has_one :livelog, :class_name => 'Lane', :conditions => {:title => 'Live'}
   has_one :parking, :class_name => 'Lane', :conditions => {:title => 'Parking'}
+  
+  
 
   # --- Permissions --- #
 

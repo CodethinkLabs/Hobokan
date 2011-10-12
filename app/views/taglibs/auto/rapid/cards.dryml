@@ -29,6 +29,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="lane.collection.count" count="&this.lanes.size">
+         <count:lanes param/>
+      </ht>
+    </body:>
   </card>
 </def>
 
