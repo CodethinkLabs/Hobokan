@@ -5,11 +5,9 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&HistoryEntry"><ht key="history_entry.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&Item"><ht key="item.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&Lane"><ht key="lane.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Statistic"><ht key="statistic.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -365,6 +363,38 @@
       </section>
     </content:>
 
+  </page>
+</def>
+
+
+
+<def tag="new-for-project-page" polymorphic/>
+<def tag="new-for-project-page" for="Lane">
+  <page merge title="#{ht 'lane.new_for_owner.title', :default=>['New Lane for']} #{name :with => @project}">
+    <body: class="new-for-owner-page  lane" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="lane.new_for_owner.heading">
+            New Lane
+          </ht>
+        </h2>
+        <h3 param="subheading">
+          <ht key="lane.new_for_owner.subheading">
+            For:
+          </ht>
+          <a with="&@project"/>
+        </h3>
+      </header>
+
+      <section param="content-body">
+        <form owner="project" method="post" param>
+          <field-list: skip="project"/>
+          <submit: label="#{ht 'lane.actions.create', :default=>['Create Lane']}"/>
+        </form>
+      </section>
+    </content:>
   </page>
 </def>
 

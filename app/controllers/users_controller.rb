@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   hobo_user_controller
 
-  auto_actions :all, :except => [ :index, :new, :create ]
+  auto_actions :all, :except => [ :new, :create ]
 
   # Normally, users should be created via the user lifecycle, except
   #  for the initial user created via the form on the front screen on

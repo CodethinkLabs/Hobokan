@@ -1,0 +1,7 @@
+<show-page>
+  <collection: replace>
+    <table-plus:lanes fields="this, postition">
+      <empty-message:>No lanes match your criteria</empty-message:>
+    </table-plus>
+  </collection:>
+</show-page>

@@ -1,0 +1,5 @@
+<edit-page>
+  <form:>
+    <cancel: with="&this.lane"/>
+  </form:>
+</edit-page>

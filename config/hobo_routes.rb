@@ -22,6 +22,7 @@ CtKanban::Application.routes.draw do
   get 'users/:id/reset_password(.:format)' => 'users#reset_password', :as => 'user_reset_password'
 
   # Resource routes for controller "users"
+  get 'users(.:format)' => 'users#index', :as => 'users'
   get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
   get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
   post 'users(.:format)' => 'users#create', :as => 'create_user'
@@ -38,7 +39,6 @@ CtKanban::Application.routes.draw do
 
 
   # Resource routes for controller "items"
-  get 'items(.:format)' => 'items#index', :as => 'items'
   get 'items/new(.:format)', :as => 'new_item'
   get 'items/:id/edit(.:format)' => 'items#edit', :as => 'edit_item'
   get 'items/:id(.:format)' => 'items#show', :as => 'item', :constraints => { :id => %r([^/.?]+) }
@@ -51,7 +51,6 @@ CtKanban::Application.routes.draw do
 
 
   # Resource routes for controller "history_entries"
-  get 'history_entries(.:format)' => 'history_entries#index', :as => 'history_entries'
   get 'history_entries/new(.:format)', :as => 'new_history_entry'
   get 'history_entries/:id/edit(.:format)' => 'history_entries#edit', :as => 'edit_history_entry'
   get 'history_entries/:id(.:format)' => 'history_entries#show', :as => 'history_entry', :constraints => { :id => %r([^/.?]+) }
@@ -71,13 +70,16 @@ CtKanban::Application.routes.draw do
 
 
   # Resource routes for controller "lanes"
-  get 'lanes(.:format)' => 'lanes#index', :as => 'lanes'
   get 'lanes/new(.:format)', :as => 'new_lane'
   get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
   get 'lanes/:id(.:format)' => 'lanes#show', :as => 'lane', :constraints => { :id => %r([^/.?]+) }
   post 'lanes(.:format)' => 'lanes#create', :as => 'create_lane'
   put 'lanes/:id(.:format)' => 'lanes#update', :as => 'update_lane', :constraints => { :id => %r([^/.?]+) }
   delete 'lanes/:id(.:format)' => 'lanes#destroy', :as => 'destroy_lane', :constraints => { :id => %r([^/.?]+) }
+
+  # Owner routes for controller "lanes"
+  get 'projects/:project_id/lanes/new(.:format)' => 'lanes#new_for_project', :as => 'new_lane_for_project'
+  post 'projects/:project_id/lanes(.:format)' => 'lanes#create_for_project', :as => 'create_lane_for_project'
 
   # Reorder routes for controller "lanes"
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
