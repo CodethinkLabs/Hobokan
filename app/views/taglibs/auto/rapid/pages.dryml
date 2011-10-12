@@ -319,6 +319,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:project param="parent-link">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to <name/></ht></a:project>
             <h2 param="heading">
               <ht key="lane.show.heading" name="#{name(:no_wrapper => true)}">
                 Lane <name/>
@@ -335,7 +336,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="title, max_items, position, warn_limit, urgent_limit, project, super_lane" param/>
+            <field-list fields="title, max_items, position, warn_limit, urgent_limit, super_lane" param/>
           </section>
     </content:>
 
@@ -487,6 +488,21 @@
           </header>
 
           <section param="content-body">
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="lane.collection.heading" count="&this.lanes.count" >
+                  <human-collection-name collection="lanes" your/>
+                </ht>
+              </h3>
+
+              <sortable-collection:lanes param="collection"/>
+
+              <a:lanes action="new" if="&can_create?(@project.lanes)" param="new-link">
+                <ht key="lane.actions.new" count="1">
+                  New Lane
+                </ht>
+              </a:lanes>
+            </section>
           </section>
     </content:>
 
