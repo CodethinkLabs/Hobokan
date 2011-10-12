@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
-# gem 'rails', '3.0.10'
+# gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,7 +25,7 @@ gem "sqlite3", :group => :development
 # gem 'aws-s3', :require => 'aws/s3'
 # gem 'rack-ssl', :require => 'rack/ssl'
 
-# gem "cocaine", "~> 0.1.0"
+gem "cocaine", "~> 0.1.0"
 gem "validates_timeliness"
 
 # Force version 3.0.pre2 as 3.0.pre4 is broken
