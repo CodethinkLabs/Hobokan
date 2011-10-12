@@ -6,7 +6,7 @@ gem 'rails', '3.0.10'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem "sqlite3", :group => :development
-# gem "acts_as_list-rails3"
+ gem "acts_as_list-rails3"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -24,6 +24,7 @@ gem "sqlite3", :group => :development
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
+gem "cocaine", "~> 0.1.0"
 gem "validates_timeliness"
 
 # Bundle gems for the local environment. Make sure to
