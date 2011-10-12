@@ -1,13 +1,13 @@
 GIT
   remote: git://github.com/bryanlarsen/hobo-jquery.git
-  revision: b1f77faa6cf5c71767fa0c506af6ce5eb5466661
+  revision: 3578efd55304328249a7df2a8167bc731dc0e608
   branch: rails3
   specs:
     hobo-jquery (1.3.0pre1)
 
 GIT
   remote: git://github.com/tablatom/hobo.git
-  revision: 85741ec6b99988fec5c6a72fd73ddd90ec520c5c
+  revision: 8a9c59bcd27956058f3d2368f469603ab1b82d31
   branch: rails3
   specs:
     dryml (1.3.0.RC2)
@@ -17,7 +17,7 @@ GIT
       dryml (= 1.3.0.RC2)
       hobo_fields (= 1.3.0.RC2)
       hobo_support (= 1.3.0.RC2)
-      will_paginate (>= 3.0.pre)
+      will_paginate (>= 3.0.0)
     hobo_fields (1.3.0.RC2)
       hobo_support (= 1.3.0.RC2)
     hobo_support (1.3.0.RC2)
@@ -27,12 +27,12 @@ GEM
   remote: http://rubygems.org/
   specs:
     abstract (1.0.0)
-    actionmailer (3.0.9)
-      actionpack (= 3.0.9)
+    actionmailer (3.0.10)
+      actionpack (= 3.0.10)
       mail (~> 2.2.19)
-    actionpack (3.0.9)
-      activemodel (= 3.0.9)
-      activesupport (= 3.0.9)
+    actionpack (3.0.10)
+      activemodel (= 3.0.10)
+      activesupport (= 3.0.10)
       builder (~> 2.1.2)
       erubis (~> 2.6.6)
       i18n (~> 0.5.0)
@@ -40,25 +40,25 @@ GEM
       rack-mount (~> 0.6.14)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    activemodel (3.0.9)
-      activesupport (= 3.0.9)
+    activemodel (3.0.10)
+      activesupport (= 3.0.10)
       builder (~> 2.1.2)
       i18n (~> 0.5.0)
-    activerecord (3.0.9)
-      activemodel (= 3.0.9)
-      activesupport (= 3.0.9)
+    activerecord (3.0.10)
+      activemodel (= 3.0.10)
+      activesupport (= 3.0.10)
       arel (~> 2.0.10)
       tzinfo (~> 0.3.23)
-    activeresource (3.0.9)
-      activemodel (= 3.0.9)
-      activesupport (= 3.0.9)
-    activesupport (3.0.9)
+    activeresource (3.0.10)
+      activemodel (= 3.0.10)
+      activesupport (= 3.0.10)
+    activesupport (3.0.10)
     arel (2.0.10)
     builder (2.1.2)
-    cocaine (0.1.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.5.0)
+    json (1.6.1)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -66,46 +66,45 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     polyglot (0.3.2)
-    rack (1.2.3)
+    rack (1.2.4)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
       rack (>= 1.0)
-    rails (3.0.9)
-      actionmailer (= 3.0.9)
-      actionpack (= 3.0.9)
-      activerecord (= 3.0.9)
-      activeresource (= 3.0.9)
-      activesupport (= 3.0.9)
+    rails (3.0.10)
+      actionmailer (= 3.0.10)
+      actionpack (= 3.0.10)
+      activerecord (= 3.0.10)
+      activeresource (= 3.0.10)
+      activesupport (= 3.0.10)
       bundler (~> 1.0)
-      railties (= 3.0.9)
-    railties (3.0.9)
-      actionpack (= 3.0.9)
-      activesupport (= 3.0.9)
+      railties (= 3.0.10)
+    railties (3.0.10)
+      actionpack (= 3.0.10)
+      activesupport (= 3.0.10)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (~> 0.14.4)
     rake (0.9.2)
-    rdoc (3.8)
+    rdoc (3.10)
+      json (~> 1.4)
     sqlite3 (1.3.4)
     thor (0.14.6)
     timeliness (0.3.4)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.29)
-    validates_timeliness (3.0.6)
+    tzinfo (0.3.30)
+    validates_timeliness (3.0.7)
       timeliness (~> 0.3.3)
-    will_paginate (3.0.pre2)
+    will_paginate (3.0.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  cocaine (~> 0.1.0)
   hobo!
   hobo-jquery!
-  rails (>= 3.0.9)
+  rails (= 3.0.10)
   sqlite3
   validates_timeliness
-  will_paginate (= 3.0.pre2)
