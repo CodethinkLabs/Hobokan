@@ -46,4 +46,7 @@ CtKanban::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Make sure Hobo is expecting a read only file system under Heroku
+  config.hobo.read_only_file_system = true
 end
