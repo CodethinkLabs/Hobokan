@@ -1,12 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.10'
+gem 'rails', '>= 3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem "sqlite3", :group => :development
-# gem "acts_as_list-rails3"
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -23,8 +22,13 @@ gem "sqlite3", :group => :development
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
+# gem 'rack-ssl', :require => 'rack/ssl'
 
+gem "cocaine", "~> 0.1.0"
 gem "validates_timeliness"
+
+# Force version 3.0.pre2 as 3.0.pre4 is broken
+gem "will_paginate", "= 3.0.pre2"
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
@@ -32,7 +36,6 @@ gem "validates_timeliness"
 # group :development, :test do
 #   gem 'webrat'
 # end
-# gem "hobo", ">= 1.3.0.RC"
+#  gem "hobo", ">= 1.3.0.RC"
 gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
 gem "hobo-jquery", :git => "git://github.com/bryanlarsen/hobo-jquery.git", :branch => "rails3"
-
