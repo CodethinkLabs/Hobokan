@@ -33,19 +33,9 @@
 
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
 
-<extend tag="card" for="Item">
-  <old-card merge>
-    <append-body:>
-      <div class="users">
-        Assigned users: <repeat:users join=", "><a/></repeat><else>None</else>
-      </div>
-    </append-body:>
-  </old-card>
-</extend>
-
 <extend tag="form" for="Item">
   <old-form merge>
-    <field-list: fields="title, start_date, end_date, users"/>
+    <field-list: fields="title, start_date, end_date, text, owner, estimation, position, wip_total"/>
   </old-form>
 </extend>
 
