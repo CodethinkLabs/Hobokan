@@ -60,14 +60,4 @@ CtKanban::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
-  resources :projects do
-    resources :lanes do
-    end
-  end
-
-  resources :lanes do
-    resources :items do
-    end
-  end
-
 end
