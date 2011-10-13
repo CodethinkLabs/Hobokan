@@ -33,9 +33,15 @@
 
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
 
+<extend tag="form" for="Lane">
+  <old-form merge>
+    <field-list: fields="title, max_items, position, type, dashboard, project, super_lane"/>
+  </old-form>
+</extend>
+
 <extend tag="form" for="Item">
   <old-form merge>
-    <field-list: fields="title, start_date, end_date, text, user, estimation, position, wip_total"/>
+    <field-list: fields="start_date, end_date, title, text, estimation, position, lane, user"/>
   </old-form>
 </extend>
 

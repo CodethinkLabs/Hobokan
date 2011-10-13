@@ -9,6 +9,8 @@ en:
     attributes:
       project:
         name: Project Name
+      item:
+        user: Owner
     attribute_help:
       project:
         name: Enter a name for the project. Make it short and descriptive

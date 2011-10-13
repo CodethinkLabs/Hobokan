@@ -220,7 +220,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, state, last_editor, owner" param/>
+            <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, state, last_editor, user" param/>
           </section>
     </content:>
 
