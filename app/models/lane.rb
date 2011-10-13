@@ -15,7 +15,8 @@ class Lane < ActiveRecord::Base
     timestamps
   end
 
-  # children :sub_lanes, :items, :statistics
+  children :items
+
   acts_as_list
 
   belongs_to :project
