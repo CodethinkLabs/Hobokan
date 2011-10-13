@@ -7,7 +7,6 @@ class Item < ActiveRecord::Base
     end_date           :date
     title              :string
     text               :text
-    owner_id           :integer
     estimation         :float
     position           :integer
     wip_total          :integer
@@ -25,7 +24,7 @@ class Item < ActiveRecord::Base
 
   has_many :history_entries
   belongs_to :lane
-  belongs_to :owner, :class_name => 'User'
+  belongs_to :user
   belongs_to :last_editor, :class_name => 'User'
 
   acts_as_list :scope => :lane

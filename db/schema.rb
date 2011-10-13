@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011161315) do
+ActiveRecord::Schema.define(:version => 20111013130331) do
 
   create_table "history_entries", :force => true do |t|
     t.string   "action"
@@ -39,15 +38,15 @@ ActiveRecord::Schema.define(:version => 20111011161315) do
     t.datetime "updated_at"
     t.integer  "lane_id"
     t.integer  "last_editor_id"
-    t.integer  "owner_id"
     t.string   "state",              :default => "normal"
     t.datetime "key_timestamp"
+    t.integer  "user_id"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
   add_index "items", ["last_editor_id"], :name => "index_items_on_last_editor_id"
-  add_index "items", ["owner_id"], :name => "index_items_on_owner_id"
   add_index "items", ["state"], :name => "index_items_on_state"
+  add_index "items", ["user_id"], :name => "index_items_on_user_id"
 
   create_table "lanes", :force => true do |t|
     t.string   "title"
