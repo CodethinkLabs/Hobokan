@@ -21,6 +21,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="item.collection.count" count="&this.items.size">
+         <count:items param/>
+      </ht>
+    </body:>
   </card>
 </def>
 
@@ -37,22 +42,6 @@
   </card>
 </def>
 
-<def tag="card" for="RestrictedLane">
-  <card class="restricted-lane" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-  </card>
-</def>
-
-<def tag="card" for="StandardLane">
-  <card class="standard-lane" param="default" merge>
-    <header: param>
-      <h4 param="heading"><name/></h4>
-    </header:>
-  </card>
-</def>
-
 <def tag="card" for="Statistic">
   <card class="statistic" param="default" merge>
     <header: param>
@@ -66,6 +55,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="item.collection.count" count="&this.items.size">
+         <count:items param/>
+      </ht>
+    </body:>
   </card>
 </def>
 

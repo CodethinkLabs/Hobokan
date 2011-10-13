@@ -75,22 +75,22 @@
 
 
 <def tag="show-page" for="User">
-  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'user.show.title', :default=>['User'] }">
 
     <body: class="show-page user" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
-                User <name/>
+              <ht key="user.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
               </ht>
             </h2>
 
             <record-flags fields="administrator" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
+              <ht key="user.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
                 Edit User
               </ht>
             </a>
@@ -98,6 +98,15 @@
 
           <section param="content-body">
             <field-list fields="email_address, state" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="item.collection.heading" count="&this.items.count" >
+                  <human-collection-name collection="items" your/>
+                </ht>
+              </h3>
+
+              <collection:items param/>
+            </section>
           </section>
     </content:>
 
@@ -106,14 +115,14 @@
 
 
 <def tag="edit-page" for="User">
-  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'], :name => name(:no_wrapper => true) }">
+  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'] }">
 
     <body: class="edit-page user" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="user.edit.heading" name="#{name(:no_wrapper => true)}">
+          <ht key="user.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
             Edit User
           </ht>
         </h2>
