@@ -8,13 +8,13 @@
 	background-repeat: no-repeat;
 }
 
-.inplaceeditor-form input, .inplaceeditor-form textarea,
+.inplaceeditor-form input, .inplaceeditor-form textarea, 
 table.new-record textarea, table.new-record input {
 	border: 1px dotted #666;
 	padding: 3px;	width: 100%;
 }
 .inplaceeditor-form, .inplaceeditor-form input {
-	display: inline;
+	display: inline;	
 }
 
 /**** Admin ****/
@@ -76,7 +76,7 @@ div.completions-popup ul li {
 
 .field-list td.field-label {
     text-align: left; width: 1px; white-space: nowrap; vertical-align: top;
-    padding-top: 10px; padding-bottom: 10px;
+    padding-top: 5px; padding-bottom: 5px;
 }
 .field-list textarea, .field-list input[type=text], .field-list input[type=password] { width: 99%; margin: 0; }
 
@@ -98,5 +98,3 @@ optgroup.disabled-option {
     color: #ccc;
     height: 1em;
 }
-
-input.nil-value { color:grey; }

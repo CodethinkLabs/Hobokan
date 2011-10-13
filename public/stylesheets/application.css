@@ -1,0 +1,8 @@
+.field-list textarea, .field-list input[type=text], .field-list input[type=password] { width: 99%; margin: 0%; }
+.login_table td.field_label { vertical-align: middle; }
+/*table.login-table input {font-size: 16px; color: black;}*/
+input[type=text].wide { width: 100%; }
+textarea { height: 40px; }
+textarea.wide { width: 100%; }
+textarea.tall { height: 40px; }
+

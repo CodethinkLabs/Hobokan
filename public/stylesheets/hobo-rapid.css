@@ -71,7 +71,7 @@ table.login-table, table.login-table td {border: none;}
 input[type=text].wide { width: 100%; }
 textarea { height: 200px; }
 textarea.wide { width: 100%; }
-textarea.tall { height: 350px; }
+textarea.tall { height: 250px; }
 
 .field_list input.percentage {width: 25px; display: inline; margin-right: 5px; padding: 1px 3px;}
 
