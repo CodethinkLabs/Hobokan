@@ -284,7 +284,11 @@
           <ht key="lane.actions.new">New Lane</ht>
         </a>
 
-        <sortable-collection param="collection"/>
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
 
 
       </section>
