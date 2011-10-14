@@ -4,14 +4,14 @@ class Lane < ActiveRecord::Base
 
   fields do
     title         :string
-    max_items     :integer
+    max_items     :integer, :default => 25
     position      :integer
     super_lane_id :integer
     type          :string
     counts_wip    :boolean
-    warn_limit    :integer
-    urgent_limit  :integer
-    dashboard     :boolean
+    warn_limit    :integer, :default => 10
+    urgent_limit  :integer, :default => 10
+    dashboard     :boolean, :default => false
     timestamps
   end
 
