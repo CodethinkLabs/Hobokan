@@ -15,8 +15,8 @@ class Item < ActiveRecord::Base
     timestamps
   end
 
-  validates_date :start_date, :on_or_after => Date.today
-  validates_date :end_date, :on_or_after => Date.today
+  # validates_date :start_date, :on_or_after => Date.today
+  # validates_date :end_date, :on_or_after => Date.today
 
   # children :statistics, :history_entries
 
@@ -47,15 +47,20 @@ class Item < ActiveRecord::Base
     Lane.find(lane)
   end
 
+  before_create :update_position
   before_save :update_time_counters
   after_save :update_statistics
 
+  def update_position
+    self.position = self.lane.items.count + 1
+  end
+
   def update_statistics
     unless changed? and !changes["lane_id"].nil?
-      Statistic.create(:lane => self.lane, :user => self.owner, :item => self, :entry_time => Time.now) if self.new_record? && self.lane
-      if !self.new_record? && !changes["owner_id"].nil?
+      Statistic.create(:lane => self.lane, :user => self.user, :item => self, :entry_time => Time.now) if self.new_record? && self.lane
+      if !self.new_record? && !changes["user_id"].nil?
         stat = Statistic.find(:first, :order => 'id DESC', :conditions => {:lane_id => self.lane, :item_id => self})
-        stat.update_attribute(:user_id, changes["owner_id"][1]) if stat
+        stat.update_attribute(:user_id, changes["user_id"][1]) if stat
       end
       return
     end
@@ -67,7 +72,7 @@ class Item < ActiveRecord::Base
       stat = Statistic.find(:first, :order => 'id DESC', :conditions => {:lane_id => old_lane, :item_id => self})
       stat.update_attribute(:leave_time, Time.now) if stat
     end
-    Statistic.create(:lane => new_lane, :user => self.owner, :item => self, :entry_time => Time.now) if new_lane
+    Statistic.create(:lane => new_lane, :user => self.user, :item => self, :entry_time => Time.now) if new_lane
   end
 
   # wip counters - needed to determine the current and the overall WIP
