@@ -46,6 +46,102 @@
 </extend>
 
 
+<def tag="show-page" for="Project">
+  <page merge title="#{ht 'project.show.title', :default=>['Project'] }">
+
+    <body: class="show-page project" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="project.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="project.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Project
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+
+<!-- The data for the stories -->
+<textarea rows="1" id="stories" style="visibility: hidden;">
+P_Q,S17,Fix YSlow
+P,S3,Make application faster
+D_Q,S13,Build something astonishing
+D,S17,Do something with OpenID
+DE,S18,Checkout optimize
+DE,S7,Credit Card Payment
+DE,S10,Rebuild with REST
+DE,S39,Google Page Speed fix
+DE,S4,Rebuild with SOAP
+DE,S2,Build old shop
+T,S1,Build new shop
+</textarea>
+
+<!-- Names and shortcuts for the different states:
+    Shortcut,Name
+    They will be displayed in this order
+   -->
+<textarea rows="1"  id="states" style="visibility: hidden;">
+P,ProductMgt
+D,Design
+DE,Development
+T,Test
+R,Release
+</textarea>
+
+<textarea id="data_output" rows="20" cols="100">
+</textarea>
+
+<style type="text/css">
+<!--
+  #P .box { background-color: #FFFF00  ; color: #000000;}
+  #P_Q .box { background-color: #F0F0F0; color: #606060;}
+  #D .box { background-color: #FFC300; color: #000000;}
+  #D_Q .box { background-color: #F0F0F0; color: #606060;}
+  #DE .box { background-color: #B5DBFF  ; color: #000000;}
+  #DE_Q .box { background-color: #F0F0F0; color: #606060;}
+  #T .box { background-color: #A5C700; color: #ffffff;}
+  #T_Q .box { background-color: #F0F0F0; color: #606060;}
+  #R .box { background-color: #9CCFFF  ; color: #000000;}
+  #R_Q .box { background-color: #F0F0F0; color: #606060;}
+  -->
+</style>
+
+<style type="text/css">
+<!--
+    .button { background-color: #e0e0e0; color: #a0a0a0; padding: 0.2em; text-decoration: none;}
+    .placeholder {border: 1px solid black; }
+     ul { list-style: none; margin: 0 0 0 0; padding: 0 0 0 0;}
+   body { font-family: Helvetica; }
+   .box { font-size: 80%; padding: 0.2em; border: 1px solid black; margin-bottom: 1em; margin-right: 5px;}
+   .dp10 {width:9%;  float:left;  display: inline;  *margin-right:-1px; }
+   .clear {clear:both;}
+   .headline { font-weight: bold; height: 3em; color: #000000;}
+   .queue_column .headline { font-weight: bold; height: 3em; color: #d0d0d0;}
+   .footer { font-size: 80%; color: #808080; padding-top: 5em;}
+   -->
+</style>
+
+<div id="output"></div>
+<div class="clear"></div>
+
+<javascript name="jquery.dragsort"/>
+<javascript name="kanban_board"/>
+
+</section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 

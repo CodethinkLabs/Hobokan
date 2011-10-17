@@ -1,7 +1,0 @@
-<show-page>
-  <collection: replace>
-    <table-plus:lanes fields="this, max_items, position, type, dashboard, project, super_lane">
-      <empty-message:>No lanes match your criteria</empty-message:>
-    </table-plus>
-  </collection:>
-</show-page>

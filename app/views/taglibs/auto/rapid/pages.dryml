@@ -203,6 +203,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:lane param="parent-link">&laquo; <ht key="item.actions.back_to_parent" parent="Lane" name="&this">Back to <name/></ht></a:lane>
             <h2 param="heading">
               <ht key="item.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -219,7 +220,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, state, lane, last_editor, user" param/>
+            <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, state, last_editor, user" param/>
           </section>
     </content:>
 

@@ -28,12 +28,12 @@ jQuery.fn.hjq_hide = function(options, callback) {
     var cb = callback;
     if(callback && hjq.hideComplete) {
         cb = (function() {
-            callback.apply(this, arguments); 
-            hjq.hideComplete.apply(this, arguments); 
+            callback.apply(this, arguments);
+            hjq.hideComplete.apply(this, arguments);
         });
     } else if (hjq.hideComplete) {
         cb = hjq.hideComplete;
-    }        
+    }
     return this.hide(settings.effect, settings, settings.speed, cb);
 };
 
@@ -44,8 +44,8 @@ jQuery.fn.hjq_show = function(options, callback) {
     }, options);
     if(callback && hjq.showComplete) {
         cb = (function() {
-            settings.callback.apply(this, arguments); 
-            hjq.showComplete.apply(this, arguments); 
+            settings.callback.apply(this, arguments);
+            hjq.showComplete.apply(this, arguments);
         });
     } else if (hjq.showComplete) {
         cb = hjq.showComplete;
@@ -77,12 +77,12 @@ var hjq = (function() {
         /* returns JSON annotations for *this* */
         getAnnotations: function() {
             // Unforunately, jQuery does not traverse comment nodes, so we're using the DOM methods directly
-            
+
             // previous is probably a textNode containing whitespace
             var comment = this.previousSibling;
             if(comment.nodeType!=Node.COMMENT_NODE) { comment = comment.previousSibling; }
             if(comment.nodeType!=Node.COMMENT_NODE) { return ({}); }
-            
+
             var json = RegExp(/^\s*json_annotation\s*(\(\{.*\}\)\;)\s*$/).exec(comment.nodeValue)[1];
             return eval(json);
         },
@@ -122,7 +122,7 @@ var hjq = (function() {
                 });
                 return descend;
             },
-            
+
 	    /* Given a function name or javascript fragment, return a function */
 	    createFunction: function(script) {
                 if(!script) return function() {};
@@ -141,7 +141,7 @@ var hjq = (function() {
                 }
                 return [];
             },
-	    
+
             /* log to console, if available */
             log: function(s) {
                 if(console && console.log) console.log(s);
@@ -157,7 +157,7 @@ var hjq = (function() {
                     this.disabled = true;
                     jQuery(this).addClass("input_many_template_input");
                 });
-              
+
                 // bind event handlers
                 me.find(".remove-item").click(hjq.input_many.removeOne);
                 me.find(".add-item").click(hjq.input_many.addOne);
@@ -202,7 +202,7 @@ var hjq = (function() {
                     me.children("div.buttons").children("button.remove-item").removeClass("hidden");
                     me.children("div.buttons").children("button.add-item").addClass("hidden");
                 }
-                
+
                 hjq.util.createFunction(params.add_hook).call(me.get(0));
 
                 return false; // prevent bubbling
@@ -228,7 +228,7 @@ var hjq = (function() {
                         name_updater.call(this);
                     });
                     name_updater.call(n.get(0));
-                }                
+                }
 
                 // adjust +/- buttons on the button element as appropriate
                 var last=top.children("li:last");
@@ -377,8 +377,8 @@ var hjq = (function() {
                     var id = attrs.update[i];
                     if(id=="self") {
                         for(var el=jQuery(this); el.length && !hoboParts[el.attr("id")]; el=el.parent());
-                        id = ( el.length ? el.attr("id") : undefined) ; 
-                    }                    
+                        id = ( el.length ? el.attr("id") : undefined) ;
+                    }
                     if(id) {
                         options.data += "&" + encodeURIComponent("render["+i+"][part_context]") + "=" + encodeURIComponent(hoboParts[id]);
                         options.data += "&" + encodeURIComponent("render["+i+"][id]") + "=" + id;
@@ -397,7 +397,7 @@ var hjq = (function() {
                 return false;
             }
         },
-                
+
         datepicker: {
             init: function(annotations) {
                 if(!this.disabled) {
