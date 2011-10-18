@@ -27,7 +27,7 @@
 <def tag="form" for="Lane">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title, max_items, position, counts_wip, warn_limit, urgent_limit, dashboard, project, super_lane" param/>
+    <field-list fields="title, max_items, position, counts_wip, warn_limit, urgent_limit, dashboard, background_color, color, project, super_lane" param/>
     <div param="actions">
       <submit label="#{ht 'lane.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
