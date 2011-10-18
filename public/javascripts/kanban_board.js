@@ -2,16 +2,17 @@
 jQuery("#data_output").hide();
 
 var init_states = function(states_input) {
-    var states = {}
-	var states_order = []
-	for ( var i=0, len=states_input.length; i<len; i++ ) {
-		var state = states_input[i].split(",");
-		if (state.length == 2) {
-			states[state[0]] = state[1];
-			states_order.push(state[0]);
-		}
-	}
-    return {states: states, states_order: states_order};
+  var states = {}
+  var states_order = []
+  for ( var i=0, len=states_input.length; i<len; i++ ) {
+    var state = states_input[i].split(",");
+    if (state.length == 4) {
+      states[state[0]] = state[1];
+      states_order.push(state[0]);
+    }
+  }
+
+  return {states: states, states_order: states_order};
 }
 
 var init_board = function(stories) {
@@ -30,7 +31,7 @@ var init_board = function(stories) {
 }
 
 var create_list = function(board, state) {
-	   var list = jQuery("<ul class=\"state\" id=\"" + state + "\"></ul>");
+    var list = jQuery("<ul class=\"state\" id=\"" + state + "\"></ul>");
        if (board[state]) {
          for (var i=0, len=board[state].length; i<len; i++) {
             var story_element = jQuery("<li><div class=\"box box_" + state  + "\">" + board[state][i][1] + " " + board[state][i][2] + "</div></li>");
@@ -69,10 +70,23 @@ var create_board = function(app_data) {
 	return table;
 }
 
+var create_box_colors = function(states_input) {
+  var styles = jQuery('<style type="text/css"><!-- --></style>');
+  for ( var i=0, len=states_input.length; i<len; i++ ) {
+    var state = states_input[i].split(",");
+    if (state.length == 4) {
+      styles.append("#" + state[0] + " .box { background-color: " + state[2] + " ; color: " + state[3] + ";}");
+      styles.append("#" + state[0] + "_Q .box { background-color: #F0F0F0  ; color: #606060;}");
+    }
+  }
+
+  return styles;
+}
+
 var state_data = init_states(jQuery("#states").text().split("\n"));
 var app_data = { board: init_board(jQuery("#stories").text().split("\n")), states: state_data.states, states_order: state_data.states_order}
 jQuery("#output").empty();
+jQuery("#output").append(create_box_colors(jQuery("#states").text().split("\n")));
 jQuery("#output").append(create_board(app_data));
-
 
 

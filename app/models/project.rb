@@ -8,7 +8,6 @@ class Project < ActiveRecord::Base
   end
 
   children :lanes
-  # children :backlogs, :livelogs, :parkings
 
   has_many :lanes, :order => :position
   has_one :backlog, :class_name => 'Lane', :conditions => {:title => 'Backlog'}
@@ -19,65 +18,58 @@ class Project < ActiveRecord::Base
 
   def setup_lanes
     lane = Lane.new
-    lane.title = 'ProductMgt Ready'
+    lane.title = 'ProductMgt'
     lane.position = 1
     lane.project = self
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'ProductMgt'
-    lane.position = 2
-    lane.project = self
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'Design Ready'
-    lane.position = 3
-    lane.project = self
+    lane.background_color = '#FFFF00'
+    lane.color = '#000000'
     lane.save
 
     lane = Lane.new
     lane.title = 'Design'
-    lane.position = 4
+    lane.position = 2
     lane.project = self
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'Development Ready'
-    lane.position = 5
-    lane.project = self
+    lane.background_color = '#FFC300'
+    lane.color = '#000000'
     lane.save
 
     lane = Lane.new
     lane.title = 'Development'
-    lane.position = 6
+    lane.position = 3
     lane.project = self
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'Test Ready'
-    lane.position = 7
-    lane.project = self
+    lane.background_color = '#B5DBFF'
+    lane.color = '#000000'
     lane.save
 
     lane = Lane.new
     lane.title = 'Test'
-    lane.position = 8
+    lane.position = 4
     lane.project = self
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'Release Ready'
-    lane.position = 9
-    lane.project = self
+    lane.background_color = '#A5C700'
+    lane.color = '#000000'
     lane.save
 
     lane = Lane.new
     lane.title = 'Release'
-    lane.position = 10
+    lane.position = 5
     lane.project = self
+    lane.background_color = '#9CCFFF'
+    lane.color = '#000000'
     lane.save
 
+  end
+
+  def states
+    lanes.map { |lane| "L#{lane.id},#{lane.title},#{lane.background_color},#{lane.color}"}.join("\n")
+  end
+
+  def stories
+    result = []
+    lanes.each do |lane|
+      result << lane.items.map {|item| "L#{lane.id}#{item.start_date ? '' : '_Q'},S#{item.id},#{item.title}" }
+    end
+
+    return result.join("\n")
   end
 
   # --- Permissions --- #
