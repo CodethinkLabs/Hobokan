@@ -73,6 +73,7 @@ CtKanban::Application.routes.draw do
 
 
   # Resource routes for controller "lanes"
+  get 'lanes(.:format)' => 'lanes#index', :as => 'lanes'
   get 'lanes/new(.:format)', :as => 'new_lane'
   get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
   get 'lanes/:id(.:format)' => 'lanes#show', :as => 'lane', :constraints => { :id => %r([^/.?]+) }
