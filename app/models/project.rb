@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
 
   children :lanes
 
-  has_many :lanes, :order => :position
+  has_many :lanes, :order => :position, :accessible => true
   has_one :backlog, :class_name => 'Lane', :conditions => {:title => 'Backlog'}
   has_one :livelog, :class_name => 'Lane', :conditions => {:title => 'Live'}
   has_one :parking, :class_name => 'Lane', :conditions => {:title => 'Parking'}
