@@ -50,6 +50,26 @@ var create_column = function(board, state, headline) {
 	   return state_column;
 }
 
+var drop_handler = function() {
+  var children = this.parent().children();
+  var item_ordering = "";
+
+  for (var i = 0, len = children.length; i < len; i++) {
+    item_ordering += "&item_ordering[]=" + children[i].textContent.replace(/^S([\d]+).*/, "$1");
+  }
+
+  var item_id = this.text().replace(/^S([\d]+).*/, "$1");
+  var lane_id = this.parent().attr("id").replace(/^L([\d]+).*/, "$1");
+  Hobo.ajaxRequest( window.location.href + "?lane_id=" + lane_id + "&item_id=" + item_id + item_ordering,
+                    [],
+                    { params: { lane_id: lane_id, item_id: item_id },
+                      action: 'show',
+                      controller: 'projects',
+                      method: 'get',
+                      message: "Please wait"
+                    } );
+}
+
 var create_board = function(app_data) {
 	var table = jQuery("<div id=\"board\"></div>");
 	var ids = "";
@@ -66,7 +86,7 @@ var create_board = function(app_data) {
 			table.append(state_column)
 		}
 	}
-	jQuery(ids, table).dragsort({ dragBetween: true });
+	jQuery(ids, table).dragsort({ dragBetween: true, dragEnd: drop_handler });
 	return table;
 }
 
