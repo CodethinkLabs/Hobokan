@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014120719) do
+ActiveRecord::Schema.define(:version => 20111018081101) do
 
   create_table "history_entries", :force => true do |t|
     t.string   "action"
@@ -50,17 +50,19 @@ ActiveRecord::Schema.define(:version => 20111014120719) do
 
   create_table "lanes", :force => true do |t|
     t.string   "title"
-    t.integer  "max_items",     :default => 25
+    t.integer  "max_items",        :default => 25
     t.integer  "position"
     t.string   "type"
     t.boolean  "counts_wip"
-    t.integer  "warn_limit",    :default => 10
-    t.integer  "urgent_limit",  :default => 10
-    t.boolean  "dashboard",     :default => false
+    t.integer  "warn_limit",       :default => 10
+    t.integer  "urgent_limit",     :default => 10
+    t.boolean  "dashboard",        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
     t.integer  "super_lane_id"
+    t.string   "background_color"
+    t.string   "color"
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"

@@ -12,6 +12,8 @@ class Lane < ActiveRecord::Base
     warn_limit    :integer, :default => 10
     urgent_limit  :integer, :default => 10
     dashboard     :boolean, :default => false
+    background_color :string
+    color         :string
     timestamps
   end
 
