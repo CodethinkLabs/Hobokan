@@ -14,6 +14,126 @@
 
 
 
+<!-- ====== ChecklistItem Pages ====== -->
+
+<def tag="index-page" for="ChecklistItem">
+  <page merge title="#{ht 'checklist_item.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page checklist-item" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="checklist_item.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="checklist_item.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="checklist_item.actions.new">New Checklist item</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ChecklistItem">
+  <page merge title="#{ht 'checklist_item.new.title', :default=>[' New Checklist item'] }">
+    <body: class="new-page checklist-item" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="checklist_item.new.heading">
+            New Checklist item
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'checklist_item.actions.create', :default=>['Create Checklist item']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ChecklistItem">
+  <page merge title="#{ht 'checklist_item.show.title', :default=>['Checklist item'] }">
+
+    <body: class="show-page checklist-item" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="checklist_item.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="checklist_item.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Checklist item
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="item" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ChecklistItem">
+  <page merge title="#{ht 'checklist_item.edit.title', :default=>['Edit Checklist item'] }">
+
+    <body: class="edit-page checklist-item" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="checklist_item.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Checklist item
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'checklist_item.actions.delete', :default=>['Remove This Checklist item']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== HistoryEntry Pages ====== -->
 
 <def tag="index-page" for="HistoryEntry">
@@ -220,6 +340,15 @@
 
           <section param="content-body">
             <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, state, lane, last_editor, user" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="checklist_item.collection.heading" count="&this.checklist_items.count" >
+                  <human-collection-name collection="checklist_items" your/>
+                </ht>
+              </h3>
+
+              <collection:checklist_items param/>
+            </section>
           </section>
     </content:>
 
@@ -342,7 +471,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="title, max_items, position, warn_limit, urgent_limit, background_color, color, project, super_lane" param/>
+            <field-list fields="title, max_items, position, warn_limit, urgent_limit, background_color, color, project" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="item.collection.heading" count="&this.items.count" >

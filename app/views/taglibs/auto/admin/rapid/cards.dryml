@@ -1,5 +1,13 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="card" for="ChecklistItem">
+  <card class="checklist-item" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="HistoryEntry">
   <card class="history-entry" param="default" merge>
     <header: param>
@@ -13,6 +21,11 @@
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>
+    <body: param>
+      <ht key="checklist_item.collection.count" count="&this.checklist_items.size">
+         <count:checklist_items param/>
+      </ht>
+    </body:>
   </card>
 </def>
 

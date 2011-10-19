@@ -1,5 +1,17 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="form" for="ChecklistItem">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="item" param/>
+    <div param="actions">
+      <submit label="#{ht 'checklist_item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="HistoryEntry">
   <form merge param="default">
     <error-messages param/>
@@ -27,7 +39,7 @@
 <def tag="form" for="Lane">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title, max_items, position, counts_wip, warn_limit, urgent_limit, dashboard, background_color, color, project, super_lane" param/>
+    <field-list fields="title, max_items, position, counts_wip, warn_limit, urgent_limit, dashboard, background_color, color, project" param/>
     <div param="actions">
       <submit label="#{ht 'lane.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -39,7 +51,7 @@
 <def tag="form" for="Project">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, lanes" param/>
+    <field-list fields="name" param/>
     <div param="actions">
       <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
