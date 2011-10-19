@@ -1,0 +1,10 @@
+<index-page >
+  <collection: replace>
+  <div>
+    <table-plus field-list fields="this" >
+    <view:this />
+    </table-plus>
+  </div>
+  </collection:>
+</index-page>
+
