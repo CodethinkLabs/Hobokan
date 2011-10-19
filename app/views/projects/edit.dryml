@@ -1,0 +1,15 @@
+<edit-page>
+  <content:>
+    <h2> Edit Project</h2>
+    <error-messages/>
+    <form>
+        <field-list fields="name">
+        </field-list>
+    <h2> Lanes</h2>
+        <input-many:lanes><field-list fields="title, background_color, color"/></input-many>
+
+        <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
+    </form>
+  </content:>
+</edit-page>
+
