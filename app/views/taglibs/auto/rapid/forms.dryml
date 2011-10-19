@@ -3,7 +3,7 @@
 <def tag="form" for="ChecklistItem">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="item" param/>
+    <field-list fields="text, done, item" param/>
     <div param="actions">
       <submit label="#{ht 'checklist_item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -51,7 +51,7 @@
 <def tag="form" for="Project">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name" param/>
+    <field-list fields="name, lanes" param/>
     <div param="actions">
       <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
