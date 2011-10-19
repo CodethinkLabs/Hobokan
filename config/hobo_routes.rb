@@ -71,6 +71,9 @@ CtKanban::Application.routes.draw do
   put 'projects/:id(.:format)' => 'projects#update', :as => 'update_project', :constraints => { :id => %r([^/.?]+) }
   delete 'projects/:id(.:format)' => 'projects#destroy', :as => 'destroy_project', :constraints => { :id => %r([^/.?]+) }
 
+  # Show action routes for controller "projects"
+  get 'projects/:id/kanban_board(.:format)' => 'projects#kanban_board', :as => 'project_kanban_board'
+
 
   # Resource routes for controller "lanes"
   get 'lanes/new(.:format)', :as => 'new_lane'

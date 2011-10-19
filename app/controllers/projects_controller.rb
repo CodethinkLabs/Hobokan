@@ -4,15 +4,17 @@ class ProjectsController < ApplicationController
 
   auto_actions :all
 
-  def update
-    if request.xhr?
-      # hobo_ajax_response
-    else
-      hobo_update
-    end
+  def show
+    @project = find_instance
+    @lanes =
+      @project.lanes.apply_scopes(:search    => [params[:search], :title],
+                                    :status_is => params[:status],
+                                    :order_by  => parse_sort_param(:title, :status))
   end
 
-  def show
+  show_action :kanban_board
+
+  def kanban_board
     if request.xhr?
       @item = Item.find(params[:item_id])
       @old_lane = @item.lane
@@ -41,6 +43,11 @@ class ProjectsController < ApplicationController
     end
 
     @project = find_instance
+    @lanes =
+      @project.lanes.apply_scopes(:search    => [params[:search], :title],
+                                    :status_is => params[:status],
+                                    :order_by  => parse_sort_param(:title, :status))
+
     # @lanelist = @project.lanes.where(["title like ?", "%#{params[:search]}%"]).order(parse_sort_param(:title).join(' '))
   end
 end
