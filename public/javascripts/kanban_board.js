@@ -34,7 +34,12 @@ var create_list = function(board, state) {
   var list = jQuery("<ul class=\"state\" id=\"" + state + "\"></ul>");
   if (board[state]) {
     for (var i=0, len=board[state].length; i<len; i++) {
-      var story_element = jQuery("<li><div class=\"box box_" + state  + "\">" + board[state][i][1] + " " + board[state][i][2] + "</div></li>");
+      var item_id = board[state][i][1].replace(/^S([\d]+).*/, "$1");
+      var title = board[state][i][2].replace(/ /g, "_").toLowerCase();
+      console.debug("item_id: " + item_id);
+      console.debug("title: " + title);
+      var story_element = jQuery("<li><div class=\"box box_" +
+      state  + "\">" + board[state][i][1] + " " + board[state][i][2] + "<br /><a class=\"edit-link item-link\" href=\"/items/" + item_id + "_" + title + "/edit\">Edit Item</a></div></li>");
       story_element.data("story",  board[state][i]);
       list.append(story_element);
     }
