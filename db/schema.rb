@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019080949) do
+ActiveRecord::Schema.define(:version => 20111019104816) do
 
   create_table "checklist_items", :force => true do |t|
     t.string   "text"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(:version => 20111019080949) do
   add_index "history_entries", ["item_id"], :name => "index_history_entries_on_item_id"
   add_index "history_entries", ["trigger_type", "trigger_id"], :name => "index_history_entries_on_trigger_type_and_trigger_id"
 
+  create_table "item_users", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "item_id"
+  end
+
+  add_index "item_users", ["item_id"], :name => "index_item_users_on_item_id"
+  add_index "item_users", ["user_id"], :name => "index_item_users_on_user_id"
+
   create_table "items", :force => true do |t|
     t.date     "start_date"
     t.date     "end_date"
@@ -50,13 +60,11 @@ ActiveRecord::Schema.define(:version => 20111019080949) do
     t.integer  "last_editor_id"
     t.string   "state",              :default => "normal"
     t.datetime "key_timestamp"
-    t.integer  "user_id"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
   add_index "items", ["last_editor_id"], :name => "index_items_on_last_editor_id"
   add_index "items", ["state"], :name => "index_items_on_state"
-  add_index "items", ["user_id"], :name => "index_items_on_user_id"
 
   create_table "lanes", :force => true do |t|
     t.string   "title"

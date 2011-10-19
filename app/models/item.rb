@@ -22,10 +22,12 @@ class Item < ActiveRecord::Base
 
   has_many :statistics, :dependent => :destroy
   has_many :history_entries
-  has_many :checklist_items
+  has_many :checklist_items, :accessible => true
+
+  has_many :users, :through => :item_users
+  has_many :item_users, :dependent => :destroy
 
   belongs_to :lane
-  belongs_to :user
   belongs_to :last_editor, :class_name => 'User'
 
   acts_as_list :scope => :lane
@@ -57,8 +59,12 @@ class Item < ActiveRecord::Base
   end
 
   def update_statistics
+    # users.each {|u| update_statistics_for_user(u) }
+  end
+
+  def update_statistics_for_user(user)
     unless changed? and !changes["lane_id"].nil?
-      Statistic.create(:lane => self.lane, :user => self.user, :item => self, :entry_time => Time.now) if self.new_record? && self.lane
+      Statistic.create(:lane => self.lane, :user => user, :item => self, :entry_time => Time.now) if self.new_record? && self.lane
       if !self.new_record? && !changes["user_id"].nil?
         stat = Statistic.find(:first, :order => 'id DESC', :conditions => {:lane_id => self.lane, :item_id => self})
         stat.update_attribute(:user_id, changes["user_id"][1]) if stat
