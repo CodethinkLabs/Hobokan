@@ -1,0 +1,20 @@
+<show-page>
+  <content-header: replace>
+             <h2>
+              <ht key="project.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+           <a action="edit" if="&can_edit?">
+              <ht key="project.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Project
+              </ht>
+            </a>
+            <br /><br />
+           <a action="kanban_board">
+              <ht key="project.actions.kanban_board" name="&this.respond_to?(:name) ? this.name : ''">
+                Show Board
+              </ht>
+            </a>
+  </content-header:>
+</show-page>
