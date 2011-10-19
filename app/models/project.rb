@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
 
   children :lanes
 
-  has_many :lanes, :order => :position, :accessible => true
+  has_many :lanes, :order => :position
   has_one :backlog, :class_name => 'Lane', :conditions => {:title => 'Backlog'}
   has_one :livelog, :class_name => 'Lane', :conditions => {:title => 'Live'}
   has_one :parking, :class_name => 'Lane', :conditions => {:title => 'Parking'}
@@ -18,7 +18,7 @@ class Project < ActiveRecord::Base
 
   def setup_lanes
     lane = Lane.new
-    lane.title = 'ProductMgt'
+    lane.title = 'Wishlist'
     lane.position = 1
     lane.project = self
     lane.background_color = '#FFFF00'
@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
     lane.save
 
     lane = Lane.new
-    lane.title = 'Design'
+    lane.title = 'Backlog'
     lane.position = 2
     lane.project = self
     lane.background_color = '#FFC300'
@@ -34,7 +34,7 @@ class Project < ActiveRecord::Base
     lane.save
 
     lane = Lane.new
-    lane.title = 'Development'
+    lane.title = 'Planning'
     lane.position = 3
     lane.project = self
     lane.background_color = '#B5DBFF'
@@ -42,7 +42,7 @@ class Project < ActiveRecord::Base
     lane.save
 
     lane = Lane.new
-    lane.title = 'Test'
+    lane.title = 'Doing'
     lane.position = 4
     lane.project = self
     lane.background_color = '#A5C700'
@@ -50,7 +50,7 @@ class Project < ActiveRecord::Base
     lane.save
 
     lane = Lane.new
-    lane.title = 'Release'
+    lane.title = 'Done'
     lane.position = 5
     lane.project = self
     lane.background_color = '#9CCFFF'
