@@ -5,7 +5,7 @@
     <form>
         <field-list fields="name">
         </field-list>
-    <h2> Lanes</h2>
+        <h2> Lanes</h2>
         <input-many:lanes><field-list fields="title, background_color"/></input-many>
 
         <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>

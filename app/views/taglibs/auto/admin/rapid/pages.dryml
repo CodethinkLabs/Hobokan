@@ -98,15 +98,6 @@
 
           <section param="content-body">
             <field-list fields="email_address, state" param/>
-            <section param="collection-section">
-              <h3 param="collection-heading">
-                <ht key="item.collection.heading" count="&this.items.count" >
-                  <human-collection-name collection="items" your/>
-                </ht>
-              </h3>
-
-              <collection:items param/>
-            </section>
           </section>
     </content:>
 

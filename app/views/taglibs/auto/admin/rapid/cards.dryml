@@ -29,6 +29,14 @@
   </card>
 </def>
 
+<def tag="card" for="ItemUser">
+  <card class="item-user" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="Lane">
   <card class="lane" param="default" merge>
     <header: param>
@@ -68,11 +76,6 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
-    <body: param>
-      <ht key="item.collection.count" count="&this.items.size">
-         <count:items param/>
-      </ht>
-    </body:>
   </card>
 </def>
 
