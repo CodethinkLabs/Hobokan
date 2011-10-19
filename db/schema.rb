@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018081101) do
+ActiveRecord::Schema.define(:version => 20111019075206) do
 
   create_table "history_entries", :force => true do |t|
     t.string   "action"
@@ -60,14 +60,11 @@ ActiveRecord::Schema.define(:version => 20111018081101) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
-    t.integer  "super_lane_id"
     t.string   "background_color"
     t.string   "color"
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
-  add_index "lanes", ["super_lane_id"], :name => "index_lanes_on_super_lane_id"
-  add_index "lanes", ["type"], :name => "index_lanes_on_type"
 
   create_table "projects", :force => true do |t|
     t.string   "name"

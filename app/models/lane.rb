@@ -6,7 +6,6 @@ class Lane < ActiveRecord::Base
     title         :string
     max_items     :integer, :default => 25
     position      :integer
-    super_lane_id :integer
     type          :string
     counts_wip    :boolean
     warn_limit    :integer, :default => 10
@@ -18,26 +17,11 @@ class Lane < ActiveRecord::Base
   end
 
   children :items
-
   acts_as_list :scope => :project
-
   belongs_to :project
-  belongs_to :super_lane, :class_name => 'Lane', :foreign_key => 'super_lane_id'
-
-  has_many :sub_lanes, :class_name => 'Lane', :foreign_key => 'super_lane_id', :order => :position
-
   has_many :items, :order => "position"
-
   has_many :statistics
-
   scope :on_dashboard, :conditions => {:dashboard => true}
-  scope :top_level, :conditions => {:super_lane_id => nil}, :order => :position
-  scope :standard, :conditions => {:type => 'StandardLane', :super_lane_id => nil}, :order => :position
-  scope :restricted, :conditions => {:type => 'RestrictedLane', :super_lane_id => nil}, :order => :position
-
-  def is_super_lane?
-    sub_lanes.count > 0
-  end
 
   def name
     title.gsub(/\s/, "_").downcase
