@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019075206) do
+ActiveRecord::Schema.define(:version => 20111019080949) do
+
+  create_table "checklist_items", :force => true do |t|
+    t.string   "text"
+    t.boolean  "done"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "item_id"
+  end
+
+  add_index "checklist_items", ["item_id"], :name => "index_checklist_items_on_item_id"
 
   create_table "history_entries", :force => true do |t|
     t.string   "action"

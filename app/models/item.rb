@@ -18,11 +18,12 @@ class Item < ActiveRecord::Base
   # validates_date :start_date, :on_or_after => Date.today
   # validates_date :end_date, :on_or_after => Date.today
 
-  # children :statistics, :history_entries
+  children :checklist_items
 
   has_many :statistics, :dependent => :destroy
-
   has_many :history_entries
+  has_many :checklist_items
+
   belongs_to :lane
   belongs_to :user
   belongs_to :last_editor, :class_name => 'User'
