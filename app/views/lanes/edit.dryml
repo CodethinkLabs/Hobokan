@@ -1,0 +1,15 @@
+<edit-page>
+  <content:>
+    <h2> Edit Lane</h2>
+    <error-messages/>
+    <form>
+        <field-list fields="title">
+        </field-list>
+        <h2> Items</h2>
+        <input-many:items><field-list fields="start_date, end_date, title, text, estimation, checklist_items"/>
+        </input-many>
+        <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
+    </form>
+ </content:>
+</edit-page>
+
