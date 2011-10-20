@@ -18,16 +18,6 @@
 
 <set-theme name="clean"/>
 
-<extend tag="page">
-  <old-page merge>
-    <footer:>
-      <a href="&admin_users_url" if="&current_user.administrator?">
-        <t key="hobo.admin.subsite_name">Admin</t>
-      </a>
-    </footer:>
-  </old-page>
-</extend>
-
 <def tag="input" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
 <def tag="edit" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
 
