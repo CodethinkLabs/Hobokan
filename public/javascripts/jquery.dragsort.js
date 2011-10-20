@@ -194,7 +194,9 @@
 					window.clearInterval(list.scroll.scrollY);
 					window.clearInterval(list.scroll.scrollX);
 
-					var changed = false;
+          // The test below can only work if you are not
+          // dragging between lists
+					var changed = opts.dragBetween;
 					jQuery(lists).each(function() {
 						jQuery(this.container).children(opts.itemSelector).each(function(j) {
 							if (parseInt(jQuery(this).attr("data-itemIdx")) != j) {
