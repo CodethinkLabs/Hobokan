@@ -49,9 +49,6 @@ CtKanban::Application.routes.draw do
   # Owner routes for controller "items"
   post 'lanes/:lane_id/items(.:format)' => 'items#create_for_lane', :as => 'create_item_for_lane'
 
-  # Reorder routes for controller "items"
-  post 'items/reorder(.:format)', :as => 'reorder_items'
-
 
   # Resource routes for controller "history_entries"
   get 'history_entries/new(.:format)', :as => 'new_history_entry'

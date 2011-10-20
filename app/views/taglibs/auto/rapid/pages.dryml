@@ -480,7 +480,7 @@
                 </ht>
               </h3>
 
-              <sortable-collection:items param="collection"/>
+              <collection:items param/>
 
               <section param="add-to-collection" if="&can_create?(@lane.items)">
                 <h3 param="add-form-heading">
