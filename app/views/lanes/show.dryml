@@ -1,3 +1,8 @@
 <show-page>
-  <field-list: tag="editor"/>
+  <content-body: replace>
+    <field-list: tag="editor" fields="title" />
+
+    <table-plus:items fields="title, start_date, end_date, text, checklist_items">
+    </table-plus>
+  </content-body>
 </show-page>
