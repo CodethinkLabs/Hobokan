@@ -1,0 +1,6 @@
+<new-page>
+    <content-body: replace>
+      <kanban-board-view />
+    <form />
+    </content-body:>
+</new-page>
