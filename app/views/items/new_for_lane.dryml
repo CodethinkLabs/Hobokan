@@ -1,7 +1,6 @@
-<edit-page>
+<new-page>
     <content-body: replace>
       <kanban-board-view />
     <form />
     </content-body:>
-</edit-page>
-
+</new-page>
