@@ -12,9 +12,20 @@ class ItemsController < ApplicationController
       return
     end
 
-    @item = Item.new
-    @lane = Lane.user_find(current_user, params[:lane_id])
-    @item.lane = @lane
+    if !@item
+      @item = Item.new
+      @lane = Lane.user_find(current_user, params[:lane_id])
+      @item.lane = @lane
+    end
+  end
+
+  def create
+    hobo_create do
+      if valid?
+        lane = @item.lane.project.lanes[0]
+        redirect_to new_item_for_lane_url(lane.id)
+      end
+    end
   end
 
   def edit
@@ -25,7 +36,17 @@ class ItemsController < ApplicationController
     end
 
     @item = find_instance
-    # hobo_update
+  end
+
+
+  def update
+    hobo_update do
+      if valid?
+        item = find_instance
+        lane = item.lane.project.lanes[0]
+        redirect_to new_item_for_lane_url(lane.id)
+      end
+    end
   end
 
   def handle_item_drop
