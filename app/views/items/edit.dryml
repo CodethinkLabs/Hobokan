@@ -1,5 +1,7 @@
 <edit-page>
-  <form:>
-    <cancel: with="&this.lane"/>
-  </form:>
+    <content-body: replace>
+      <kanban-board-view />
+    <form />
+    </content-body:>
 </edit-page>
+
