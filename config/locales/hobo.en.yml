@@ -189,7 +189,7 @@ en:
     password_hidden: "[password hidden]"
 
     in_place_editor:
-      click_to_edit: "(click to edit)"
+      click_to_edit: ". . ."
 
     select_one_editor:
       blank_message: *no_model
