@@ -10,7 +10,10 @@
         Edit Project
       </ht>
     </a>
-
+    <form with="&@item || new_for_current_user(@project.lanes[0].items)" without-cancel>
+      <field-list: fields="title"/>
+      <submit: label="#{ht 'Item.actions.add', :default=>['Add'] }" style=""/>
+    </form>
 
       <view:states.html_safe id="states" style="visibility: hidden;" />
       <view:stories.html_safe id="stories" style="visibility: hidden;" />
