@@ -1,0 +1,9 @@
+<index-page>
+  <content: replace>
+          <table-plus fields="project, title, color, background_color">
+            <color-view:><editor/></color-view:>
+            <background-color-view:><editor/></background-color-view:>
+            <title-view:><editor/></title-view:>
+          </table-plus>
+  </content:>
+</index-page>
