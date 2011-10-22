@@ -11,7 +11,7 @@
       </ht>
     </a>
     <form with="&@item || new_for_current_user(@project.lanes[0].items)" without-cancel>
-      <field-list: fields="title"/>
+      <field-list: fields="title" style="width: 50%;"/>
       <submit: label="#{ht 'Item.actions.add', :default=>['Add'] }" style=""/>
     </form>
 

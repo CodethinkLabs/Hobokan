@@ -198,7 +198,7 @@ form .actions input { margin: 0; }
 .edit-page .content-header {overflow: hidden; _zoom: 1;}
 .edit-page .content-header h1 {float: left;}
 .edit-page .content-header .delete-button {float: right; margin-top: 25px;}
-form .actions {margin: 10px 0; width: 100%; text-align: center;}
+form .actions {margin: 10px 0; width: 100%; text-align: left;}
 
 .show-page .content-header {position: relative; }
 .show-page .content-header h1, .new-in-collection-page .content-header h1 {margin-bottom: 2px; margin-right: 70px;}
