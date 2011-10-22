@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
     hobo_create do
       if valid?
         lane = @item.lane.project.lanes[0]
-        redirect_to new_item_for_lane_url(lane.id)
+        redirect_to (@item.lane.project)
       end
     end
   end
