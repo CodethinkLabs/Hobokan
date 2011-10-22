@@ -6,14 +6,6 @@ class ProjectsController < ApplicationController
   show_action :kanban_board
 
   def show
-    @project = find_instance
-    @lanes =
-      @project.lanes.apply_scopes(:search    => [params[:search], :title],
-                                    :status_is => params[:status],
-                                    :order_by  => parse_sort_param(:title, :status))
-  end
-
-  def kanban_board
     if request.xhr?
       @item = Item.find(params[:item_id])
       @old_lane = @item.lane
