@@ -2,14 +2,26 @@
   <body: class="front-page"/>
     <content:>
       <header class="content-header">
-        <h1>"Powered by Hobo"</h1>
+        <h1>Welcome to Codethink's Kanban solution</h1>
           <section class="welcome-message">
-            <h3>Here is what you can do:</h3>
+            <h3>It can already:</h3>
             <ul>
-            <li>Create and maintain any number of Projects</li>
+            <li>Create and maintain Projects</li>
             <li>Associate Lanes of Kanban Items with each Project</li>
-            <li>Assign Items and assign people to complete each Item</li>
+            <li>Add, edit Items, and move them via drag and drop</li>
             </ul>
+
+            <h3>There are lots of things it can't do yet</h3>
+            <ul>
+              <li>Assign Items to people</li>
+              <li>link to external content</li>
+              <li>protect project views, edits etc</li>
+              <li>show history</li>
+            </ul>
+            <h3>Please add bugs, feature requests and ideas as items in the 
+                <b><u><%= link_to " Kanban Project ", :controller => :projects, :id => 8, :action => "show", %></u></b> (we're dogfooding)</h3>
+	      
+
           </section>
     </header>
   </content:>
