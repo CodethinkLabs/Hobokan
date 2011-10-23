@@ -43,8 +43,7 @@ class ItemsController < ApplicationController
     hobo_update do
       if valid?
         item = find_instance
-        lane = item.lane.project.lanes[0]
-        redirect_to new_item_for_lane_url(lane.id)
+        redirect_to (item.lane.project)
       end
     end
   end
