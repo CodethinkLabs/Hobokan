@@ -37,7 +37,7 @@ var create_list = function(board, state) {
       var item_id = board[state][i][1].replace(/^S([\d]+).*/, "$1");
       var title = board[state][i][2].replace(/ /g, "_").toLowerCase();
       var story_element = jQuery("<li><div class=\"box box_" +
-      state  + "\">" + board[state][i][1] + " " + board[state][i][2] + "<a class=\"edit-link item-link\" style=\"float: right;\" href=\"/items/" + item_id + "_" + title + "/edit\">Edit</a></div></li>");
+      state  + "\">" + board[state][i][1] + " " + board[state][i][2] + "<a class=\"edit-link item-link\" style=\"float: right;\" href=\"/items/" + item_id + "/edit\">Edit</a></div></li>");
       story_element.data("story",  board[state][i]);
       list.append(story_element);
     }
