@@ -1,4 +1,4 @@
-<show-page for="Project" title="&@project.name" full-title="&@project.name">
+<show-page for="Project">
   <content: replace>
 
    <section-group>
