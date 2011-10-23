@@ -22,14 +22,14 @@ class Project < ActiveRecord::Base
     lane.position = 1
     lane.project = self
     lane.background_color = '#FFFF00'
-    lane.color = '#00FF00'
+    lane.color = '#000000'
     lane.save
 
     lane = Lane.new
     lane.title = 'Buglist'
     lane.position = 2
     lane.project = self
-    lane.background_color = '#FFC300'
+    lane.background_color = '#FF0000'
     lane.color = '#000000'
     lane.save
 
@@ -53,7 +53,7 @@ class Project < ActiveRecord::Base
     lane.title = 'Done'
     lane.position = 5
     lane.project = self
-    lane.background_color = '#0000EE'
+    lane.background_color = '#999999'
     lane.color = '#000000'
     lane.save
 

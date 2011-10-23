@@ -11,10 +11,12 @@ en:
         name: Project Name
       item:
         user: Owner
+        title: Task Name
     attribute_help:
       project:
         name: Enter a name for the project. Make it short and descriptive
-
+      item:
+        title: Enter a name for a new task. 
 
 #  attributes:
 #    created_at: Created at

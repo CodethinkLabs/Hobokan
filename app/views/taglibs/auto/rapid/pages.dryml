@@ -5,6 +5,8 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Item"><ht key="item.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Lane"><ht key="lane.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Statistic"><ht key="statistic.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
@@ -83,7 +85,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:item param="parent-link">&laquo; <ht key="checklist_item.actions.back_to_parent" parent="Item" name="&this">Back to <name/></ht></a:item>
             <h2 param="heading">
               <ht key="checklist_item.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -100,7 +101,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="text" param/>
+            <field-list fields="text, item" param/>
           </section>
     </content:>
 
@@ -382,6 +383,35 @@
 
 
 
+<def tag="new-for-lane-page" polymorphic/>
+<def tag="new-for-lane-page" for="Item">
+  <page merge title="#{ht 'item.new_for_owner.title', :default=>['New Item for']} #{name :with => @lane}">
+    <body: class="new-for-owner-page  item" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="item.new_for_owner.heading">
+            New Item
+          </ht>
+        </h2>
+        <h3 param="subheading">
+          <ht key="item.new_for_owner.subheading">
+            For:
+          </ht>
+          <a with="&@lane"/>
+        </h3>
+      </header>
+
+      <section param="content-body">
+        <form owner="lane" method="post" param>
+          <field-list: skip="lane"/>
+          <submit: label="#{ht 'item.actions.create', :default=>['Create Item']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
 
 
 
@@ -482,17 +512,11 @@
 
               <collection:items param/>
 
-              <section param="add-to-collection" if="&can_create?(@lane.items)">
-                <h3 param="add-form-heading">
-                  <ht key="item.collection.add_form_heading" count="1">
-                    Add an Item
-                  </ht>
-                </h3>
-                <form with="&@item || new_for_current_user(@lane.items)" owner="lane" without-cancel param>
-                  <field-list: skip="lane"/>
-                  <submit: label="#{ht 'item.actions.add', :default=>['Add'] }"/>
-                </form>
-              </section>
+              <a:items action="new" if="&can_create?(@lane.items)" param="new-link">
+                <ht key="item.actions.new" count="1">
+                  New Item
+                </ht>
+              </a:items>
             </section>
           </section>
     </content:>
