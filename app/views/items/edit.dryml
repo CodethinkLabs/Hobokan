@@ -1,7 +1,7 @@
 <edit-page>
     <content-body: replace>
+      <form />
       <kanban-board-view with="&@item" field="lane.project" />
-    <form />
     </content-body:>
 </edit-page>
 
