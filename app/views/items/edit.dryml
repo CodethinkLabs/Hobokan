@@ -3,7 +3,12 @@
     <section-group>
 
       <div class="section content-body">
-        <form />
+        <form>
+          <actions: replace>
+            <submit label="#{ht 'item.actions.save', :default=>['Save']}"/><or-cancel:lane.project />
+          </actions:>
+        </form>
+
         <kanban-board-view with="&@item" field="lane.project" />
       </div>
 
