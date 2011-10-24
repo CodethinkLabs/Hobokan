@@ -31,6 +31,7 @@ class Item < ActiveRecord::Base
   belongs_to :last_editor, :class_name => 'User'
 
   # acts_as_list :scope => :lane
+  set_default_order "position ASC"
 
   WIP_TOTAL_WARN = 3600*24*10 # 10 days
   WIP_TOTAL_URGENT = 3600*24*20 # 20 days

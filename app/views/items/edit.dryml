@@ -1,7 +1,29 @@
 <edit-page>
-    <content-body: replace>
-      <kanban-board-view with="&@item" field="lane.project" />
-    <form />
-    </content-body:>
+  <content: replace>
+    <section-group>
+
+      <div class="section content-body">
+        <h3><this.lane.project.name/></h3>
+        <a action="edit" if="&can_edit?" with="&@item.lane.project" style="float: right;">
+          <ht key="project.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Project
+          </ht>
+        </a>
+
+        <kanban-board-view with="&@item" field="lane.project" />
+
+        <form>
+          <actions: replace>
+            <submit label="#{ht 'item.actions.save', :default=>['Save']}"/><or-cancel:lane.project />
+          </actions:>
+        </form>
+      </div>
+
+      <aside style="width: 20%;">
+        <h3>Change Log</h3>
+      </aside>
+
+   </section-group>
+  </content:>
 </edit-page>
 

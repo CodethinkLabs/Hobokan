@@ -85,6 +85,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:item param="parent-link">&laquo; <ht key="checklist_item.actions.back_to_parent" parent="Item" name="&this">Back to <name/></ht></a:item>
             <h2 param="heading">
               <ht key="checklist_item.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -101,7 +102,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="text, item" param/>
+            <field-list fields="text" param/>
           </section>
     </content:>
 
