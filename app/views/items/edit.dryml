@@ -3,13 +3,20 @@
     <section-group>
 
       <div class="section content-body">
+        <h3><this.lane.project.name/></h3>
+        <a action="edit" if="&can_edit?" with="&@item.lane.project" style="float: right;">
+          <ht key="project.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Project
+          </ht>
+        </a>
+
+        <kanban-board-view with="&@item" field="lane.project" />
+
         <form>
           <actions: replace>
             <submit label="#{ht 'item.actions.save', :default=>['Save']}"/><or-cancel:lane.project />
           </actions:>
         </form>
-
-        <kanban-board-view with="&@item" field="lane.project" />
       </div>
 
       <aside style="width: 20%;">

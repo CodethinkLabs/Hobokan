@@ -9,12 +9,14 @@
             Edit Project
           </ht>
         </a>
+
+        <kanban-board-view>project</kanban-board-view>
+
         <form with="&@item || new_for_current_user(@project.lanes[0].items)" without-cancel>
           <field-list: fields="title" style="width: 50%;"/>
           <submit: label="#{ht 'Item.actions.add', :default=>['Add'] }" style=""/>
         </form>
 
-        <kanban-board-view>project</kanban-board-view>
       </div>
 
       <aside style="width: 20%;">
