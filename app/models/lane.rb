@@ -23,6 +23,8 @@ class Lane < ActiveRecord::Base
   has_many :statistics
   scope :on_dashboard, :conditions => {:dashboard => true}
 
+  set_default_order "position ASC"
+
   def name
     title.gsub(/\s/, "_").downcase
   end
