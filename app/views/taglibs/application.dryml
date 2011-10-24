@@ -38,9 +38,9 @@
 </extend>
 
 
-<def tag="kanban-board-view">
-  <view:lane.project.states.html_safe id="states" style="display:none" />
-  <view:lane.project.stories.html_safe id="stories" style="display:none;" />
+<def tag="kanban-board-view" param="default">
+  <view:states.html_safe id="states" style="display:none" />
+  <view:stories.html_safe id="stories" style="display:none;" />
   <textarea id="data_output" rows="20" cols="100">
   </textarea>
 
