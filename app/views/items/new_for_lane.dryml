@@ -1,6 +1,6 @@
 <new-page>
     <content-body: replace>
-      <kanban-board-view />
+      <kanban-board-view with="&@item" field="lane.project" />
     <form />
     </content-body:>
 </new-page>
