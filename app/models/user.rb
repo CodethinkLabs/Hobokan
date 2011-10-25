@@ -26,6 +26,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def validate_password
+    if new_password_required?
+      validates_length_of :password, :within => 6..40
+    end
+  end
+
   def new_password_required_with_invite_only?
     new_password_required_without_invite_only? || self.class.count==0
   end
