@@ -1,0 +1,6 @@
+The code to drag and drop items on a Kanban board was adapted from the Simple
+Kanban html page by Stephan Schmidt, see http://www.simple-kanban.com.
+
+The Rails database models are derived from the dynamix/kanban project on github,
+see https://github.com/dynamix/kanban. Contributors are Thomas Hille, olgen and
+Martin Karlshe.
