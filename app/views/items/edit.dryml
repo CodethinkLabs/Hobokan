@@ -4,8 +4,8 @@
 
       <div class="section content-body">
         <h3>
-          <a action="edit" if="&can_edit?">
-            <this.lane.project.name/>
+          <a action="edit" if="&can_edit?" with="&this.lane.project">
+            <name/>
           </a>
         </h3>
 
