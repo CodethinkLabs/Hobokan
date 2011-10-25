@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :statistics
   has_many :history_entries, :as => :trigger
 
-  # children :items
+  children :items
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that

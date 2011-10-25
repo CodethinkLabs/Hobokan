@@ -19,12 +19,13 @@ class Item < ActiveRecord::Base
   # validates_date :end_date, :on_or_after => Date.today
 
   children :checklist_items
+  children :users
 
   has_many :statistics, :dependent => :destroy
   has_many :history_entries
   has_many :checklist_items, :accessible => true
 
-  has_many :users, :through => :item_users
+  has_many :users, :through => :item_users, :accessible => true
   has_many :item_users, :dependent => :destroy
 
   belongs_to :lane

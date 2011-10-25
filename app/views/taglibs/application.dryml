@@ -33,7 +33,7 @@
 
 <extend tag="form" for="Item">
   <old-form merge>
-    <field-list: fields="start_date, end_date, title, text, estimation, checklist_items"/>
+    <field-list: fields="start_date, end_date, title, text, estimation, users, checklist_items"/>
   </old-form>
 </extend>
 
