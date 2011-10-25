@@ -3,12 +3,11 @@
     <section-group>
 
       <div class="section content-body">
-        <h3><this.lane.project.name/></h3>
-        <a action="edit" if="&can_edit?" with="&@item.lane.project" style="float: right;">
-          <ht key="project.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit Project
-          </ht>
-        </a>
+        <h3>
+          <a action="edit" if="&can_edit?">
+            <this.lane.project.name/>
+          </a>
+        </h3>
 
         <kanban-board-view with="&@item" field="lane.project" />
 
