@@ -75,7 +75,7 @@
 
 
 <def tag="show-page" for="User">
-  <page merge title="#{ht 'user.show.title', :default=>['User'] }">
+  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page user" param/>
 
@@ -83,15 +83,15 @@
           <header param="content-header">
             <a:items param="parent-link">&laquo; <ht key="user.actions.back_to_parent" parent="Item" name="&this">Back to <name/></ht></a:items>
             <h2 param="heading">
-              <ht key="user.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
+                User <name/>
               </ht>
             </h2>
 
             <record-flags fields="administrator" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="user.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit User
               </ht>
             </a>
@@ -116,14 +116,14 @@
 
 
 <def tag="edit-page" for="User">
-  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'] }">
+  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page user" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="user.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="user.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit User
           </ht>
         </h2>

@@ -79,30 +79,29 @@
 
 
 <def tag="show-page" for="ChecklistItem">
-  <page merge title="#{ht 'checklist_item.show.title', :default=>['Checklist item'] }">
+  <page merge title="#{ht 'checklist_item.show.title', :default=>['Checklist item'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page checklist-item" param/>
 
     <content: param>
           <header param="content-header">
-            <a:item param="parent-link">&laquo; <ht key="checklist_item.actions.back_to_parent" parent="Item" name="&this">Back to <name/></ht></a:item>
             <h2 param="heading">
-              <ht key="checklist_item.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="checklist_item.show.heading" name="#{name(:no_wrapper => true)}">
+                Checklist item <name/>
               </ht>
             </h2>
 
             <record-flags fields="done" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="checklist_item.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="checklist_item.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit Checklist item
               </ht>
             </a>
           </header>
 
           <section param="content-body">
-            <field-list fields="text" param/>
+            <field-list fields="text, item" param/>
           </section>
     </content:>
 
@@ -111,14 +110,14 @@
 
 
 <def tag="edit-page" for="ChecklistItem">
-  <page merge title="#{ht 'checklist_item.edit.title', :default=>['Edit Checklist item'] }">
+  <page merge title="#{ht 'checklist_item.edit.title', :default=>['Edit Checklist item'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page checklist-item" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="checklist_item.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="checklist_item.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit Checklist item
           </ht>
         </h2>
@@ -200,22 +199,22 @@
 
 
 <def tag="show-page" for="HistoryEntry">
-  <page merge title="#{ht 'history_entry.show.title', :default=>['History entry'] }">
+  <page merge title="#{ht 'history_entry.show.title', :default=>['History entry'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page history-entry" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="history_entry.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="history_entry.show.heading" name="#{name(:no_wrapper => true)}">
+                History entry <name/>
               </ht>
             </h2>
 
             <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="history_entry.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="history_entry.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit History entry
               </ht>
             </a>
@@ -231,14 +230,14 @@
 
 
 <def tag="edit-page" for="HistoryEntry">
-  <page merge title="#{ht 'history_entry.edit.title', :default=>['Edit History entry'] }">
+  <page merge title="#{ht 'history_entry.edit.title', :default=>['Edit History entry'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page history-entry" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="history_entry.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="history_entry.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit History entry
           </ht>
         </h2>
@@ -320,22 +319,22 @@
 
 
 <def tag="show-page" for="Item">
-  <page merge title="#{ht 'item.show.title', :default=>['Item'] }">
+  <page merge title="#{ht 'item.show.title', :default=>['Item'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page item" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="item.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="item.show.heading" name="#{name(:no_wrapper => true)}">
+                Item <name/>
               </ht>
             </h2>
 
             <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="item.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="item.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit Item
               </ht>
             </a>
@@ -360,14 +359,14 @@
 
 
 <def tag="edit-page" for="Item">
-  <page merge title="#{ht 'item.edit.title', :default=>['Edit Item'] }">
+  <page merge title="#{ht 'item.edit.title', :default=>['Edit Item'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page item" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="item.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="item.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit Item
           </ht>
         </h2>
@@ -481,22 +480,22 @@
 
 
 <def tag="show-page" for="Lane">
-  <page merge title="#{ht 'lane.show.title', :default=>['Lane'] }">
+  <page merge title="#{ht 'lane.show.title', :default=>['Lane'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page lane" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="lane.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="lane.show.heading" name="#{name(:no_wrapper => true)}">
+                Lane <name/>
               </ht>
             </h2>
 
             <record-flags fields="counts_wip, dashboard" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="lane.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="lane.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit Lane
               </ht>
             </a>
@@ -527,14 +526,14 @@
 
 
 <def tag="edit-page" for="Lane">
-  <page merge title="#{ht 'lane.edit.title', :default=>['Edit Lane'] }">
+  <page merge title="#{ht 'lane.edit.title', :default=>['Edit Lane'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page lane" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="lane.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="lane.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit Lane
           </ht>
         </h2>
@@ -648,22 +647,22 @@
 
 
 <def tag="show-page" for="Project">
-  <page merge title="#{ht 'project.show.title', :default=>['Project'] }">
+  <page merge title="#{ht 'project.show.title', :default=>['Project'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page project" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="project.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="project.show.heading" name="#{name(:no_wrapper => true)}">
+                Project <name/>
               </ht>
             </h2>
 
             <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="project.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="project.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit Project
               </ht>
             </a>
@@ -693,14 +692,14 @@
 
 
 <def tag="edit-page" for="Project">
-  <page merge title="#{ht 'project.edit.title', :default=>['Edit Project'] }">
+  <page merge title="#{ht 'project.edit.title', :default=>['Edit Project'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page project" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="project.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="project.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit Project
           </ht>
         </h2>
@@ -782,22 +781,22 @@
 
 
 <def tag="show-page" for="Statistic">
-  <page merge title="#{ht 'statistic.show.title', :default=>['Statistic'] }">
+  <page merge title="#{ht 'statistic.show.title', :default=>['Statistic'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page statistic" param/>
 
     <content: param>
           <header param="content-header">
             <h2 param="heading">
-              <ht key="statistic.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="statistic.show.heading" name="#{name(:no_wrapper => true)}">
+                Statistic <name/>
               </ht>
             </h2>
 
             <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="statistic.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="statistic.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit Statistic
               </ht>
             </a>
@@ -813,14 +812,14 @@
 
 
 <def tag="edit-page" for="Statistic">
-  <page merge title="#{ht 'statistic.edit.title', :default=>['Edit Statistic'] }">
+  <page merge title="#{ht 'statistic.edit.title', :default=>['Edit Statistic'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page statistic" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="statistic.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="statistic.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit Statistic
           </ht>
         </h2>
@@ -906,7 +905,7 @@
 
 
 <def tag="show-page" for="User">
-  <page merge title="#{ht 'user.show.title', :default=>['User'] }">
+  <page merge title="#{ht 'user.show.title', :default=>['User'], :name => name(:no_wrapper => true) }">
 
     <body: class="show-page user" param/>
 
@@ -914,15 +913,15 @@
           <header param="content-header">
             <a:items param="parent-link">&laquo; <ht key="user.actions.back_to_parent" parent="Item" name="&this">Back to <name/></ht></a:items>
             <h2 param="heading">
-              <ht key="user.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
+              <ht key="user.show.heading" name="#{name(:no_wrapper => true)}">
+                User <name/>
               </ht>
             </h2>
 
             <record-flags fields="administrator" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="user.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+              <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
                 Edit User
               </ht>
             </a>
@@ -947,14 +946,14 @@
 
 
 <def tag="edit-page" for="User">
-  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'] }">
+  <page merge title="#{ht 'user.edit.title', :default=>['Edit User'], :name => name(:no_wrapper => true) }">
 
     <body: class="edit-page user" param/>
 
     <content:>
       <section param="content-header">
         <h2 param="heading">
-          <ht key="user.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+          <ht key="user.edit.heading" name="#{name(:no_wrapper => true)}">
             Edit User
           </ht>
         </h2>
