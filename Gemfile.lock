@@ -15,20 +15,20 @@ GIT
 
 GIT
   remote: git://github.com/tablatom/hobo.git
-  revision: 85741ec6b99988fec5c6a72fd73ddd90ec520c5c
+  revision: f3a5900d16324d79b0cdd830c1d0103e9a95026b
   branch: rails3
   specs:
-    dryml (1.3.0.RC2)
+    dryml (1.3.0.RC3)
       actionpack (~> 3.0.0)
-      hobo_support (= 1.3.0.RC2)
-    hobo (1.3.0.RC2)
-      dryml (= 1.3.0.RC2)
-      hobo_fields (= 1.3.0.RC2)
-      hobo_support (= 1.3.0.RC2)
+      hobo_support (= 1.3.0.RC3)
+    hobo (1.3.0.RC3)
+      dryml (= 1.3.0.RC3)
+      hobo_fields (= 1.3.0.RC3)
+      hobo_support (= 1.3.0.RC3)
       will_paginate (>= 3.0.0)
-    hobo_fields (1.3.0.RC2)
-      hobo_support (= 1.3.0.RC2)
-    hobo_support (1.3.0.RC2)
+    hobo_fields (1.3.0.RC3)
+      hobo_support (= 1.3.0.RC3)
+    hobo_support (1.3.0.RC3)
       rails (~> 3.0.0)
 
 GEM
