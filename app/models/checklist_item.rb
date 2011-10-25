@@ -1,6 +1,7 @@
 class ChecklistItem < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
+  versioned
 
   fields do
     text :string
