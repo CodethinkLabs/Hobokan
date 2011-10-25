@@ -345,12 +345,12 @@
             <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, state, lane, last_editor" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
-                <ht key="checklist_item.collection.heading" count="&this.checklist_items.count" >
-                  <human-collection-name collection="checklist_items" your/>
+                <ht key="user.collection.heading" count="&this.users.count" >
+                  <human-collection-name collection="users" your/>
                 </ht>
               </h3>
 
-              <collection:checklist_items param/>
+              <collection:users param/>
             </section>
           </section>
     </content:>
@@ -912,6 +912,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:items param="parent-link">&laquo; <ht key="user.actions.back_to_parent" parent="Item" name="&this">Back to <name/></ht></a:items>
             <h2 param="heading">
               <ht key="user.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -929,6 +930,15 @@
 
           <section param="content-body">
             <field-list fields="email_address, state" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="item.collection.heading" count="&this.items.count" >
+                  <human-collection-name collection="items" your/>
+                </ht>
+              </h3>
+
+              <collection:items param/>
+            </section>
           </section>
     </content:>
 

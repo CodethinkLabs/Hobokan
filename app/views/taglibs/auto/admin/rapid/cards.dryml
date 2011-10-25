@@ -22,8 +22,8 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <ht key="checklist_item.collection.count" count="&this.checklist_items.size">
-         <count:checklist_items param/>
+      <ht key="user.collection.count" count="&this.users.size">
+         <count:users param/>
       </ht>
     </body:>
   </card>
@@ -76,6 +76,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="item.collection.count" count="&this.items.size">
+         <count:items param/>
+      </ht>
+    </body:>
   </card>
 </def>
 
