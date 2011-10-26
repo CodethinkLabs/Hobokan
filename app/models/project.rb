@@ -72,6 +72,37 @@ class Project < ActiveRecord::Base
     return result.join("\n")
   end
 
+  class Change
+    attr_accessor :user, :comment, :date
+
+    def [](a)
+      return a.to_s
+    end
+  end
+
+  def changes
+    versions = Version.find(:all)
+    result = []
+    versions.each do |v|
+      change = Change.new
+      change.user = v.user_id ? v.user_id : 'anon'
+      change.date = v.created_at
+      if v.modifications['text']
+        change.comment = v.modifications['text'][1]
+      elsif v.modifications['position']
+        change.comment = v.modifications['position'][1].to_s
+      elsif v.modifications['lane_id']
+         change.comment = v.modifications['lane_id'][1].to_s
+      else
+        change.comment = ""
+      end
+
+      result << change
+    end
+
+    return result
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
