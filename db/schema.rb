@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026095815) do
+ActiveRecord::Schema.define(:version => 20111026101217) do
 
   create_table "checklist_items", :force => true do |t|
     t.string    "text"
@@ -22,19 +22,6 @@ ActiveRecord::Schema.define(:version => 20111026095815) do
   end
 
   add_index "checklist_items", ["item_id"], :name => "index_checklist_items_on_item_id"
-
-  create_table "history_entries", :force => true do |t|
-    t.string    "action"
-    t.text      "delta"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "item_id"
-    t.string    "trigger_type"
-    t.integer   "trigger_id"
-  end
-
-  add_index "history_entries", ["item_id"], :name => "index_history_entries_on_item_id"
-  add_index "history_entries", ["trigger_type", "trigger_id"], :name => "index_history_entries_on_trigger_type_and_trigger_id"
 
   create_table "item_users", :force => true do |t|
     t.timestamp "created_at"
