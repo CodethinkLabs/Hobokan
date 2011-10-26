@@ -12,7 +12,6 @@ class Item < ActiveRecord::Base
     position           :integer
     wip_total          :integer
     current_lane_entry :datetime
-    last_editor_id     :integer
     timestamps
   end
 
@@ -53,12 +52,16 @@ class Item < ActiveRecord::Base
     Lane.find(lane)
   end
 
-  before_create :update_position
-  before_save :update_time_counters
+  before_create :update_position, :set_updated_by
+  before_save :update_time_counters, :set_updated_by
   after_save :update_statistics
 
+  def set_updated_by
+    self.updated_by = acting_user
+  end
+
   def update_position
-    self.position = self.lane.items.count + 1
+    self.position = lane.items.count + 1
   end
 
   def update_statistics

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025124338) do
+ActiveRecord::Schema.define(:version => 20111026095815) do
 
   create_table "checklist_items", :force => true do |t|
     t.string    "text"
@@ -47,20 +47,20 @@ ActiveRecord::Schema.define(:version => 20111025124338) do
   add_index "item_users", ["user_id"], :name => "index_item_users_on_user_id"
 
   create_table "items", :force => true do |t|
-    t.date      "start_date"
-    t.date      "end_date"
-    t.string    "title"
-    t.text      "text"
-    t.float     "estimation"
-    t.integer   "position"
-    t.integer   "wip_total"
-    t.timestamp "current_lane_entry"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "lane_id"
-    t.integer   "last_editor_id"
-    t.string    "state",              :default => "normal"
-    t.timestamp "key_timestamp"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "title"
+    t.text     "text"
+    t.float    "estimation"
+    t.integer  "position"
+    t.integer  "wip_total"
+    t.datetime "current_lane_entry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "lane_id"
+    t.integer  "last_editor_id"
+    t.string   "state",              :default => "normal"
+    t.datetime "key_timestamp"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
