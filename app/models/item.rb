@@ -22,7 +22,6 @@ class Item < ActiveRecord::Base
   children :users
 
   has_many :statistics, :dependent => :destroy
-  has_many :history_entries
   has_many :checklist_items, :accessible => true
 
   has_many :users, :through => :item_users, :accessible => true

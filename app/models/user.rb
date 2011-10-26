@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   has_many :item_users, :dependent => :destroy
 
   has_many :statistics
-  has_many :history_entries, :as => :trigger
 
   children :items
 
