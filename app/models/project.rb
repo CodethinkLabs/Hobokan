@@ -74,10 +74,6 @@ class Project < ActiveRecord::Base
 
   class Change
     attr_accessor :user, :comment, :date
-
-    def [](a)
-      return a.to_s
-    end
   end
 
   def changes
@@ -85,16 +81,20 @@ class Project < ActiveRecord::Base
     result = []
     versions.each do |v|
       change = Change.new
-      change.user = v.user_id ? v.user_id : 'anon'
-      change.date = v.created_at
+      change.user = v.user_id ? User.find(v.user_id).name : 'anon'
+      change.date = v.created_at.strftime("%d/%m/%Y")
+      change.comment = ""
+      title = Item.find(v.versioned_id).title
       if v.modifications['text']
-        change.comment = v.modifications['text'][1]
-      elsif v.modifications['position']
-        change.comment = v.modifications['position'][1].to_s
-      elsif v.modifications['lane_id']
-         change.comment = v.modifications['lane_id'][1].to_s
-      else
-        change.comment = ""
+        change.comment += v.modifications['text'][1]
+      end
+
+      if v.modifications['position']
+        change.comment += "'#{title}' position changed from #{v.modifications['position'][0]} to #{v.modifications['position'][1]} "
+      end
+
+      if v.modifications['lane_id']
+         change.comment += "'#{title}' lane changed to #{Lane.find(v.modifications['lane_id'][1]).title} "
       end
 
       result << change
