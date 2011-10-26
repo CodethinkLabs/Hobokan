@@ -39,7 +39,6 @@ CtKanban::Application.routes.draw do
 
 
   # Resource routes for controller "items"
-  get 'items(.:format)' => 'items#index', :as => 'items'
   get 'items/new(.:format)', :as => 'new_item'
   get 'items/:id/edit(.:format)' => 'items#edit', :as => 'edit_item'
   get 'items/:id(.:format)' => 'items#show', :as => 'item', :constraints => { :id => %r([^/.?]+) }
@@ -75,7 +74,6 @@ CtKanban::Application.routes.draw do
 
 
   # Resource routes for controller "lanes"
-  get 'lanes(.:format)' => 'lanes#index', :as => 'lanes'
   get 'lanes/new(.:format)', :as => 'new_lane'
   get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
   get 'lanes/:id(.:format)' => 'lanes#show', :as => 'lane', :constraints => { :id => %r([^/.?]+) }
