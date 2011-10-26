@@ -1,7 +1,7 @@
 class Item < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
-  # versioned
+  versioned
 
   fields do
     start_date         :date
