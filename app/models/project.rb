@@ -89,15 +89,17 @@ class Project < ActiveRecord::Base
         change.comment += v.modifications['text'][1]
       end
 
-      if v.modifications['position']
-        change.comment += "'#{title}' position changed from #{v.modifications['position'][0]} to #{v.modifications['position'][1]} "
-      end
+#      if v.modifications['position']
+#        change.comment += "'#{title}' position changed from #{v.modifications['position'][0]} to #{v.modifications['position'][1]} "
+#      end
 
       if v.modifications['lane_id']
-         change.comment += "'#{title}' lane changed to #{Lane.find(v.modifications['lane_id'][1]).title} "
+         change.comment += "Moved '#{title}' from #{Lane.find(v.modifications['lane_id'][0]).title} to #{Lane.find(v.modifications['lane_id'][1]).title} "
       end
 
-      result << change
+      if change.comment != ""
+        result << change
+      end
     end
 
     return result
