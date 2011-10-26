@@ -51,15 +51,6 @@ CtKanban::Application.routes.draw do
   post 'lanes/:lane_id/items(.:format)' => 'items#create_for_lane', :as => 'create_item_for_lane'
 
 
-  # Resource routes for controller "history_entries"
-  get 'history_entries/new(.:format)', :as => 'new_history_entry'
-  get 'history_entries/:id/edit(.:format)' => 'history_entries#edit', :as => 'edit_history_entry'
-  get 'history_entries/:id(.:format)' => 'history_entries#show', :as => 'history_entry', :constraints => { :id => %r([^/.?]+) }
-  post 'history_entries(.:format)' => 'history_entries#create', :as => 'create_history_entry'
-  put 'history_entries/:id(.:format)' => 'history_entries#update', :as => 'update_history_entry', :constraints => { :id => %r([^/.?]+) }
-  delete 'history_entries/:id(.:format)' => 'history_entries#destroy', :as => 'destroy_history_entry', :constraints => { :id => %r([^/.?]+) }
-
-
   # Resource routes for controller "projects"
   get 'projects(.:format)' => 'projects#index', :as => 'projects'
   get 'projects/new(.:format)', :as => 'new_project'

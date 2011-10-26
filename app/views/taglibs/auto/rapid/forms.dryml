@@ -12,18 +12,6 @@
 
 
 
-<def tag="form" for="HistoryEntry">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="action, trigger_type, delta, item, trigger" param/>
-    <div param="actions">
-      <submit label="#{ht 'history_entry.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
 <def tag="form" for="Item">
   <form merge param="default">
     <error-messages param/>
