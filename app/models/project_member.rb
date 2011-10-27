@@ -10,6 +10,10 @@ class ProjectMember < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  def name
+    user.name
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
