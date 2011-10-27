@@ -59,18 +59,9 @@ class Item < ActiveRecord::Base
   before_save :update_time_counters, :set_updated_by
   after_save :update_statistics
 
-  def after_user_new
-    set_updated_by
-  end
-
   def set_updated_by
-    if !respond_to? :acting_user || acting_user.nil?
-      return
-    end
-    logger.debug("acting_user: #{acting_user}")
-    return
     members = lane.project.project_members
-    self.updated_by = members.find(:first, :conditions => "user_id = #{acting_user.id}")
+    self.updated_by = members.find(:first, :conditions => "user_id = #{User.current.id}")
   end
 
   def update_position
