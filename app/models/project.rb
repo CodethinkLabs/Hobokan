@@ -80,11 +80,12 @@ class Project < ActiveRecord::Base
   end
 
   def changes
-    versions = Version.find(:all)
+    member_ids = project_members.map {|m| m.id }
+    versions = Version.where(:user_id => member_ids).order("created_at DESC")
     result = []
     versions.each do |v|
       change = Change.new
-      change.user = v.user_id ? User.find(v.user_id).name : 'anon'
+      change.user = v.user_id ? project_members.find(v.user_id).user.name : 'anon'
       change.date = v.created_at.strftime("%d/%m/%Y")
       change.comment = ""
       title = Item.find(v.versioned_id).title
