@@ -108,6 +108,14 @@ class Project < ActiveRecord::Base
     return result
   end
 
+  def project_member?(user)
+    project_members.exists?(:user_id => user)
+  end
+
+  def project_admin?(user)
+    user.administrator?
+  end
+
   # --- Permissions --- #
 
   def create_permitted?

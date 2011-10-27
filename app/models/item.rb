@@ -60,7 +60,7 @@ class Item < ActiveRecord::Base
   after_save :update_statistics
 
   def set_updated_by
-    self.updated_by = acting_user
+    self.updated_by = lane.project.project_members.find(:all, :conditions => "user_id = #{acting_user.id}")
   end
 
   def update_position
@@ -119,15 +119,15 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.signed_up?
+    lane.project.project_member?(acting_user)
    end
 
   def update_permitted?
-    acting_user.signed_up?
+    lane.project.project_member?(acting_user)
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    lane.project.project_admin?(acting_user)
   end
 
   def view_permitted?(field)
