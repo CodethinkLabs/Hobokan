@@ -13,6 +13,11 @@
     <custom-scripts:>
       <hjq-assets/>
     </custom-scripts>
+    <footer:>
+      <a href="&admin_users_url" if="&current_user.administrator?">
+        <t key="hobo.admin.subsite_name">Admin</t>
+      </a>
+    </footer:>
   </old-page>
 </extend>
 
