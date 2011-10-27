@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111026101217) do
+ActiveRecord::Schema.define(:version => 20111027114612) do
 
   create_table "checklist_items", :force => true do |t|
     t.string    "text"
@@ -23,15 +23,15 @@ ActiveRecord::Schema.define(:version => 20111026101217) do
 
   add_index "checklist_items", ["item_id"], :name => "index_checklist_items_on_item_id"
 
-  create_table "item_users", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "user_id"
-    t.integer   "item_id"
+  create_table "item_project_members", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_member_id"
+    t.integer  "item_id"
   end
 
-  add_index "item_users", ["item_id"], :name => "index_item_users_on_item_id"
-  add_index "item_users", ["user_id"], :name => "index_item_users_on_user_id"
+  add_index "item_project_members", ["item_id"], :name => "index_item_project_members_on_item_id"
+  add_index "item_project_members", ["project_member_id"], :name => "index_item_project_members_on_project_member_id"
 
   create_table "items", :force => true do |t|
     t.date     "start_date"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(:version => 20111026101217) do
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
+
+  create_table "project_members", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+    t.integer  "user_id"
+  end
+
+  add_index "project_members", ["project_id"], :name => "index_project_members_on_project_id"
+  add_index "project_members", ["user_id"], :name => "index_project_members_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string    "name"

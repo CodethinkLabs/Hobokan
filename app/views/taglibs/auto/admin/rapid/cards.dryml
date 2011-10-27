@@ -14,15 +14,15 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <ht key="user.collection.count" count="&this.users.size">
-         <count:users param/>
+      <ht key="checklist_item.collection.count" count="&this.checklist_items.size">
+         <count:checklist_items param/>
       </ht>
     </body:>
   </card>
 </def>
 
-<def tag="card" for="ItemUser">
-  <card class="item-user" param="default" merge>
+<def tag="card" for="ItemProjectMember">
+  <card class="item-project-member" param="default" merge>
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>
@@ -48,10 +48,18 @@
       <h4 param="heading"><name/></h4>
     </header:>
     <body: param>
-      <ht key="lane.collection.count" count="&this.lanes.size">
-         <count:lanes param/>
+      <ht key="project_member.collection.count" count="&this.project_members.size">
+         <count:project_members param/>
       </ht>
     </body:>
+  </card>
+</def>
+
+<def tag="card" for="ProjectMember">
+  <card class="project-member" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
   </card>
 </def>
 
@@ -68,11 +76,6 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
-    <body: param>
-      <ht key="item.collection.count" count="&this.items.size">
-         <count:items param/>
-      </ht>
-    </body:>
   </card>
 </def>
 

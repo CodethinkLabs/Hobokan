@@ -1,4 +1,4 @@
-class ItemUser < ActiveRecord::Base
+class ItemProjectMember < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
@@ -6,7 +6,7 @@ class ItemUser < ActiveRecord::Base
     timestamps
   end
 
-  belongs_to :user
+  belongs_to :project_member
   belongs_to :item
 
   # --- Permissions --- #

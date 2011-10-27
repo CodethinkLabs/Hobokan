@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ItemUserTest < ActiveSupport::TestCase
+class ProjectMemberTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true
