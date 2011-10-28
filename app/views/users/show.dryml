@@ -1,9 +1,0 @@
-<show-page>
-  <content-body:>
-    <h3><Your/> Assigned Items</h3>
-      <repeat with="&@user.items.group_by(&:lane)">
-      <h4>Lane: <a with="&this_key"/></h4>
-      <collection/>
-    </repeat>
-  </content-body:>
-</show-page>
