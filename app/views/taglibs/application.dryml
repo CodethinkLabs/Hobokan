@@ -28,17 +28,17 @@
 
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
 
-<!--
-<extend tag="form" for="Lane">
-  <old-form merge>
-    <field-list: fields="title, max_items, position, type, dashboard, project"/>
-  </old-form>
-</extend>
--->
+<def tag="select-many-in-project-members">
+  <select-many merge options="&@item.lane.project.project_members"/>
+</def>
 
 <extend tag="form" for="Item">
   <old-form merge>
-    <field-list: fields="start_date, end_date, title, text, estimation, checklist_items"/>
+    <field-list: fields="start_date, end_date, title, text, estimation, project_members, checklist_items" >
+      <project-members-view:>
+        <select-many-in-project-members/>
+      </project-members-view:>
+    </field-list>
   </old-form>
 </extend>
 
