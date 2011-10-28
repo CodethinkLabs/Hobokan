@@ -7,13 +7,13 @@
             <h3>It can already:</h3>
             <ul>
             <li>Create and maintain Projects</li>
-            <li>Associate Lanes of Kanban Items with each Project</li>
-            <li>Add, edit Items, and move them via drag and drop</li>
+            <li>Associate Lanes of Kanban Tasks with each Project</li>
+            <li>Add, edit Tasks, and move them via drag and drop</li>
+              <li>Assign Tasks to people</li>
             </ul>
 
             <h3>There are lots of things it can't do yet</h3>
             <ul>
-              <li>Assign Items to people</li>
               <li>link to external content</li>
               <li>protect project views, edits etc</li>
               <li>show history</li>
