@@ -111,11 +111,12 @@ class Project < ActiveRecord::Base
   end
 
   def project_member?(user)
-    !per_project_permissions || project_members.exists?(:user_id => user)
+    (!per_project_permissions && user.signed_up?) ||
+    project_members.exists?(:user_id => user)
   end
 
   def project_admin?(user)
-    !per_project_permissions ||
+    (!per_project_permissions && user.signed_up?) ||
     (project_members.exists?(:user_id => user) && project_members.first(:user_id => user).administrator?)
   end
 
