@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
 
   fields do
     name :string
+    per_project_permissions :boolean, :default => false
     timestamps
   end
 
@@ -110,25 +111,26 @@ class Project < ActiveRecord::Base
   end
 
   def project_member?(user)
-    project_members.exists?(:user_id => user)
+    !per_project_permissions || project_members.exists?(:user_id => user)
   end
 
   def project_admin?(user)
-    user.administrator?
+    !per_project_permissions ||
+    (project_members.exists?(:user_id => user) && project_members.first(:user_id => user).administrator?)
   end
 
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    acting_user.signed_up?
   end
 
   def update_permitted?
-    acting_user.administrator?
+    acting_user.signed_up?
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.signed_up?
   end
 
   def view_permitted?(field)

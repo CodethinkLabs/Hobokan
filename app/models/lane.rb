@@ -50,15 +50,15 @@ class Lane < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    project.project_admin?(acting_user)
   end
 
   def update_permitted?
-    acting_user.administrator?
+    project.project_admin?(acting_user)
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    project.project_admin?(acting_user)
   end
 
   def view_permitted?(field)

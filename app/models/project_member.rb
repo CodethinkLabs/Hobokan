@@ -3,10 +3,11 @@ class ProjectMember < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
+    administrator :boolean, :default => false
     timestamps
   end
 
-  has_many :items, :through => :item_project_members, :accessible => true
+  has_many :items, :through => :item_project_members
   has_many :item_project_members, :dependent => :destroy
 
   belongs_to :project
@@ -19,15 +20,15 @@ class ProjectMember < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    project.project_members.count == 0 || project.project_admin?(acting_user)
   end
 
   def update_permitted?
-    acting_user.administrator?
+    project.project_admin?(acting_user)
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    project.project_admin?(acting_user)
   end
 
   def view_permitted?(field)

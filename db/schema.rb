@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027114612) do
+ActiveRecord::Schema.define(:version => 20111028164415) do
 
   create_table "checklist_items", :force => true do |t|
     t.string    "text"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20111027114612) do
     t.datetime "updated_at"
     t.integer  "project_id"
     t.integer  "user_id"
+    t.boolean  "administrator", :default => false
   end
 
   add_index "project_members", ["project_id"], :name => "index_project_members_on_project_id"
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20111027114612) do
     t.string    "name"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.boolean   "per_project_permissions", :default => false
   end
 
   create_table "statistics", :force => true do |t|
