@@ -7,6 +7,7 @@ class ProjectMember < ActiveRecord::Base
   end
 
   has_many :items, :through => :item_project_members
+  has_many :item_project_members
   belongs_to :project
   belongs_to :user
 
