@@ -91,7 +91,7 @@ class Project < ActiveRecord::Base
       change.comment = ""
       title = Item.find(v.versioned_id).title
       if v.modifications['text']
-        change.comment += v.modifications['text'][1]
+        change.comment += v.modifications['text'][1].to_s
       end
 
 #      if v.modifications['position']
