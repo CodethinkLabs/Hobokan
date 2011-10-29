@@ -56,7 +56,7 @@
      ul { list-style: none; margin: 0 0 0 0; padding: 0 0 0 0;}
    body { font-family: Helvetica; }
    .box { font-size: 120%; padding: 1em;  margin-bottom: 1em; margin-right: 5px; -moz-border-radius: 5px;border-radius: 5px;}
-   .dp10 {width:20%;  float:left;  display: inline;  *margin-right:-1px; }
+   .dp10 {background:#eeeeee;  -moz-border-radius: 5px;border-radius: 5px; padding:10px; margin-right:10px; width:17%;  float:left;  display: inline; }
    .clear {clear:both;}
    .headline { font-weight: bold; height: 3em; color: #000000;}
    .queue_column .headline { font-weight: bold; height: 3em; color: #d0d0d0;}
