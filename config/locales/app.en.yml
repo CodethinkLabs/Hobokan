@@ -11,13 +11,14 @@ en:
         name: Project Name
       item:
         user: Owner
-        title: Task Name
+        title: Summary
+        text: Detail
         project_members: Assigned to
     attribute_help:
       project:
         name: Enter a name for the project. Make it short and descriptive
       item:
-        title: Enter a name for a new task. 
+        title: Enter a short description of a new task 
         estimation: Enter estimated number of effort hours to complete the task
 
 #  attributes:

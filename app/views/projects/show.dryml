@@ -11,8 +11,9 @@
 
         <kanban-board-view>project</kanban-board-view>
 
+        <h3>Add a Task</h3>
         <form with="&@item || new_for_current_user(@project.lanes[0].items)" without-cancel>
-          <field-list: fields="title" style="width: 50%;"/>
+          <field-list: fields="title, text"/>
           <submit: label="#{ht 'Item.actions.add', :default=>['Add'] }" style=""/>
         </form>
 

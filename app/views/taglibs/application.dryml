@@ -33,6 +33,7 @@
 </def>
 
 <extend tag="form" for="Item">
+  <div style="width:38%;">
   <old-form merge>
     <field-list: fields="title, text, estimation, start_date, end_date, project_members, checklist_items" >
       <project-members-view:>
@@ -40,6 +41,7 @@
       </project-members-view:>
     </field-list>
   </old-form>
+  </div>
 </extend>
 
 
