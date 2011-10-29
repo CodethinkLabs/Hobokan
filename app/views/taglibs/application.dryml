@@ -34,7 +34,7 @@
 
 <extend tag="form" for="Item">
   <old-form merge>
-    <field-list: fields="start_date, end_date, title, text, estimation, project_members, checklist_items" >
+    <field-list: fields="title, text, estimation, start_date, end_date, project_members, checklist_items" >
       <project-members-view:>
         <select-many-in-project-members/>
       </project-members-view:>
