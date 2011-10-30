@@ -57,5 +57,5 @@ CtKanban::Application.configure do
 
   # Uncomment this to use SSL
   # config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
-  config.middleware.use "ForceSSL"
+  # config.middleware.use "ForceSSL"
 end
