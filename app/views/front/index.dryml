@@ -19,7 +19,7 @@
               <li>show history</li>
             </ul>
             <h3>Please add bugs, feature requests and ideas as items in the
-                <b><u><%= link_to " Kanban Project ", :controller => :projects, :id => 8, :action => "show", %></u></b> (we're dogfooding)</h3>
+                <b><u><%= link_to " Kanban Project ", :controller => :projects, :id => 8, :action => "show" %></u></b> (we're dogfooding)</h3>
 
 
           </section>
