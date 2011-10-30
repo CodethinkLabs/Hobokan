@@ -28,6 +28,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def do_archive
+    item = find_instance
+    item.state = "archived"
+    item.save
+    redirect_to (item.lane.project)
+  end
+
   def edit
     if request.xhr?
       handle_item_drop
