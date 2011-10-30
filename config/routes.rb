@@ -1,4 +1,7 @@
 CtKanban::Application.routes.draw do
+  # Uncomment this to use https
+  resources :sessions, :constraints => { :protocol => "https" }
+
   root :to => 'front#index'
 
   match 'search' => 'front#search', :as => 'site_search'

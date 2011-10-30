@@ -36,6 +36,11 @@ CtKanban::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = {
+    :protocol => 'https',
+    :host => 'ct-kanban.heroku.com'
+  }
+
 
   # Enable threaded mode
   # config.threadsafe!
@@ -49,4 +54,8 @@ CtKanban::Application.configure do
 
   # Make sure Hobo is expecting a read only file system under Heroku
   config.hobo.read_only_file_system = true
+
+  # Uncomment this to use SSL
+  # config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
+  config.middleware.use "ForceSSL"
 end
