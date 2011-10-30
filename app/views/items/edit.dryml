@@ -12,7 +12,7 @@
         <kanban-board-view with="&@item" field="lane.project" />
 
         <h3>Edit Task</h3>
-
+        <transition-buttons/>
         <form>
           <actions: replace>
             <submit label="#{ht 'item.actions.save', :default=>['Save']}"/><or-cancel:lane.project />

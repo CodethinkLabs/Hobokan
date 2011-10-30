@@ -44,7 +44,12 @@ class Item < ActiveRecord::Base
     state :normal, :default => :true
     state :warn
     state :urgent
+    state :archived
+
+    transition :archive, { :normal => :archived }, :available_to => "User"
   end
+
+  scope :active, :conditions => "state != 'archived'"
 
   def wip_current
     return 0 if !self.current_lane_entry
@@ -60,8 +65,8 @@ class Item < ActiveRecord::Base
   after_save :update_statistics
 
   def set_updated_by
-    members = lane.project.project_members
-    self.updated_by = members.find(:first, :conditions => "user_id = #{User.current.id}")
+#    members = lane.project.project_members
+ #   self.updated_by = members.find(:first, :conditions => "user_id = #{User.current.id}")
   end
 
   def update_position

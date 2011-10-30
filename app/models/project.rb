@@ -70,7 +70,7 @@ class Project < ActiveRecord::Base
   def stories
     result = []
     lanes.each do |lane|
-      result << lane.items.map {|item| "L#{lane.id},S#{item.id},#{item.title}" }
+      result << lane.items.active.map {|item| "L#{lane.id},S#{item.id},#{item.title}" }
     end
 
     return result.join("\n")
