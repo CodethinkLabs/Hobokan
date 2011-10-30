@@ -19,7 +19,7 @@ html, body {color: #193440; background: url(../images/300-ACD3E6-fff.png) repeat
 
 /* Column Layout */
 
-.section-group       {display: table; width: 100%; padding: 0px 20px;}
+.section-group       {display: table; width: 98%; padding: 0px 20px;}
 .section-group-inner {display: table-row;}
 .section-group-inner > * {display: table-cell; vertical-align: top;}
 .aside {width: 50%;} /* works with % too */
