@@ -82,7 +82,7 @@ class Project < ActiveRecord::Base
 
   def changes
     member_ids = project_members.map {|m| m.id }
-    versions = Version.where(:user_id => member_ids).order("created_at DESC")
+    versions = Version.where(:user_id => member_ids).where(:user_type => 'ProjectMember').order("created_at DESC")
     result = []
     versions.each do |v|
       change = Change.new
