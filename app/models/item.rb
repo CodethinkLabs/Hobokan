@@ -65,9 +65,10 @@ class Item < ActiveRecord::Base
   after_save :update_statistics
 
   def set_updated_by
-#    members = lane.project.project_members
- #   self.updated_by = members.find(:first, :conditions => "user_id = #{User.current.id}")
-  end
+    members = lane.project.project_members
+    member = members.find(:first, :conditions => "user_id = #{User.current.id}")
+    self.updated_by = (member ? member : User.current)
+ end
 
   def update_position
     self.position = lane.items.count + 1
