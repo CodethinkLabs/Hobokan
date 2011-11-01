@@ -70,7 +70,7 @@ var init_board = function(stories) {
 }
 
 var create_list = function(board, state) {
-  var list = jQuery("<ul class=\"state\" id=\"" + state + "\" style=\"height:600px;overflow:auto;padding:5px;\"></ul>");
+  var list = jQuery("<ul class=\"state\" id=\"" + state + "\" style=\"height:600px;padding:5px;\"></ul>");
   if (board[state]) {
     for (var i=0, len=board[state].length; i<len; i++) {
       var item_id = board[state][i][1].replace(/^S([\d]+).*/, "$1");
