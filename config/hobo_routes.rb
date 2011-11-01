@@ -38,6 +38,10 @@ CtKanban::Application.routes.draw do
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
 
+  # Lifecycle routes for controller "items"
+  put 'items/:id/archive(.:format)' => 'items#do_archive', :as => 'do_item_archive'
+  get 'items/:id/archive(.:format)' => 'items#archive', :as => 'item_archive'
+
   # Resource routes for controller "items"
   get 'items/new(.:format)', :as => 'new_item'
   get 'items/:id/edit(.:format)' => 'items#edit', :as => 'edit_item'
@@ -49,6 +53,9 @@ CtKanban::Application.routes.draw do
   # Owner routes for controller "items"
   get 'lanes/:lane_id/items/new(.:format)' => 'items#new_for_lane', :as => 'new_item_for_lane'
   post 'lanes/:lane_id/items(.:format)' => 'items#create_for_lane', :as => 'create_item_for_lane'
+
+  # Show action routes for controller "items"
+  get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
 
 
   # Resource routes for controller "projects"
