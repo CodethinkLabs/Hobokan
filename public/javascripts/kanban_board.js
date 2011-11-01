@@ -101,10 +101,10 @@ var create_list = function(board, state) {
     for (var i=0, len=board[state].length; i<len; i++) {
       var item_id = board[state][i][1].replace(/^S([\d]+).*/, "$1");
       var title = board[state][i][2].replace(/ /g, "_").toLowerCase();
-      var click_handler = " <a class=\"edit-link item-link\" style=\"border-bottom:none\"" +
+      var click_handler = "<a class=\"edit-link item-link\" style=\"border-bottom:none\"" +
         " href=\"javascript:get_item_details(this, " + item_id + ");\">" + board[state][i][2] + "</a>";
       var story_element = jQuery("<li><div class=\"box box_" +
-      state  + "\"> " + board[state][i][1] + " " + click_handler + "</div></li>");
+      state  + "\">" + board[state][i][1] + " " + click_handler + "</div></li>");
       story_element.data("story",  board[state][i]);
       list.append(story_element);
     }
