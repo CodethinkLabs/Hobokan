@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
   auto_actions :all, :except => :index
   auto_actions_for :lane, [:new, :create]
+  show_action :ajax_item
 
   def new_for_lane
     if request.xhr?
@@ -33,6 +34,15 @@ class ItemsController < ApplicationController
     item.state = "archived"
     item.save
     redirect_to (item.lane.project)
+  end
+
+  def ajax_item
+    if request.xhr?
+      @item = find_instance
+      logger.debug("item: #{@item}")
+      render :partial => "ajax_item", :locals => {:my_item => @item}
+      return
+    end
   end
 
   def edit
