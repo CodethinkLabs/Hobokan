@@ -20,9 +20,9 @@ class Project < ActiveRecord::Base
   has_one :livelog, :class_name => 'Lane', :conditions => {:title => 'Live'}
   has_one :parking, :class_name => 'Lane', :conditions => {:title => 'Parking'}
 
-  after_create :setup_lanes
+  def initialize(*args)
+    super
 
-  def setup_lanes
     lane = Lane.new
     lane.title = 'Wishlist'
     lane.position = 1
@@ -62,7 +62,6 @@ class Project < ActiveRecord::Base
     lane.background_color = '#999999'
     lane.color = '#000000'
     lane.save
-
   end
 
   def states
