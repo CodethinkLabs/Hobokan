@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Lane < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
@@ -26,7 +28,8 @@ class Lane < ActiveRecord::Base
   set_default_order "position ASC"
 
   def name
-    title.gsub(/\s/, "_").downcase
+    title
+    # title.gsub(/\s/, "_").downcase
   end
 
   def can_take_more_items?

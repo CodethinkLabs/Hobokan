@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Project < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
@@ -18,9 +20,9 @@ class Project < ActiveRecord::Base
   has_one :livelog, :class_name => 'Lane', :conditions => {:title => 'Live'}
   has_one :parking, :class_name => 'Lane', :conditions => {:title => 'Parking'}
 
-  after_create :setup_lanes
+  def initialize(*args)
+    super
 
-  def setup_lanes
     lane = Lane.new
     lane.title = 'Wishlist'
     lane.position = 1
@@ -60,7 +62,6 @@ class Project < ActiveRecord::Base
     lane.background_color = '#999999'
     lane.color = '#000000'
     lane.save
-
   end
 
   def states
@@ -90,6 +91,11 @@ class Project < ActiveRecord::Base
       change.date = v.created_at.strftime("%d/%m/%Y")
       change.comment = ""
       title = Item.find(v.versioned_id).title
+
+      if v.modifications['title']
+        change.comment += "Renamed S#{v.versioned_id} '#{v.modifications['title'][0]}' as '#{v.modifications['title'][1]}'"
+      end
+
       if v.modifications['text']
         change.comment += v.modifications['text'][1].to_s
       end

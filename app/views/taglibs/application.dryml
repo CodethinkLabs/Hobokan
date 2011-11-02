@@ -44,6 +44,11 @@
   </div>
 </extend>
 
+<def tag="safe-partial" attrs="name, locals"><%=
+   locals ||= {}
+   render(:partial => name, :locals => locals.merge(:this => this)).html_safe
+%></def>
+
 
 <def tag="kanban-board-view" param="default">
   <view:states.html_safe id="states" style="display:none" />

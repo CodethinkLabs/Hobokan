@@ -69,14 +69,42 @@ var init_board = function(stories) {
   return board;
 }
 
+var show_item_details = function(transport) {
+  jQuery("#edit-item-dialog").empty();
+  jQuery("#edit-item-dialog").append(transport.responseText);
+
+  jQuery("#edit-item-dialog").find('.hjq-annotated').each(function() {
+    var annotations = hjq.getAnnotations.call(this);
+    if(annotations.init) {
+      hjq.util.createFunction(annotations.init).call(this, annotations);
+    };
+  });
+
+  hjq.dialog_opener.click(this, jQuery('#item-dialog'));
+}
+
+var get_item_details = function(board, item_id) {
+  Hobo.ajaxRequest( "/items/" + item_id + "/ajax_item",
+                    [],
+                    { params: { item_id: item_id },
+                      action: 'ajax_item',
+                      controller: 'items',
+                      method: 'get',
+                      message: "Please wait",
+                      onComplete: show_item_details
+                    } );
+}
+
 var create_list = function(board, state) {
   var list = jQuery("<ul class=\"state\" id=\"" + state + "\" style=\"height:600px;padding:5px;\"></ul>");
   if (board[state]) {
     for (var i=0, len=board[state].length; i<len; i++) {
       var item_id = board[state][i][1].replace(/^S([\d]+).*/, "$1");
       var title = board[state][i][2].replace(/ /g, "_").toLowerCase();
+      var click_handler = "<a class=\"edit-link item-link\" style=\"border-bottom:none\"" +
+        " href=\"javascript:get_item_details(this, " + item_id + ");\">" + board[state][i][2] + "</a>";
       var story_element = jQuery("<li><div class=\"box box_" +
-      state  + "\">" + board[state][i][1] + " <a class=\"edit-link item-link\" style=\"border-bottom:none\" href=\"/items/" + item_id + "/edit\">" + board[state][i][2] + "</a></div></li>");
+      state  + "\">" + board[state][i][1] + " " + click_handler + "</div></li>");
       story_element.data("story",  board[state][i]);
       list.append(story_element);
     }
@@ -86,7 +114,11 @@ var create_list = function(board, state) {
 
 var create_column = function(board, state, headline) {
   var state_column = jQuery("<div class=\"dp10" + "\"></div>");
-  state_column.append(jQuery("<div class=\"headline\">" + headline + "</div>"));
+  var lane_id = state.replace(/^L([\d]+).*/, "$1");
+
+  var headline_link = "<a href=\"/lanes/" + lane_id + "\">" + headline + "</a>";
+  state_column.append(jQuery("<div class=\"headline\">" + headline_link + "</div>"));
+//  state_column.append(jQuery("<div class=\"headline\">" + headline + "</div>"));
   state_column.append(create_list(board, state));
   state_column.data("state", state);
   return state_column;

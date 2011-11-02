@@ -1,9 +1,9 @@
-<%= @user %>,
+<p><%= @user %>,</p>
 
-To activate your account for <%= @app_name %>, click on this link:
+<p>To activate your account for <%= @app_name %>, click on this link:</p>
 
-  <%= user_activate_url :id => @user, :key => @key %>
+<p>  <a href="<%= user_activate_url :id => @user, :key => @key %>"><%= user_activate_url :id => @user, :key => @key %></a></p>
 
-Thank you,
+<p>Thank you,<br />
 
-The <%= @app_name %> team.
+The <%= @app_name %> team.</p>

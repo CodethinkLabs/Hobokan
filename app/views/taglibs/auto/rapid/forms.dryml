@@ -23,6 +23,17 @@
 </def>
 
 
+<def tag="archive-form" polymorphic/>
+<def tag="archive-form" for="Item">
+  <form lifecycle="archive" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.item.lifecycle.transitions.archive', :default=>['Archive']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Lane">
   <form merge param="default">

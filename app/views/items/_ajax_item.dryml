@@ -1,0 +1,15 @@
+<def tag="select-project-members">
+  <select-many merge options="&@item.lane.project.project_members"/>
+</def>
+
+<hjq-dialog id="item-dialog" title="Edit a task" position="center" width="&800">
+  <form with="&my_item" without-cancel>
+    <field-list: fields="title, text, estimation, start_date, end_date, project_members, checklist_items" >
+      <project-members-view:>
+        <select-project-members/>
+      </project-members-view:>
+    </field-list>
+    <submit: label="#{ht 'Item.actions.save', :default=>['Save'] }" style=""/>
+  </form>
+</hjq-dialog>
+
