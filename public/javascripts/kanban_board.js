@@ -114,7 +114,11 @@ var create_list = function(board, state) {
 
 var create_column = function(board, state, headline) {
   var state_column = jQuery("<div class=\"dp10" + "\"></div>");
-  state_column.append(jQuery("<div class=\"headline\">" + headline + "</div>"));
+  var lane_id = state.replace(/^L([\d]+).*/, "$1");
+
+  var headline_link = "<a href=\"/lanes/" + lane_id + "\">" + headline + "</a>";
+  state_column.append(jQuery("<div class=\"headline\">" + headline_link + "</div>"));
+//  state_column.append(jQuery("<div class=\"headline\">" + headline + "</div>"));
   state_column.append(create_list(board, state));
   state_column.data("state", state);
   return state_column;

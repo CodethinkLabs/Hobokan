@@ -1,8 +1,24 @@
-<show-page>
-  <content-body: replace>
-    <field-list: tag="editor" fields="title" />
+<def tag="item-story-id" param="default" >
+  <%= "S#{this}" %>
+</def>
 
-    <table-plus:items fields="this, start_date, end_date, text, checklist_items">
+<show-page>
+  <content-header: replace>
+            <h2>
+              <%= "#{this.project.name}:" %>
+              <ht key="lane.show.heading" name="#{name(:no_wrapper => true)}">
+                <name/>
+              </ht>
+            </h2>
+  </content-header>
+
+  <content-body: replace>
+    <table-plus:items fields="id, this, text">
+      <id-view:>
+        <item-story-id/>
+      </id-view:>
+
     </table-plus>
   </content-body>
+
 </show-page>
