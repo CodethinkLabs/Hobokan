@@ -94,7 +94,7 @@ class Project < ActiveRecord::Base
       title = Item.find(v.versioned_id).title
 
       if v.modifications['title']
-        change.comment += "Renamed '#{v.modifications['title'][0]}' as '#{v.modifications['title'][1]}'"
+        change.comment += "Renamed S#{v.versioned_id} '#{v.modifications['title'][0]}' as '#{v.modifications['title'][1]}'"
       end
 
       if v.modifications['text']
