@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
     @project = find_instance
     @item = Item.new
     @item.lane = @project.lanes[0]
-    @item.title = 'Foobar'
     @lanes =
       @project.lanes.apply_scopes(:search    => [params[:search], :title],
                                     :status_is => params[:status],
