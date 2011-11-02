@@ -28,7 +28,8 @@ class Lane < ActiveRecord::Base
   set_default_order "position ASC"
 
   def name
-    title.gsub(/\s/, "_").downcase
+    title
+    # title.gsub(/\s/, "_").downcase
   end
 
   def can_take_more_items?
