@@ -92,6 +92,11 @@ class Project < ActiveRecord::Base
       change.date = v.created_at.strftime("%d/%m/%Y")
       change.comment = ""
       title = Item.find(v.versioned_id).title
+
+      if v.modifications['title']
+        change.comment += "Renamed '#{v.modifications['title'][0]}' as '#{v.modifications['title'][1]}'"
+      end
+
       if v.modifications['text']
         change.comment += v.modifications['text'][1].to_s
       end
