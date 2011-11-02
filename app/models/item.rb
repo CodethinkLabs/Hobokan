@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Item < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
