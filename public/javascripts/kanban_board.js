@@ -69,6 +69,10 @@ var init_board = function(stories) {
   return board;
 }
 
+var clear_item_details = function(transport) {
+  jQuery("#edit-item-dialog").empty();
+}
+
 var show_item_details = function(transport) {
   jQuery("#edit-item-dialog").empty();
   jQuery("#edit-item-dialog").append(transport.responseText);
@@ -91,7 +95,8 @@ var get_item_details = function(board, item_id) {
                       controller: 'items',
                       method: 'get',
                       message: "Please wait",
-                      onComplete: show_item_details
+                      onSuccess: show_item_details,
+                      onFailure: clear_item_details
                     } );
 }
 
