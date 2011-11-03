@@ -69,24 +69,6 @@ var init_board = function(stories) {
   return board;
 }
 
-var clear_item_details = function(transport) {
-  jQuery("#edit-item-dialog").empty();
-}
-
-var show_item_details = function(transport) {
-  jQuery("#edit-item-dialog").empty();
-  jQuery("#edit-item-dialog").append(transport.responseText);
-
-  jQuery("#edit-item-dialog").find('.hjq-annotated').each(function() {
-    var annotations = hjq.getAnnotations.call(this);
-    if(annotations.init) {
-      hjq.util.createFunction(annotations.init).call(this, annotations);
-    };
-  });
-
-  hjq.dialog_opener.click(this, jQuery('#item-dialog'));
-}
-
 var get_item_details = function(board, item_id) {
   Hobo.ajaxRequest( "/items/" + item_id + "/ajax_item",
                     [],
@@ -95,8 +77,24 @@ var get_item_details = function(board, item_id) {
                       controller: 'items',
                       method: 'get',
                       message: "Please wait",
-                      onSuccess: show_item_details,
-                      onFailure: clear_item_details
+
+                      onSuccess: function(transport) {
+                        jQuery("#edit-item-dialog").empty();
+                        jQuery("#edit-item-dialog").append(transport.responseText);
+
+                        jQuery("#edit-item-dialog").find('.hjq-annotated').each(function() {
+                          var annotations = hjq.getAnnotations.call(this);
+                          if (annotations.init) {
+                            hjq.util.createFunction(annotations.init).call(this, annotations);
+                          };
+                        });
+
+                        hjq.dialog_opener.click(this, jQuery('#item-dialog-s' + item_id));
+                      },
+
+                      onFailure: function(transport) {
+                        jQuery("#edit-item-dialog").empty();
+                      }
                     } );
 }
 
