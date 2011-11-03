@@ -44,7 +44,7 @@ var init_states = function(states_input) {
   var states = {}
   var states_order = []
   for ( var i=0, len=states_input.length; i<len; i++ ) {
-    var state = states_input[i].split(",");
+    var state = states_input[i].split("\v");
     if (state.length == 4) {
       states[state[0]] = state[1];
       states_order.push(state[0]);
@@ -57,7 +57,7 @@ var init_states = function(states_input) {
 var init_board = function(stories) {
   var board = {};
   for ( var i=0, len=stories.length; i<len; i++ ) {
-    var story = stories[i].split(",");
+    var story = stories[i].split("\v");
     var state = story[0];
     if (story.length == 3) {
       if (! board[state]) {
@@ -165,7 +165,9 @@ var create_board = function(app_data) {
 var create_box_colors = function(states_input) {
   var styles = jQuery('<style type="text/css"><!-- --></style>');
   for ( var i=0, len=states_input.length; i<len; i++ ) {
-    var state = states_input[i].split(",");
+    console.debug(states_input[i]);
+    console.debug(states_input[i].split("\v"));
+    var state = states_input[i].split("\v");
     if (state.length == 4) {
       styles.append("#" + state[0] + " .box { background-color: " + state[2] + " ; color: " + state[3] + ";}");
     }
