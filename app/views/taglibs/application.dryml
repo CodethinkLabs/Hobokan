@@ -12,6 +12,8 @@
   <old-page merge>
     <custom-scripts:>
       <hjq-assets/>
+      <stylesheet name="jquery.colorpicker"/>
+      <javascript name="jquery.colorpicker"/>
     </custom-scripts>
     <footer:>
       <a href="&admin_users_url" if="&current_user.administrator?">
@@ -27,6 +29,16 @@
 <def tag="edit" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
 
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
+
+<def attrs="name" tag="hjq-colorpicker">
+<%
+  options, attrs = attributes.partition_hash([])
+  events, html_attrs = attrs.partition_hash([])
+%>
+ <annotate-tag tag="hjq-colorpicker" init="hjq.colorpicker.init" options="&options" events="&events" />
+ <% html_attrs = add_classes(html_attrs, "hjq-annotated"); %>
+ <%= text_field_tag(name, this, html_attrs) %>
+</def>
 
 <def tag="select-many-in-project-members">
   <select-many merge options="&@item.lane.project.project_members"/>
@@ -44,32 +56,52 @@
   </div>
 </extend>
 
-<def tag="safe-partial" attrs="name, locals"><%=
-   locals ||= {}
-   render(:partial => name, :locals => locals.merge(:this => this)).html_safe
-%></def>
 
+<def tag="kanban-board-view" param="default" attrs="lane">
+  <div id="edit-item-dialog"></div>
 
-<def tag="kanban-board-view" param="default">
-  <view:states.html_safe id="states" style="display:none" />
-  <view:stories.html_safe id="stories" style="display:none;" />
+  <if test="&lane">
+    <view:states.html_safe with="&lane" id="states" style="display:none" />
+    <view:stories.html_safe with="&lane" id="stories" style="display:none;" />
+
+    <style type="text/css">
+    <!--
+      .box { font-size: 120%; padding: 1em;  margin-bottom: 1em; margin-right: 5px; -moz-border-radius: 5px;border-radius: 5px;}
+      .dp10 {background:#eeeeee;  -moz-border-radius: 5px;border-radius: 5px; padding:10px; margin-right:10px; width:80%;  float:left;
+    -->
+    </style>
+
+  </if>
+
+  <unless test="&lane">
+    <view:states.html_safe id="states" style="display:none" />
+    <view:stories.html_safe id="stories" style="display:none;" />
+
+    <style type="text/css">
+    <!--
+      .box { font-size: 120%; padding: 1em;  margin-bottom: 1em; margin-right: 5px; -moz-border-radius: 5px;border-radius: 5px;}
+      .dp10 {background:#eeeeee;  -moz-border-radius: 5px;border-radius: 5px; padding:10px; margin-right:10px; width:17%;  float:left;
+    -->
+    </style>
+
+  </unless>
+
   <textarea id="data_output" rows="20" cols="100">
   </textarea>
 
   <style type="text/css">
-<!--
+  <!--
     .button { background-color: #e0e0e0; color: #a0a0a0; padding: 0.2em; text-decoration: none;}
     .placeholder {border: 1px solid black; }
      ul { list-style: none; margin: 0 0 0 0; padding: 0 0 0 0;}
-   body { font-family: Helvetica; }
-   .box { font-size: 120%; padding: 1em;  margin-bottom: 1em; margin-right: 5px; -moz-border-radius: 5px;border-radius: 5px;}
-   .dp10 {background:#eeeeee;  -moz-border-radius: 5px;border-radius: 5px; padding:10px; margin-right:10px; width:17%;  float:left;  display: inline; }
-   .clear {clear:both;}
-   .headline { font-weight: bold; height: 3em; color: #000000;}
-   .queue_column .headline { font-weight: bold; height: 3em; color: #d0d0d0;}
-   .footer { font-size: 80%; color: #808080; padding-top: 5em;}
+    body { font-family: Helvetica; }
+    .clear {clear:both;}
+    .headline { font-weight: bold; height: 3em; color: #000000;}
+    .queue_column .headline { font-weight: bold; height: 3em; color: #d0d0d0;}
+    .footer { font-size: 80%; color: #808080; padding-top: 5em;}
    -->
   </style>
+
 
   <div id="output"></div>
   <div class="clear"></div>
