@@ -29,7 +29,23 @@ class Lane < ActiveRecord::Base
 
   def name
     title
-    # title.gsub(/\s/, "_").downcase
+  end
+
+  def foobar
+    logger.debug("foobar called")
+    "L#{id}\u000B#{title}\u000B#{background_color}\u000B#{color}"
+  end
+
+  def state
+    "L#{id}\u000B#{title}\u000B#{background_color}\u000B#{color}"
+  end
+
+  def states
+    state
+  end
+
+  def stories
+    items.active.map {|item| "L#{self.id}\u000BS#{item.id}\u000B#{item.title}" }.join("\n")
   end
 
   def can_take_more_items?

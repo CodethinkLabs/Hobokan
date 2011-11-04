@@ -65,13 +65,13 @@ class Project < ActiveRecord::Base
   end
 
   def states
-    lanes.map { |lane| "L#{lane.id}\u000B#{lane.title}\u000B#{lane.background_color}\u000B#{lane.color}"}.join("\n")
+    lanes.map { |lane| lane.state}.join("\n")
   end
 
   def stories
     result = []
     lanes.each do |lane|
-      result << lane.items.active.map {|item| "L#{lane.id}\u000BS#{item.id}\u000B#{item.title}" }
+      result << lane.stories
     end
 
     return result.join("\n")
