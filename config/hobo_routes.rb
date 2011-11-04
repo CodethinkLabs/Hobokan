@@ -83,6 +83,9 @@ CtKanban::Application.routes.draw do
   get 'projects/:project_id/lanes/new(.:format)' => 'lanes#new_for_project', :as => 'new_lane_for_project'
   post 'projects/:project_id/lanes(.:format)' => 'lanes#create_for_project', :as => 'create_lane_for_project'
 
+  # Show action routes for controller "lanes"
+  get 'lanes/:id/kanban_lane(.:format)' => 'lanes#kanban_lane', :as => 'lane_kanban_lane'
+
   # Reorder routes for controller "lanes"
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
 
