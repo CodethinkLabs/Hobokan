@@ -12,8 +12,6 @@
   <old-page merge>
     <custom-scripts:>
       <hjq-assets/>
-      <stylesheet name="jquery.colorpicker"/>
-      <javascript name="jquery.colorpicker"/>
     </custom-scripts>
     <footer:>
       <a href="&admin_users_url" if="&current_user.administrator?">
@@ -29,16 +27,6 @@
 <def tag="edit" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
 
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
-
-<def attrs="name" tag="hjq-colorpicker">
-<%
-  options, attrs = attributes.partition_hash([])
-  events, html_attrs = attrs.partition_hash([])
-%>
- <annotate-tag tag="hjq-colorpicker" init="hjq.colorpicker.init" options="&options" events="&events" />
- <% html_attrs = add_classes(html_attrs, "hjq-annotated"); %>
- <%= text_field_tag(name, this, html_attrs) %>
-</def>
 
 <def tag="select-many-in-project-members">
   <select-many merge options="&@item.lane.project.project_members"/>
