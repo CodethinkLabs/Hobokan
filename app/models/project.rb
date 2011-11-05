@@ -20,6 +20,9 @@ class Project < ActiveRecord::Base
   has_one :livelog, :class_name => 'Lane', :conditions => {:title => 'Live'}
   has_one :parking, :class_name => 'Lane', :conditions => {:title => 'Parking'}
 
+  validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
+
+
   def initialize(*args)
     super
 
