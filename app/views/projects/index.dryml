@@ -1,10 +1,11 @@
 <index-page >
-  <collection: replace>
+
+
+  <collection:replace with="&@projects">
   <div>
-    <table-plus field-list fields="this" >
-    <view:this />
-    </table-plus>
+    <a href="/projects/#{this.id}/kanban_board" >#{this.name}</a>
   </div>
-  </collection:>
+  </collection>
+
 </index-page>
 
