@@ -51,11 +51,23 @@
   <if test="&lane">
     <view:states.html_safe with="&lane" id="states" style="display:none" />
     <view:stories.html_safe with="&lane" id="stories" style="display:none;" />
+    <style type="text/css">
+      <!--
+        .dp10 {padding:10px; width: 100%; float:left;  display: inline; }
+	   .box { font-size: 120%; padding: .2em;  margin-bottom: .5em; margin-right: 5px; -moz-border-radius: 5px;border-radius: 5px;}
+      -->
+    </style>
   </if>
 
   <unless test="&lane">
     <view:states.html_safe id="states" style="display:none" />
     <view:stories.html_safe id="stories" style="display:none;" />
+    <style type="text/css">
+      <!--
+        .dp10 {background:#eeeeee;  -moz-border-radius: 5px;border-radius: 5px; padding:10px; margin-right:10px; width:17%;  float:left;  display: inline; }
+	   .box { font-size: 120%; padding: 1em;  margin-bottom: 1em; margin-right: 5px; -moz-border-radius: 5px;border-radius: 5px;}
+      -->
+    </style>
   </unless>
 
   <textarea id="data_output" rows="20" cols="100">
@@ -67,8 +79,6 @@
     .placeholder {border: 1px solid black; }
      ul { list-style: none; margin: 0 0 0 0; padding: 0 0 0 0;}
    body { font-family: Helvetica; }
-   .box { font-size: 120%; padding: 1em;  margin-bottom: 1em; margin-right: 5px; -moz-border-radius: 5px;border-radius: 5px;}
-   .dp10 {background:#eeeeee;  -moz-border-radius: 5px;border-radius: 5px; padding:10px; margin-right:10px; width:17%;  float:left;  display: inline; }
    .clear {clear:both;}
    .headline { font-weight: bold; height: 3em; color: #000000;}
    .queue_column .headline { font-weight: bold; height: 3em; color: #d0d0d0;}
