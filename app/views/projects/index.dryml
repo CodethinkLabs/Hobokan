@@ -1,11 +1,20 @@
 <index-page >
 
+<content-body: replace>
+  <ht key="project.new.title" ></ht>
 
-  <collection:replace with="&@projects">
+      <a action="new"  style="float: right;" >
+         <ht key="Project.actions.new" >
+           New Project
+         </ht>
+       </a>
+
+  <collection with="&@projects">
   <div>
     <a href="/projects/#{this.id}/kanban_board" >#{this.name}</a>
   </div>
   </collection>
 
+</content-body>
 </index-page>
 
