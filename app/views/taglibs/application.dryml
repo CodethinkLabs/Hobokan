@@ -64,7 +64,7 @@
     <view:stories.html_safe id="stories" style="display:none;" />
     <style type="text/css">
       <!--
-        .dp10 {background:#eeeeee;  -moz-border-radius: 5px;border-radius: 5px; padding:10px; margin-right:10px; width:17%;  float:left;  display: inline; }
+        .dp10 {background:#eeeeee;  -moz-border-radius: 5px;border-radius: 5px; padding:10px; margin-right:10px; width:17%;  float:left;  display: inline; height:600; overflow:auto; }
 	   .box { font-size: 120%; padding: 1em;  margin-bottom: 1em; margin-right: 5px; -moz-border-radius: 5px;border-radius: 5px;}
       -->
     </style>
