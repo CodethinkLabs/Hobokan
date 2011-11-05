@@ -1,6 +1,9 @@
 <show-page for="Lane">
 
 <content: replace>
+<a:project>&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to        <name/></ht></a:project>
+
+
   <section-group>
       <div class="section content-body">
         <h3>
