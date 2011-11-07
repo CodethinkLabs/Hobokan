@@ -32,11 +32,6 @@ class Lane < ActiveRecord::Base
     title
   end
 
-  def foobar
-    logger.debug("foobar called")
-    "L#{id}\u000B#{title}\u000B#{background_color}\u000B#{color}"
-  end
-
   def state
     "L#{id}\u000B#{title}\u000B#{background_color}\u000B#{color}"
   end
