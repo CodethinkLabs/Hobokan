@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028164415) do
+ActiveRecord::Schema.define(:version => 20111107114944) do
 
   create_table "checklist_items", :force => true do |t|
     t.string    "text"
@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20111028164415) do
   add_index "checklist_items", ["item_id"], :name => "index_checklist_items_on_item_id"
 
   create_table "item_project_members", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_member_id"
-    t.integer  "item_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "project_member_id"
+    t.integer   "item_id"
   end
 
   add_index "item_project_members", ["item_id"], :name => "index_item_project_members_on_item_id"
@@ -40,44 +40,34 @@ ActiveRecord::Schema.define(:version => 20111028164415) do
     t.text     "text"
     t.float    "estimation"
     t.integer  "position"
-    t.integer  "wip_total"
-    t.datetime "current_lane_entry"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lane_id"
-    t.integer  "last_editor_id"
-    t.string   "state",              :default => "normal"
+    t.string   "state",         :default => "normal"
     t.datetime "key_timestamp"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
-  add_index "items", ["last_editor_id"], :name => "index_items_on_last_editor_id"
   add_index "items", ["state"], :name => "index_items_on_state"
 
   create_table "lanes", :force => true do |t|
-    t.string    "title"
-    t.integer   "max_items",        :default => 25
-    t.integer   "position"
-    t.string    "type"
-    t.boolean   "counts_wip"
-    t.integer   "warn_limit",       :default => 10
-    t.integer   "urgent_limit",     :default => 10
-    t.boolean   "dashboard",        :default => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "project_id"
-    t.string    "background_color"
-    t.string    "color"
+    t.string   "title"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+    t.string   "background_color"
+    t.string   "color"
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
 
   create_table "project_members", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.boolean  "administrator", :default => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "project_id"
+    t.integer   "user_id"
+    t.boolean   "administrator", :default => false
   end
 
   add_index "project_members", ["project_id"], :name => "index_project_members_on_project_id"
@@ -89,21 +79,6 @@ ActiveRecord::Schema.define(:version => 20111028164415) do
     t.timestamp "updated_at"
     t.boolean   "per_project_permissions", :default => false
   end
-
-  create_table "statistics", :force => true do |t|
-    t.timestamp "entry_time"
-    t.timestamp "leave_time"
-    t.integer   "duration"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "lane_id"
-    t.integer   "item_id"
-    t.integer   "user_id"
-  end
-
-  add_index "statistics", ["item_id"], :name => "index_statistics_on_item_id"
-  add_index "statistics", ["lane_id"], :name => "index_statistics_on_lane_id"
-  add_index "statistics", ["user_id"], :name => "index_statistics_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string    "crypted_password",          :limit => 40
@@ -122,17 +97,17 @@ ActiveRecord::Schema.define(:version => 20111028164415) do
   add_index "users", ["state"], :name => "index_users_on_state"
 
   create_table "versions", :force => true do |t|
-    t.integer  "versioned_id"
-    t.string   "versioned_type"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "user_name"
-    t.text     "modifications"
-    t.integer  "number"
-    t.integer  "reverted_from"
-    t.string   "tag"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "versioned_id"
+    t.string    "versioned_type"
+    t.integer   "user_id"
+    t.string    "user_type"
+    t.string    "user_name"
+    t.text      "modifications"
+    t.integer   "number"
+    t.integer   "reverted_from"
+    t.string    "tag"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "versions", ["created_at"], :name => "index_versions_on_created_at"

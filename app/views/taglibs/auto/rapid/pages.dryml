@@ -6,7 +6,6 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&Statistic"><ht key="statistic.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
@@ -220,7 +219,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, estimation, position, wip_total, current_lane_entry, state, lane, last_editor" param/>
+            <field-list fields="start_date, end_date, text, estimation, position, state, lane" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="checklist_item.collection.heading" count="&this.checklist_items.count" >
@@ -394,7 +393,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="counts_wip, dashboard" param/>
+            <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="lane.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -404,7 +403,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="title, max_items, position, warn_limit, urgent_limit, background_color, color, project" param/>
+            <field-list fields="title, position, background_color, color, project" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="item.collection.heading" count="&this.items.count" >
@@ -600,126 +599,6 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'project.actions.delete', :default=>['Remove This Project']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-
-
-
-
-<!-- ====== Statistic Pages ====== -->
-
-<def tag="index-page" for="Statistic">
-  <page merge title="#{ht 'statistic.index.title', :default=>[model.model_name.human(:count=>100)] }">
-    <body: class="index-page statistic" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="statistic.index.heading">
-            <model-name-human model="&model"/>
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="statistic.collection.count" count="&collection_count">
-            <count summary/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="statistic.actions.new">New Statistic</ht>
-        </a>
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="Statistic">
-  <page merge title="#{ht 'statistic.new.title', :default=>[' New Statistic'] }">
-    <body: class="new-page statistic" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="statistic.new.heading">
-            New Statistic
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'statistic.actions.create', :default=>['Create Statistic']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="Statistic">
-  <page merge title="#{ht 'statistic.show.title', :default=>['Statistic'], :name => name(:no_wrapper => true) }">
-
-    <body: class="show-page statistic" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="statistic.show.heading" name="#{name(:no_wrapper => true)}">
-                Statistic <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="statistic.actions.edit" name="#{name(:no_wrapper => true)}">
-                Edit Statistic
-              </ht>
-            </a>
-          </header>
-
-          <section param="content-body">
-            <field-list fields="entry_time, leave_time, duration, item, lane, user" param/>
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="Statistic">
-  <page merge title="#{ht 'statistic.edit.title', :default=>['Edit Statistic'], :name => name(:no_wrapper => true) }">
-
-    <body: class="edit-page statistic" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="statistic.edit.heading" name="#{name(:no_wrapper => true)}">
-            Edit Statistic
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'statistic.actions.delete', :default=>['Remove This Statistic']}" param/>
       </section>
 
       <section param="content-body">

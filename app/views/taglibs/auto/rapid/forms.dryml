@@ -15,7 +15,7 @@
 <def tag="form" for="Item">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="start_date, end_date, title, text, estimation, position, wip_total, current_lane_entry, state, checklist_items, lane, last_editor, project_members" param/>
+    <field-list fields="start_date, end_date, title, text, estimation, position, state, checklist_items, lane, project_members" param/>
     <div param="actions">
       <submit label="#{ht 'item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -38,7 +38,7 @@
 <def tag="form" for="Lane">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title, max_items, position, counts_wip, warn_limit, urgent_limit, dashboard, background_color, color, project" param/>
+    <field-list fields="title, position, background_color, color, project" param/>
     <div param="actions">
       <submit label="#{ht 'lane.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -53,18 +53,6 @@
     <field-list fields="name, per_project_permissions, lanes, project_members" param/>
     <div param="actions">
       <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
-<def tag="form" for="Statistic">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="entry_time, leave_time, duration, item, lane, user" param/>
-    <div param="actions">
-      <submit label="#{ht 'statistic.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

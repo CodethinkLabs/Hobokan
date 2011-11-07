@@ -5,16 +5,6 @@
 CtKanban::Application.routes.draw do
 
 
-  # Resource routes for controller "statistics"
-  get 'statistics(.:format)' => 'statistics#index', :as => 'statistics'
-  get 'statistics/new(.:format)', :as => 'new_statistic'
-  get 'statistics/:id/edit(.:format)' => 'statistics#edit', :as => 'edit_statistic'
-  get 'statistics/:id(.:format)' => 'statistics#show', :as => 'statistic', :constraints => { :id => %r([^/.?]+) }
-  post 'statistics(.:format)' => 'statistics#create', :as => 'create_statistic'
-  put 'statistics/:id(.:format)' => 'statistics#update', :as => 'update_statistic', :constraints => { :id => %r([^/.?]+) }
-  delete 'statistics/:id(.:format)' => 'statistics#destroy', :as => 'destroy_statistic', :constraints => { :id => %r([^/.?]+) }
-
-
   # Lifecycle routes for controller "users"
   put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
   get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'

@@ -15,8 +15,17 @@ CtKanban::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 
+  config.action_mailer.smtp_settings = {
+  :address        => "smtp.sendgrid.net",
+  :port           => "25",
+  :authentication => :plain,
+  :user_name      => 'app1522420@heroku.com',
+  :password       => 'ur1nmut8'
+#   :domain         => ENV['SENDGRID_DOMAIN']
+}
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
