@@ -99,7 +99,7 @@ var get_item_details = function(board, item_id) {
 }
 
 var create_list = function(board, state) {
-  var list = jQuery("<ul class=\"state\" id=\"" + state + "\" style=\"height:600px;padding:5px;\"></ul>");
+  var list = jQuery("<ul class=\"state\" id=\"" + state + "\" style=\"height:600px;padding:5px; overflow:auto;\"></ul>");
   if (board[state]) {
     for (var i=0, len=board[state].length; i<len; i++) {
       var item_id = board[state][i][1].replace(/^S([\d]+).*/, "$1");
