@@ -13,8 +13,8 @@ class Project < ActiveRecord::Base
   children :lanes
   children :project_members
 
-  has_many :lanes, :order => :position, :accessible => true
-  # has_many :items
+  has_many :lanes, :order => :position, :dependent => :destroy, :accessible => true
+  has_many :items, :dependent => :destroy
   has_many :project_members, :accessible => true
 
   validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
