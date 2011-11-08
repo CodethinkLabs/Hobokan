@@ -14,15 +14,12 @@ class Project < ActiveRecord::Base
   children :project_members
 
   has_many :lanes, :order => :position, :accessible => true
+  # has_many :items
   has_many :project_members, :accessible => true
-
-  has_one :backlog, :class_name => 'Lane', :conditions => {:title => 'Backlog'}
-  has_one :livelog, :class_name => 'Lane', :conditions => {:title => 'Live'}
-  has_one :parking, :class_name => 'Lane', :conditions => {:title => 'Parking'}
 
   validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
 
-
+=begin
   def initialize(*args)
     super
 
@@ -66,6 +63,7 @@ class Project < ActiveRecord::Base
     lane.color = '#000000'
     lane.save
   end
+=end
 
   def states
     lanes.map { |lane| lane.state}.join("\n")
