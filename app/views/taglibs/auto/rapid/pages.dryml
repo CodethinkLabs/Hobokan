@@ -219,7 +219,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, estimation, position, state, lane" param/>
+            <field-list fields="start_date, end_date, text, estimation, position, state, lane, project" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="checklist_item.collection.heading" count="&this.checklist_items.count" >
