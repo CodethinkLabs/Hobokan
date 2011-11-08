@@ -20,12 +20,13 @@ class Item < ActiveRecord::Base
 
   children :checklist_items
 
-  has_many :checklist_items, :accessible => true
+  has_many :checklist_items, :dependent => :destroy, :accessible => true
 
   has_many :project_members, :through => :item_project_members, :accessible => true
   has_many :item_project_members, :dependent => :destroy
 
   belongs_to :lane
+  belongs_to :project
 
   # acts_as_list :scope => :lane
   set_default_order "position ASC"
@@ -41,14 +42,18 @@ class Item < ActiveRecord::Base
 
   scope :active, :conditions => "state != 'archived'"
 
-  before_create :update_position, :set_updated_by
+  before_create :update_position, :set_updated_by, :set_project
   before_save :set_updated_by
 
   def set_updated_by
     members = lane.project.project_members
     member = members.find(:first, :conditions => "user_id = #{User.current.id}")
     self.updated_by = (member ? member : User.current)
- end
+  end
+
+  def set_project
+    self.project = lane.project
+  end
 
   def update_position
     self.position = lane.items.count + 1

@@ -13,59 +13,11 @@ class Project < ActiveRecord::Base
   children :lanes
   children :project_members
 
-  has_many :lanes, :order => :position, :accessible => true
+  has_many :lanes, :order => :position, :dependent => :destroy, :accessible => true
+  has_many :items, :dependent => :destroy
   has_many :project_members, :accessible => true
 
-  has_one :backlog, :class_name => 'Lane', :conditions => {:title => 'Backlog'}
-  has_one :livelog, :class_name => 'Lane', :conditions => {:title => 'Live'}
-  has_one :parking, :class_name => 'Lane', :conditions => {:title => 'Parking'}
-
   validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
-
-
-  def initialize(*args)
-    super
-
-    lane = Lane.new
-    lane.title = 'Wishlist'
-    lane.position = 1
-    lane.project = self
-    lane.background_color = '#FFFF00'
-    lane.color = '#000000'
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'Buglist'
-    lane.position = 2
-    lane.project = self
-    lane.background_color = '#FF0000'
-    lane.color = '#000000'
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'Backlog'
-    lane.position = 3
-    lane.project = self
-    lane.background_color = '#B5DBFF'
-    lane.color = '#000000'
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'Doing'
-    lane.position = 4
-    lane.project = self
-    lane.background_color = '#A5C700'
-    lane.color = '#000000'
-    lane.save
-
-    lane = Lane.new
-    lane.title = 'Done'
-    lane.position = 5
-    lane.project = self
-    lane.background_color = '#999999'
-    lane.color = '#000000'
-    lane.save
-  end
 
   def states
     lanes.map { |lane| lane.state}.join("\n")
