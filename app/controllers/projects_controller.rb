@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   auto_actions :all
   show_action :kanban_board
 
-  def show
+  def kanban_board
     if request.xhr?
       handle_item_drop
       hobo_ajax_response
