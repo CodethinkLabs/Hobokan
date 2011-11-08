@@ -1,9 +1,7 @@
 <index-page >
 
 <content-body: replace>
-  <ht key="project.new.title" ></ht>
-
-      <a action="new"  style="float: right;" >
+      <a action="new"   to="&model" style="float: right;" >
          <ht key="Project.actions.new" >
            New Project
          </ht>
