@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
     item = find_instance
     item.state = "archived"
     item.save
-    redirect_to(:controller => 'projects', :action => 'kanban_board', :id => @item.lane.project.id)
+    redirect_to(:controller => 'projects', :action => 'kanban_board', :id => item.lane.project.id)
   end
 
   def ajax_item

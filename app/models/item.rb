@@ -42,11 +42,15 @@ class Item < ActiveRecord::Base
 
   scope :active, :conditions => "state != 'archived'"
 
-  before_create :update_position, :set_updated_by, :set_project
+  before_create :enqueue_item, :set_updated_by, :set_project
   before_save :set_updated_by
 
   def set_updated_by
-    members = project.project_members
+    if project.nil?
+      members = lane.project.project_members
+    else
+      members = project.project_members
+    end
     member = members.find(:first, :conditions => "user_id = #{User.current.id}")
     self.updated_by = (member ? member : User.current)
   end
@@ -55,7 +59,7 @@ class Item < ActiveRecord::Base
     self.project = lane.project
   end
 
-  def update_position
+  def enqueue_item
     self.position = lane.items.count + 1
   end
 
