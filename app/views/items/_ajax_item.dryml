@@ -1,5 +1,5 @@
 <def tag="select-project-members">
-  <select-many merge options="&@item.lane.project.project_members"/>
+  <select-many merge options="&@item.project.project_members"/>
 </def>
 
 <hjq-dialog id="&'item-dialog-s' + my_item.id.to_s" title="Edit a task" position="center" width="&800">
