@@ -4,7 +4,7 @@ class PruneLanes < ActiveRecord::Migration
     project_ids = Project.all.map {|project| project.id}
     Lane.all.each do |lane|
       if project_ids.include?(lane.project_id)
-        puts "Valid lane: #{lane.inspect}"
+        # puts "Valid lane: #{lane.inspect}"
       else
         # puts "Invalid lane: #{lane.inspect}"
         lane.destroy
