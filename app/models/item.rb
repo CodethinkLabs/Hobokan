@@ -62,7 +62,7 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    project.project_member?(acting_user)
+    lane.project.project_member?(acting_user)
    end
 
   def update_permitted?
