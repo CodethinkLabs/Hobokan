@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108150913) do
+ActiveRecord::Schema.define(:version => 20111109094032) do
 
   create_table "checklist_items", :force => true do |t|
     t.string    "text"

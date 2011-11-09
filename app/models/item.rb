@@ -29,7 +29,7 @@ class Item < ActiveRecord::Base
   belongs_to :project
 
   # acts_as_list :scope => :lane
-  set_default_order "position ASC"
+  set_default_order "position DESC"
 
   lifecycle do
     state :normal, :default => :true
