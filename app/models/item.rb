@@ -29,7 +29,7 @@ class Item < ActiveRecord::Base
   belongs_to :project
 
   # acts_as_list :scope => :lane
-  set_default_order "position ASC"
+  set_default_order "position DESC"
 
   lifecycle do
     state :normal, :default => :true
@@ -46,7 +46,7 @@ class Item < ActiveRecord::Base
   before_save :set_updated_by
 
   def set_updated_by
-    members = lane.project.project_members
+    members = project.project_members
     member = members.find(:first, :conditions => "user_id = #{User.current.id}")
     self.updated_by = (member ? member : User.current)
   end
@@ -66,11 +66,11 @@ class Item < ActiveRecord::Base
    end
 
   def update_permitted?
-    lane.project.project_member?(acting_user)
+    project.project_member?(acting_user)
   end
 
   def destroy_permitted?
-    lane.project.project_admin?(acting_user)
+    project.project_admin?(acting_user)
   end
 
   def view_permitted?(field)

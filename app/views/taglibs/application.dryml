@@ -29,7 +29,7 @@
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
 
 <def tag="select-many-in-project-members">
-  <select-many merge options="&@item.lane.project.project_members"/>
+  <select-many merge options="&@item.project.project_members"/>
 </def>
 
 <extend tag="form" for="Item">

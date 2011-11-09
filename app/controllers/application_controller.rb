@@ -15,20 +15,20 @@ class ApplicationController < ActionController::Base
     lane = Lane.find(params[:lane_id])
     item.lane = lane
     item.save
-    position = 1
+    position = params[:item_ordering].length + 1
     params[:item_ordering].each do |id|
       item = Item.find(id)
       item.position = position
       item.save
-      position += 1
+      position -= 1
     end
 
     if old_lane.id != lane.id
-      position = 1
+      position = old_lane.items.length + 1
       old_lane.items.each do |item|
         item.position = position
         item.save
-        position += 1
+        position -= 1
       end
     end
   end

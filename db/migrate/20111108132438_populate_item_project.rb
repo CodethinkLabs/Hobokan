@@ -13,7 +13,6 @@ class PopulateItemProject < ActiveRecord::Migration
     # ActiveRecord::Base.logger = Logger.new(STDERR)
 
     Item.all.each do |item|
-      puts item.lane.project
       # For some reason the following doesn't work:
       #     item.project = item.lane.project
       #     item.save
