@@ -42,7 +42,7 @@ class Item < ActiveRecord::Base
 
   scope :active, :conditions => "state != 'archived'"
 
-  before_create :update_position, :set_updated_by, :set_project
+  before_create :enqueue_item, :set_updated_by, :set_project
   before_save :set_updated_by
 
   def set_updated_by
@@ -55,7 +55,7 @@ class Item < ActiveRecord::Base
     self.project = lane.project
   end
 
-  def update_position
+  def enqueue_item
     self.position = lane.items.count + 1
   end
 
