@@ -24,8 +24,8 @@ class ProjectMember < ActiveRecord::Base
   end
 
   def update_permitted?
-    logger.debug("In update_permitted? #{self.inspect} id: #{id} project: #{project}")
     if project.nil?
+      logger.debug("In ProjectMember#update_permitted? nil project:  id: #{id} project: #{project} #{self.inspect}")
       return true
     end
 
