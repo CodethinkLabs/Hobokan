@@ -2,6 +2,22 @@ class ProjectMember < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
+  def self.memberships
+    Thread.current[:memberships]
+  end
+
+  def self.memberships=(memberships)
+    Thread.current[:memberships] = memberships
+  end
+
+  def self.admin_memberships
+    Thread.current[:admin_memberships]
+  end
+
+  def self.admin_memberships=(admin_memberships)
+    Thread.current[:admin_memberships] = admin_memberships
+  end
+
   fields do
     administrator :boolean, :default => false
     timestamps
@@ -20,20 +36,15 @@ class ProjectMember < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    project.project_members.count == 0 || project.project_admin?(acting_user)
+    project.project_members.count == 0 || ProjectMember.admin_memberships.include?(project_id)
   end
 
   def update_permitted?
-    if project.nil?
-      logger.debug("In ProjectMember#update_permitted? nil project:  id: #{id} project: #{project} #{self.inspect}")
-      return true
-    end
-
-    project.project_admin?(acting_user)
+    ProjectMember.admin_memberships.include?(project_id)
   end
 
   def destroy_permitted?
-    project.project_admin?(acting_user)
+    ProjectMember.admin_memberships.include?(project_id)
   end
 
   def view_permitted?(field)

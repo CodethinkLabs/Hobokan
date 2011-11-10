@@ -16,15 +16,15 @@ class ChecklistItem < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    item.lane.project.project_member?(acting_user)
+    ProjectMember.memberships.include?(item.project_id)
   end
 
   def update_permitted?
-    item.lane.project.project_member?(acting_user)
+    ProjectMember.memberships.include?(item.project_id)
   end
 
   def destroy_permitted?
-    item.lane.project.project_member?(acting_user)
+    ProjectMember.memberships.include?(item.project_id)
   end
 
   def view_permitted?(field)

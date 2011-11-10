@@ -12,15 +12,15 @@ class ItemProjectMember < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    ProjectMember.memberships.include?(item.project_id)
   end
 
   def update_permitted?
-    acting_user.administrator?
+    ProjectMember.memberships.include?(item.project_id)
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    ProjectMember.memberships.include?(item.project_id)
   end
 
   def view_permitted?(field)

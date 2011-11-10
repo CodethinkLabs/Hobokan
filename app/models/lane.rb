@@ -39,15 +39,17 @@ class Lane < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    project.project_admin?(acting_user)
+    # logger.debug("Lane#create_permitted? #{ProjectMember.admin_memberships.inspect} project_id: #{project_id}")
+    ProjectMember.admin_memberships.include?(project_id)
   end
 
   def update_permitted?
-    project.project_admin?(acting_user)
+    # logger.debug("Lane#update_permitted? #{ProjectMember.admin_memberships.inspect} project_id: #{project_id}")
+    ProjectMember.admin_memberships.include?(project_id)
   end
 
   def destroy_permitted?
-    project.project_admin?(acting_user)
+    ProjectMember.admin_memberships.include?(project_id)
   end
 
   def view_permitted?(field)
