@@ -66,10 +66,12 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    ProjectMember.memberships.include?(project_id)
+    # logger.debug("Item#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{lane.project_id}")
+    ProjectMember.memberships.include?(lane.project_id)
    end
 
   def update_permitted?
+    # logger.debug("Item#update_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
     ProjectMember.memberships.include?(project_id)
   end
 

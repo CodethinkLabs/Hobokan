@@ -42,8 +42,8 @@ class Project < ActiveRecord::Base
 
     user_names = {}
     members.each do |member|
-      logger.debug("member: #{member.inspect} #{member.user.inspect}")
-      logger.debug(user_names)
+      # logger.debug("member: #{member.inspect} #{member.user.inspect}")
+      # logger.debug(user_names)
       user_names[member.id] = member.user.name
     end
 
