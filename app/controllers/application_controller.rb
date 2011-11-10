@@ -37,9 +37,37 @@ private
 
   # stores parameters for current request
   def set_request_environment
-    User.current = current_user # current_user is set by restful_authentication
-    # You would also set the time zone for Rails time zone support here:
-    # Time.zone = Person.current.time_zone
+    # current_user is set by restful_authentication
+    if current_user.is_a?(User)
+      User.current = current_user
+
+      members = ProjectMember.where(:user_id => current_user)
+      project_memberships = {}
+      members.inject(project_memberships) {|h, m| h[m.project_id] = m}
+      memberships = []
+      admin_memberships = []
+
+      Project.all.each do |project|
+        if project.per_project_permissions
+          if project_memberships.has_key?(project.id)
+            memberships.push(project.id)
+            if project_memberships[project.id].administrator
+              admin_memberships.push(project.id)
+            end
+          end
+        else
+          memberships.push(project.id)
+          admin_memberships.push(project.id)
+        end
+      end
+
+
+      ProjectMember.memberships = memberships
+      ProjectMember.admin_memberships = admin_memberships
+    else
+      ProjectMember.memberships = []
+      ProjectMember.admin_memberships = []
+    end
   end
 
 end

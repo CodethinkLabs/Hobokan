@@ -66,15 +66,15 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    lane.project.project_member?(acting_user)
+    ProjectMember.memberships.include?(project_id)
    end
 
   def update_permitted?
-    project.project_member?(acting_user)
+    ProjectMember.memberships.include?(project_id)
   end
 
   def destroy_permitted?
-    project.project_admin?(acting_user)
+    ProjectMember.memberships.include?(project_id)
   end
 
   def view_permitted?(field)

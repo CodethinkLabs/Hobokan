@@ -37,15 +37,33 @@ class Project < ActiveRecord::Base
   end
 
   def changes
-    member_ids = project_members.map {|m| m.id }
-    versions = Version.where(:user_id => member_ids).where(:user_type => 'ProjectMember').order("created_at DESC")
+    members = project_members
+    member_ids = members.map {|m| m.id }
+
+    user_names = {}
+    members.each do |member|
+      logger.debug("member: #{member.inspect} #{member.user.inspect}")
+      logger.debug(user_names)
+      user_names[member.id] = member.user.name
+    end
+
+    versions = VestalVersions::Version.
+                  where(:user_id => member_ids).
+                  where(:user_type => 'ProjectMember').
+                  where("created_at > ?", Date.today - 7).
+                  order("created_at DESC")
     result = []
     versions.each do |v|
       change = Change.new
-      change.user = v.user_id ? project_members.find(v.user_id).user.name : 'anon'
+
+      if user_names.has_key?(v.user_id)
+        change.user = user_names[v.user_id]
+      else
+        change.user = 'anon'
+      end
+
       change.date = v.created_at.strftime("%d/%m/%Y")
       change.comment = ""
-      title = Item.find(v.versioned_id).title
 
       if v.modifications['title']
         change.comment += "Renamed S#{v.versioned_id} '#{v.modifications['title'][0]}' as '#{v.modifications['title'][1]}'"
@@ -56,11 +74,13 @@ class Project < ActiveRecord::Base
       end
 
 #      if v.modifications['position']
+#        title = Item.find(v.versioned_id).title
 #        change.comment += "'#{title}' position changed from #{v.modifications['position'][0]} to #{v.modifications['position'][1]} "
 #      end
 
       if v.modifications['lane_id']
-         change.comment += "Moved '#{title}' from #{Lane.find(v.modifications['lane_id'][0]).title} to #{Lane.find(v.modifications['lane_id'][1]).title} "
+        title = Item.find(v.versioned_id).title
+        change.comment += "Moved '#{title}' from #{Lane.find(v.modifications['lane_id'][0]).title} to #{Lane.find(v.modifications['lane_id'][1]).title} "
       end
 
       if change.comment != ""
@@ -69,16 +89,6 @@ class Project < ActiveRecord::Base
     end
 
     return result
-  end
-
-  def project_member?(user)
-    (!per_project_permissions && user.signed_up?) ||
-    project_members.exists?(:user_id => user)
-  end
-
-  def project_admin?(user)
-    (!per_project_permissions && user.signed_up?) ||
-    (project_members.exists?(:user_id => user) && project_members.first(:user_id => user).administrator?)
   end
 
   # --- Permissions --- #
