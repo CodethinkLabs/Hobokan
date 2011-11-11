@@ -1,6 +1,8 @@
 <edit-page>
   <content: replace>
-    <section-group>
+<a:project action="kanban_board">&laquo; <ht key="item.lane.actions.back_to_parent" parent="Project" name="&this">Back to        <name/></ht></a:project>
+
+<section-group>
 
       <div class="section content-body">
         <h3>
@@ -8,8 +10,6 @@
             <name/>
           </a>
         </h3>
-
-        <kanban-board-view with="&@item" field="lane.project" />
 
         <h3>Edit Task</h3>
         <transition-buttons/>
@@ -19,8 +19,6 @@
           </actions:>
         </form>
       </div>
-
-      <change-log-view with="&@item" field="lane.project" />
 
    </section-group>
   </content:>
