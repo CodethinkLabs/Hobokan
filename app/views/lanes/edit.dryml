@@ -1,6 +1,9 @@
 <edit-page>
   <content:>
-    <h2> Edit Lane</h2>
+    <a:project action="kanban_board">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to
+    <name/></ht></a:project>
+
+<h2> Edit Lane</h2>
     <error-messages/>
     <form>
         <field-list fields="title, position, color, background-color">
