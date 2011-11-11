@@ -61,7 +61,6 @@ private
         end
       end
 
-
       ProjectMember.memberships = memberships
       ProjectMember.admin_memberships = admin_memberships
     else
