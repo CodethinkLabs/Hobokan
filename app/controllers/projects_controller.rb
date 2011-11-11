@@ -23,9 +23,15 @@ class ProjectsController < ApplicationController
     # @lanelist = @project.lanes.where(["title like ?", "%#{params[:search]}%"]).order(parse_sort_param(:title).join(' '))
   end
 
+  def create
+    hobo_create do
+      if valid?
+        redirect_to(:controller => 'projects', :action => 'kanban_board', :id => @project.id)
+      end
+    end
+  end
+
   def update
-    logger.debug("Enter project_update")
-    # @project = find_instance
     hobo_update do
       if valid?
         redirect_to(:controller => 'projects', :action => 'kanban_board')
