@@ -8,7 +8,7 @@ class Lane < ActiveRecord::Base
     title         :string
     position      :integer
     background_color :string
-    color         :string
+    color         :string, :default => '#000000'
     timestamps
   end
 

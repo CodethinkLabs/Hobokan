@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109094032) do
+ActiveRecord::Schema.define(:version => 20111111104246) do
 
   create_table "checklist_items", :force => true do |t|
     t.string    "text"
@@ -23,19 +23,6 @@ ActiveRecord::Schema.define(:version => 20111109094032) do
 
   add_index "checklist_items", ["item_id"], :name => "index_checklist_items_on_item_id"
 
-  create_table "history_entries", :force => true do |t|
-    t.string    "action"
-    t.text      "delta"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "item_id"
-    t.string    "trigger_type"
-    t.integer   "trigger_id"
-  end
-
-  add_index "history_entries", ["item_id"], :name => "index_history_entries_on_item_id"
-  add_index "history_entries", ["trigger_type", "trigger_id"], :name => "index_history_entries_on_trigger_type_and_trigger_id"
-
   create_table "item_project_members", :force => true do |t|
     t.timestamp "created_at"
     t.timestamp "updated_at"
@@ -45,16 +32,6 @@ ActiveRecord::Schema.define(:version => 20111109094032) do
 
   add_index "item_project_members", ["item_id"], :name => "index_item_project_members_on_item_id"
   add_index "item_project_members", ["project_member_id"], :name => "index_item_project_members_on_project_member_id"
-
-  create_table "item_users", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "user_id"
-    t.integer   "item_id"
-  end
-
-  add_index "item_users", ["item_id"], :name => "index_item_users_on_item_id"
-  add_index "item_users", ["user_id"], :name => "index_item_users_on_user_id"
 
   create_table "items", :force => true do |t|
     t.date      "start_date"
@@ -76,13 +53,13 @@ ActiveRecord::Schema.define(:version => 20111109094032) do
   add_index "items", ["state"], :name => "index_items_on_state"
 
   create_table "lanes", :force => true do |t|
-    t.string    "title"
-    t.integer   "position"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "project_id"
-    t.string    "background_color"
-    t.string    "color"
+    t.string   "title"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+    t.string   "background_color"
+    t.string   "color",            :default => "#000000"
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
@@ -104,21 +81,6 @@ ActiveRecord::Schema.define(:version => 20111109094032) do
     t.timestamp "updated_at"
     t.boolean   "per_project_permissions", :default => false
   end
-
-  create_table "statistics", :force => true do |t|
-    t.timestamp "entry_time"
-    t.timestamp "leave_time"
-    t.integer   "duration"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "lane_id"
-    t.integer   "item_id"
-    t.integer   "user_id"
-  end
-
-  add_index "statistics", ["item_id"], :name => "index_statistics_on_item_id"
-  add_index "statistics", ["lane_id"], :name => "index_statistics_on_lane_id"
-  add_index "statistics", ["user_id"], :name => "index_statistics_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string    "crypted_password",          :limit => 40
