@@ -1,9 +1,9 @@
 <edit-page>
   <content: replace>
-<a:project action="kanban_board">&laquo; <ht key="item.lane.actions.back_to_parent" parent="Project" name="&this">Back to        <name/></ht></a:project>
+    <a:project action="kanban_board">&laquo; <ht key="item.lane.actions.back_to_parent" parent="Project" name="&this">Back to
+    <name/></ht></a:project>
 
-<section-group>
-
+    <section-group>
       <div class="section content-body">
         <h3>
           <a action="edit" if="&can_edit?" with="&this.lane.project">
@@ -19,7 +19,6 @@
           </actions:>
         </form>
       </div>
-
    </section-group>
   </content:>
 </edit-page>
