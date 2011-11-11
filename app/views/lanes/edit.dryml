@@ -3,13 +3,13 @@
     <h2> Edit Lane</h2>
     <error-messages/>
     <form>
-        <field-list fields="title">
+        <field-list fields="title, position, color, background-color">
         </field-list>
-        <h2> Items</h2>
-        <input-many:items><field-list fields="start_date, end_date, title, text, estimation, checklist_items"/>
-        </input-many>
-        <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
+      <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
     </form>
+    <table-plus:items fields="id, this, text">
+    <controls:/>
+    </table-plus>
  </content:>
 </edit-page>
 
