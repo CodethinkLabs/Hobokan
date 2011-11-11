@@ -13,7 +13,7 @@
 
           <hjq-dialog id="project-dialog" title="Edit project" position="center" width="&800">
             <form without-cancel>
-              <field-list: fields="name, project_members"/>
+              <field-list: fields="name, lanes, project_members"/>
               <submit: label="#{ht 'Project.actions.save', :default=>['Save'] }" style=""/>
             </form>
           </hjq-dialog>
