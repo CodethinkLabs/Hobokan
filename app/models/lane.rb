@@ -8,7 +8,7 @@ class Lane < ActiveRecord::Base
     title         :string
     position      :integer
     background_color :string
-    color         :string
+    color         :string, :default => '#000000'
     timestamps
   end
 
@@ -40,7 +40,7 @@ class Lane < ActiveRecord::Base
 
   def create_permitted?
     # logger.debug("Lane#create_permitted? #{ProjectMember.admin_memberships.inspect} project_id: #{project_id}")
-    ProjectMember.admin_memberships.include?(project_id)
+    project.project_members.count == 0 || ProjectMember.admin_memberships.include?(project_id)
   end
 
   def update_permitted?

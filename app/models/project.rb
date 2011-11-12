@@ -19,6 +19,13 @@ class Project < ActiveRecord::Base
 
   validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
 
+  validate :lane_present
+
+  def lane_present
+    logger.debug("Project#lane_present lanes: #{lanes.inspect}")
+    errors.add :lanes, 'you must enter at least one lane' if lanes.nil? || lanes.length == 0
+  end
+
   def states
     lanes.map { |lane| lane.state}.join("\n")
   end

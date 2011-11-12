@@ -1,15 +1,18 @@
 <edit-page>
   <content:>
-    <h2> Edit Lane</h2>
+    <a:project action="kanban_board">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to
+    <name/></ht></a:project>
+
+<h2> Edit Lane</h2>
     <error-messages/>
     <form>
-        <field-list fields="title">
+        <field-list fields="title, position, color, background-color">
         </field-list>
-        <h2> Items</h2>
-        <input-many:items><field-list fields="start_date, end_date, title, text, estimation, checklist_items"/>
-        </input-many>
-        <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
+      <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
     </form>
+    <table-plus:items fields="id, this, text">
+    <controls:/>
+    </table-plus>
  </content:>
 </edit-page>
 
