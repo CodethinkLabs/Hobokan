@@ -4,21 +4,23 @@
     <name/></ht></a:project>
 
     <section-group>
-      <div class="section content-body">
+      <section>
         <h3>
           <a action="edit" if="&can_edit?" with="&this.lane.project">
             <name/>
           </a>
         </h3>
-
-        <h3>Edit Task</h3>
-        <transition-buttons/>
-        <form>
-          <actions: replace>
-            <submit label="#{ht 'item.actions.save', :default=>['Save']}"/><or-cancel:lane.project />
-          </actions:>
-        </form>
-      </div>
+        <section>
+          <h3>Edit Task</h3>
+          <transition-buttons/>
+          <form>
+            <actions: replace>
+              <submit label="#{ht 'item.actions.save', :default=>['Save']}"/><or-cancel:lane.project />
+            </actions:>
+          </form>
+        </section>
+    </section>
+      <log-view><this/></log-view>
    </section-group>
   </content:>
 </edit-page>
