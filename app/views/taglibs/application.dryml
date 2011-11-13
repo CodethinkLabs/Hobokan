@@ -116,14 +116,14 @@
 </def>
 
 
-
 <def tag="change-log-view" param="default">
   <aside style="width: 20%;">
     <div style=" height:600px; overflow:auto;">
-      <h3>Change Log</h3>
+      <h3>Change Log <input type="submit" name="hide-aside" value="Hide" id="hide-aside" /></h3>
       <collection with="&this.changes"><this.date/>:<this.user/>:<this.comment/></collection>
       </div>
   </aside>
+  <div><script>jQuery('#hide-aside').click( function() { jQuery(".aside").hide(); })</script></div>
 </def>
 
 
