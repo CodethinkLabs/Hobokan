@@ -70,7 +70,7 @@
     </style>
   </unless>
 
-  <textarea id="data_output" rows="20" cols="100">
+  <textarea id="data_output" rows="20" cols="100" style="display:none">
   </textarea>
 
   <style type="text/css">
