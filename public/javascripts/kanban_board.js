@@ -45,10 +45,8 @@ var init_states = function(states_input) {
   var states_order = []
   for ( var i=0, len=states_input.length; i<len; i++ ) {
     var state = states_input[i].split("\v");
-    if (state.length == 4) {
-      states[state[0]] = state[1];
-      states_order.push(state[0]);
-    }
+    states[state[0]] = state[1];
+    states_order.push(state[0]);
   }
 
   return {states: states, states_order: states_order};
@@ -150,10 +148,15 @@ var drop_handler = function() {
 var create_board = function(app_data) {
   var table = jQuery("<div id=\"board\"></div>");
   var ids = "";
+  if (app_data.states_order.length){
+    var column_width = ((100 / (app_data.states_order.length)) - 1).toString() + "%" ;
+  }
+  else {var column_width = "95%"}
   for (j=0; j< app_data.states_order.length; j++) {
     var state = app_data.states_order[j]
     ids += "#" + state + ",";
     var state_column = create_column(app_data.board, state, app_data.states[state])
+    jQuery(state_column).css("width",column_width)
     table.append(state_column)
   }
   jQuery(ids, table).dragsort({ dragBetween: true, dragEnd: drop_handler });
