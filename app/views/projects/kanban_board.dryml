@@ -32,12 +32,16 @@
         </hjq-dialog>
 
         <hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+        <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
         </h3>
-
+        <div><script>jQuery("#cl-toggle").click( function() {
+          var txt = jQuery("#change-log").is(':visible') ? "Change Log" : "Hide Change Log";          
+          this.value = txt;
+          jQuery("#change-log").toggle(); })</script></div>
         <kanban-board-view>project</kanban-board-view>
       </div>
 
-      <change-log-view with="&@project" />
+      <change-log-view with="&@project"/>
 
     </section-group>
   </content>
