@@ -21,6 +21,14 @@
   </card>
 </def>
 
+<def tag="card" for="ItemAssignment">
+  <card class="item-assignment" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="ItemProjectMember">
   <card class="item-project-member" param="default" merge>
     <header: param>

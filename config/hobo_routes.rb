@@ -5,27 +5,13 @@
 CtKanban::Application.routes.draw do
 
 
-  # Lifecycle routes for controller "users"
-  put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
-  get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'
-  put 'users/:id/reset_password(.:format)' => 'users#do_reset_password', :as => 'do_user_reset_password'
-  get 'users/:id/reset_password(.:format)' => 'users#reset_password', :as => 'user_reset_password'
-
-  # Resource routes for controller "users"
-  get 'users(.:format)' => 'users#index', :as => 'users'
-  get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
-  get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
-  post 'users(.:format)' => 'users#create', :as => 'create_user'
-  put 'users/:id(.:format)' => 'users#update', :as => 'update_user', :constraints => { :id => %r([^/.?]+) }
-  delete 'users/:id(.:format)' => 'users#destroy', :as => 'destroy_user', :constraints => { :id => %r([^/.?]+) }
-
-  # Show action routes for controller "users"
-  get 'users/:id/account(.:format)' => 'users#account', :as => 'user_account'
-
-  # User routes for controller "users"
-  match 'login(.:format)' => 'users#login', :as => 'user_login'
-  get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
-  match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+  # Resource routes for controller "checklist_items"
+  get 'checklist_items/new(.:format)', :as => 'new_checklist_item'
+  get 'checklist_items/:id/edit(.:format)' => 'checklist_items#edit', :as => 'edit_checklist_item'
+  get 'checklist_items/:id(.:format)' => 'checklist_items#show', :as => 'checklist_item', :constraints => { :id => %r([^/.?]+) }
+  post 'checklist_items(.:format)' => 'checklist_items#create', :as => 'create_checklist_item'
+  put 'checklist_items/:id(.:format)' => 'checklist_items#update', :as => 'update_checklist_item', :constraints => { :id => %r([^/.?]+) }
+  delete 'checklist_items/:id(.:format)' => 'checklist_items#destroy', :as => 'destroy_checklist_item', :constraints => { :id => %r([^/.?]+) }
 
 
   # Lifecycle routes for controller "items"
@@ -48,19 +34,6 @@ CtKanban::Application.routes.draw do
   get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
 
 
-  # Resource routes for controller "projects"
-  get 'projects(.:format)' => 'projects#index', :as => 'projects'
-  get 'projects/new(.:format)', :as => 'new_project'
-  get 'projects/:id/edit(.:format)' => 'projects#edit', :as => 'edit_project'
-  get 'projects/:id(.:format)' => 'projects#show', :as => 'project', :constraints => { :id => %r([^/.?]+) }
-  post 'projects(.:format)' => 'projects#create', :as => 'create_project'
-  put 'projects/:id(.:format)' => 'projects#update', :as => 'update_project', :constraints => { :id => %r([^/.?]+) }
-  delete 'projects/:id(.:format)' => 'projects#destroy', :as => 'destroy_project', :constraints => { :id => %r([^/.?]+) }
-
-  # Show action routes for controller "projects"
-  get 'projects/:id/kanban_board(.:format)' => 'projects#kanban_board', :as => 'project_kanban_board'
-
-
   # Resource routes for controller "lanes"
   get 'lanes/new(.:format)', :as => 'new_lane'
   get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
@@ -80,13 +53,40 @@ CtKanban::Application.routes.draw do
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
 
 
-  # Resource routes for controller "checklist_items"
-  get 'checklist_items/new(.:format)', :as => 'new_checklist_item'
-  get 'checklist_items/:id/edit(.:format)' => 'checklist_items#edit', :as => 'edit_checklist_item'
-  get 'checklist_items/:id(.:format)' => 'checklist_items#show', :as => 'checklist_item', :constraints => { :id => %r([^/.?]+) }
-  post 'checklist_items(.:format)' => 'checklist_items#create', :as => 'create_checklist_item'
-  put 'checklist_items/:id(.:format)' => 'checklist_items#update', :as => 'update_checklist_item', :constraints => { :id => %r([^/.?]+) }
-  delete 'checklist_items/:id(.:format)' => 'checklist_items#destroy', :as => 'destroy_checklist_item', :constraints => { :id => %r([^/.?]+) }
+  # Resource routes for controller "projects"
+  get 'projects(.:format)' => 'projects#index', :as => 'projects'
+  get 'projects/new(.:format)', :as => 'new_project'
+  get 'projects/:id/edit(.:format)' => 'projects#edit', :as => 'edit_project'
+  get 'projects/:id(.:format)' => 'projects#show', :as => 'project', :constraints => { :id => %r([^/.?]+) }
+  post 'projects(.:format)' => 'projects#create', :as => 'create_project'
+  put 'projects/:id(.:format)' => 'projects#update', :as => 'update_project', :constraints => { :id => %r([^/.?]+) }
+  delete 'projects/:id(.:format)' => 'projects#destroy', :as => 'destroy_project', :constraints => { :id => %r([^/.?]+) }
+
+  # Show action routes for controller "projects"
+  get 'projects/:id/kanban_board(.:format)' => 'projects#kanban_board', :as => 'project_kanban_board'
+
+
+  # Lifecycle routes for controller "users"
+  put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
+  get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'
+  put 'users/:id/reset_password(.:format)' => 'users#do_reset_password', :as => 'do_user_reset_password'
+  get 'users/:id/reset_password(.:format)' => 'users#reset_password', :as => 'user_reset_password'
+
+  # Resource routes for controller "users"
+  get 'users(.:format)' => 'users#index', :as => 'users'
+  get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
+  get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
+  post 'users(.:format)' => 'users#create', :as => 'create_user'
+  put 'users/:id(.:format)' => 'users#update', :as => 'update_user', :constraints => { :id => %r([^/.?]+) }
+  delete 'users/:id(.:format)' => 'users#destroy', :as => 'destroy_user', :constraints => { :id => %r([^/.?]+) }
+
+  # Show action routes for controller "users"
+  get 'users/:id/account(.:format)' => 'users#account', :as => 'user_account'
+
+  # User routes for controller "users"
+  match 'login(.:format)' => 'users#login', :as => 'user_login'
+  get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
+  match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
   namespace :admin do
 
