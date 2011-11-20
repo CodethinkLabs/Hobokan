@@ -2,7 +2,7 @@
   <content: replace>
     <section-group>
       <section>
-        <field-list fields="title, text, users, estimation, start_date, end_date, position, state, lane">
+        <field-list fields="id, title, text, users, estimation, start_date, end_date, position, state, lane, project">
           <title-view:><editor/></title-view>
           <start-date-view:><editor/></start-date-view>
           <end-date-view:><editor/></end-date-view>
