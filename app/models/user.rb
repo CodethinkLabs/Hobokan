@@ -19,7 +19,11 @@ class User < ActiveRecord::Base
     timestamps
   end
 
-  has_many :project_members
+  has_many :project_members, :accessible => true
+  has_many :projects, :through => :project_members
+
+  has_many :item_assignments, :accessible => true, :dependent => :destroy
+  has_many :items, :through => :item_assignments
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that

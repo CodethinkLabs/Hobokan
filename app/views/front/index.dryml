@@ -1,32 +1,24 @@
 <page title="Home">
   <body: class="front-page"/>
-    <content:>
-      <header class="content-header">
-        <h1>Welcome to Codethink's Kanban solution</h1>
-          <section class="welcome-message">
-            <h3>It can already:</h3>
-            <ul>
-            <li>Create and maintain Projects</li>
-            <li>Associate Lanes of Kanban Tasks with each Project</li>
-            <li>Add, edit Tasks, and move them via drag and drop</li>
-              <li>Assign Tasks to people</li>
-            </ul>
-
-            <h3>There are lots of things it can't do yet</h3>
-            <ul>
-              <li>link to external content</li>
-              <li>protect project views, edits etc</li>
-              <li>show history</li>
-            </ul>
-            <h3>Please add bugs, feature requests and ideas as items in the
-                <b><u><%= link_to " Kanban Project ", :controller => :projects, :id => 8, :action => "show" %></u></b> (we're dogfooding)</h3>
-
-
-          </section>
-    </header>
-
-    <section class="content-body">
-    </section>
+  <content:>
+    <section-group>
+      <section>
+        <h3>My Tasks</h3>
+        <table-plus with="&current_user.items" fields="project, this, lane.title" without-search-form>
+          <lane-title-heading:>Status</lane-title-heading:>
+          <this-heading:>Task</this-heading:>
+          <project-view:>
+            <a href="/projects/#{this.id}/kanban_board" >#{this.name}</a>
+          </project-view:>
+        </table-plus>
+      </section>
+      <aside style="width:20%;">
+        <h3>My Projects</h3>
+        <collection with="&current_user.projects">
+          <a href="/projects/#{this.id}/kanban_board" >#{this.name}</a>
+        </collection>
+      </aside>
+    </section-group>
   </content:>
 </page>
 

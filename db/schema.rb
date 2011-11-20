@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111104246) do
+ActiveRecord::Schema.define(:version => 20111120144419) do
 
   create_table "checklist_items", :force => true do |t|
     t.string    "text"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20111111104246) do
   end
 
   add_index "checklist_items", ["item_id"], :name => "index_checklist_items_on_item_id"
+
+  create_table "item_assignments", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "item_id"
+  end
+
+  add_index "item_assignments", ["item_id"], :name => "index_item_assignments_on_item_id"
+  add_index "item_assignments", ["user_id"], :name => "index_item_assignments_on_user_id"
 
   create_table "item_project_members", :force => true do |t|
     t.timestamp "created_at"
@@ -53,13 +63,13 @@ ActiveRecord::Schema.define(:version => 20111111104246) do
   add_index "items", ["state"], :name => "index_items_on_state"
 
   create_table "lanes", :force => true do |t|
-    t.string   "title"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_id"
-    t.string   "background_color"
-    t.string   "color",            :default => "#000000"
+    t.string    "title"
+    t.integer   "position"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "project_id"
+    t.string    "background_color"
+    t.string    "color",            :default => "#000000"
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
