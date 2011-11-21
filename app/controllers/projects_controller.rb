@@ -6,13 +6,13 @@ class ProjectsController < ApplicationController
   show_action :kanban_board
 
   def kanban_board
+    @project = find_instance
     if request.xhr?
       handle_item_drop
       hobo_ajax_response
       return
     end
 
-    @project = find_instance
     @item = Item.new
     @item.lane = @project.lanes[0]
     @lanes =

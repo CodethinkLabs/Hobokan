@@ -2,7 +2,7 @@
   <select-one merge options="&@project.lanes"/>
 </def>
 
-<show-page for="Project">
+<show-page for="Project" full-title="&@project.name">
   <content: replace>
     <section-group>
       <div class="section content-body">
