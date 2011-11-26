@@ -1,0 +1,21 @@
+<show-page>
+
+  <content: replace>
+  <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
+    <div class="board" id="kb-board">
+      <repeat:lanes>
+        <div>
+          <ul class="lane" id="L#{this_field}">
+          <repeat:items>
+            <li class="box" id="box-#{this.position}"><this.title/></li>
+          </repeat:items>
+          </ul>
+        </div>
+      </repeat:lanes>
+    </div>
+    <change-log-view with="&@project"/>
+
+    <javascript name="jquery.dragsort"/>
+    <javascript name="kanban"/>
+  </content:>
+</show-page>

@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
   auto_actions :all
   show_action :kanban_board
+  show_action :kanban
 
   def kanban_board
     @project = find_instance
