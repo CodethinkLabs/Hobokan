@@ -35,7 +35,8 @@
       <div class="board" id="kb-board">
         <repeat:lanes>
             <ul class="lane" id="L#{this.id}">
-              <set color="#{this.background_color}"/>
+            <a action="edit" if="&can_edit?"><name/></a>
+            <set color="#{this.background_color}"/>
             <repeat:items.active>
               <li class="box" id="S#{this.id}" style="background-color:#{color}">S<this.id/> <this.title/></li>
             </repeat:items.active>
