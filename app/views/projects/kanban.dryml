@@ -17,7 +17,6 @@
         <hjq-dialog-open-button dialog="#project-dialog">Edit project</hjq-dialog-open-button>
 
         <hjq-dialog id="new-task-dialog" title="Add a task" position="center" width="&800">
-
         <form with="&@item || new_for_current_user(@project.lanes[0].items)" without-cancel>
             <field-list: fields="title, text, lane" >
               <lane-view:>
@@ -33,14 +32,16 @@
       </h3>
 
       <div class="board" id="kb-board">
+        <% lane_width = ((100 / this.lanes.count) - 2).to_s + "%" %>
         <repeat:lanes>
-            <ul class="lane" id="L#{this.id}">
-            <a action="edit" if="&can_edit?"><name/></a>
+          <ul class="lane" id="L#{this.id}" style="width:#{lane_width}">
             <set color="#{this.background_color}"/>
             <repeat:items.active>
-              <li class="box" id="S#{this.id}" style="background-color:#{color}">S<this.id/> <this.title/></li>
+              <li class="box" id="S#{this.id}" style="background-color:#{color}">
+                <a href="javascript:get_item_details(this, #{this.id});">S<this.id/> <this.title/></a>
+              </li>
             </repeat:items.active>
-            </ul>
+          </ul>
         </repeat:lanes>
       </div>
     </div>

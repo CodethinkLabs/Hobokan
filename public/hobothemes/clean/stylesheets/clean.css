@@ -330,6 +330,6 @@ table.app-summary td { padding: 2px;  border: 1px dotted #bbb; }
 table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3e6; }
 
 /* kanban */
-.lane {background:#eeeeee; height:600px; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:5px; margin-right:10px; width:19%;  float:left;  display: inline; height:600; }
+.lane {background:#eeeeee; height:600px; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:5px; margin-right:10px; float:left;  display: inline; height:600; }
 .box { background:#22ff00; font-size: 120%; padding: 1em;  margin-bottom: 1em; margin-right: 0px; -moz-border-radius: 5px;border-radius: 5px;}
 
