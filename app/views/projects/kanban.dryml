@@ -1,19 +1,52 @@
 <show-page>
-
   <content: replace>
-  <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
-    <div class="board" id="kb-board">
-      <repeat:lanes>
-        <div>
-          <ul class="lane" id="L#{this_field}">
-          <repeat:items>
-            <li class="box" id="box-#{this.position}"><this.title/></li>
-          </repeat:items>
-          </ul>
-        </div>
-      </repeat:lanes>
+  <section-group>
+    <div class="section content-body">
+      <h3>
+        <a action="edit" if="&can_edit?">
+          <name/>
+        </a>
+
+        <hjq-dialog id="project-dialog" title="Edit project" position="center" width="&800">
+          <form without-cancel>
+            <field-list: fields="name, lanes, project_members"/>
+            <submit: label="#{ht 'Project.actions.save', :default=>['Save'] }" style=""/>
+          </form>
+        </hjq-dialog>
+
+        <hjq-dialog-open-button dialog="#project-dialog">Edit project</hjq-dialog-open-button>
+
+        <hjq-dialog id="new-task-dialog" title="Add a task" position="center" width="&800">
+
+        <form with="&@item || new_for_current_user(@project.lanes[0].items)" without-cancel>
+            <field-list: fields="title, text, lane" >
+              <lane-view:>
+                <select-lane/>
+              </lane-view:>
+            </field-list>
+            <submit: label="#{ht 'Item.actions.add', :default=>['Add'] }" style=""/>
+        </form>
+      </hjq-dialog>
+
+      <hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+      <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
+      </h3>
+
+      <div class="board" id="kb-board">
+        <repeat:lanes>
+          <div>
+            <ul class="lane" id="L#{this_field}">
+            <repeat:items>
+              <li class="box" id="box-#{this.position}"><this.title/></li>
+            </repeat:items>
+            </ul>
+          </div>
+        </repeat:lanes>
+      </div>
     </div>
+
     <change-log-view with="&@project"/>
+    </section-group>
 
     <javascript name="jquery.dragsort"/>
     <javascript name="kanban"/>
