@@ -19,8 +19,9 @@ var drop_handler = function() {
 }
 
 jQuery("#cl-toggle").click( function() {
-  var txt = jQuery("#change-log").is(':visible') ? "Change Log" : "Hide Change Log";          
-  this.value = txt;
-  jQuery("#change-log").toggle(); });
+  this.value = jQuery("#change-log").is(':visible') ? "Change Log" : "Hide Change Log";
+  jQuery("#change-log").toggle();
+});
+
 
 jQuery(".lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});
