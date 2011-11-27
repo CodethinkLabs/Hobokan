@@ -35,9 +35,10 @@ gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+ group :development, :test do
+   gem 'ruby-debug19'
+ end
+
 #  gem "hobo", ">= 1.3.0.RC"
 gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
 gem "hobo-jquery", :git => "git://github.com/bryanlarsen/hobo-jquery.git", :branch => "rails3"
