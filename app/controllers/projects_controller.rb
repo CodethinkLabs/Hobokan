@@ -6,6 +6,16 @@ class ProjectsController < ApplicationController
   show_action :kanban_board
   show_action :kanban
 
+  def kanban
+    @project = find_instance
+    if request.xhr?
+      handle_item_drop
+      hobo_ajax_response
+      return
+    end
+  end
+
+
   def kanban_board
     @project = find_instance
     if request.xhr?

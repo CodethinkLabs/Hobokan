@@ -34,13 +34,11 @@
 
       <div class="board" id="kb-board">
         <repeat:lanes>
-          <div>
-            <ul class="lane" id="L#{this_field}">
+            <ul class="lane" id="L#{this.id}">
             <repeat:items>
-              <li class="box" id="box-#{this.position}"><this.title/></li>
+              <li class="box" id="S#{this.position}">S<this.id/> <this.title/></li>
             </repeat:items>
             </ul>
-          </div>
         </repeat:lanes>
       </div>
     </div>
