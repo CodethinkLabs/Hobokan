@@ -1,4 +1,4 @@
-<show-page>
+<show-page for="Project" full-title="&@project.name">
   <content: replace>
   <section-group>
     <div class="section content-body">
@@ -17,7 +17,6 @@
         <% lane_width = ((100 / this.lanes.count) - 2).to_s + "%" %>
         <repeat:lanes>
           <ul class="lane" id="L#{this.id}" style="width:#{lane_width}">
-            <div><a href="/lanes/#{this.id}/kanban_lane"><this/></a></div>
             <set color="#{this.background_color}"/>
             <repeat:items.active>
               <li class="box" id="S#{this.id}" style="background-color:#{color};">
