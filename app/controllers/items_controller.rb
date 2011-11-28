@@ -23,6 +23,8 @@ class ItemsController < ApplicationController
   def create
     hobo_create do
       if valid?
+        @item.state = "created"
+        @item.save
         lane = @item.lane.project.lanes[0]
         project = @item.lane.project
         redirect_to(:controller => 'projects', :action => 'kanban_board', :id => @item.lane.project.id)

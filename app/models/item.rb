@@ -32,8 +32,8 @@ class Item < ActiveRecord::Base
   set_default_order "position DESC"
 
   lifecycle do
-    state :normal, :default => :true
-    state :warn
+    state :normal, :default => true
+    state :created
     state :urgent
     state :archived
 
