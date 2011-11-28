@@ -10,26 +10,14 @@ class ApplicationController < ActionController::Base
   end
 
   def handle_item_drop
-    item = Item.find(params[:item_id])
-    old_lane = item.lane
+    position = params[:item_ordering].length
     lane = Lane.find(params[:lane_id])
-    item.lane = lane
-    item.save
-    position = params[:item_ordering].length + 1
     params[:item_ordering].each do |id|
       item = Item.find(id)
+      item.lane = lane
       item.position = position
       item.save
       position -= 1
-    end
-
-    if old_lane.id != lane.id
-      position = old_lane.items.length + 1
-      old_lane.items.each do |item|
-        item.position = position
-        item.save
-        position -= 1
-      end
     end
   end
 
