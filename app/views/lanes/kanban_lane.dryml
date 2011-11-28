@@ -12,15 +12,7 @@
           </a>
         </h3>
 
-        <hjq-dialog id="new-task-dialog" title="Add a task" position="center" width="&800">
-          <form with="&@item || new_for_current_user(@lane.items)" without-cancel>
-              <field-list: fields="title, text" >
-              </field-list>
-              <submit: label="#{ht 'Item.actions.add', :default=>['Add'] }" style=""/>
-          </form>
-        </hjq-dialog>
-
-        <hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+        <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
 
         <kanban-board-view with="&@lane" field="project" lane="&@lane" />
       </div>
