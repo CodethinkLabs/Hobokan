@@ -18,6 +18,7 @@
         <% lane_width = ((100 / this.lanes.count) - 2).to_s + "%" %>
         <repeat:lanes>
           <ul class="lane" id="L#{this.id}" style="width:#{lane_width}">
+            <h4><a href="/lanes/#{this.id}/kanban_lane"><this/></a></h4>
             <set color="#{this.background_color}"/>
             <repeat:items.active>
               <li class="box" id="S#{this.id}" style="background-color:#{color};">

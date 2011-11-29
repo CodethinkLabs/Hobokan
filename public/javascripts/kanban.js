@@ -1,7 +1,7 @@
 var drop_handler = function() {
 
   var item_ordering = "";
-  jQuery.each(this.parent().children(),function(){
+  jQuery.each(this.parent().children().filter('li'),function(){
     item_ordering += "&item_ordering[]=" + this.id.substr(1);
   });
 
