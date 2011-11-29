@@ -22,7 +22,11 @@
       </div>
     </div>
 
-    <change-log-view/>
+      <aside id="change-log" style="width: 20%;display:none;">
+        <div style=" height:600px; overflow:auto;">
+          <change-log-view/>
+        </div>
+      </aside>
     </section-group>
 
     <javascript name="jquery.dragsort"/>

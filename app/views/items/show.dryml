@@ -18,7 +18,11 @@
           <collection:checklist_items/>
         </section>
       </section>
-      <change-log-view/>
+	  <aside id="change-log" style="width: 50%;">
+	    <div style=" height:600px; overflow:auto;">
+          <change-log-view/>
+        </div>
+      </aside>
     </section-group>
   </content:>
 </show-page>
