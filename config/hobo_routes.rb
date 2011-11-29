@@ -63,7 +63,6 @@ CtKanban::Application.routes.draw do
   delete 'projects/:id(.:format)' => 'projects#destroy', :as => 'destroy_project', :constraints => { :id => %r([^/.?]+) }
 
   # Show action routes for controller "projects"
-  get 'projects/:id/kanban_board(.:format)' => 'projects#kanban_board', :as => 'project_kanban_board'
   get 'projects/:id/kanban(.:format)' => 'projects#kanban', :as => 'project_kanban'
 
 

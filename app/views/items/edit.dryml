@@ -1,6 +1,6 @@
 <edit-page>
   <content: replace>
-    <a:project action="kanban_board">&laquo; <ht key="item.lane.actions.back_to_parent" parent="Project" name="&this">Back to
+    <a:project action="kanban">&laquo; <ht key="item.lane.actions.back_to_parent" parent="Project" name="&this">Back to
     <name/></ht></a:project>
 
     <section-group>

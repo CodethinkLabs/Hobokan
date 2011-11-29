@@ -2,7 +2,7 @@
   <collection: replace>
     <collection with="&@projects">
       <div>
-        <a href="/projects/#{this.id}/kanban_board" >#{this.name}</a>
+        <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
       </div>
     </collection>
   </collection:>

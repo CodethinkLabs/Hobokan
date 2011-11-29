@@ -1,7 +1,7 @@
 <show-page for="Lane">
 
 <content: replace>
-<a:project action="kanban_board">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to        <name/></ht></a:project>
+<a:project action="kanban">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to        <name/></ht></a:project>
 
 
   <section-group>
