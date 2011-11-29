@@ -67,7 +67,7 @@
            <user-heading:>Who</user-heading:>
            <created-at-heading:>When</created-at-heading:>
            <created-at-view:><%= this.strftime("%d/%m/%y") %></created-at-view:>
-           <user-view:><%= this.name.split(' ')[0] %></user-view:>
+           <user-view:><if><%= this.name.split(' ')[0] %></if></user-view:>
            <modifications-view:>
              <if:lane_id><%= Lane.find(this[0]).title.upcase %> to <%= Lane.find(this[1]).title.upcase %></if>
              <if:state><%= this[0].upcase %> to <%= this[1].upcase %></if>
