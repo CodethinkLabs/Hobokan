@@ -1,8 +1,9 @@
 <show-page for="Lane">
 
 <content: replace>
-<a:project action="kanban">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to        <name/></ht></a:project>
-
+  <a:project action="kanban">
+    &laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to <name/></ht>
+  </a:project>
 
   <section-group>
       <div class="section content-body">
@@ -14,9 +15,14 @@
 
         <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
 
-        <kanban-board-view with="&@lane" field="project" lane="&@lane" />
+        <div class="board" id="kb-board">
+          <kanban-lane lanewidth="95%"/>
+        </div>
       </div>
 
     </section-group>
-  </content>
+
+    <javascript name="jquery.dragsort"/>
+    <javascript name="kanban"/>
+  </content:>
 </show-page>
