@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <change-log-view with="&@project"/>
+    <change-log-view/>
     </section-group>
 
     <javascript name="jquery.dragsort"/>

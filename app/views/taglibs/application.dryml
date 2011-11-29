@@ -58,18 +58,18 @@
    </ul>
 </def>
 
-<def tag="log-view" param="default">
-  <aside style="width: 50%;">
+<def tag="change-log-view">
+  <aside id="change-log" style="width: 20%;display:none;">
     <div style=" height:600px; overflow:auto;">
       <h3>Change Log</h3>
-         <table-plus with="&@this.versions" order="created-at DESC" fields="user, created-at,modifications">
+         <table-plus with="&@this.versions" order="created-at DESC" fields="created-at, versioned_id, modifications, user">
            <header: replace/>
            <thead: replace/>
            <tfoot: replace/>
            <user-heading:>Who</user-heading:>
            <created-at-heading:>When</created-at-heading:>
            <created-at-view:><%= this.strftime("%d/%m/%y") %></created-at-view:>
-           <user-view:><%= this.name[0..4] %></user-view:>
+           <user-view:><%= this.name.split(' ')[0] %></user-view:>
            <modifications-view:>
              <if:lane_id><%= Lane.find(this[0]).title.upcase %> to <%= Lane.find(this[1]).title.upcase %></if>
              <if:state><%= this[0].upcase %> to <%= this[1].upcase %></if>
@@ -77,16 +77,6 @@
              <if:position>reordered</if>
            </modifications-view:>
          </table-plus>
-      </div>
-  </aside>
-</def>
-
-
-<def tag="change-log-view" param="default">
-  <aside id="change-log" style="width:20%; display:none;">
-    <div style=" height:600px; overflow:auto;">
-      <h3>Change Log</h3>
-      <collection with="&this.changes"><this.date/>:<this.user/>:<this.comment/></collection>
       </div>
   </aside>
 </def>
