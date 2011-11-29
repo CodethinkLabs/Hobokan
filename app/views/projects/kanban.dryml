@@ -10,6 +10,7 @@
       <edit-project-dialog/><hjq-dialog-open-button dialog="#project-dialog">Edit project</hjq-dialog-open-button>
       <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
       <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
+	  <div id="edit-item-dialog"></div>
 
       </h3>
 

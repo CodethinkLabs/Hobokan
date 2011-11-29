@@ -18,6 +18,36 @@ var drop_handler = function() {
                     } );
 }
 
+var get_item_details = function(board, item_id) {
+  Hobo.ajaxRequest( "/items/" + item_id + "/ajax_item",
+                    [],
+                    { params: { item_id: item_id },
+                      action: 'ajax_item',
+                      controller: 'items',
+                      method: 'get',
+                      message: "Please wait",
+
+                      onSuccess: function(transport) {
+                        jQuery("#edit-item-dialog").empty();
+                        jQuery("#edit-item-dialog").append(transport.responseText);
+
+                        jQuery("#edit-item-dialog").find('.hjq-annotated').each(function() {
+                          var annotations = hjq.getAnnotations.call(this);
+                          if (annotations.init) {
+                            hjq.util.createFunction(annotations.init).call(this, annotations);
+                          };
+                        });
+
+                        var temp = jQuery('#item-dialog-s187');
+                        hjq.dialog_opener.click(this, jQuery('#item-dialog-s' + item_id));
+                      },
+
+                      onFailure: function(transport) {
+                        jQuery("#edit-item-dialog").empty();
+                      }
+                    } );
+}
+
 jQuery("#cl-toggle").click( function() {
   this.value = jQuery("#change-log").is(':visible') ? "Change Log" : "Hide Change Log";
   jQuery("#change-log").toggle();
