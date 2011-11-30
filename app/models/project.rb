@@ -41,7 +41,9 @@ class Project < ActiveRecord::Base
   end
 
   def versions
-    return VestalVersions::Version.where(:versioned_id => items).order("created_at DESC").limit(50)
+    v = Version.arel_table
+    #this is a nasty hack - item.position changes so often it clutters the log - so only take changes with an "e" in the field!?
+    return Version.where(:versioned_id => items).where(v[:modifications].matches("%e%")).order("created_at DESC").limit(50)
   end
 
 
