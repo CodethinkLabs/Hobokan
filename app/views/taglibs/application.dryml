@@ -71,7 +71,8 @@
            <modifications-view:>
              <if:lane_id><%= Lane.find(this[0]).title.upcase %> to <%= Lane.find(this[1]).title.upcase %></if>
              <if:state><%= this[0].upcase %> to <%= this[1].upcase %></if>
-             <if:text><%= this[1] %></if>
+             <if:text>INFO: <%= this[1] %></if>
+             <if:title>RENAME: <%= this[0] %></if>
              <if:position>reordered</if>
            </modifications-view:>
          </table-plus>
