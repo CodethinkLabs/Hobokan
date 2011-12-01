@@ -32,18 +32,6 @@
   <select-many merge options="&@item.project.project_members"/>
 </def>
 
-<extend tag="form" for="Item">
-  <div>
-  <old-form merge>
-    <field-list: fields="title, text, estimation, start_date, end_date, project_members, checklist_items" >
-      <project-members-view:>
-        <select-many-in-project-members/>
-      </project-members-view:>
-    </field-list>
-  </old-form>
-  </div>
-</extend>
-
 <def tag="kanban-lane" attrs="lanewidth">
   <ul class="lane" id="L#{this.id}" style="width:#{lanewidth}">
      <h4><a href="/lanes/#{this.id}/kanban_lane"><this/></a></h4>
@@ -79,14 +67,10 @@
 
 <def tag="new-task-dialog">
   <hjq-dialog id="new-task-dialog" title="Add a task" position="center" width="&800">
-  <form with="&@item || new_for_current_user(@project.lanes[0].items)" without-cancel>
-      <field-list: fields="title, text, lane" >
-        <lane-view:>
-          <select-lane/>
-        </lane-view:>
-      </field-list>
-      <submit: label="#{ht 'Item.actions.add', :default=>['Add'] }" style=""/>
-    </form>
+      <form with="&@item || new_for_current_user(@project.lanes[0].items)">
+        <field-list: fields="title, text, estimation">
+        </field-list>
+      </form>
   </hjq-dialog>
 </def>
 

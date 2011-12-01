@@ -5,7 +5,7 @@
 <hjq-dialog id="&'item-dialog-s' + my_item.id.to_s" title="Edit a task" position="center" width="&800">
   <transition-buttons/>
   <form with="&my_item" without-cancel>
-    <field-list: fields="title, text, estimation, start_date, end_date, users, checklist_items" >
+    <field-list: fields="title, text, estimation, users, checklist_items" >
        <users-view:>
          <select-users/>
        </users-view:>
