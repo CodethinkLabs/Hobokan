@@ -73,7 +73,6 @@
              <if:state><%= this[1].upcase %></if>
              <if:text>INFO: <%= this[1] %></if>
              <if:title>RENAME: <%= this[0] %></if>
-             <if:position>reordered</if>
            </modifications-view:>
          </table-plus>
 </def>
