@@ -64,6 +64,12 @@ class Item < ActiveRecord::Base
     self.position = lane.items.count + 1
   end
 
+  def versions
+    v = Version.arel_table
+    #this is a nasty hack - item.position changes so often it clutters the log - so only take changes with an "e" in the field!?
+    return Version.where(:versioned_id => id).where(v[:modifications].matches("%e%")).order("created_at DESC").limit(50)
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
