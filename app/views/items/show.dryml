@@ -8,15 +8,6 @@
           <end-date-view:><editor/></end-date-view>
           <text-view:><editor/></text-view>
         </field-list>
-        <section>
-          <h3>
-            <ht key="checklist_item.collection.heading" count="&this.checklist_items.count" >
-              <human-collection-name collection="checklist_items" your/>
-            </ht>
-          </h3>
-
-          <collection:checklist_items/>
-        </section>
       </section>
 	  <aside id="change-log" style="width: 50%;">
 	    <div style=" height:600px; overflow:auto;">
