@@ -5,15 +5,6 @@
 CtKanban::Application.routes.draw do
 
 
-  # Resource routes for controller "checklist_items"
-  get 'checklist_items/new(.:format)', :as => 'new_checklist_item'
-  get 'checklist_items/:id/edit(.:format)' => 'checklist_items#edit', :as => 'edit_checklist_item'
-  get 'checklist_items/:id(.:format)' => 'checklist_items#show', :as => 'checklist_item', :constraints => { :id => %r([^/.?]+) }
-  post 'checklist_items(.:format)' => 'checklist_items#create', :as => 'create_checklist_item'
-  put 'checklist_items/:id(.:format)' => 'checklist_items#update', :as => 'update_checklist_item', :constraints => { :id => %r([^/.?]+) }
-  delete 'checklist_items/:id(.:format)' => 'checklist_items#destroy', :as => 'destroy_checklist_item', :constraints => { :id => %r([^/.?]+) }
-
-
   # Lifecycle routes for controller "items"
   put 'items/:id/archive(.:format)' => 'items#do_archive', :as => 'do_item_archive'
   get 'items/:id/archive(.:format)' => 'items#archive', :as => 'item_archive'

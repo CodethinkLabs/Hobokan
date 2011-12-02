@@ -1,21 +1,9 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
-<def tag="form" for="ChecklistItem">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="text, done, item" param/>
-    <div param="actions">
-      <submit label="#{ht 'checklist_item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
 <def tag="form" for="Item">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="start_date, end_date, title, text, estimation, position, state, checklist_items, lane, project, users" param/>
+    <field-list fields="start_date, end_date, title, text, estimation, position, state, lane, project, users" param/>
     <div param="actions">
       <submit label="#{ht 'item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
