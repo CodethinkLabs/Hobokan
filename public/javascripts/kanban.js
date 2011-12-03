@@ -53,4 +53,4 @@ jQuery("#cl-toggle").click( function() {
   jQuery("#change-log").toggle();
 });
 
-jQuery(".lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});
+jQuery(".kb-lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});

@@ -1,4 +1,4 @@
-<show-page for="Lane">
+<show-page>
 
 <content: replace>
   <a:project action="kanban">
@@ -16,7 +16,7 @@
         <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
 
         <div class="board" id="kb-board">
-          <kanban-lane lanewidth="95%"/>
+          <kanban-lane lanewidth="100%" boxwidth="17%"/>
         </div>
       </div>
 

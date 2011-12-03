@@ -17,7 +17,7 @@
       <div class="board" id="kb-board">
         <% lanewidth = ((100 / this.lanes.count) - 2).to_s + "%" %>
         <repeat:lanes>
-          <kanban-lane lanewidth="&lanewidth"/>
+          <kanban-lane lanewidth="&lanewidth" boxwidth="auto"/>
         </repeat:lanes>
       </div>
     </div>
