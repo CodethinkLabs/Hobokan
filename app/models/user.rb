@@ -45,6 +45,12 @@ class User < ActiveRecord::Base
   end
   alias_method_chain :new_password_required?, :invite_only
 
+  def versions
+    v = Version.arel_table
+    #this is a nasty hack - item.position changes so often it clutters the log - so only take changes with an "e" in the field!?
+    return Version.where(v[:modifications].matches("%e%")).order("created_at DESC").limit(200)
+  end
+
   # --- Signup lifecycle --- #
 
   lifecycle do

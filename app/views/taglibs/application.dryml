@@ -48,14 +48,16 @@
 </def>
 
 <def tag="change-log-view">
+  <div style="height:600px; overflow:auto;">
       <h3>Change Log</h3>
-         <table-plus with="&@this.versions" order="created-at DESC" fields="created-at, versioned_id, modifications, user">
+         <table-plus with="&this.versions" order="created-at DESC" fields="created-at, versioned_id, modifications, user">
            <header: replace/>
            <thead: replace/>
            <tfoot: replace/>
            <user-heading:>Who</user-heading:>
            <created-at-heading:>When</created-at-heading:>
            <created-at-view:><%= this.strftime("%d/%m/%y") %></created-at-view:>
+           <versioned-id-view:>S<this/></versioned-id-view:>
            <user-view:><if><%= this.name.split(' ')[0] %></if></user-view:>
            <modifications-view:>
              <if:lane_id><%= Lane.find(this[0]).title.upcase %> to <%= Lane.find(this[1]).title.upcase %></if>
@@ -65,6 +67,7 @@
              <if:title>RENAME: <%= this[0] %></if>
            </modifications-view:>
          </table-plus>
+  </div>
 </def>
 
 <def tag="new-task-dialog">

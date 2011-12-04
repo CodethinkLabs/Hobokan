@@ -4,9 +4,10 @@
     <section-group>
       <section>
         <h3>My Tasks</h3>
-        <table-plus with="&current_user.items" fields="project, this, lane.title" without-search-form>
+        <table-plus with="&current_user.items" fields="project,id, this, lane.title" without-search-form>
           <lane-title-heading:>Status</lane-title-heading:>
           <this-heading:>Task</this-heading:>
+          <id-view:>S<this/></id-view:>
           <project-view:>
             <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
           </project-view:>
@@ -18,6 +19,11 @@
           <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
         </collection>
       </aside>
+      <if test="&current_user.administrator">
+        <aside with="&current_user" style="width:20%;">
+          <change-log-view/>
+        </aside>
+      </if>
     </section-group>
   </content:>
 </page>
