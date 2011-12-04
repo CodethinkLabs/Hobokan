@@ -99,7 +99,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, estimation, position, state, project" param/>
+            <field-list fields="start_date, end_date, text, result, estimation, position, state, project" param/>
           </section>
     </content:>
 
@@ -441,6 +441,7 @@
           </header>
 
           <section param="content-body">
+            <field-list fields="details" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="project_member.collection.heading" count="&this.project_members.count" >

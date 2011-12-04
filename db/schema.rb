@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202220536) do
+ActiveRecord::Schema.define(:version => 20111204141218) do
 
   create_table "checklists", :force => true do |t|
-    t.string   "text"
-    t.boolean  "done"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "item_id"
+    t.string    "text"
+    t.boolean   "done"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "item_id"
   end
 
   add_index "checklists", ["item_id"], :name => "index_checklists_on_item_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20111202220536) do
     t.string    "state",         :default => "normal"
     t.timestamp "key_timestamp"
     t.integer   "project_id"
+    t.text      "result"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20111202220536) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.boolean   "per_project_permissions", :default => false
+    t.text      "details"
   end
 
   create_table "users", :force => true do |t|
