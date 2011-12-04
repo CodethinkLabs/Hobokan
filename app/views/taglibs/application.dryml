@@ -23,6 +23,7 @@
 
 <set-theme name="clean"/>
 
+<def tag="nil-view"></def>
 <def tag="input" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
 <def tag="edit" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
 

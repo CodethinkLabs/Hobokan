@@ -2,11 +2,12 @@
   <content: replace>
     <section-group>
       <section>
-        <field-list fields="id, title, text, users, estimation, start_date, end_date, position, state, lane, project">
+        <field-list fields="id, title, text, project, users, estimation, start_date, end_date, lane, state">
           <title-view:><editor/></title-view>
           <start-date-view:><editor/></start-date-view>
           <end-date-view:><editor/></end-date-view>
           <text-view:><editor/></text-view>
+          <estimation-view:><editor/></estimation-view>
         </field-list>
       </section>
 	  <aside id="change-log" style="width: 50%;">
