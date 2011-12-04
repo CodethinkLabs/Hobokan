@@ -9,7 +9,8 @@ class Item < ActiveRecord::Base
     start_date         :date
     end_date           :date
     title              :string
-    text               :text
+    text               :markdown
+    result             :markdown
     estimation         :float
     position           :integer
     timestamps

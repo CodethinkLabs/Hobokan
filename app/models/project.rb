@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
 
   fields do
     name :string
+    details :markdown
     per_project_permissions :boolean, :default => false
     timestamps
   end

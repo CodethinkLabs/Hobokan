@@ -1,17 +1,28 @@
 <edit-page>
   <content:>
-    <h2> Edit Project</h2>
-    <error-messages/>
-    <form>
-        <field-list fields="name">
-        </field-list>
-        <h2> Lanes</h2>
-        <input-many:lanes><field-list fields="title, position, background_color"/></input-many>
-        <h2> Project Members</h2>
-        <input-many:project_members><field-list fields="user"/></input-many>
+    <section-group>
+      <section>
+        <h2> Edit Project</h2>
+        <error-messages/>
+        <form>
+          <field-list fields="name, details">
+          </field-list>
+          <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
+         </form>
+       </section>
+       <aside style="width:33%">
+       <form>
+         <h2> Project Members</h2>
+         <input-many:project_members><field-list fields="user"/></input-many>
+         <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
 
-        <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
-    </form>
-  </content:>
+         <h2> Lanes</h2>
+         <input-many:lanes><field-list fields="title, position, background_color"/></input-many>
+         <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
+       </form>
+     </aside>
+   </section-group> 
+
+ </content:>
 </edit-page>
 

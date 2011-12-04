@@ -1,0 +1,15 @@
+<show-page>
+<content:>
+  <section-group>
+    <section>
+      <field-list skip="items">
+        <details-view:><this.to-html.html-safe/></details-view:>
+      </field-list>
+    </section>
+    <aside style="width:20%;">
+      <this.lanes/>
+      <this.users/>
+    </aside>
+  </section-group>
+</content:>
+</show-page>

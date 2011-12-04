@@ -14,13 +14,13 @@
           <h3>Edit Task</h3>
           <transition-buttons/>
           <form>
+            <field-list: fields="title, users, text, result, estimation"/>
             <actions: replace>
               <submit label="#{ht 'item.actions.save', :default=>['Save']}"/><or-cancel:lane.project />
             </actions:>
           </form>
         </section>
     </section>
-      <log-view><this/></log-view>
    </section-group>
   </content:>
 </edit-page>
