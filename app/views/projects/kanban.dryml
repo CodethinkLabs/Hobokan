@@ -3,9 +3,7 @@
   <section-group>
     <div class="section content-body">
       <h3>
-        <a action="edit" if="&can_edit?">
-          <name/>
-        </a>
+        <a><name/></a>
 
       <edit-project-dialog/><hjq-dialog-open-button dialog="#project-dialog">Edit project</hjq-dialog-open-button>
       <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>

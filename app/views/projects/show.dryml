@@ -3,12 +3,11 @@
   <section-group>
     <section>
       <field-list skip="items">
-        <details-view:><this.to-html.html-safe/></details-view:>
+        <details-view:><if><this.to-html.html-safe/></if></details-view:>
       </field-list>
     </section>
-    <aside style="width:20%;">
-      <this.lanes/>
-      <this.users/>
+    <aside style="width:50%;">
+      <change-log-view/>
     </aside>
   </section-group>
 </content:>
