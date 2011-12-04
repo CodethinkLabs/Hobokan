@@ -2,6 +2,7 @@
 <content:>
   <section-group>
     <section>
+      <a action="edit" style="float:right;">Edit Project</a>
       <field-list skip="items">
         <details-view:><if><this.to-html.html-safe/></if></details-view:>
       </field-list>
