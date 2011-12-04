@@ -6,7 +6,8 @@
         <h3>My Tasks</h3>
         <table-plus with="&current_user.items" fields="project,id, this, lane.title" without-search-form>
           <lane-title-heading:>Status</lane-title-heading:>
-          <this-heading:>Task</this-heading:>
+          <Item-heading:>Description</Item-heading>
+          <id-heading:>Task</id-heading:>
           <id-view:>S<this/></id-view:>
           <project-view:>
             <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
