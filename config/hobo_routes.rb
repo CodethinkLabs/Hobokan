@@ -44,6 +44,12 @@ CtKanban::Application.routes.draw do
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
 
 
+  # Lifecycle routes for controller "projects"
+  put 'projects/:id/finish(.:format)' => 'projects#do_finish', :as => 'do_project_finish'
+  get 'projects/:id/finish(.:format)' => 'projects#finish', :as => 'project_finish'
+  put 'projects/:id/reopen(.:format)' => 'projects#do_reopen', :as => 'do_project_reopen'
+  get 'projects/:id/reopen(.:format)' => 'projects#reopen', :as => 'project_reopen'
+
   # Resource routes for controller "projects"
   get 'projects(.:format)' => 'projects#index', :as => 'projects'
   get 'projects/new(.:format)', :as => 'new_project'

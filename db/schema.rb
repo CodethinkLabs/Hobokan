@@ -11,17 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111204154956) do
-
-  create_table "checklists", :force => true do |t|
-    t.string    "text"
-    t.boolean   "done"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "item_id"
-  end
-
-  add_index "checklists", ["item_id"], :name => "index_checklists_on_item_id"
+ActiveRecord::Schema.define(:version => 20111204184335) do
 
   create_table "item_assignments", :force => true do |t|
     t.timestamp "created_at"
@@ -92,7 +82,11 @@ ActiveRecord::Schema.define(:version => 20111204154956) do
     t.timestamp "updated_at"
     t.boolean   "per_project_permissions", :default => false
     t.text      "details"
+    t.string    "state",                   :default => "running"
+    t.datetime  "key_timestamp"
   end
+
+  add_index "projects", ["state"], :name => "index_projects_on_state"
 
   create_table "users", :force => true do |t|
     t.string    "crypted_password",          :limit => 40

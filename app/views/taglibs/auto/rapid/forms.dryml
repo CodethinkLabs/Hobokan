@@ -3,7 +3,7 @@
 <def tag="form" for="Item">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="start_date, end_date, title, text, estimation, position, state, lane, project, users" param/>
+    <field-list fields="start_date, end_date, title, text, result, estimation, position, state, lane, project, users" param/>
     <div param="actions">
       <submit label="#{ht 'item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -38,7 +38,7 @@
 <def tag="form" for="Project">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, per_project_permissions, lanes, project_members" param/>
+    <field-list fields="name, details, per_project_permissions, lanes, project_members" param/>
     <div param="actions">
       <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -46,6 +46,28 @@
 </def>
 
 
+<def tag="finish-form" polymorphic/>
+<def tag="finish-form" for="Project">
+  <form lifecycle="finish" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.project.lifecycle.transitions.finish', :default=>['Finish']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="reopen-form" polymorphic/>
+<def tag="reopen-form" for="Project">
+  <form lifecycle="reopen" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.project.lifecycle.transitions.reopen', :default=>['Reopen']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="User">
   <form merge param="default">

@@ -99,7 +99,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, estimation, position, state, project" param/>
+            <field-list fields="start_date, end_date, text, result, estimation, position, state, project" param/>
           </section>
     </content:>
 
@@ -441,6 +441,7 @@
           </header>
 
           <section param="content-body">
+            <field-list fields="details" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="project_member.collection.heading" count="&this.project_members.count" >
@@ -481,6 +482,52 @@
 </def>
 
 
+
+<def tag="finish-page" polymorphic/>
+<def tag="finish-page" for="Project">
+  <page title="#{ht 'project.finish.title', :default=>['Finish']}" merge>
+
+    <body: class="lifecycle-transition-page finish-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="project.finish.heading">
+            Finish
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <finish-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+<def tag="reopen-page" polymorphic/>
+<def tag="reopen-page" for="Project">
+  <page title="#{ht 'project.reopen.title', :default=>['Reopen']}" merge>
+
+    <body: class="lifecycle-transition-page reopen-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="project.reopen.heading">
+            Reopen
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <reopen-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
 
 
 
