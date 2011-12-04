@@ -2,6 +2,8 @@
   <content: replace>
     <section-group>
       <section>
+        <br/>
+        <transition-buttons style="float:right;"/>
         <field-list fields="id, title, text, project, users, estimation, start_date, end_date, result, lane, state">
           <title-view:><editor/></title-view>
           <start-date-view:><editor/></start-date-view>
