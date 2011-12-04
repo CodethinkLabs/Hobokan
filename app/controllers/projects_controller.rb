@@ -5,6 +5,12 @@ class ProjectsController < ApplicationController
   auto_actions :all
   show_action :kanban
 
+  def index
+    hobo_index Project.active.apply_scopes(:search   => [params[:search], :name, :state],
+                                    :order_by => parse_sort_param(:name),
+                                    :user_is => params[:user])
+  end
+
   def kanban
     @project = find_instance
     if request.xhr?
