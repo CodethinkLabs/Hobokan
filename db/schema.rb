@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111204184335) do
+ActiveRecord::Schema.define(:version => 20111205220242) do
 
   create_table "item_assignments", :force => true do |t|
     t.timestamp "created_at"
@@ -22,16 +22,6 @@ ActiveRecord::Schema.define(:version => 20111204184335) do
 
   add_index "item_assignments", ["item_id"], :name => "index_item_assignments_on_item_id"
   add_index "item_assignments", ["user_id"], :name => "index_item_assignments_on_user_id"
-
-  create_table "item_project_members", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "project_member_id"
-    t.integer   "item_id"
-  end
-
-  add_index "item_project_members", ["item_id"], :name => "index_item_project_members_on_item_id"
-  add_index "item_project_members", ["project_member_id"], :name => "index_item_project_members_on_project_member_id"
 
   create_table "items", :force => true do |t|
     t.date      "start_date"
@@ -83,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20111204184335) do
     t.boolean   "per_project_permissions", :default => false
     t.text      "details"
     t.string    "state",                   :default => "running"
-    t.datetime  "key_timestamp"
+    t.timestamp "key_timestamp"
   end
 
   add_index "projects", ["state"], :name => "index_projects_on_state"

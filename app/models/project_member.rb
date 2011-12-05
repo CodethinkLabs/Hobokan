@@ -23,9 +23,6 @@ class ProjectMember < ActiveRecord::Base
     timestamps
   end
 
-  has_many :items, :through => :item_project_members
-  has_many :item_project_members, :dependent => :destroy
-
   belongs_to :project
   belongs_to :user
 
