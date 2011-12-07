@@ -1,9 +1,24 @@
 <page title="Home">
   <body: class="front-page"/>
   <content:>
+
+    <header class="content-header">
+      <section class="welcome-message">
+        <if test="&User.count == 0">
+          <h1>Welcome to <app-name/></h1>
+          <h3 style="margin-top: 20px;">There are no user accounts - please provide the details of the site administrator</h3>
+          <form with="&this || User.new" without-cancel>
+            <field-list: fields="name, email_address, password, password_confirmation"/>
+            <submit: label="Register Administrator"/>
+          </form>
+        </if>
+      </section>
+    </header>
+
     <section-group>
-      <section>
-        <h3>My Tasks</h3>
+    <if test="&User.count != 0">
+     <section>
+       <h3>My Tasks</h3>
         <table-plus with="&current_user.items" fields="project,id, this, lane.title" without-search-form>
           <lane-title-heading:>Status</lane-title-heading:>
           <Item-heading:>Description</Item-heading>
@@ -25,6 +40,7 @@
           <change-log-view/>
         </aside>
       </if>
+    </if>
     </section-group>
   </content:>
 </page>

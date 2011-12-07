@@ -1,13 +1,5 @@
 <index-page>
   <content-body: replace>
     <collection/>
-    <% if @users.count == 0 %>
-      <div>
-        <h3>
-          <ht key="user.form.new.heading">New User</ht>
-        </h3>
-        <form with="&@invalid_record || new_for_current_user(User)" />
-      </div>
-    <% end %>
   </content-body:>
 </index-page>
