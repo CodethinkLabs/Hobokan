@@ -1,8 +1,6 @@
 class CleanupModels < ActiveRecord::Migration
   def self.up
     drop_table :statistics
-    drop_table :history_entries
-    drop_table :item_users
 
     remove_column :items, :wip_total
     remove_column :items, :current_lane_entry
@@ -44,29 +42,6 @@ class CleanupModels < ActiveRecord::Migration
     add_index "statistics", ["item_id"], :name => "index_statistics_on_item_id"
     add_index "statistics", ["lane_id"], :name => "index_statistics_on_lane_id"
     add_index "statistics", ["user_id"], :name => "index_statistics_on_user_id"
-
-    create_table "history_entries", :force => true do |t|
-      t.string    "action"
-      t.text      "delta"
-      t.timestamp "created_at"
-      t.timestamp "updated_at"
-      t.integer   "item_id"
-      t.string    "trigger_type"
-      t.integer   "trigger_id"
-    end
-
-    add_index "history_entries", ["item_id"], :name => "index_history_entries_on_item_id"
-    add_index "history_entries", ["trigger_type", "trigger_id"], :name => "index_history_entries_on_trigger_type_and_trigger_id"
-
-    create_table "item_users", :force => true do |t|
-      t.timestamp "created_at"
-      t.timestamp "updated_at"
-      t.integer   "user_id"
-      t.integer   "item_id"
-    end
-
-    add_index "item_users", ["item_id"], :name => "index_item_users_on_item_id"
-    add_index "item_users", ["user_id"], :name => "index_item_users_on_user_id"
 
     add_index :items, [:last_editor_id]
   end
