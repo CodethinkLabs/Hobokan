@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   def validate_password
     if new_password_required?
-      validates_length_of :password, :within => 6..40
+      self.class.count == 0 || validates_length_of(:password, :within => 6..40)
     end
   end
 

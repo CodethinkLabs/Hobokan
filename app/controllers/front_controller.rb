@@ -2,7 +2,11 @@ class FrontController < ApplicationController
 
   hobo_controller
 
-  def index; end
+  def index
+    if !current_user.is_a?(User)
+      redirect_to users_path
+    end
+  end
 
   def summary
     if !current_user.administrator?

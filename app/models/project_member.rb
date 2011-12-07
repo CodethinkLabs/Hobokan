@@ -33,7 +33,9 @@ class ProjectMember < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    project.project_members.count == 0 || ProjectMember.admin_memberships.include?(project_id)
+    project.nil? ||
+    project.project_members.count == 0 ||
+    ProjectMember.admin_memberships.include?(project_id)
   end
 
   def update_permitted?
