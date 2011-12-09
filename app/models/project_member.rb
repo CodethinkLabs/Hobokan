@@ -2,6 +2,8 @@ class ProjectMember < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
+  # Used by the Hobo permissions methods. Returns a list of
+  # the project ids of which the current user is a member
   def self.memberships
     Thread.current[:memberships]
   end
@@ -10,6 +12,9 @@ class ProjectMember < ActiveRecord::Base
     Thread.current[:memberships] = memberships
   end
 
+  # Used by the Hobo permissions methods. Returns a list of
+  # the project ids of which the current user is a member
+  # with adminstrator priviledges
   def self.admin_memberships
     Thread.current[:admin_memberships]
   end

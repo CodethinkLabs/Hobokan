@@ -23,12 +23,20 @@ class ApplicationController < ActionController::Base
 
 private
 
-  # stores parameters for current request
+  # Stores parameters for current request
   def set_request_environment
-    # current_user is set by restful_authentication
+    # Current_user is set by restful_authentication
     if current_user.is_a?(User)
       User.current = current_user
 
+      # Build two arrays 'memberships' and 'admin_memberships' which contain
+      # a list of the project ids for which the user is a member of the project,
+      # and is an adminstrative member respectively. If a particular project doesn't
+      # have the 'per_project_permissions' attribute set, then the user is both
+      # a project member and a project adminstrator of that project.
+      #
+      # These two cached arrays are then used by the Hobo permissions methods in the
+      # models via the ProjectMember#memberships and admin_memberships methods.
       members = ProjectMember.where(:user_id => current_user)
       project_memberships = {}
       members.inject(project_memberships) {|h, m| h[m.project_id] = m}
