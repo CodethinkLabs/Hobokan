@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207133510) do
+ActiveRecord::Schema.define(:version => 20111209155815) do
 
   create_table "item_assignments", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.integer  "item_id"
+    t.integer  "project_member_id"
   end
 
   add_index "item_assignments", ["item_id"], :name => "index_item_assignments_on_item_id"
-  add_index "item_assignments", ["user_id"], :name => "index_item_assignments_on_user_id"
+  add_index "item_assignments", ["project_member_id"], :name => "index_item_assignments_on_project_member_id"
 
   create_table "items", :force => true do |t|
     t.date     "start_date"
@@ -70,9 +70,8 @@ ActiveRecord::Schema.define(:version => 20111207133510) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "per_project_permissions", :default => false
     t.text     "details"
-    t.string   "state",                   :default => "running"
+    t.string   "state",         :default => "running"
     t.datetime "key_timestamp"
   end
 
@@ -90,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20111207133510) do
     t.datetime "updated_at"
     t.string   "state",                                   :default => "invited"
     t.datetime "key_timestamp"
+    t.string   "role"
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"
