@@ -82,7 +82,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:lane param="parent-link">&laquo; <ht key="item.actions.back_to_parent" parent="Lane" name="&this">Back to <name/></ht></a:lane>
             <h2 param="heading">
               <ht key="item.show.heading" name="#{name(:no_wrapper => true)}">
                 Item <name/>
@@ -99,7 +98,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, result, estimation, position, state, project" param/>
+            <field-list fields="start_date, end_date, text, result, estimation, position, state, lane, project" param/>
           </section>
     </content:>
 
@@ -431,7 +430,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="per_project_permissions" param/>
+            <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="project.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -620,7 +619,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email_address, state" param/>
+            <field-list fields="email_address, role, state" param/>
           </section>
     </content:>
 
