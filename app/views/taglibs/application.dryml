@@ -40,7 +40,7 @@
      <repeat:items.active>
        <li class="box" id="S#{this.id}" style="width:#{boxwidth};background-color:#{color};">
          <a href="/items/#{this.id}">S<this.id/> </a><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
-            <this.title/> <repeat:users>(<%= this.name.split(' ')[0] %>)</repeat:users>
+            <this.title/> <repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
          </a>
        </li>
      </repeat:items.active>

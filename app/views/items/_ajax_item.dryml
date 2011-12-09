@@ -1,16 +1,17 @@
-<def tag="select-users">
-  <select-many merge options="&@item.project.users"/>
+<def tag="select-project-members">
+  <select-many merge options="&@item.project.project_members"/>
 </def>
 
 <hjq-dialog id="&'item-dialog-s' + my_item.id.to_s" title="Edit a task" position="center" width="&800">
   <transition-buttons/>
   <form with="&my_item" without-cancel>
-    <field-list: fields="title, text, estimation, users, result" >
-       <users-view:>
-         <select-users/>
-       </users-view:>
+    <field-list: fields="title, text, estimation, project_members, result" >
+      <project-members-view:>
+        <select-project-members/>
+      </project-members-view:>
     </field-list>
     <submit: label="#{ht 'Item.actions.save', :default=>['Save'] }" style=""/>
   </form>
 </hjq-dialog>
+
 

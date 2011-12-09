@@ -31,37 +31,38 @@ private
 
       # Build two arrays 'memberships' and 'admin_memberships' which contain
       # a list of the project ids for which the user is a member of the project,
-      # and is an adminstrative member respectively. If a particular project doesn't
-      # have the 'per_project_permissions' attribute set, then the user is both
-      # a project member and a project adminstrator of that project.
+      # and is an adminstrative member respectively.
       #
       # These two cached arrays are then used by the Hobo permissions methods in the
       # models via the ProjectMember#memberships and admin_memberships methods.
-      members = ProjectMember.where(:user_id => current_user)
-      project_memberships = {}
-      members.inject(project_memberships) {|h, m| h[m.project_id] = m}
       memberships = []
       admin_memberships = []
+      view_memberships = []
+
+      members = ProjectMember.where(:user_id => current_user)
+      members.each do |member|
+        memberships.push(member.project_id)
+        admin_memberships.push(member.project_id) unless !member.administrator
+        view_memberships.push(member.project_id)
+      end
+
+      logger.debug("ApplicationController#set_request_environment #{members.inspect}")
 
       Project.all.each do |project|
-        if project.per_project_permissions
-          if project_memberships.has_key?(project.id)
-            memberships.push(project.id)
-            if project_memberships[project.id].administrator
-              admin_memberships.push(project.id)
-            end
-          end
-        else
-          memberships.push(project.id)
-          admin_memberships.push(project.id)
+        # Clients can only view projects of which they are a member, but anyone
+        # else can view all the projects
+        if current_user.role != :client && !view_memberships.include?(project.id)
+          view_memberships.push(project.id)
         end
       end
 
       ProjectMember.memberships = memberships
       ProjectMember.admin_memberships = admin_memberships
+      ProjectMember.view_memberships = view_memberships
     else
       ProjectMember.memberships = []
       ProjectMember.admin_memberships = []
+      ProjectMember.view_memberships = []
     end
   end
 

@@ -39,12 +39,12 @@ class Lane < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    # logger.debug("Lane#create_permitted? #{ProjectMember.admin_memberships.inspect} project_id: #{project_id}")
+    logger.debug("Lane#create_permitted? #{ProjectMember.admin_memberships.inspect} project_id: #{project_id}")
     project.project_members.count == 0 || ProjectMember.admin_memberships.include?(project_id)
   end
 
   def update_permitted?
-    # logger.debug("Lane#update_permitted? #{ProjectMember.admin_memberships.inspect} project_id: #{project_id}")
+    logger.debug("Lane#update_permitted? #{ProjectMember.admin_memberships.inspect} project_id: #{project_id}")
     ProjectMember.admin_memberships.include?(project_id)
   end
 
@@ -53,7 +53,8 @@ class Lane < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    logger.debug("Lane#view_permitted? #{ProjectMember.view_memberships.inspect} project_id: #{project_id}")
+    ProjectMember.view_memberships.include?(project_id)
   end
 
 end

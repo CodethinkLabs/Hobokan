@@ -6,7 +6,7 @@ class ItemAssignment < ActiveRecord::Base
     timestamps
   end
 
-  belongs_to :user
+  belongs_to :project_member
   belongs_to :item
 
   # --- Permissions --- #
@@ -24,7 +24,7 @@ class ItemAssignment < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    ProjectMember.view_memberships.include?(item.project_id)
   end
 
 end

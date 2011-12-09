@@ -20,7 +20,7 @@ class Item < ActiveRecord::Base
   # validates_date :end_date, :on_or_after => Date.today
 
   has_many :item_assignments, :dependent => :destroy
-  has_many :users, :through => :item_assignments, :accessible => true
+  has_many :project_members, :through => :item_assignments, :accessible => true
 
   belongs_to :lane
   belongs_to :project
@@ -70,12 +70,12 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    # logger.debug("Item#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{lane.project_id}")
-    ProjectMember.memberships.include?(lane.project_id)
+    logger.debug("Item#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{lane.project_id}")
+    project_id.nil? || ProjectMember.memberships.include?(lane.project_id)
    end
 
   def update_permitted?
-    # logger.debug("Item#update_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
+    logger.debug("Item#update_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
     ProjectMember.memberships.include?(project_id)
   end
 
@@ -84,7 +84,8 @@ class Item < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    logger.debug("Item#view_permitted? #{ProjectMember.view_memberships.inspect} project_id: #{project_id}")
+    project_id.nil? || ProjectMember.view_memberships.include?(project_id)
   end
 
 end
