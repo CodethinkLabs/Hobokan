@@ -9,25 +9,12 @@ class AddItemAssignments < ActiveRecord::Migration
       t.integer  :user_id
       t.integer  :item_id
     end
+
     add_index :item_assignments, [:user_id]
     add_index :item_assignments, [:item_id]
-
-    add_column :items, :result, :text
-
-    add_column :projects, :details, :text
-    add_column :projects, :state, :string, :default => "running"
-    add_column :projects, :key_timestamp, :datetime
-
-    add_index :projects, [:state]
   end
 
   def self.down
-    remove_column :items, :result
-
-    remove_column :projects, :details
-    remove_column :projects, :state
-    remove_column :projects, :key_timestamp
-
     create_table "checklist_items", :force => true do |t|
       t.string   "text"
       t.boolean  "done"
@@ -49,7 +36,5 @@ class AddItemAssignments < ActiveRecord::Migration
     add_index "item_project_members", ["project_member_id"], :name => "index_item_project_members_on_project_member_id"
 
     drop_table :item_assignments
-
-    remove_index :projects, :name => :index_projects_on_state rescue ActiveRecord::StatementInvalid
   end
 end
