@@ -5,6 +5,7 @@
         <br/>
         <a action="edit" style="float:right;">Edit Task</a>
         <field-list fields="id, title, text, project, users, estimation, start_date, end_date, result, lane, state">
+          <project-view:><a action="kanban"><this/></a></project-view:>
           <text-view:><if><this.to-html.html-safe/></if></text-view>
           <result-view:><if><this.to-html.html-safe/></if></result-view>
         </field-list>
