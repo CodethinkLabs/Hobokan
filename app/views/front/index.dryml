@@ -17,7 +17,7 @@
 
     <section-group>
     <if test="&User.count != 0">
-      <div style="width:25%;padding:5px;">
+      <div style="width:25%;padding-right:10px;">
         <h3>My Projects</h3>
         <collection with="&current_user.projects.active">
           <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
@@ -26,7 +26,7 @@
           <ht key="project.actions.new">New Project</ht>
         </a:projects>
       </div>
-      <div style="width:40%;padding:5px;">
+      <div style="width:40%;padding-right:10px;">
        <section>
         <h3>My Tasks</h3>
         <table-plus with="&current_user.items" fields="project,id, this, lane.title" without-search-form>
