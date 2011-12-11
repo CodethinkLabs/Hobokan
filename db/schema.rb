@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207133510) do
+ActiveRecord::Schema.define(:version => 20111210222227) do
 
   create_table "item_assignments", :force => true do |t|
     t.datetime "created_at"
@@ -28,15 +28,15 @@ ActiveRecord::Schema.define(:version => 20111207133510) do
     t.date     "end_date"
     t.string   "title"
     t.text     "text"
+    t.text     "result"
     t.float    "estimation"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "lane_id"
+    t.integer  "project_id"
     t.string   "state",         :default => "normal"
     t.datetime "key_timestamp"
-    t.integer  "project_id"
-    t.text     "result"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
@@ -45,22 +45,22 @@ ActiveRecord::Schema.define(:version => 20111207133510) do
 
   create_table "lanes", :force => true do |t|
     t.string   "title"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_id"
     t.string   "background_color"
     t.string   "color",            :default => "#000000"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position"
+    t.integer  "project_id"
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
 
   create_table "project_members", :force => true do |t|
+    t.boolean  "administrator", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
     t.integer  "user_id"
-    t.boolean  "administrator", :default => false
   end
 
   add_index "project_members", ["project_id"], :name => "index_project_members_on_project_id"
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(:version => 20111207133510) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
+    t.text     "details"
+    t.boolean  "per_project_permissions", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "per_project_permissions", :default => false
-    t.text     "details"
     t.string   "state",                   :default => "running"
     t.datetime "key_timestamp"
   end
