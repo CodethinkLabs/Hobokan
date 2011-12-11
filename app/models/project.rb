@@ -11,6 +11,8 @@ class Project < ActiveRecord::Base
     timestamps
   end
 
+  set_search_columns :name, :details
+
   lifecycle do
     state :running, :default => :true
     state :completed

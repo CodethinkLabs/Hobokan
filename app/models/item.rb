@@ -16,6 +16,8 @@ class Item < ActiveRecord::Base
     timestamps
   end
 
+  set_search_columns :title, :text, :result
+
   # validates_date :start_date, :on_or_after => Date.today
   # validates_date :end_date, :on_or_after => Date.today
 
