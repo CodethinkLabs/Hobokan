@@ -17,8 +17,18 @@
 
     <section-group>
     <if test="&User.count != 0">
-     <section>
-       <h3>My Tasks</h3>
+      <div style="width:25%;padding:5px;">
+        <h3>My Projects</h3>
+        <collection with="&current_user.projects.active">
+          <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
+        </collection>
+        <a:projects action="new">
+          <ht key="project.actions.new">New Project</ht>
+        </a:projects>
+      </div>
+      <div style="width:40%;padding:5px;">
+       <section>
+        <h3>My Tasks</h3>
         <table-plus with="&current_user.items" fields="project,id, this, lane.title" without-search-form>
           <lane-title-heading:>Status</lane-title-heading:>
           <Item-heading:>Description</Item-heading>
@@ -29,12 +39,7 @@
           </project-view:>
         </table-plus>
       </section>
-      <aside style="width:20%;">
-        <h3>My Projects</h3>
-        <collection with="&current_user.projects.active">
-          <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
-        </collection>
-      </aside>
+      </div>
       <if test="&current_user.administrator">
         <aside with="&current_user" style="width:20%;">
           <change-log-view/>
