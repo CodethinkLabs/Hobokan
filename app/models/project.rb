@@ -38,19 +38,6 @@ class Project < ActiveRecord::Base
     errors.add :lanes, 'you must enter at least one lane' if lanes.nil? || lanes.length == 0
   end
 
-  def states
-    lanes.map { |lane| lane.state}.join("\n")
-  end
-
-  def stories
-    result = []
-    lanes.each do |lane|
-      result << lane.stories
-    end
-
-    return result.join("\n")
-  end
-
   def versions
     v = Version.arel_table
     #this is a nasty hack - item.position changes so often it clutters the log - so only take changes with an "e" in the field!?
