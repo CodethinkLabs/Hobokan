@@ -4,6 +4,7 @@
       <section>
         <h2> Edit Project</h2>
         <error-messages/>
+        <transition-buttons style="float:left;"/>
         <form>
           <field-list fields="name, details">
           </field-list>
