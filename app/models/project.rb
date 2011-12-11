@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
     state :running, :default => :true
     state :completed
 
-    transition :finish, { :running => :completed } ,  :available_to => "User.administrator"
+    transition :archive, { :running => :completed } ,  :available_to => "User.administrator"
     transition :reopen, { :completed => :running } ,  :available_to => "User.administrator"
   end
 
