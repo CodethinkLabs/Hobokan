@@ -13,10 +13,12 @@
     <custom-scripts:>
       <hjq-assets/>
     </custom-scripts>
+    <header:>
+      <account-nav if="&login_url(Hobo::Model::UserBase.default_user_model)"/>
+      <h1><a href="#{base_url}/"><app-name/></a> <live-search if="&defined_route? :site_search" style="float:right;"/></h1>
+    </header:>
     <footer:>
-      <a href="&admin_users_url" if="&current_user.administrator?">
-        <t key="hobo.admin.subsite_name">Admin</t>
-      </a>
+      <a href="&admin_users_url" if="&current_user.administrator?" style="float:right;">User Admin</a>
     </footer:>
   </old-page>
 </extend>
