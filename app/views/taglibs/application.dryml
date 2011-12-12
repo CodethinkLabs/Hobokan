@@ -15,7 +15,7 @@
     </custom-scripts>
     <header:>
       <account-nav if="&login_url(Hobo::Model::UserBase.default_user_model)"/>
-      <div style="padding:20px;"><a href="#{base_url}/" style="color:white;font-size:18pt;"><app-name/></a><live-search if="&defined_route? :site_search" style="float:right;"/></div>
+      <div style="padding:20px;"><a href="#{base_url}/" style="color:white;font-size:18pt;"><app-name/></a><if test="&current_user.signed_up?"><live-search if="&defined_route? :site_search" style="float:right;"/></if></div>
     </header:>
     <footer:>
       <a href="&admin_users_url" if="&current_user.administrator?" style="float:right;">User Admin</a>
