@@ -13,6 +13,8 @@ class Milestone < ActiveRecord::Base
   belongs_to :project
   has_many :items
 
+  set_default_order "date DESC"
+
   # --- Permissions --- #
 
   def create_permitted?
