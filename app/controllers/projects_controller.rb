@@ -13,6 +13,8 @@ class ProjectsController < ApplicationController
 
   def kanban
     @project = find_instance
+    @items = @project.items.active.apply_scopes(:milestone_is => params[:milestone])
+
     if request.xhr?
       handle_item_drop
       hobo_ajax_response

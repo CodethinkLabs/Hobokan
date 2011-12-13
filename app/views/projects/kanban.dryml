@@ -2,9 +2,9 @@
   <content: replace>
   <section-group>
     <div class="section content-body">
+	  <filter-menu param-name="milestone" options="&@this.milestones.all" no-filter="All tasks"/>
       <h3>
         <a><name/></a>
-
       <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
       <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
 	  <div id="edit-item-dialog"></div>
@@ -17,10 +17,11 @@
          <% if days >= 1 %>
            <% thiswidth = (100 * days /(this.project.milestones.last.date - Date.today)).to_i.to_s + "%" %>
            <div style="width:#{thiswidth};background-color:#{this.background_color}">
-             <name/> <%= (this.date - Date.today).to_i %> days, <%= this.items.count %> tasks
-           </div>
+           <br/> 
+           </div>  <name/> <%= (this.date - Date.today).to_i %> days, <%= this.items.active.count %> tasks
           <% end %>
        </repeat:milestones>
+       <br/>
 
      </div>
 
