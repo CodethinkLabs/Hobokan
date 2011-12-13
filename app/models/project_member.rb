@@ -36,7 +36,7 @@ class ProjectMember < ActiveRecord::Base
   end
 
   fields do
-    administrator :boolean, :default => false
+    administrator :boolean, :default => true
     timestamps
   end
 
