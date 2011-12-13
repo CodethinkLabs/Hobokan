@@ -1,6 +1,7 @@
 class ProjectMembersAdmins < ActiveRecord::Migration
   def self.up
-    ProjectMember.all do |m|
+    ActiveRecord::Base.logger = Logger.new(STDERR)
+    ProjectMember.all.each do |m|
       m.administrator = true
       m.save
     end
