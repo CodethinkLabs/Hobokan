@@ -11,6 +11,19 @@
 
       </h3>
 
+     <div class="timeline" id="timeline">
+       <repeat:milestones>
+         <% days = (this.date - Date.today).to_i %>
+         <% if days >= 1 %>
+           <% thiswidth = (100 * days /(this.project.milestones.last.date - Date.today)).to_i.to_s + "%" %>
+           <div style="width:#{thiswidth};background-color:#{this.background_color}">
+             <name/> <%= (this.date - Date.today).to_i %> days, <%= this.items.count %> tasks
+           </div>
+          <% end %>
+       </repeat:milestones>
+
+     </div>
+
       <div class="board" id="kb-board">
         <% lanewidth = ((100 / this.lanes.count) - 2).to_s + "%" %>
         <repeat:lanes>

@@ -38,11 +38,16 @@
 <def tag="kanban-lane" attrs="lanewidth,boxwidth">
   <ul class="kb-lane" id="L#{this.id}" style="width:#{lanewidth}">
      <h3><a href="/lanes/#{this.id}/kanban_lane"><b><this/></b> <span style="font-size:50%; float:right;"><this.items.active.count/></span> </a></h3>
-     <set color="#{this.background_color}"/>
      <repeat:items.active>
+       <% if this.milestone %>
+         <set color = "#{this.milestone.background_color}"/> 
+       <% else %>
+         <set color = "#ddffdd"/> 
+       <% end %>
        <li class="box" id="S#{this.id}" style="width:#{boxwidth};background-color:#{color};">
-         <a href="/items/#{this.id}">S<this.id/> </a><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
-            <this.title/> <repeat:users>(<%= this.name.split(' ')[0] %>)</repeat:users>
+         <a href="/items/#{this.id}">S<this.id/> </a>
+         <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
+           <this.title/> <repeat:users>(<%= this.name.split(' ')[0] %>)</repeat:users>
          </a>
        </li>
      </repeat:items.active>
