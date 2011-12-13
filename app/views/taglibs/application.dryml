@@ -42,7 +42,7 @@
        <% if this.milestone %>
          <set color = "#{this.milestone.background_color}"/> 
        <% else %>
-         <set color = "#{this.lane.background_color}"/> 
+         <set color = "#ddffdd"/> 
        <% end %>
        <li class="box" id="S#{this.id}" style="width:#{boxwidth};background-color:#{color};">
          <a href="/items/#{this.id}">S<this.id/> </a>
