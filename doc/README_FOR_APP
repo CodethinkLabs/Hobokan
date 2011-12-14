@@ -15,4 +15,6 @@ $ git push git@heroku.com:xx-kanban.git
 $ heroku db:push --app xx-kanban
 $ heroku addons:add sendgrid:starter --app xx-kanban
 
+you'll also need to edit 'host' and possibly 'protocol' in production.rb
+
 it should now be possible to create first admin user on heroku instance, then invite users, create projects etc
