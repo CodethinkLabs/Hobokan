@@ -9,6 +9,9 @@
        <users-view:>
          <select-users/>
        </users-view:>
+       <milestone-view:>
+         <select-one options="&@item.project.milestones"/>
+       </milestone-view:>
     </field-list>
     <submit: label="#{ht 'Item.actions.save', :default=>['Save'] }" style=""/>
   </form>
