@@ -2,11 +2,13 @@
   <content:>
     <section-group>
       <section>
-        <h2> Edit Project</h2>
+        <h2> Edit Project <transition-buttons style="float:right;"/></h2>
         <error-messages/>
         <form>
           <field-list fields="name, details">
           </field-list>
+         <h2>Milestones</h2>
+         <input-many:milestones><field-list fields="name, date, background_color"/></input-many>
           <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
          </form>
        </section>

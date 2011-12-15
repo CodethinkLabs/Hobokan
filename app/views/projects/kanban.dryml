@@ -3,13 +3,26 @@
   <section-group>
     <div class="section content-body">
       <h3>
-        <a><name/></a>
-
+        <a style="float:left;>"><name/></a>
+	  <div class="filter" style="float:left;"><filter-menu param-name="milestone" options="&@this.milestones.all" no-filter="All tasks" /></div>
       <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
       <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
 	  <div id="edit-item-dialog"></div>
 
       </h3>
+
+     <div class="timeline" id="timeline">
+       <repeat:milestones>
+         <% days = (this.date - Date.today).to_i %>
+         <% if days >= 1 %>
+           <% thiswidth = (100 * days /(this.project.milestones.last.date - Date.today)).to_i.to_s + "%" %>
+           <div style="width:#{thiswidth};background-color:#{this.background_color}">
+           <name/>:<%= this.items.active.count %>:<%= (this.date - Date.today).to_i %></div>
+          <% end %>
+       </repeat:milestones>
+       <br/>
+
+     </div>
 
       <div class="board" id="kb-board">
         <% lanewidth = ((100 / this.lanes.count) - 2).to_s + "%" %>

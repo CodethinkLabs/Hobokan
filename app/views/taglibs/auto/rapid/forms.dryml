@@ -46,14 +46,14 @@
 </def>
 
 
-<def tag="finish-form" polymorphic/>
-<def tag="finish-form" for="Project">
-  <form lifecycle="finish" merge param="default">
+<def tag="archive-form" polymorphic/>
+<def tag="archive-form" for="Project">
+  <form lifecycle="archive" merge param="default">
     <error-messages param/>
     <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
     <field-list fields="" param/>
     <div param="actions">
-      <submit label="#{t 'activerecord.attributes.project.lifecycle.transitions.finish', :default=>['Finish']}" param/><or-cancel param="cancel"/>
+      <submit label="#{t 'activerecord.attributes.project.lifecycle.transitions.archive', :default=>['Archive']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

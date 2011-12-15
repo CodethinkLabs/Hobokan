@@ -10,11 +10,13 @@ class Project < ActiveRecord::Base
     timestamps
   end
 
+  set_search_columns :name, :details
+
   lifecycle do
     state :running, :default => :true
     state :completed
 
-    transition :finish, { :running => :completed } ,  :available_to => "User.administrator"
+    transition :archive, { :running => :completed } ,  :available_to => "User.administrator"
     transition :reopen, { :completed => :running } ,  :available_to => "User.administrator"
   end
 
@@ -27,6 +29,7 @@ class Project < ActiveRecord::Base
   has_many :items, :dependent => :destroy
   has_many :project_members, :accessible => true
   has_many :users, :through => :project_members
+  has_many :milestones, :accessible => true
 
   validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
 
@@ -35,19 +38,6 @@ class Project < ActiveRecord::Base
   def lane_present
     logger.debug("Project#lane_present lanes: #{lanes.inspect}")
     errors.add :lanes, 'you must enter at least one lane' if lanes.nil? || lanes.length == 0
-  end
-
-  def states
-    lanes.map { |lane| lane.state}.join("\n")
-  end
-
-  def stories
-    result = []
-    lanes.each do |lane|
-      result << lane.stories
-    end
-
-    return result.join("\n")
   end
 
   def versions

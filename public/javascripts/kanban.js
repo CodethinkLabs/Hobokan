@@ -8,7 +8,10 @@ var drop_handler = function() {
   var item_id = this.attr("id").substr(1);
   var lane_id = this.parent().attr("id").substr(1);
 
-  Hobo.ajaxRequest( window.location.href + "?lane_id=" + lane_id + "&item_id=" + item_id + item_ordering,
+  var startchar = "?"
+  if (window.location.href.indexOf("?") != -1) startchar = "&"
+
+  Hobo.ajaxRequest( window.location.href + startchar + "lane_id=" + lane_id + "&item_id=" + item_id + item_ordering,
                     [],
                     { params: { lane_id: lane_id, item_id: item_id },
                       action: 'show',

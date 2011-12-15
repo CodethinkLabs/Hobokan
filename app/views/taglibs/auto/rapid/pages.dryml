@@ -482,23 +482,23 @@
 
 
 
-<def tag="finish-page" polymorphic/>
-<def tag="finish-page" for="Project">
-  <page title="#{ht 'project.finish.title', :default=>['Finish']}" merge>
+<def tag="archive-page" polymorphic/>
+<def tag="archive-page" for="Project">
+  <page title="#{ht 'project.archive.title', :default=>['Archive']}" merge>
 
-    <body: class="lifecycle-transition-page finish-page" param/>
+    <body: class="lifecycle-transition-page archive-page" param/>
 
     <content:>
       <header param="content-header">
         <h2 param="heading">
-          <ht key="project.finish.heading">
-            Finish
+          <ht key="project.archive.heading">
+            Archive
           </ht>
         </h2>
       </header>
 
       <section param="content-body">
-        <finish-form param="form"/>
+        <archive-form param="form"/>
       </section>
     </content:>
 

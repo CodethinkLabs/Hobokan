@@ -2,7 +2,6 @@
 <content:>
   <section-group>
     <section>
-      <transition-buttons style="float:left;"/>
       <a action="edit" style="float:right;">Edit Project</a>
       <field-list skip="items, project_members">
         <details-view:><if><this.to-html.html-safe/></if></details-view:>
