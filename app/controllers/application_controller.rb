@@ -51,7 +51,7 @@ private
       Project.all.each do |project|
         # Clients can only view projects of which they are a member, but anyone
         # else can view all the projects
-        if current_user.role != :client && !view_memberships.include?(project.id)
+        if current_user.role == :sales || current_user.role == :developer ||current_user.role == :manager
           view_memberships.push(project.id)
         end
       end
