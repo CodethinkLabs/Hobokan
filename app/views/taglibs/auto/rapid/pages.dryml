@@ -82,6 +82,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:lane param="parent-link">&laquo; <ht key="item.actions.back_to_parent" parent="Lane" name="&this">Back to <name/></ht></a:lane>
             <h2 param="heading">
               <ht key="item.show.heading" name="#{name(:no_wrapper => true)}">
                 Item <name/>
@@ -98,7 +99,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, result, estimation, position, state, lane, project" param/>
+            <field-list fields="start_date, end_date, text, result, estimation, position, state, milestone, project" param/>
           </section>
     </content:>
 

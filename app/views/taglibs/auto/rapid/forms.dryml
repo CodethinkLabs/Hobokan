@@ -3,7 +3,7 @@
 <def tag="form" for="Item">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="start_date, end_date, title, text, result, estimation, position, state, lane, project, project_members" param/>
+    <field-list fields="start_date, end_date, title, text, result, estimation, position, state, lane, milestone, project, project_members" param/>
     <div param="actions">
       <submit label="#{ht 'item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -38,7 +38,7 @@
 <def tag="form" for="Project">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, details, state, lanes, project_members" param/>
+    <field-list fields="name, details, state, lanes, milestones, project_members" param/>
     <div param="actions">
       <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
