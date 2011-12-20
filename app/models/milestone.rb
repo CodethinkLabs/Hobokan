@@ -18,19 +18,22 @@ class Milestone < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    logger.debug("Milestone#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
+    ProjectMember.memberships.include?(project_id)
   end
 
   def update_permitted?
-    acting_user.administrator?
+    logger.debug("Milestone#update_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
+    ProjectMember.memberships.include?(project_id)
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    ProjectMember.memberships.include?(project_id)
   end
 
   def view_permitted?(field)
-    true
+    logger.debug("Milestone#view_permitted? #{ProjectMember.view_memberships.inspect} project_id: #{project_id}")
+    ProjectMember.view_memberships.include?(project_id)
   end
 
 end
