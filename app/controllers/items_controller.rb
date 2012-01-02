@@ -35,6 +35,7 @@ class ItemsController < ApplicationController
   def do_archive
     item = find_instance
     item.state = "archived"
+    item.lane = item.project.lanes.last
     item.save
     redirect_to(:controller => 'projects', :action => 'kanban', :id => item.lane.project.id)
   end
