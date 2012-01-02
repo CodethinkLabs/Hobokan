@@ -14,7 +14,7 @@
       <hjq-assets/>
     </custom-scripts>
     <header:>
-      <account-nav if="&login_url(Hobo::Model::UserBase.default_user_model)"/>
+      <account-nav if="&current_user.signed_up?"/>
       <div style="padding:20px;"><a href="#{base_url}/" style="color:white;font-size:18pt;"><app-name/></a><if test="&current_user.signed_up?"><live-search if="&defined_route? :site_search" style="float:right;"/></if></div>
     </header:>
     <footer:>
