@@ -3,22 +3,22 @@
 </def>
 
 <show-page>
-  <content-header: replace>
-            <h2>
-              <%= "#{this.project.name}:" %>
-              <ht key="lane.show.heading" name="#{name(:no_wrapper => true)}">
-                <name/>
-              </ht>
-            </h2>
-  </content-header>
-
-  <content-body: replace>
+  <content: replace>
+    <a:project action="kanban">
+      &laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to <name/></ht>
+    </a:project>
+    <h2>
+      <%= "#{this.project.name}:" %>
+      <ht key="lane.show.heading" name="#{name(:no_wrapper => true)}">
+        <name/>
+      </ht>
+    </h2>
     <table-plus:items fields="id, this, text">
       <id-view:>
         <item-story-id/>
       </id-view:>
 
     </table-plus>
-  </content-body>
+  </content:>
 
 </show-page>
