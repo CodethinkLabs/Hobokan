@@ -9,6 +9,13 @@ class ItemAssignment < ActiveRecord::Base
   belongs_to :project_member
   belongs_to :item
 
+  before_save :log_assignment
+
+  def log_assignment
+    item.result = project_member.name + " assigned" + "\n" + item.result.to_s
+    item.save
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
