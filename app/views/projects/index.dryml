@@ -1,10 +1,11 @@
 <index-page >
-  <collection: replace>
+  <content: replace>
+    <h4>My Projects</h4>
     <collection with="&@projects">
       <div>
         <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
       </div>
     </collection>
-  </collection:>
+  </content:>
 </index-page>
 
