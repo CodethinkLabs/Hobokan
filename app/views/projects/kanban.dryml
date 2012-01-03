@@ -13,7 +13,7 @@
 
      <div class="timeline" id="timeline">
        <repeat:milestones>
-         <% days = (this.date - Date.today).to_i %>
+         <% days = ((this.date - Date.today) * 5 / 7).to_i %>
          <% if days < 1 %><% days = 0 %><% end %>
          <% thiswidth = (100 * days /(this.project.milestones.last.date - Date.today)).to_i.to_s + "%" %>
          <div style="width:#{thiswidth};background-color:#{this.background_color}">
