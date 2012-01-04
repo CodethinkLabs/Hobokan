@@ -14,6 +14,7 @@
         </h3>
 
         <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+        <div id="edit-item-dialog"></div>
 
         <div class="board" id="kb-board">
           <kanban-lane lanewidth="100%" boxwidth="17%"/>

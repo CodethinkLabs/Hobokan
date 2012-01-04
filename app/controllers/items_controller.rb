@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
         @item.save
         lane = @item.lane.project.lanes[0]
         project = @item.lane.project
-        redirect_to(:controller => 'projects', :action => 'kanban', :id => @item.lane.project.id)
+        redirect_to :back
       end
     end
   end
@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
     item.state = "archived"
     item.lane = item.project.lanes.last
     item.save
-    redirect_to(:controller => 'projects', :action => 'kanban', :id => item.lane.project.id)
+    redirect_to :back
   end
 
   def ajax_item
@@ -64,7 +64,7 @@ class ItemsController < ApplicationController
     hobo_update do
       if valid?
         item = find_instance
-         redirect_to(:controller => 'projects', :action => 'kanban', :id => @item.lane.project.id)
+         redirect_to :back
       end
     end
   end
