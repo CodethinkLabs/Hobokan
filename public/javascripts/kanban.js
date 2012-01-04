@@ -41,7 +41,6 @@ var get_item_details = function(board, item_id) {
                           };
                         });
 
-                        var temp = jQuery('#item-dialog-s187');
                         hjq.dialog_opener.click(this, jQuery('#item-dialog-s' + item_id));
                       },
 
