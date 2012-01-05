@@ -12,7 +12,8 @@
       </h3>
 
       <div class="timeline" id="timeline">
-        <% days = ((this.milestones.last.date - Date.today) * 5 / 7).to_i %>
+        <% days = 0 %>
+        <% if this.milestones.last %><% days = ((this.milestones.last.date - Date.today) * 5 / 7).to_i %><% end %>
         <% if days < 1 %><% days = 1 %><% end %>
         <repeat:milestones>
           <% days = (this.date - Date.today).to_i %>
