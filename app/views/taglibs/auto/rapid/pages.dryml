@@ -356,6 +356,126 @@
 
 
 
+<!-- ====== Milestone Pages ====== -->
+
+<def tag="index-page" for="Milestone">
+  <page merge title="#{ht 'milestone.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page milestone" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="milestone.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="milestone.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="milestone.actions.new">New Milestone</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Milestone">
+  <page merge title="#{ht 'milestone.new.title', :default=>[' New Milestone'] }">
+    <body: class="new-page milestone" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="milestone.new.heading">
+            New Milestone
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'milestone.actions.create', :default=>['Create Milestone']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Milestone">
+  <page merge title="#{ht 'milestone.show.title', :default=>['Milestone'], :name => name(:no_wrapper => true) }">
+
+    <body: class="show-page milestone" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="milestone.show.heading" name="#{name(:no_wrapper => true)}">
+                Milestone <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="milestone.actions.edit" name="#{name(:no_wrapper => true)}">
+                Edit Milestone
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="date, background_color, color, project" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Milestone">
+  <page merge title="#{ht 'milestone.edit.title', :default=>['Edit Milestone'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page milestone" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="milestone.edit.heading" name="#{name(:no_wrapper => true)}">
+            Edit Milestone
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'milestone.actions.delete', :default=>['Remove This Milestone']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Project Pages ====== -->
 
 <def tag="index-page" for="Project">

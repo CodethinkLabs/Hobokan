@@ -5,6 +5,64 @@
 CtKanban::Application.routes.draw do
 
 
+  # Lifecycle routes for controller "items"
+  put 'items/:id/archive(.:format)' => 'items#do_archive', :as => 'do_item_archive'
+  get 'items/:id/archive(.:format)' => 'items#archive', :as => 'item_archive'
+
+  # Resource routes for controller "items"
+  get 'items/new(.:format)', :as => 'new_item'
+  get 'items/:id/edit(.:format)' => 'items#edit', :as => 'edit_item'
+  get 'items/:id(.:format)' => 'items#show', :as => 'item', :constraints => { :id => %r([^/.?]+) }
+  post 'items(.:format)' => 'items#create', :as => 'create_item'
+  put 'items/:id(.:format)' => 'items#update', :as => 'update_item', :constraints => { :id => %r([^/.?]+) }
+  delete 'items/:id(.:format)' => 'items#destroy', :as => 'destroy_item', :constraints => { :id => %r([^/.?]+) }
+
+  # Owner routes for controller "items"
+  get 'lanes/:lane_id/items/new(.:format)' => 'items#new_for_lane', :as => 'new_item_for_lane'
+  post 'lanes/:lane_id/items(.:format)' => 'items#create_for_lane', :as => 'create_item_for_lane'
+
+  # Show action routes for controller "items"
+  get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
+
+
+  # Resource routes for controller "lanes"
+  get 'lanes/new(.:format)', :as => 'new_lane'
+  get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
+  get 'lanes/:id(.:format)' => 'lanes#show', :as => 'lane', :constraints => { :id => %r([^/.?]+) }
+  post 'lanes(.:format)' => 'lanes#create', :as => 'create_lane'
+  put 'lanes/:id(.:format)' => 'lanes#update', :as => 'update_lane', :constraints => { :id => %r([^/.?]+) }
+  delete 'lanes/:id(.:format)' => 'lanes#destroy', :as => 'destroy_lane', :constraints => { :id => %r([^/.?]+) }
+
+  # Owner routes for controller "lanes"
+  get 'projects/:project_id/lanes/new(.:format)' => 'lanes#new_for_project', :as => 'new_lane_for_project'
+  post 'projects/:project_id/lanes(.:format)' => 'lanes#create_for_project', :as => 'create_lane_for_project'
+
+  # Show action routes for controller "lanes"
+  get 'lanes/:id/kanban_lane(.:format)' => 'lanes#kanban_lane', :as => 'lane_kanban_lane'
+
+  # Reorder routes for controller "lanes"
+  post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
+
+
+  # Lifecycle routes for controller "projects"
+  put 'projects/:id/archive(.:format)' => 'projects#do_archive', :as => 'do_project_archive'
+  get 'projects/:id/archive(.:format)' => 'projects#archive', :as => 'project_archive'
+  put 'projects/:id/reopen(.:format)' => 'projects#do_reopen', :as => 'do_project_reopen'
+  get 'projects/:id/reopen(.:format)' => 'projects#reopen', :as => 'project_reopen'
+
+  # Resource routes for controller "projects"
+  get 'projects(.:format)' => 'projects#index', :as => 'projects'
+  get 'projects/new(.:format)', :as => 'new_project'
+  get 'projects/:id/edit(.:format)' => 'projects#edit', :as => 'edit_project'
+  get 'projects/:id(.:format)' => 'projects#show', :as => 'project', :constraints => { :id => %r([^/.?]+) }
+  post 'projects(.:format)' => 'projects#create', :as => 'create_project'
+  put 'projects/:id(.:format)' => 'projects#update', :as => 'update_project', :constraints => { :id => %r([^/.?]+) }
+  delete 'projects/:id(.:format)' => 'projects#destroy', :as => 'destroy_project', :constraints => { :id => %r([^/.?]+) }
+
+  # Show action routes for controller "projects"
+  get 'projects/:id/kanban(.:format)' => 'projects#kanban', :as => 'project_kanban'
+
+
   # Lifecycle routes for controller "users"
   put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
   get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'
@@ -28,62 +86,13 @@ CtKanban::Application.routes.draw do
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
 
-  # Lifecycle routes for controller "items"
-  put 'items/:id/archive(.:format)' => 'items#do_archive', :as => 'do_item_archive'
-  get 'items/:id/archive(.:format)' => 'items#archive', :as => 'item_archive'
-
-  # Resource routes for controller "items"
-  get 'items/new(.:format)', :as => 'new_item'
-  get 'items/:id/edit(.:format)' => 'items#edit', :as => 'edit_item'
-  get 'items/:id(.:format)' => 'items#show', :as => 'item', :constraints => { :id => %r([^/.?]+) }
-  post 'items(.:format)' => 'items#create', :as => 'create_item'
-  put 'items/:id(.:format)' => 'items#update', :as => 'update_item', :constraints => { :id => %r([^/.?]+) }
-  delete 'items/:id(.:format)' => 'items#destroy', :as => 'destroy_item', :constraints => { :id => %r([^/.?]+) }
-
-  # Owner routes for controller "items"
-  get 'lanes/:lane_id/items/new(.:format)' => 'items#new_for_lane', :as => 'new_item_for_lane'
-  post 'lanes/:lane_id/items(.:format)' => 'items#create_for_lane', :as => 'create_item_for_lane'
-
-  # Show action routes for controller "items"
-  get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
-
-
-  # Lifecycle routes for controller "projects"
-  put 'projects/:id/archive(.:format)' => 'projects#do_archive', :as => 'do_project_archive'
-  get 'projects/:id/archive(.:format)' => 'projects#archive', :as => 'project_archive'
-  put 'projects/:id/reopen(.:format)' => 'projects#do_reopen', :as => 'do_project_reopen'
-  get 'projects/:id/reopen(.:format)' => 'projects#reopen', :as => 'project_reopen'
-
-  # Resource routes for controller "projects"
-  get 'projects(.:format)' => 'projects#index', :as => 'projects'
-  get 'projects/new(.:format)', :as => 'new_project'
-  get 'projects/:id/edit(.:format)' => 'projects#edit', :as => 'edit_project'
-  get 'projects/:id(.:format)' => 'projects#show', :as => 'project', :constraints => { :id => %r([^/.?]+) }
-  post 'projects(.:format)' => 'projects#create', :as => 'create_project'
-  put 'projects/:id(.:format)' => 'projects#update', :as => 'update_project', :constraints => { :id => %r([^/.?]+) }
-  delete 'projects/:id(.:format)' => 'projects#destroy', :as => 'destroy_project', :constraints => { :id => %r([^/.?]+) }
-
-  # Show action routes for controller "projects"
-  get 'projects/:id/kanban(.:format)' => 'projects#kanban', :as => 'project_kanban'
-
-
-  # Resource routes for controller "lanes"
-  get 'lanes/new(.:format)', :as => 'new_lane'
-  get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
-  get 'lanes/:id(.:format)' => 'lanes#show', :as => 'lane', :constraints => { :id => %r([^/.?]+) }
-  post 'lanes(.:format)' => 'lanes#create', :as => 'create_lane'
-  put 'lanes/:id(.:format)' => 'lanes#update', :as => 'update_lane', :constraints => { :id => %r([^/.?]+) }
-  delete 'lanes/:id(.:format)' => 'lanes#destroy', :as => 'destroy_lane', :constraints => { :id => %r([^/.?]+) }
-
-  # Owner routes for controller "lanes"
-  get 'projects/:project_id/lanes/new(.:format)' => 'lanes#new_for_project', :as => 'new_lane_for_project'
-  post 'projects/:project_id/lanes(.:format)' => 'lanes#create_for_project', :as => 'create_lane_for_project'
-
-  # Show action routes for controller "lanes"
-  get 'lanes/:id/kanban_lane(.:format)' => 'lanes#kanban_lane', :as => 'lane_kanban_lane'
-
-  # Reorder routes for controller "lanes"
-  post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
+  # Resource routes for controller "milestones"
+  get 'milestones/new(.:format)', :as => 'new_milestone'
+  get 'milestones/:id/edit(.:format)' => 'milestones#edit', :as => 'edit_milestone'
+  get 'milestones/:id(.:format)' => 'milestones#show', :as => 'milestone', :constraints => { :id => %r([^/.?]+) }
+  post 'milestones(.:format)' => 'milestones#create', :as => 'create_milestone'
+  put 'milestones/:id(.:format)' => 'milestones#update', :as => 'update_milestone', :constraints => { :id => %r([^/.?]+) }
+  delete 'milestones/:id(.:format)' => 'milestones#destroy', :as => 'destroy_milestone', :constraints => { :id => %r([^/.?]+) }
 
   namespace :admin do
 

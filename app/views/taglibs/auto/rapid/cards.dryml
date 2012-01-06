@@ -32,7 +32,7 @@
 <def tag="card" for="Milestone">
   <card class="milestone" param="default" merge>
     <header: param>
-      <h4 param="heading"><name/></h4>
+      <h4 param="heading"><a><name/></a></h4>
     </header:>
   </card>
 </def>
