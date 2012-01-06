@@ -13,7 +13,7 @@
 
       <div class="timeline" id="timeline">
         <% days = 0 %>
-        <% if this.milestones.last %><% days = ((this.milestones.last.date - Date.today) * 5 / 7).to_i %><% end %>
+        <% if this.milestones.last %><% days = (this.milestones.last.date - Date.today).to_i %><% end %>
         <% if days < 1 %><% days = 1 %><% end %>
         <repeat:milestones>
           <% days = (this.date - Date.today).to_i %>
@@ -22,13 +22,13 @@
             <% date = Date.today %>
             <% days.times do %>
               <% color = this.background_color %>
-              <% if date.wday == 0 or date.wday == 6 %><% color = "white" %><% end %>
+              <% if date.wday == 0 or date.wday == 6 %><% color = "#f2f2f2" %><% end %>
               <span style="font-sze:65%;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;">
                 &nbsp;
 	          </span>
 	          <% date = date + 1 %>
             <% end %>
-            &nbsp; <name/>: <%= this.items.active.count %> tasks
+            &nbsp; <name/>:<%= this.date.strftime("%d-%b") %>: <%= this.items.active.count %> tasks
           </div>
         </repeat:milestones>
       </div>

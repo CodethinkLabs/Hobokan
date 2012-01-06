@@ -28,8 +28,9 @@
 <def tag="nil-view"></def>
 <def tag="input" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
 <def tag="edit" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
-
+<def tag="view" for="Date" attrs="format"><%= this.strftime("%d/%m/%y") %></def>
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
+
 
 <def tag="select-many-in-project-members">
   <select-many merge options="&@item.project.project_members"/>
