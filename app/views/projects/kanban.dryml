@@ -16,6 +16,7 @@
         <% if this.milestones.last %><% days = (this.milestones.last.date - Date.today).to_i %><% end %>
         <% if days < 1 %><% days = 1 %><% end %>
         <repeat:milestones>
+        <if test="&this.items.active.count > 0">
           <% days = (this.date - Date.today).to_i %>
           <% if days < 1 %><% days = 0 %><% end %>
           <div><a href="/milestones/#{this.id}/edit" style="border-bottom:none;">
@@ -30,6 +31,7 @@
             <% end %>
             &nbsp; <name/>:<%= this.date.strftime("%d-%b") %>: <%= this.items.active.count %> tasks</a>
           </div>
+        </if>
         </repeat:milestones>
       </div>
       <br/>
