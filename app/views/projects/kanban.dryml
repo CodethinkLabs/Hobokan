@@ -18,8 +18,9 @@
         <repeat:milestones>
         <if test="&this.items.active.count > 0">
           <% days = (this.date - Date.today).to_i %>
-          <% if days < 1 %><% days = 0 %><% end %>
-          <div><a href="/milestones/#{this.id}/edit" style="border-bottom:none;">
+          <% fontcolor = "color:black;" %>
+          <% if days < 1 %><% days = 0 %><% fontcolor = "color:red;" %><% end %>
+          <div><a href="/milestones/#{this.id}/edit" style="border-bottom:none;#{fontcolor}">
             <% date = Date.today %>
             <% days.times do %>
               <% color = this.background_color %>
