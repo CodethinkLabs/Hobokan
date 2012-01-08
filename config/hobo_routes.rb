@@ -44,6 +44,15 @@ CtKanban::Application.routes.draw do
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
 
 
+  # Resource routes for controller "milestones"
+  get 'milestones/new(.:format)', :as => 'new_milestone'
+  get 'milestones/:id/edit(.:format)' => 'milestones#edit', :as => 'edit_milestone'
+  get 'milestones/:id(.:format)' => 'milestones#show', :as => 'milestone', :constraints => { :id => %r([^/.?]+) }
+  post 'milestones(.:format)' => 'milestones#create', :as => 'create_milestone'
+  put 'milestones/:id(.:format)' => 'milestones#update', :as => 'update_milestone', :constraints => { :id => %r([^/.?]+) }
+  delete 'milestones/:id(.:format)' => 'milestones#destroy', :as => 'destroy_milestone', :constraints => { :id => %r([^/.?]+) }
+
+
   # Lifecycle routes for controller "projects"
   put 'projects/:id/archive(.:format)' => 'projects#do_archive', :as => 'do_project_archive'
   get 'projects/:id/archive(.:format)' => 'projects#archive', :as => 'project_archive'
@@ -84,15 +93,6 @@ CtKanban::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
-
-
-  # Resource routes for controller "milestones"
-  get 'milestones/new(.:format)', :as => 'new_milestone'
-  get 'milestones/:id/edit(.:format)' => 'milestones#edit', :as => 'edit_milestone'
-  get 'milestones/:id(.:format)' => 'milestones#show', :as => 'milestone', :constraints => { :id => %r([^/.?]+) }
-  post 'milestones(.:format)' => 'milestones#create', :as => 'create_milestone'
-  put 'milestones/:id(.:format)' => 'milestones#update', :as => 'update_milestone', :constraints => { :id => %r([^/.?]+) }
-  delete 'milestones/:id(.:format)' => 'milestones#destroy', :as => 'destroy_milestone', :constraints => { :id => %r([^/.?]+) }
 
   namespace :admin do
 
