@@ -18,6 +18,13 @@
       <div style="padding:20px;"><a href="#{base_url}/" style="color:white;font-size:18pt;"><app-name/></a><if test="&current_user.signed_up?"><live-search if="&defined_route? :site_search" style="float:right;"/></if></div>
     </header:>
     <footer:>
+      <span style="float:left;">
+      <% if mobile_device? %>
+        <%= link_to "Full Site", :mobile => 0 %>
+      <% else %>
+        <%= link_to "Mobile Site", :mobile => 1 %>
+      <% end %>
+      </span>
       <a href="&admin_users_url" if="&current_user.administrator?" style="float:right;">User Admin</a>
     </footer:>
   </old-page>

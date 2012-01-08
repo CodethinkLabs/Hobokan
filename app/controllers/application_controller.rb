@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
      set_request_environment
   end
 
+  before_filter :prepare_for_mobile
+
   def handle_item_drop
     position = params[:item_ordering].length
     lane = Lane.find(params[:lane_id])
@@ -22,6 +24,20 @@ class ApplicationController < ActionController::Base
   end
 
 private
+
+  def mobile_device?
+    if session[:mobile_param]
+      session[:mobile_param] == "1"
+    else
+      request.user_agent =~ /Mobile|webOS/
+    end
+  end
+
+  helper_method :mobile_device?
+
+  def prepare_for_mobile
+    session[:mobile_param] = params[:mobile] if params[:mobile]
+  end
 
   # Stores parameters for current request
   def set_request_environment
