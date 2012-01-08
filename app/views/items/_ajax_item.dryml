@@ -5,10 +5,13 @@
 <hjq-dialog id="&'item-dialog-s' + my_item.id.to_s" title="Edit a task" position="center" width="&800">
   <transition-buttons/>
   <form with="&my_item" without-cancel>
-    <field-list: fields="title, milestone, text, estimation, project_members, result" >
+    <field-list: fields="title, milestone, lane, text, estimation, project_members, result" >
       <project-members-view:>
         <select-project-members/>
       </project-members-view:>
+      <lane-view:>
+        <select-one options="&@item.project.lanes"/>
+      </lane-view:>
        <milestone-view:>
          <select-one options="&@item.project.milestones"/>
        </milestone-view:>
