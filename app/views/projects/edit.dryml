@@ -25,6 +25,11 @@
      </aside>
    </section-group> 
 
+   <javascript name="jquery.simple-color"/>
+	<script>
+	  jQuery('input[name*="color"]').simpleColor();
+   </script>
+
  </content:>
 </edit-page>
 

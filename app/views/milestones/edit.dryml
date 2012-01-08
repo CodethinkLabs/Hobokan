@@ -3,16 +3,12 @@
     <a:project action="kanban">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to
     <name/></ht></a:project>
 
-<h2> Edit Lane</h2>
+<h2> Edit Milestone</h2>
     <error-messages/>
     <form>
-        <field-list fields="title, position, color, background-color">
-        </field-list>
-      <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
+      <field-list fields="name, date, background-color"/>
+      <submit label="#{ht 'milestone.actions.save', :default=>['Save']}"/>
     </form>
-    <table-plus:items fields="id, this, text">
-    <controls:/>
-    </table-plus>
 
     <javascript name="jquery.simple-color"/>
 	<script>
@@ -21,4 +17,3 @@
 
  </content:>
 </edit-page>
-
