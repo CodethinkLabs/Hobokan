@@ -34,10 +34,15 @@ class Project < ActiveRecord::Base
   validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
 
   validate :lane_present
+  validate :member_present
+
+  def member_present
+    errors.add :project_members, ': you must enter at least one project member' if project_members.nil? || project_members.length == 0
+  end
 
   def lane_present
     logger.debug("Project#lane_present lanes: #{lanes.inspect}")
-    errors.add :lanes, 'you must enter at least one lane' if lanes.nil? || lanes.length == 0
+    errors.add :lanes, ': you must enter at least one lane' if lanes.nil? || lanes.length == 0
   end
 
   def versions
