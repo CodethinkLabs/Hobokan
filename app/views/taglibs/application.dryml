@@ -18,17 +18,35 @@
       <div style="padding:20px;"><a href="#{base_url}/" style="color:white;font-size:18pt;"><app-name/></a><if test="&current_user.signed_up?"><live-search if="&defined_route? :site_search" style="float:right;"/></if></div>
     </header:>
     <footer:>
-      <span style="float:left;">
-      <% if mobile_device? %>
-        <%= link_to "Full Site", :mobile => 0 %>
-      <% else %>
-        <%= link_to "Mobile Site", :mobile => 1 %>
-      <% end %>
-      </span>
       <a href="&admin_users_url" if="&current_user.administrator?" style="float:right;">User Admin</a>
     </footer:>
   </old-page>
 </extend>
+
+<def tag="account-nav">
+  <span style="float:left;margin: -22px 5px 0 0;">
+    <% if mobile_device? %>
+      <a href="#{base_url}/?mobile=0" style="color:white;"> Full Site</a>
+    <% else %>
+      <a href="#{base_url}/?mobile=1" style="color:white;">Mobile Site</a>
+    <% end %>
+  </span>
+  <do with='&current_user'>
+    <ul class='navigation account-nav' param>
+      <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
+      <if test='&logged_in?'>
+        <li class='nav-item' param='logged-in-as'><a to='&current_user'><t name='&name' key='hobo.actions.logged_in_as'>Logged in as <name/></t></a></li>
+        <li class='nav-item' param='account'><a action='account'><t key='hobo.actions.account'>Account</t></a></li>
+        <li class='nav-item' param='log-out'><a href='&logout_url'><t key='hobo.actions.logout'>Log out</t></a></li>
+      </if>
+      <else>
+        <li class='nav-item' param='log-in'><a href='&login_url'><t key='hobo.actions.login'>Log in</t></a></li>
+        <li class='nav-item' param='sign-up' if='&signup_url'><a href='&signup_url'><t key='hobo.actions.signup'>Sign up</t></a></li>
+      </else>
+    </ul>
+  </do>
+</def>
+
 
 <set-theme name="clean"/>
 
