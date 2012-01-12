@@ -11,33 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111215193009) do
+ActiveRecord::Schema.define(:version => 20120112224553) do
 
   create_table "item_assignments", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "item_id"
-    t.integer  "project_member_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "item_id"
+    t.integer   "project_member_id"
   end
 
   add_index "item_assignments", ["item_id"], :name => "index_item_assignments_on_item_id"
   add_index "item_assignments", ["project_member_id"], :name => "index_item_assignments_on_project_member_id"
 
   create_table "items", :force => true do |t|
-    t.date      "start_date"
-    t.date      "end_date"
-    t.string    "title"
-    t.text      "text"
-    t.float     "estimation"
-    t.integer   "position"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "lane_id"
-    t.string    "state",         :default => "normal"
-    t.timestamp "key_timestamp"
-    t.integer   "project_id"
-    t.text      "result"
-    t.integer   "milestone_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "title"
+    t.text     "text"
+    t.boolean  "doable"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "lane_id"
+    t.string   "state",         :default => "normal"
+    t.datetime "key_timestamp"
+    t.integer  "project_id"
+    t.text     "result"
+    t.integer  "milestone_id"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(:version => 20111215193009) do
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
 
   create_table "milestones", :force => true do |t|
-    t.string   "name"
-    t.date     "date"
-    t.string   "background_color"
-    t.string   "color",            :default => "#000000"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_id"
+    t.string    "name"
+    t.date      "date"
+    t.string    "background_color"
+    t.string    "color",            :default => "#000000"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "project_id"
   end
 
   add_index "milestones", ["project_id"], :name => "index_milestones_on_project_id"
@@ -81,12 +81,12 @@ ActiveRecord::Schema.define(:version => 20111215193009) do
   add_index "project_members", ["user_id"], :name => "index_project_members_on_user_id"
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "details"
-    t.string   "state",         :default => "running"
-    t.datetime "key_timestamp"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.text      "details"
+    t.string    "state",         :default => "running"
+    t.timestamp "key_timestamp"
   end
 
   add_index "projects", ["state"], :name => "index_projects_on_state"

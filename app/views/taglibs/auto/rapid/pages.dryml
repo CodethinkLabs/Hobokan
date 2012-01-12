@@ -89,7 +89,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="" param/>
+            <record-flags fields="doable" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="item.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -99,7 +99,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, result, estimation, position, state, milestone, project" param/>
+            <field-list fields="start_date, end_date, text, result, position, state, milestone, project" param/>
           </section>
     </content:>
 
