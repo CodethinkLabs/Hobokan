@@ -11,7 +11,7 @@ class Item < ActiveRecord::Base
     title              :string
     text               :markdown
     result             :markdown
-    estimation         :float
+    doable             :boolean
     position           :integer
     timestamps
   end

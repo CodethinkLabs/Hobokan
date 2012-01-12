@@ -19,7 +19,7 @@ en:
         name: Enter a name for the project. Make it short and descriptive
       item:
         title: Enter a short description of a new task 
-        estimation: Enter estimated number of effort hours to complete the task
+        doable: Can this be done in a day?
 
 #  attributes:
 #    created_at: Created at

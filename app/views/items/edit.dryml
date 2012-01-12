@@ -14,7 +14,7 @@
           <h3>Edit Task</h3>
           <transition-buttons/>
           <form>
-            <field-list: fields="title, text, result, estimation"/>
+            <field-list: fields="title, text, result, doable"/>
             <actions: replace>
               <submit label="#{ht 'item.actions.save', :default=>['Save']}"/><or-cancel:lane.project />
             </actions:>
