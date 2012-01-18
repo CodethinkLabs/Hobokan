@@ -6,7 +6,7 @@
 <h2> Edit Milestone</h2>
     <error-messages/>
     <form>
-      <field-list fields="name, date, background-color"/>
+      <field-list fields="name, date, description, background-color"/>
       <submit label="#{ht 'milestone.actions.save', :default=>['Save']}"/>
     </form>
 

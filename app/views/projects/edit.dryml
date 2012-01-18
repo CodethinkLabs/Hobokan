@@ -8,7 +8,7 @@
           <field-list fields="name, details">
           </field-list>
          <h2>Milestones</h2>
-         <input-many:milestones><field-list fields="name, date, background_color"/></input-many>
+         <input-many:milestones><field-list fields="name, date, description, background_color"/></input-many>
           <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
          </form>
        </section>

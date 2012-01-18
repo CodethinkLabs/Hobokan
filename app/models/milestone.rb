@@ -5,6 +5,7 @@ class Milestone < ActiveRecord::Base
   fields do
     name :string
     date :date
+    description :text
     background_color :string
     color         :string, :default => '#000000'
     timestamps
