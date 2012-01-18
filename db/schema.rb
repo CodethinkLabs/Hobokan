@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112224553) do
+ActiveRecord::Schema.define(:version => 20120118193915) do
 
   create_table "item_assignments", :force => true do |t|
     t.timestamp "created_at"
@@ -24,20 +24,20 @@ ActiveRecord::Schema.define(:version => 20120112224553) do
   add_index "item_assignments", ["project_member_id"], :name => "index_item_assignments_on_project_member_id"
 
   create_table "items", :force => true do |t|
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "title"
-    t.text     "text"
-    t.boolean  "doable"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "lane_id"
-    t.string   "state",         :default => "normal"
-    t.datetime "key_timestamp"
-    t.integer  "project_id"
-    t.text     "result"
-    t.integer  "milestone_id"
+    t.date      "start_date"
+    t.date      "end_date"
+    t.string    "title"
+    t.text      "text"
+    t.integer   "position"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "lane_id"
+    t.string    "state",         :default => "normal"
+    t.timestamp "key_timestamp"
+    t.integer   "project_id"
+    t.text      "result"
+    t.integer   "milestone_id"
+    t.boolean   "doable"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
@@ -65,16 +65,17 @@ ActiveRecord::Schema.define(:version => 20120112224553) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
     t.integer   "project_id"
+    t.text      "description"
   end
 
   add_index "milestones", ["project_id"], :name => "index_milestones_on_project_id"
 
   create_table "project_members", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.boolean  "administrator", :default => true
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "project_id"
+    t.integer   "user_id"
+    t.boolean   "administrator", :default => true
   end
 
   add_index "project_members", ["project_id"], :name => "index_project_members_on_project_id"

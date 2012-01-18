@@ -38,7 +38,7 @@
 <def tag="form" for="Milestone">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, date, background_color, color, project" param/>
+    <field-list fields="name, date, description, background_color, color, project" param/>
     <div param="actions">
       <submit label="#{ht 'milestone.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

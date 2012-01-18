@@ -34,6 +34,9 @@
     <header: param>
       <h4 param="heading"><name/></h4>
     </header:>
+    <body: param>
+      <view:description param="description"/>
+    </body:>
   </card>
 </def>
 
