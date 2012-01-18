@@ -4,7 +4,7 @@
     <div class="section content-body">
       <h3>
         <a style="float:left;>"><name/></a>
-	  <div class="filter" style="float:left;"><filter-menu param-name="milestone" options="&@this.milestones.all" no-filter="All tasks" /></div>
+	  <div class="filter" style="float:left;"><filter-menu param-name="milestone" options="&@this.milestones.all" no-filter="All Milestones" /></div>
       <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
       <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
 	  <div id="edit-item-dialog"></div>
