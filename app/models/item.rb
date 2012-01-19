@@ -39,6 +39,7 @@ class Item < ActiveRecord::Base
 
     transition :archive, { :normal => :archived }, :available_to => "User"
     transition :archive, { :created => :archived }, :available_to => "User"
+    transition :restore, { :archived => :normal }, :available_to => "User"
   end
 
   scope :active, :conditions => "state != 'archived'"
