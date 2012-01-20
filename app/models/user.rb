@@ -106,6 +106,6 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user == self || acting_user.administrator?
+    acting_user == self || acting_user.administrator? || self.state == "invited"
   end
 end
