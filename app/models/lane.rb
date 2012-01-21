@@ -24,6 +24,10 @@ class Lane < ActiveRecord::Base
     title
   end
 
+  def milestones
+    return self.project.milestones
+  end
+
   # --- Permissions --- #
 
   def create_permitted?
