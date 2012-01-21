@@ -1,5 +1,8 @@
 <edit-page>
   <content:>
+    <a action="kanban">
+      &laquo; Back to <name/> kanban
+    </a>
     <section-group>
       <section>
         <h2> Edit Project <transition-buttons style="float:right;"/></h2>

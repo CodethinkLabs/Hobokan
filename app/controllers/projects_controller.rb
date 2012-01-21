@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
   def update
     hobo_update do
       if valid?
-        redirect_to(:controller => 'projects', :action => 'kanban')
+        redirect_to(:controller => 'projects', :action => 'show')
       end
     end
   end

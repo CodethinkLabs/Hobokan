@@ -1,5 +1,8 @@
 <show-page>
 <content:>
+  <a action="kanban">
+    &laquo; Back to <name/> kanban
+  </a>
   <section-group>
     <section>
       <a action="edit" style="float:right;">Edit Project</a>

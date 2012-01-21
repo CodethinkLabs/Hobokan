@@ -8,6 +8,8 @@ CtKanban::Application.routes.draw do
   # Lifecycle routes for controller "items"
   put 'items/:id/archive(.:format)' => 'items#do_archive', :as => 'do_item_archive'
   get 'items/:id/archive(.:format)' => 'items#archive', :as => 'item_archive'
+  put 'items/:id/restore(.:format)' => 'items#do_restore', :as => 'do_item_restore'
+  get 'items/:id/restore(.:format)' => 'items#restore', :as => 'item_restore'
 
   # Resource routes for controller "items"
   get 'items/new(.:format)', :as => 'new_item'
@@ -39,6 +41,7 @@ CtKanban::Application.routes.draw do
 
   # Show action routes for controller "lanes"
   get 'lanes/:id/kanban_lane(.:format)' => 'lanes#kanban_lane', :as => 'lane_kanban_lane'
+  get 'lanes/:id/latest(.:format)' => 'lanes#latest', :as => 'lane_latest'
 
   # Reorder routes for controller "lanes"
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'

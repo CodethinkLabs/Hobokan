@@ -187,6 +187,29 @@
   </page>
 </def>
 
+<def tag="restore-page" polymorphic/>
+<def tag="restore-page" for="Item">
+  <page title="#{ht 'item.restore.title', :default=>['Restore']}" merge>
+
+    <body: class="lifecycle-transition-page restore-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="item.restore.heading">
+            Restore
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <restore-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 <!-- ====== Lane Pages ====== -->
