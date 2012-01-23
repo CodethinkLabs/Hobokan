@@ -18,10 +18,9 @@
         <repeat:milestones>
         <if test="&this.items.active.count > 0">
           <% days = (this.date - Date.today + 1).to_i %>
-          <% fontcolor = "color:black;" %>
-          <% if days < 1 %><% days = 0 %><% fontcolor = "color:red;" %><% end %>
-          <div><a href="/milestones/#{this.id}/edit" style="border-bottom:none;#{fontcolor}">
+          <div><a href="/milestones/#{this.id}/edit" style="border-bottom:none;">
             <% date = Date.today %>
+            <% color = this.background_color %>
             <% days.times do %>
               <% color = this.background_color %>
               <% if date.wday == 0 or date.wday == 6 %><% color = "#f2f2f2" %><% end %>
@@ -30,7 +29,8 @@
 	          </span>
 	          <% date = date + 1 %>
             <% end %>
-            &nbsp; <name/>:<%= this.date.strftime("%d-%b") %>: <%= this.items.active.count %> tasks</a>
+            <% if days > 0 %>&nbsp;<% end %> 
+            <span style="border-bottom:none;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;"><name/>:<%= this.date.strftime("%d-%b") %>: <%= this.items.active.count %> tasks</span></a>
           </div>
         </if>
         </repeat:milestones>
