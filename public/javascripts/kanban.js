@@ -56,3 +56,4 @@ jQuery("#cl-toggle").click( function() {
 });
 
 jQuery(".kb-lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});
+jQuery(".lane-count").text(function () { return jQuery(this).parent().parent().parent().children().size() - 1;});

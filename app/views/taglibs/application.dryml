@@ -74,7 +74,7 @@
 
 <def tag="kanban-lane" attrs="lanewidth,boxwidth">
   <ul class="kb-lane" id="L#{this.id}" style="width:#{lanewidth}">
-     <h3><a href="/lanes/#{this.id}/kanban_lane"><b><this/></b> <span style="font-size:50%; float:right;"><this.items.active.count/></span> </a></h3>
+     <h3><a href="/lanes/#{this.id}/kanban_lane"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
      <repeat:items.active>
        <% if this.milestone %>
          <set color="#{this.milestone.background_color}"/>
