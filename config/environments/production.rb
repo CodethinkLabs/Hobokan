@@ -38,7 +38,7 @@ CtKanban::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = {
     :protocol => 'https',
-    :host => 'ct-kanban.heroku.com'
+    :host => self.request.host
   }
 
 
