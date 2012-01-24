@@ -8,6 +8,12 @@
 
 <include gem="hobo-jquery" />
 
+<def tag='simple-collection'>
+    <span class='#{model_id_class}' param='item' repeat='&select_viewable' style="align:right;">
+      <do param='default'><card param/></do>
+    </span>
+</def>
+
 <extend tag="page">
   <old-page merge>
     <custom-scripts:>
@@ -15,7 +21,14 @@
     </custom-scripts>
     <header:>
       <account-nav if="&current_user.signed_up?"/>
-      <div style="padding:20px;"><a href="#{base_url}/" style="color:white;font-size:18pt;"><app-name/></a><if test="&current_user.signed_up?"><live-search if="&defined_route? :site_search" style="float:right;"/></if></div>
+      <div style="padding:20px;text-align:bottom;"><a href="#{base_url}/"
+      style="color:white;font-size:22pt;float:left;"><app-name/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      <if test="&current_user.signed_up?">
+        <live-search if="&defined_route? :site_search"/>
+        <simple-collection with="&current_user.projects.active">
+          <a href="/projects/#{this.id}/kanban" style="color:white;"> #{this.name}</a>&nbsp;&nbsp;&nbsp;
+        </simple-collection>
+      </if></div>
     </header:>
   </old-page>
 </extend>
