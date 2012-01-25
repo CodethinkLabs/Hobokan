@@ -21,8 +21,8 @@
     </custom-scripts>
     <header:>
       <account-nav if="&current_user.signed_up?"/>
-      <div style="padding:20px;text-align:bottom;"><a href="#{base_url}/"
-      style="color:white;font-size:22pt;float:left;"><app-name/>&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      <div style="padding:20px;text-align:center;"><a href="#{base_url}/"
+      style="color:white;font-size:18pt;float:left;"><app-name/></a>
       <if test="&current_user.signed_up?">
         <live-search if="&defined_route? :site_search"/>
         <simple-collection with="&current_user.projects.active">
