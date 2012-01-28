@@ -31,6 +31,7 @@
 	          <% date = date + 1 %>
             <% end %>
             <% if days > 0 %>&nbsp;<% end %> 
+            <% color = this.background_color %>
             <span style="border-bottom:none;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;"><name/>:<%= this.date.strftime("%d-%b") %>: <%= this.items.active.count %> tasks</span></a>
           </div>
         </if>
