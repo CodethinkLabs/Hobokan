@@ -122,7 +122,7 @@
 
 <def tag="new-task-dialog">
   <hjq-dialog id="new-task-dialog" title="Add a task" position="center" width="&800">
-      <form with="&@item || new_for_current_user(@project.lanes[0].items)">
+      <form with="&@item || new_for_current_user(@lanes[0].items)">
         <field-list: fields="title, milestone, text, doable">
           <milestone-view:>
             <select-one options="&@this.milestones"/>
