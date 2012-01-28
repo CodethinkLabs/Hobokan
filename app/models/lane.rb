@@ -20,6 +20,9 @@ class Lane < ActiveRecord::Base
   set_default_order "position ASC"
   validates_length_of :title, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
 
+  scope :visible, :conditions => "position > '0'"
+  scope :invisible, :conditions => "position <= '0'"
+
   def name
     title
   end
