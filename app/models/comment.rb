@@ -11,6 +11,7 @@ class Comment < ActiveRecord::Base
   belongs_to :item
 
   set_default_order "created_at DESC"
+  set_search_columns :detail
 
   # --- Permissions --- #
 
