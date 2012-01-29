@@ -23,7 +23,9 @@ class Item < ActiveRecord::Base
 
   has_many :item_assignments, :dependent => :destroy
   has_many :project_members, :through => :item_assignments, :accessible => true
+  has_many :comments
 
+  belongs_to :user, :class_name => "User", :creator => true
   belongs_to :lane
   belongs_to :project
   belongs_to :milestone

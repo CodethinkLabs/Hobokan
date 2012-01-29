@@ -69,4 +69,8 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = find_instance
+    @comments = @item.comments
+  end
 end

@@ -1,5 +1,13 @@
 <show-page>
   <content: replace>
+
+    <hjq-dialog id="add-comment-dialog" title="Add a Comment" position="center" width="&800">
+      <form with="&@comment || new_for_current_user(@item.comments)" owner="item" without-cancel>
+        <field-list: fields="detail"/>
+        <submit: label="#{ht 'Comment.actions.add', :default=>['Add'] }"/>
+      </form>
+    </hjq-dialog>
+
     <a:project action="kanban">
       &laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to <name/></ht>
     </a:project>
@@ -7,17 +15,22 @@
       <section>
         <br/>
         <a action="edit" style="float:right;">Edit Task</a>
-        <field-list fields="id, title, milestone, text, project, project_members, result, lane, state">
+        <field-list fields="id,title, milestone, text, user, project, project_members, result, lane, state">
           <project-view:><a action="kanban"><this/></a></project-view:>
           <text-view:><if><this.to-html.html-safe/></if></text-view>
           <result-view:><if><this.to-html.html-safe/></if></result-view>
         </field-list>
       </section>
-	  <aside id="change-log" style="width: 50%;">
-        <transition-buttons style="float:right;"/>
-	    <div style=" height:600px; overflow:auto;">
-          <change-log-view/>
-        </div>
+      <aside id="comments" style="width=50%">
+        <h2>Comments
+            <hjq-dialog-open-button dialog="#add-comment-dialog" style="float:right;">Add a Comment</hjq-dialog-open-button>
+        </h2>
+        <table-plus with="&@comments" fields="created_at, detail, user">
+          <header: replace/>
+          <user-view:><if><%= this.name.split(' ')[0] %></if></user-view:>
+          <created-at-view:><%= this.strftime("%d/%m/%y") %></created-at-view:>
+          <detail-heading:>Comment</detail-heading:>
+        </table-plus>
       </aside>
     </section-group>
   </content:>
