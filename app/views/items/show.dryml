@@ -29,6 +29,7 @@
           <header: replace/>
           <user-view:><if><%= this.name.split(' ')[0] %></if></user-view:>
           <created-at-view:><%= this.strftime("%d/%m/%y") %></created-at-view:>
+          <created-at-heading:>Date</created-at-heading:>
           <detail-heading:>Comment</detail-heading:>
         </table-plus>
       </aside>
