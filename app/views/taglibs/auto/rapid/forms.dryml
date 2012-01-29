@@ -1,9 +1,21 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="form" for="Comment">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="detail, item, user" param/>
+    <div param="actions">
+      <submit label="#{ht 'comment.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Item">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="start_date, end_date, title, text, result, doable, position, state, item_assignments, lane, milestone, project, project_members" param/>
+    <field-list fields="start_date, end_date, title, text, result, doable, position, state, lane, milestone, project, project_members, user" param/>
     <div param="actions">
       <submit label="#{ht 'item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

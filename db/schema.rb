@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120118193915) do
+ActiveRecord::Schema.define(:version => 20120129085300) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "item_id"
+  end
+
+  add_index "comments", ["item_id"], :name => "index_comments_on_item_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "item_assignments", :force => true do |t|
     t.timestamp "created_at"
@@ -38,12 +49,14 @@ ActiveRecord::Schema.define(:version => 20120118193915) do
     t.text      "result"
     t.integer   "milestone_id"
     t.boolean   "doable"
+    t.integer   "user_id"
   end
 
   add_index "items", ["lane_id"], :name => "index_items_on_lane_id"
   add_index "items", ["milestone_id"], :name => "index_items_on_milestone_id"
   add_index "items", ["project_id"], :name => "index_items_on_project_id"
   add_index "items", ["state"], :name => "index_items_on_state"
+  add_index "items", ["user_id"], :name => "index_items_on_user_id"
 
   create_table "lanes", :force => true do |t|
     t.string    "title"

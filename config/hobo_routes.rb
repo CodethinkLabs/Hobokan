@@ -41,7 +41,6 @@ CtKanban::Application.routes.draw do
 
   # Show action routes for controller "lanes"
   get 'lanes/:id/kanban_lane(.:format)' => 'lanes#kanban_lane', :as => 'lane_kanban_lane'
-  get 'lanes/:id/latest(.:format)' => 'lanes#latest', :as => 'lane_latest'
 
   # Reorder routes for controller "lanes"
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
@@ -73,6 +72,7 @@ CtKanban::Application.routes.draw do
 
   # Show action routes for controller "projects"
   get 'projects/:id/kanban(.:format)' => 'projects#kanban', :as => 'project_kanban'
+  get 'projects/:id/done(.:format)' => 'projects#done', :as => 'project_done'
 
 
   # Lifecycle routes for controller "users"
@@ -96,6 +96,19 @@ CtKanban::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+
+
+  # Resource routes for controller "comments"
+  get 'comments(.:format)' => 'comments#index', :as => 'comments'
+  get 'comments/new(.:format)', :as => 'new_comment'
+  get 'comments/:id/edit(.:format)' => 'comments#edit', :as => 'edit_comment'
+  get 'comments/:id(.:format)' => 'comments#show', :as => 'comment', :constraints => { :id => %r([^/.?]+) }
+  post 'comments(.:format)' => 'comments#create', :as => 'create_comment'
+  put 'comments/:id(.:format)' => 'comments#update', :as => 'update_comment', :constraints => { :id => %r([^/.?]+) }
+  delete 'comments/:id(.:format)' => 'comments#destroy', :as => 'destroy_comment', :constraints => { :id => %r([^/.?]+) }
+
+  # Owner routes for controller "comments"
+  post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
 
   namespace :admin do
 
