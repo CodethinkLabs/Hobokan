@@ -110,7 +110,14 @@
            <user-view:><if><%= this.name.split(' ')[0] %></if></user-view:>
            <modifications-view:>
              <if:lane_id><%= Lane.find(this[0]).title.upcase %> to <%= Lane.find(this[1]).title.upcase %></if>
-             <if:milestone_id>Added to <%= Milestone.find(this[1]).name.upcase %></if>
+             <if:milestone_id>
+               <% if this[0] %>
+                 Dropped from <%= Milestone.find(this[0]).name.upcase %>
+               <% end %>
+               <% if this[1] %>
+                 Added to <%= Milestone.find(this[1]).name.upcase %>
+               <% end %>
+             </if>
              <if:state><%= this[1].upcase %></if>
              <if:text>INFO: <%= this[1] %></if>
              <if:result>RESULT: <%= this[1] %></if>

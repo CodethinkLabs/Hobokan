@@ -13,7 +13,7 @@
         <select-one options="&@item.project.lanes"/>
       </lane-view:>
        <milestone-view:>
-         <select-one options="&@item.project.milestones"/>
+         <select-one options="&@item.project.milestones" include-none="true"/>
        </milestone-view:>
     </field-list>
     <submit: label="#{ht 'Item.actions.save', :default=>['Save'] }" style=""/>
