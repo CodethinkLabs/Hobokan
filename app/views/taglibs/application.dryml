@@ -119,7 +119,7 @@
                <% end %>
              </if>
              <if:state><%= this[1].upcase %></if>
-             <if:text>INFO: <%= this[1] %></if>
+             <if:text>INFO: updated </if>
              <if:result>RESULT: <%= this[1] %></if>
              <if:title>RENAME: <%= this[0] %></if>
            </modifications-view:>
