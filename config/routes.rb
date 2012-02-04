@@ -1,4 +1,4 @@
-CtKanban::Application.routes.draw do
+Hobokan::Application.routes.draw do
   # Uncomment this to use https
   resources :sessions, :constraints => { :protocol => "https" }
 

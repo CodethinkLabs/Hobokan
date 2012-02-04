@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-CtKanban::Application.load_tasks
+Hobokan::Application.load_tasks

@@ -2,7 +2,20 @@
 # You can add your own routes in the config/routes.rb file
 # which will override the routes in this file.
 
-CtKanban::Application.routes.draw do
+Hobokan::Application.routes.draw do
+
+
+  # Resource routes for controller "comments"
+  get 'comments(.:format)' => 'comments#index', :as => 'comments'
+  get 'comments/new(.:format)', :as => 'new_comment'
+  get 'comments/:id/edit(.:format)' => 'comments#edit', :as => 'edit_comment'
+  get 'comments/:id(.:format)' => 'comments#show', :as => 'comment', :constraints => { :id => %r([^/.?]+) }
+  post 'comments(.:format)' => 'comments#create', :as => 'create_comment'
+  put 'comments/:id(.:format)' => 'comments#update', :as => 'update_comment', :constraints => { :id => %r([^/.?]+) }
+  delete 'comments/:id(.:format)' => 'comments#destroy', :as => 'destroy_comment', :constraints => { :id => %r([^/.?]+) }
+
+  # Owner routes for controller "comments"
+  post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
 
 
   # Lifecycle routes for controller "items"
@@ -96,19 +109,6 @@ CtKanban::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
-
-
-  # Resource routes for controller "comments"
-  get 'comments(.:format)' => 'comments#index', :as => 'comments'
-  get 'comments/new(.:format)', :as => 'new_comment'
-  get 'comments/:id/edit(.:format)' => 'comments#edit', :as => 'edit_comment'
-  get 'comments/:id(.:format)' => 'comments#show', :as => 'comment', :constraints => { :id => %r([^/.?]+) }
-  post 'comments(.:format)' => 'comments#create', :as => 'create_comment'
-  put 'comments/:id(.:format)' => 'comments#update', :as => 'update_comment', :constraints => { :id => %r([^/.?]+) }
-  delete 'comments/:id(.:format)' => 'comments#destroy', :as => 'destroy_comment', :constraints => { :id => %r([^/.?]+) }
-
-  # Owner routes for controller "comments"
-  post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
 
   namespace :admin do
 
