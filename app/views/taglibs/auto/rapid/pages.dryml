@@ -101,7 +101,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="detail, item" param/>
+            <field-list fields="item" param/>
           </section>
     </content:>
 
@@ -215,7 +215,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="doable" param/>
+            <record-flags fields="" param/>
 
             <a:user param="creator-link"/>
 
@@ -227,7 +227,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, result, position, state, milestone, project" param/>
+            <field-list fields="milestone, project" param/>
           </section>
     </content:>
 
@@ -425,7 +425,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="title, position, background_color, color, project" param/>
+            <field-list fields="project" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="item.collection.heading" count="&this.items.count" >
@@ -593,7 +593,7 @@
 
           <section param="content-body">
             <view:description param="description" />
-            <field-list fields="date, background_color, color, project" param/>
+            <field-list fields="project" param/>
           </section>
     </content:>
 
@@ -713,7 +713,6 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="details, state" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="project_member.collection.heading" count="&this.project_members.count" >
@@ -882,7 +881,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="administrator" param/>
+            <record-flags fields="" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="user.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -892,7 +891,6 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email_address, role, state" param/>
           </section>
     </content:>
 
