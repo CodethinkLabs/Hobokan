@@ -22,8 +22,8 @@ CtKanban::Application.configure do
   :address        => "smtp.sendgrid.net",
   :port           => "25",
   :authentication => :plain,
-  :user_name      => 'app1522420@heroku.com',
-  :password       => 'ur1nmut8'
+  :user_name      => ENV['SENDGRID_USERNAME']
+  :password       => ENV['SENDGRID_PASSWORD']
 #   :domain         => ENV['SENDGRID_DOMAIN']
 }
   # Print deprecation notices to the Rails logger
