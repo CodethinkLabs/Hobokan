@@ -22,7 +22,7 @@
     <header:>
       <account-nav if="&current_user.signed_up?"/>
       <div style="padding:20px;text-align:left;"><a href="#{base_url}/"
-      style="color:white;font-size:18pt;float:left;padding-right:50px;"><app-name/></a>
+      style="color:white;font-size:18pt;float:left;padding-right:50px;">Hobokan</a>
       <if test="&current_user.signed_up?">
         <live-search if="&defined_route? :site_search"/>
         <simple-collection with="&current_user.projects.active">
