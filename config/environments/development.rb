@@ -22,8 +22,8 @@ Hobokan::Application.configure do
   :address        => "smtp.sendgrid.net",
   :port           => "25",
   :authentication => :plain,
-  :user_name      => ENV['SENDGRID_USERNAME']
-  :password       => ENV['SENDGRID_PASSWORD']
+  :user_name      => "your.sendgrid.username",
+  :password       => "your.sendgrid.password"
 #   :domain         => ENV['SENDGRID_DOMAIN']
 }
   # Print deprecation notices to the Rails logger
