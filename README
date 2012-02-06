@@ -8,7 +8,7 @@ Getting Started
 ===============
 The software is configured to run on Heroku - you'll need an account, keys, git etc, plus the Sendgrid and SSL add-ons. 
 
-To create a new instance on Heroku, you'll need to do something like the following steps to create an initial database - either clone your repo into a new place, or delete your development.sqlite3
+To create a new instance on Heroku, you'll need to do something like the following steps to create an initial database - 
 $ rm app/db/migrate/*
 $ rails generate hobo:migration
 $ rails generate vestal_versions:migration
@@ -20,12 +20,13 @@ $ git push git@heroku.com:xx-kanban.git
 $ heroku db:push --app xx-kanban
 $ heroku addons:add sendgrid:starter --app xx-kanban
 $ heroku config:add DOMAIN=xx-kanban.heroku.com
+$ heroku config:add SECRET_TOKEN=a.random.alphanumeric.string.of.at.least.30.chars
 
 It should now be possible to create first admin user on the heroku instance, then invite users, create projects etc
 
 TODO
 ====
-Lots... we've been dogfooding this at Codethink for months, but there's plenty of room for improvement. 
+Lots... we've been dogfooding this at Codethink for months, but there's plenty of room for improvement.
 
 We're liberating the code to make it available for FLOSS projects, which means *at least* we'll need to provide public views of the kanban boards themselves, but will also lead to new requirements: as far as we know, using the kanban approach for FLOSS projects is new territory. 
 
