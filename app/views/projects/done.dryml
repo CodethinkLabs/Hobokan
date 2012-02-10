@@ -1,0 +1,18 @@
+<show-page>
+<content:>
+  <a action="kanban">
+    &laquo; Back to <name/> kanban
+  </a><br/>
+  <section-group>
+    <section>
+      <table-plus with="&@done" fields="title, lane, updated_at">
+        <updated-at-view:><%= this.strftime("%d/%m/%y") %></updated-at-view:>
+        <updated-at-heading:>Updated</updated-at-heading:>
+      </table-plus>
+    </section>
+    <aside style="width:50%;">
+      <change-log-view/>
+    </aside>
+  </section-group>
+</content:>
+</show-page>

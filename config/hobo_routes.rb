@@ -86,6 +86,7 @@ Hobokan::Application.routes.draw do
   # Show action routes for controller "projects"
   get 'projects/:id/kanban(.:format)' => 'projects#kanban', :as => 'project_kanban'
   get 'projects/:id/done(.:format)' => 'projects#done', :as => 'project_done'
+  get 'projects/:id/stats(.:format)' => 'projects#stats', :as => 'project_stats'
 
 
   # Lifecycle routes for controller "users"
