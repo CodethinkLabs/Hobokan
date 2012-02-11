@@ -8,6 +8,7 @@ task :snapshot => :environment do
       snapshot.save
       snapshot.date = Date.today
       snapshot.save 
+      puts "Snapshot: " + " project " + project.name + " " + lane.name + " has " + snapshot.count.to_s + " items"
     end
     project.milestones.each do |milestone|
       project.lanes.each do |lane|
