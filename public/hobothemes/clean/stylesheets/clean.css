@@ -23,7 +23,7 @@ html, body {color: #193440; background: url(../images/300-ACD3E6-fff.png) repeat
 .section-group-inner {display: table-row;}
 .section-group-inner > * {display: table-cell; vertical-align: top;}
 .aside {width: 50%;} /* works with % too */
-.aside { padding: 20px;}
+.aside { padding: 5px;}
 /* ------ */
 
 
