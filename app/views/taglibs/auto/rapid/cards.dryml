@@ -72,6 +72,14 @@
   </card>
 </def>
 
+<def tag="card" for="Snapshot">
+  <card class="snapshot" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>
