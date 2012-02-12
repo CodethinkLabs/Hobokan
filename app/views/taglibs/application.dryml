@@ -77,7 +77,7 @@
      <h3><a href="/lanes/#{this.id}/kanban_lane"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
      <repeat:items.active>
        <% if this.doable %>
-          <set border = "border-right:2px solid green;"/>
+          <set border = "border-right:4px solid green;"/>
        <% else %>
          <set border = ""/>
        <% end %>
