@@ -31,7 +31,7 @@ class Item < ActiveRecord::Base
   belongs_to :milestone
 
   # acts_as_list :scope => :lane
-  set_default_order "position DESC"
+  set_default_order "position ASC"
 
   lifecycle do
     state :normal, :default => true
@@ -66,7 +66,7 @@ class Item < ActiveRecord::Base
   end
 
   def enqueue_item
-    self.position = lane.items.count + 1
+    self.position = 0
   end
 
   def versions

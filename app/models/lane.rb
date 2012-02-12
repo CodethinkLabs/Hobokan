@@ -15,7 +15,7 @@ class Lane < ActiveRecord::Base
   children :items
   acts_as_list :scope => :project
   belongs_to :project
-  has_many :items, :order => "position DESC"
+  has_many :items, :order => "position ASC"
 
   set_default_order "position ASC"
   validates_length_of :title, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"

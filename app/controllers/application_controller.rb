@@ -12,15 +12,22 @@ class ApplicationController < ActionController::Base
   before_filter :prepare_for_mobile
 
   def handle_item_drop
-    position = params[:item_ordering].length
+    id = params[:item_id]
+    target = params[:item_position].to_i
     lane = Lane.find(params[:lane_id])
-    params[:item_ordering].each do |id|
-      item = Item.find(id)
-      item.lane = lane
-      item.position = position
+
+    lane.items.each_with_index do |item, i|
+      item.position = i
+      if i >= target
+        item.position = i + 1
+      end
       item.save
-      position -= 1
     end
+
+    item = Item.find(id)
+    item.lane = lane
+    item.position = target
+    item.save
   end
 
 private
