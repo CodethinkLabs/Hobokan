@@ -17,6 +17,7 @@ en:
     attribute_help:
       project:
         name: Enter a name for the project. Make it short and descriptive
+        details: Put project objectives and outline here. Markdown format is supported
       item:
         title: Enter a short description of a new task 
         doable: Can this be done in a day or less?

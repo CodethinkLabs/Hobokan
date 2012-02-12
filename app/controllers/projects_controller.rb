@@ -50,6 +50,46 @@ class ProjectsController < ApplicationController
   def create
     hobo_create do
       if valid?
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Wishlist"
+        lane.position = 1
+        lane.background_color = "#FFFFDD"
+        lane.save
+
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Buglist"
+        lane.position = 2
+        lane.background_color = "#FFAAAA"
+        lane.save
+
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Backlog"
+        lane.position = 3
+        lane.background_color = "#B5DBFF"
+        lane.save
+
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Doing"
+        lane.position = 4
+        lane.background_color = "#99FF99"
+        lane.save
+
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Done"
+        lane.position = 5
+        lane.background_color = "#999999"
+        lane.save
+
+        p = ProjectMember.new
+        p.user = current_user
+        p.project = this
+        p.save
+
         redirect_to(:controller => 'projects', :action => 'kanban', :id => @project.id)
       end
     end
