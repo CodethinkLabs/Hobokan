@@ -9,6 +9,7 @@
         <id-view:>S<this/></id-view:>
         <updated-at-view:><%= this.strftime("%d/%m/%y") %></updated-at-view:>
         <updated-at-heading:>Updated</updated-at-heading:>
+        <milestone-view:><if><%= this.name.split(' ')[0] %></if></milestone-view:>
         <project-members-heading:>Who</project-members-heading:>
       </table-plus>
     </section>
