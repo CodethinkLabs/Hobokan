@@ -5,13 +5,14 @@
   </a><br/>
   <section-group>
     <section>
-      <table-plus with="&@done" fields="id, this, lane, updated_at">
+      <table-plus with="&@done" fields="id, this, project-members, milestone, lane, updated_at">
         <id-view:>S<this/></id-view:>
         <updated-at-view:><%= this.strftime("%d/%m/%y") %></updated-at-view:>
         <updated-at-heading:>Updated</updated-at-heading:>
+        <project-members-heading:>Who</project-members-heading:>
       </table-plus>
     </section>
-    <aside style="width:50%;">
+    <aside style="width:30%;">
       <change-log-view/>
     </aside>
   </section-group>
