@@ -16,20 +16,24 @@ class ApplicationController < ActionController::Base
     target = params[:item_position].to_i
     lane = Lane.find(params[:lane_id])
 
+    dropped = Item.find(id)
+    dropped.lane = lane
+    dropped.position = target
+    dropped.save
+
     if lane.title != "Done"
-      lane.items.each_with_index do |item, i|
-        item.position = i
-        if i >= target
-          item.position = i + 1
+      count = 0
+      lane.items.each do |item|
+        if item != dropped
+          if count == target
+            count = count + 1
+          end
+          item.position = count
+          item.save
+          count = count + 1
         end
-        item.save
       end
     end
-
-    item = Item.find(id)
-    item.lane = lane
-    item.position = target
-    item.save
   end
 
 private
