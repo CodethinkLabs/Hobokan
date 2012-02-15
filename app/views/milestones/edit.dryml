@@ -10,10 +10,6 @@
       <submit label="#{ht 'milestone.actions.save', :default=>['Save']}"/>
     </form>
 
-    <table-plus with="&@items" fields="id, title, lane">
-      <id-view:><a>S<this/></a></id-view:>
-    </table-plus>
-
     <javascript name="jquery.simple-color"/>
 	<script>
 	  jQuery('input[name*="color"]').simpleColor();
