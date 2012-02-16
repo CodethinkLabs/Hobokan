@@ -136,7 +136,10 @@
 <def tag="new-task-dialog">
   <hjq-dialog id="new-task-dialog" title="Add a task" position="center" width="&800">
       <form with="&@item || new_for_current_user(@project.items)" owner="project">
-        <field-list: fields="title, milestone, lane, text, doable">
+        <field-list: fields="title, milestone, lane, text, project_members, doable">
+          <project-members-view:>
+            <select-many merge options="&@project.project_members"/>
+          </project-members-view:>
           <milestone-view:>
             <select-one options="&@this.milestones"/>
           </milestone-view:>
