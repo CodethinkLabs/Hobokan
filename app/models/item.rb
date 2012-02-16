@@ -48,7 +48,7 @@ class Item < ActiveRecord::Base
   scope :todo, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.title != 'Done'"
   scope :done, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.title = 'Done'"
 
-  before_create :enqueue_item, :set_updated_by, :set_project
+  before_create :enqueue_item, :set_lane, :set_updated_by
   before_save :set_updated_by
 
   def set_updated_by
@@ -61,8 +61,10 @@ class Item < ActiveRecord::Base
     self.updated_by = (member ? member : User.current)
   end
 
-  def set_project
-    self.project = lane.project
+  def set_lane
+    if self.lane == nil
+      self.lane = project.lanes[0]
+    end
   end
 
   def enqueue_item
@@ -77,8 +79,9 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    logger.debug("Item#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{lane.project_id}")
-    project_id.nil? || ProjectMember.memberships.include?(lane.project_id)
+    logger.debug("Item#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
+    project_id.nil? || ProjectMember.memberships.include?(project_id)
+    true
    end
 
   def update_permitted?

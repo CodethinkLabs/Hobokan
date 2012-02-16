@@ -3,30 +3,14 @@ class ItemsController < ApplicationController
   hobo_model_controller
 
   auto_actions :all, :except => :index
-  auto_actions_for :lane, [:new, :create]
+  auto_actions_for :project, [:new, :create]
   show_action :ajax_item
 
-  def new_for_lane
-    if request.xhr?
-      handle_item_drop
-      hobo_ajax_response
-      return
-    end
-
-    if !@item
-      @item = Item.new
-      @lane = Lane.user_find(current_user, params[:lane_id])
-      @item.lane = @lane
-    end
-  end
-
-  def create
+  def create_for_project
     hobo_create do
       if valid?
         @item.state = "created"
         @item.save
-        lane = @item.lane.project.lanes[0]
-        project = @item.lane.project
         redirect_to :back
       end
     end
