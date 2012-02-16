@@ -48,7 +48,8 @@ class Project < ActiveRecord::Base
 
   def update_permitted?
     logger.debug("Project#update_permitted? #{ProjectMember.admin_memberships.include?(id)} project_id: #{id}")
-    ProjectMember.admin_memberships.include?(id)
+    ProjectMember.admin_memberships.include?(id)||
+    acting_user.administrator?
   end
 
   def destroy_permitted?

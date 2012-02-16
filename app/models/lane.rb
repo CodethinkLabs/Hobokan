@@ -40,7 +40,8 @@ class Lane < ActiveRecord::Base
 
   def update_permitted?
     logger.debug("Lane#update_permitted? #{ProjectMember.admin_memberships.inspect} project_id: #{project_id}")
-    ProjectMember.admin_memberships.include?(project_id)
+    ProjectMember.admin_memberships.include?(project_id)||
+    acting_user.administrator?
   end
 
   def destroy_permitted?
