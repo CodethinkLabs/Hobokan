@@ -8,16 +8,12 @@
       &laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to <name/></ht>
     </a:project>
     <h2>
-      <%= "#{this.project.name}:" %>
-      <ht key="lane.show.heading" name="#{name(:no_wrapper => true)}">
-        <name/>
-      </ht>
+      <%= "#{this.project.name}:" %><name/>
     </h2>
-    <table-plus:items fields="id, this, text">
-      <id-view:>
-        <item-story-id/>
-      </id-view:>
-
+    <table-plus:items fields="id, this, user, created_at, updated_at">
+      <id-view:><item-story-id/></id-view:>
+      <created-at-view:><%= this.strftime("%d/%m/%y") %></created-at-view:>
+      <updated-at-view:><%= this.strftime("%d/%m/%y") %></updated-at-view:>
     </table-plus>
   </content:>
 

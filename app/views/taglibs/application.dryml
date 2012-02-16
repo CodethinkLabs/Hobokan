@@ -74,7 +74,7 @@
 
 <def tag="kanban-lane" attrs="lanewidth,boxwidth">
   <ul class="kb-lane" id="L#{this.id}" style="width:#{lanewidth}">
-     <h3><a href="/lanes/#{this.id}/kanban_lane"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
+     <h3><a href="/lanes/#{this.id}/show"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
      <repeat:items.active>
        <% if this.doable %>
           <set border = "border-right:4px solid green;"/>
@@ -135,11 +135,14 @@
 
 <def tag="new-task-dialog">
   <hjq-dialog id="new-task-dialog" title="Add a task" position="center" width="&800">
-      <form with="&@item || new_for_current_user(@lanes[0].items)">
-        <field-list: fields="title, milestone, text, doable">
+      <form with="&@item || new_for_current_user(@project.items)" owner="project">
+        <field-list: fields="title, milestone, lane, text, doable">
           <milestone-view:>
             <select-one options="&@this.milestones"/>
           </milestone-view:>
+          <lane-view:>
+            <select-one options="&@this.lanes"/>
+          </lane-view:>
         </field-list>
       </form>
   </hjq-dialog>
