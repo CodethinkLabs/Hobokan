@@ -33,8 +33,8 @@ Hobokan::Application.routes.draw do
   delete 'items/:id(.:format)' => 'items#destroy', :as => 'destroy_item', :constraints => { :id => %r([^/.?]+) }
 
   # Owner routes for controller "items"
-  get 'lanes/:lane_id/items/new(.:format)' => 'items#new_for_lane', :as => 'new_item_for_lane'
-  post 'lanes/:lane_id/items(.:format)' => 'items#create_for_lane', :as => 'create_item_for_lane'
+  get 'projects/:project_id/items/new(.:format)' => 'items#new_for_project', :as => 'new_item_for_project'
+  post 'projects/:project_id/items(.:format)' => 'items#create_for_project', :as => 'create_item_for_project'
 
   # Show action routes for controller "items"
   get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
@@ -53,7 +53,7 @@ Hobokan::Application.routes.draw do
   post 'projects/:project_id/lanes(.:format)' => 'lanes#create_for_project', :as => 'create_lane_for_project'
 
   # Show action routes for controller "lanes"
-  get 'lanes/:id/kanban_lane(.:format)' => 'lanes#kanban_lane', :as => 'lane_kanban_lane'
+  get 'lanes/:id/show(.:format)' => 'lanes#show', :as => 'lane_show'
 
   # Reorder routes for controller "lanes"
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
