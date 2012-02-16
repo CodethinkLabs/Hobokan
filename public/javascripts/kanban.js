@@ -1,9 +1,8 @@
 var drop_handler = function() {
 
-  var item_ordering = "";
-  jQuery.each(this.parent().children().filter('li'),function(){
-    item_ordering += "&item_ordering[]=" + this.id.substr(1);
-  });
+  var item_position = "";
+
+  item_position = "&item_position=" + jQuery(this).parent().children().filter('li').index(this)
 
   var item_id = this.attr("id").substr(1);
   var lane_id = this.parent().attr("id").substr(1);
@@ -11,7 +10,7 @@ var drop_handler = function() {
   var startchar = "?"
   if (window.location.href.indexOf("?") != -1) startchar = "&"
 
-  Hobo.ajaxRequest( window.location.href + startchar + "lane_id=" + lane_id + "&item_id=" + item_id + item_ordering,
+  Hobo.ajaxRequest( window.location.href + startchar + "lane_id=" + lane_id + "&item_id=" + item_id + item_position,
                     [],
                     { params: { lane_id: lane_id, item_id: item_id },
                       action: 'show',
