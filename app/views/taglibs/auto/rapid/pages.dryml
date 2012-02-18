@@ -415,7 +415,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="" param/>
+            <record-flags fields="todo" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="lane.actions.edit" name="#{name(:no_wrapper => true)}">
