@@ -83,6 +83,7 @@ class ProjectsController < ApplicationController
         lane.title = "Done"
         lane.position = 5
         lane.background_color = "#999999"
+        lane.todo = false
         lane.save
 
         p = ProjectMember.new

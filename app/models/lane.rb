@@ -9,6 +9,7 @@ class Lane < ActiveRecord::Base
     position      :integer
     background_color :string
     color         :string, :default => '#000000'
+    todo          :boolean, :default => true
     timestamps
   end
 
