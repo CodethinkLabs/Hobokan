@@ -25,3 +25,22 @@ task :snapshot => :environment do
   end
 end
 
+task :report => :environment do
+  Project.all.each do |project|
+    project.users.each do |user|
+      me = User.find(5)
+      UserMailer.report(me, project).deliver
+    end
+  end
+end
+
+task :status => :environment do
+  Project.all.each do |project|
+    project.users.each do |user|
+      if user == User.find(5) and project == Project.find(9)
+        UserMailer.status(user, project).deliver
+      end
+    end
+  end
+end
+
