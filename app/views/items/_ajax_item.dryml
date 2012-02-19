@@ -2,7 +2,7 @@
   <select-many merge options="&@item.project.project_members"/>
 </def>
 
-<hjq-dialog id="&'item-dialog-s' + my_item.id.to_s" title="Edit task S#{my_item.id}" position="center" width="&800">
+<hjq-dialog id="&'item-dialog-s' + my_item.id.to_s" title="Edit task S#{my_item.id} created by #{my_item.user}" position="center" width="&800">
   <transition-buttons/>
   <form with="&my_item" without-cancel>
     <field-list: fields="title, milestone, lane, text, doable, project_members, result" >
