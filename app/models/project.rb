@@ -27,8 +27,8 @@ class Project < ActiveRecord::Base
 
   has_many :lanes, :order => :position, :dependent => :destroy, :accessible => true
   has_many :items, :dependent => :destroy
-  has_many :project_members, :accessible => true
-  has_many :users, :through => :project_members
+  has_many :project_members
+  has_many :users, :through => :project_members, :accessible => true
   has_many :milestones, :accessible => true
 
   validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"

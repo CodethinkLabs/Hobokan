@@ -18,7 +18,7 @@
        <aside style="width:33%">
        <form>
          <h2> Project Members</h2>
-         <input-many:project_members><field-list fields="user"/></input-many>
+         <field-list fields="users"/>
          <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
 
          <h2> Lanes</h2>
