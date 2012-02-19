@@ -86,6 +86,14 @@ class ProjectsController < ApplicationController
         lane.todo = false
         lane.save
 
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Not going to fix"
+        lane.position = 0
+        lane.background_color = "#FFFFFF"
+        lane.todo = false
+        lane.save
+
         p = ProjectMember.new
         p.user = current_user
         p.project = this
