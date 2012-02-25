@@ -21,9 +21,6 @@
           <text-view:><if><this.to-html.html-safe/></if></text-view>
           <result-view:><if><this.to-html.html-safe/></if></result-view>
         </field-list>
-        <change-log-view/>
-      </section>
-      <aside id="comments" style="width=50%">
         <h2>Comments
             <hjq-dialog-open-button dialog="#add-comment-dialog" style="float:right;">Add a Comment</hjq-dialog-open-button>
         </h2>
@@ -34,6 +31,9 @@
           <created-at-heading:>Date</created-at-heading:>
           <detail-heading:>Comment</detail-heading:>
         </table-plus>
+      </section>
+      <aside id="changelog" style="width=50%">
+        <change-log-view/>
       </aside>
     </section-group>
   </content:>
