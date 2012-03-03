@@ -63,7 +63,7 @@ class Item < ActiveRecord::Base
 
   def set_lane
     if self.lane == nil
-      self.lane = project.lanes[0]
+      self.lane = project.lanes.visible[0]
     end
   end
 
