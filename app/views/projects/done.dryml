@@ -5,6 +5,7 @@
   </a><br/>
   <section-group>
     <section>
+      <count with="&@done"/>
       <table-plus with="&@done" fields="id, this, project-members, milestone, lane, updated_at">
         <id-view:>S<this/></id-view:>
         <updated-at-view:><%= this.strftime("%d/%m/%y") %></updated-at-view:>
