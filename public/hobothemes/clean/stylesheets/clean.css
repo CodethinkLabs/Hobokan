@@ -333,4 +333,5 @@ table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3
 /* kanban */
 .kb-lane {background:#eeeeee; height:600px; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin-right:.5%; float:left;  display: inline; height:600; }
 .box { background:#22ff00; font-size: 120%; padding: 1em;  margin-bottom: .5em; display:inline-block; vertical-align: top; -moz-border-radius: 5px;border-radius: 5px;}
+.kb-frame {background:#eeeeee; width:98%; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin:.5%; float:left;  display: inline; height:600; }
 
