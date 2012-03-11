@@ -15,6 +15,8 @@ class Milestone < ActiveRecord::Base
   has_many :items
 
   default_scope :order => 'date ASC'
+  scope :current, lambda { |*args |{:conditions => [ "date > ?", (args.first || Date.today - 14.days) ] }}
+
   validates_presence_of :date
 
   # --- Permissions --- #
