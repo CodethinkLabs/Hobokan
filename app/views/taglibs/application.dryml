@@ -31,8 +31,11 @@
 </extend>
 
 <def tag="account-nav">
-  <span style="float:left;margin: -22px 5px 0 0;">
-    <project-dropdown/>
+  <span >
+     <ul class='navigation account-nav' style="float:left;">
+       <li class="nav-item"><a href="/">Home</a></li>
+       <li><project-dropdown/></li>
+     </ul>
   </span>
   <do with='&current_user'>
     <ul class='navigation account-nav' param>
@@ -66,7 +69,7 @@
   <select-many merge options="&@item.project.project_members"/>
 </def>
 
-<def tag="kanban-card" attrs="lanewidth,boxwidth">
+<def tag="kanban-card" attrs="boxwidth">
   <% if this.doable %>
      <set border = "border-right:4px solid green;"/>
   <% else %>
@@ -95,7 +98,7 @@
   <ul class="kb-lane" id="L#{this.id}" style="width:#{lanewidth}">
      <h3><a href="/lanes/#{this.id}/show"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
      <repeat:items.active>
-       <kanban-card lanewidth="&lanewidth" boxwidth="auto"/>
+       <kanban-card boxwidth="&boxwidth"/>
      </repeat:items.active>
    </ul>
 </def>
