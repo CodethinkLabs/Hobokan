@@ -31,14 +31,10 @@
 </extend>
 
 <def tag="account-nav">
-  <span >
-     <ul class='navigation account-nav' style="float:left;">
-       <li class="nav-item"><a href="/">Home</a></li>
-       <li><project-dropdown/></li>
-     </ul>
-  </span>
   <do with='&current_user'>
     <ul class='navigation account-nav' param>
+      <li><a href="/">Home</a></li>
+      <li><project-dropdown/></li>
       <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
       <if test='&logged_in?'>
         <li class='nav-item' param='admin'><a href="&admin_users_url" if="&current_user.administrator?">User Admin</a></li>
