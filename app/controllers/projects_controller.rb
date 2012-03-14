@@ -32,7 +32,6 @@ class ProjectsController < ApplicationController
 
   def kanban
     @project = find_instance
-    @items = @project.items.active.apply_scopes(:milestone_is => params[:milestone])
 
     if params[:lane]
       @lanes = @project.lanes.apply_scopes(:title_is => params[:lane])
