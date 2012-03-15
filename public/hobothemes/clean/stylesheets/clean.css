@@ -29,7 +29,7 @@ html, body {color: #193440; background: url(../images/300-ACD3E6-fff.png) repeat
 
 body {
 	width: 99%;
-	margin: 0 auto 20px;
+	margin: 0 auto 0;
 	font: 12px "Verdana", "Trebuchet MS", Arial, sans-serif; line-height: 18px;
 }
 h1, h2, h3 {font-weight: normal;}
@@ -330,7 +330,7 @@ table.app-summary td { padding: 2px;  border: 1px dotted #bbb; }
 table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3e6; }
 
 /* kanban */
-.kb-lane {background:#eeeeee; height:600px; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin-right:.5%; float:left;  display: inline; height:600; }
+.kb-lane {background:#eeeeee; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin-right:.5%; float:left;  display: inline; height:600; }
 .box { background:#22ff00; font-size: 120%; padding: 1em;  margin-bottom: .5em; display:inline-block; vertical-align: top; -moz-border-radius: 5px;border-radius: 5px;}
 .kb-frame {background:#eeeeee; width:98%; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin:.5%; float:left;  display: inline; height:600; }
 

@@ -54,5 +54,8 @@ jQuery("#cl-toggle").click( function() {
   jQuery("#change-log").toggle();
 });
 
+var laneheight = window.innerHeight - (jQuery('.navigation').height() * 4) - jQuery('.timeline').height() + "px";
+jQuery(".kb-lane").css("height", laneheight);
+
 jQuery(".kb-lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});
 jQuery(".lane-count").text(function () { return jQuery(this).parent().parent().parent().children().size() - 1;});
