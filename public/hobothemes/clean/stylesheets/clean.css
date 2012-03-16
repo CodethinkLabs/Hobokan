@@ -41,8 +41,7 @@ h5 {margin: 10px 0 5px;  font-size: 12px; line-height: 12px;}
 h6 {margin: 10px 0 5px;  font-size: 10px; line-height: 10px;}
 
 a {
-        padding: 10;
-	border-bottom: 1px dotted #ccc;
+    padding: 10;
 	color: #222; background: #fffff;
 	text-decoration: none; 
 }
@@ -146,7 +145,7 @@ form .actions input { margin: 0; }
 }
 #search-results-panel {
 	position: absolute; top: 35px; right: 25px; z-index: 50;
-	width: 350px; height: 500px; overflow: auto; 
+	width: 200px; height: 500px; overflow: auto;
 	padding: 0 20px 20px; border: 1px solid #ddd;
 	color: black; background: #a4f800;
 }
