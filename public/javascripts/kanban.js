@@ -1,3 +1,10 @@
+var count_cards = function () {
+
+  jQuery(".lane-count").text(function () {
+    return jQuery(this).parent().parent().parent().children().size() - 1;
+  });
+}
+
 var drop_handler = function() {
 
   var item_position = "";
@@ -18,6 +25,7 @@ var drop_handler = function() {
                       method: 'get',
                       message: "Please wait"
                     } );
+  count_cards ();
 }
 
 var get_item_details = function(board, item_id) {
@@ -60,4 +68,4 @@ laneheight = laneheight + "px";
 jQuery(".kb-lane").css("height", laneheight);
 
 jQuery(".kb-lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});
-jQuery(".lane-count").text(function () { return jQuery(this).parent().parent().parent().children().size() - 1;});
+count_cards();
