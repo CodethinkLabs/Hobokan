@@ -23,7 +23,7 @@
        <section>
         <do with="&current_user">
           <repeat:project_members>
-            <if test="&this.items.todo">
+            <if test="&this.project.state == 'running' and this.items.todo">
               <div class="kb-frame">
 	          <h3><a href="/projects/#{this.project.id}/kanban" >#{this.project.name}</a></h3>
               <repeat:items.todo>
