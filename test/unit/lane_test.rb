@@ -144,17 +144,38 @@ class LaneTest < ActiveSupport::TestCase
          # aProject has an admin_membership because admin created it
          # aProject2 does not have an admin_membership because aUser created it
         
-        assert(ProjectMember.admin_memberships.include?(aProject.id), "Expected that the project includes admin memberships")
+        
         
         # Check that any user cannot create one lane in aProject2
         assert_equal(1, aProject2.project_members.count, 
-                     "Expected one project member associated." )
+                     "Expected one project member associated." )    
+                               
         assert(!ProjectMember.admin_memberships.include?(aProject2.id), 
                "Expected that the project doesn't include admin memberships" )
-         
-        assert(!aProject2.lanes.create!(:title => "no lane created").creatable_by?(aAdmin),
+               
+        assert(!aProject2.lanes.create!(:title => "no lane created").creatable_by?(aUser),
                "Expected create fail because there aren't any admin_memberships")
-        
+         
+        assert(!aProject2.lanes.create!(
+                           :title => "no lane created" ).creatable_by?(aAdmin),
+               "Expected create fail because there aren't any admin_memberships
+                associated to the project")
+                
+       # Check that any user can create one lane in aProjec
+       assert_equal(1, aProject.project_members.count, 
+                     "Expected one project member associated." )
+                     
+       assert(ProjectMember.admin_memberships.include?(aProject.id),
+               "Expected that the project includes admin memberships")
+       
+       assert(aProject.lanes.create!(:title => "no lane created").creatable_by?(aUser),
+              "Expected create is sucessful because there are an 
+               admin_memberships")
+         
+       assert(aProject.lanes.create!(
+                           :title => "no lane created" ).creatable_by?(aAdmin),
+               "Expected create is sucesful because there are an 
+                admin_memberships associated to the project") 
       end
 
       # Check creation with project_members not being admin of the project
