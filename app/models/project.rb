@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   fields do
     name :string
     details :markdown
+    publicview :boolean, :default => false
     timestamps
   end
 
