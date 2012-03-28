@@ -22,7 +22,8 @@ class Project < ActiveRecord::Base
   end
 
   scope :active, :conditions => "state = 'running'"
-
+  scope :publicviewable, :conditions => "public_viewable = 't'"
+  scope :publichidden,   :conditions => "public_viewable = 'f'"
   children :lanes
   children :project_members
 
