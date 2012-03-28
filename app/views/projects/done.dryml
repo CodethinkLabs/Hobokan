@@ -3,6 +3,16 @@
   <a action="kanban">
     &laquo; Back to <name/> kanban
   </a><br/>
+  <h3>
+    <a style="float:left;padding-right:20px;"><name/></a>
+  <div class="filter" style="float:left;"><filter-menu param-name="milestone" options="&@this.milestones.current.all" no-filter="All Milestones" /></div>
+  <div class="filter" style="float:left;"><filter-menu param-name="lane" options="&@this.lanes.all" no-filter="Board" /></div>
+  <div class="filter" style="float:left;"><filter-menu param-name="user" options="&@this.project_members.all" no-filter="User" /></div>
+  <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+  <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
+  <div id="edit-item-dialog"></div>
+
+  </h3>
   <section-group>
     <section>
       <count with="&@done"/>
