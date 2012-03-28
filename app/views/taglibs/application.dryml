@@ -16,8 +16,10 @@
 
 <def tag='project-dropdown'>
   <% projects = [] %>
-  <% projects.concat( current_user.projects.active.publichidden.map{ |p| p.id.to_s + '-' + p.name }) %>
-  <% projects << '---' %>
+  <% if current_user.is_a?(User)
+       projects.concat( current_user.projects.active.publichidden.map{ |p|
+       p.id.to_s + '-' + p.name })
+     end %>
   <% projects.concat( Project.active.publicviewable.map { |p| p.id.to_s + '-' + p.name + ' (P)' }) %>
   <select-menu class='project-dropdown' first-option="Choose project..." onchange="location.href = '/projects/' + encodeURIComponent(this.options[this.selectedIndex].value) + '/kanban'" options="&projects"/>
 </def>
@@ -28,7 +30,7 @@
       <hjq-assets/>
     </custom-scripts>
     <header:>
-      <account-nav if="&current_user.signed_up?"/>
+      <account-nav />
     </header:>
   </old-page>
 </extend>
