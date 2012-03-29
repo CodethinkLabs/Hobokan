@@ -92,9 +92,16 @@
     <set style="width:#{boxwidth};background-color:#{color};#{border}"/>
     <li class="box" id="S#{this.id}" style="#{style}">
     <table><td><a href="/items/#{this.id}">S<this.id/> </a>
-    <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
-       <this.title/><repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
-    </a>
+    <if test="&current_user.is_a?(User)">
+      <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
+         <this.title/><repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
+      </a>
+    </if>
+    <else>
+      <a href="/items/#{this.id}">
+        <this.title/><repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
+      </a>
+    </else>
        </td><td>
        <repeat:project_members><do with="&this.user"><gravatar size="24"/></do></repeat:project_members></td></table>
   </li>
