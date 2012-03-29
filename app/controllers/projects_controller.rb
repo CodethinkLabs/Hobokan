@@ -40,7 +40,9 @@ class ProjectsController < ApplicationController
     end
 
     if request.xhr?
-      handle_item_drop
+      if current_user.is_a?(User)
+        handle_item_drop
+      end
       hobo_ajax_response
       return
     end

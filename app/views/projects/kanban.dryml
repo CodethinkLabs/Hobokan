@@ -55,7 +55,11 @@
       </aside>
     </section-group>
 
-    <javascript name="jquery.dragsort"/>
     <javascript name="kanban"/>
+    <if test="&current_user.is_a?(User)">
+      <javascript name="jquery.dragsort"/>
+      <javascript name="kanban_dragdrop"/>
+    </if>
+
   </content:>
 </show-page>
