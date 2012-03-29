@@ -61,7 +61,7 @@ class Project < ActiveRecord::Base
 
   def view_permitted?(field)
     logger.debug("Project#view_permitted? #{ProjectMember.view_memberships.include?(id)} project_id: #{id}")
-    id.nil? || ProjectMember.view_memberships.include?(id)
+    id.nil? || ProjectMember.view_memberships.include?(id) || public_viewable
   end
 
 end
