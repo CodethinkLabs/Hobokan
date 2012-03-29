@@ -7,7 +7,7 @@
     </h2>
     <error-messages/>
     <form>
-      <field-list fields="name, details"/>
+      <field-list fields="name, details, public_viewable"/>
       <submit label="#{ht 'project.actions.save', :default=>['Create Project']}"/><or-cancel/>
     </form>
   </content:>
