@@ -9,5 +9,42 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  # Helper methods to test that the length of a field is valid 
+  def assert_required_length_less_than(object, field, length)
+    
+    dup_object = object.clone		
+        
+    # Invalid at length-1
+    dup_object.send("#{field}=", "a"*(length-1))
+    assert(dup_object.valid?)
+		
+    # Valid at length
+    dup_object.send("#{field}=", "a"*length)
+    assert(dup_object.valid?)
+	
+    # Invalid at length+1
+    dup_object.send("#{field}=", "a"*(length+1))
+    assert(dup_object.valid?, 
+           "Expected validation error: string must be shorter than #{length} characters.")
+    end
+
+
+    def assert_required_length_more_than(object, field, length)
+      
+      dup_object = object.clone		
+      
+      # Invalid at length-1
+      dup_object.send("#{field}=", "a"*(length-1))
+      assert(dup_object.valid?,
+             "Expected validation error: string must be longer than #{length} characters.")
+
+      # Valid at length
+      dup_object.send("#{field}=", "a"*length)
+      assert(dup_object.valid?)
+	
+      # Invalid at length+1
+      dup_object.send("#{field}=", "a"*(length+1))
+      assert(dup_object.valid?)
+    end
+	
 end

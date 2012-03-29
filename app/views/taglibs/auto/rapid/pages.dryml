@@ -697,7 +697,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="" param/>
+            <record-flags fields="public_viewable" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="project.actions.edit" name="#{name(:no_wrapper => true)}">
