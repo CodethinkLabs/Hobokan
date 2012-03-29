@@ -28,7 +28,7 @@ class Comment < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user.signed_up?
+    acting_user.signed_up? || item.project.public_viewable
   end
 
 end

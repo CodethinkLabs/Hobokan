@@ -51,7 +51,7 @@ class Lane < ActiveRecord::Base
 
   def view_permitted?(field)
     logger.debug("Lane#view_permitted? #{ProjectMember.view_memberships.inspect} project_id: #{project_id}")
-    project.project_members.count == 0 || ProjectMember.view_memberships.include?(project_id)
+    project.project_members.count == 0 || ProjectMember.view_memberships.include?(project_id) || project.public_viewable
   end
 
 end
