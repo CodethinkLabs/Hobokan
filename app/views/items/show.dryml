@@ -14,7 +14,9 @@
     <section-group>
       <section>
         <br/>
-        <a action="edit" style="float:right;">Edit Task</a>
+        <if test="&current_user.is_a?(User)">
+          <a action="edit" style="float:right;">Edit Task</a>
+        </if>
         <field-list fields="id, title, created-at, milestone, text, user, project, project_members, result, lane, state">
           <id-view:>S<this/></id-view:>
           <project-view:><a action="kanban"><this/></a></project-view:>
@@ -22,7 +24,9 @@
           <result-view:><if><this.to-html.html-safe/></if></result-view>
         </field-list>
         <h2>Comments
+          <if test="&current_user.is_a?(User)">
             <hjq-dialog-open-button dialog="#add-comment-dialog" style="float:right;">Add a Comment</hjq-dialog-open-button>
+          </if>
         </h2>
         <table-plus with="&@comments" fields="created_at, detail, user">
           <header: replace/>
