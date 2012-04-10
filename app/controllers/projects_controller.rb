@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
 
   def done
     @project = find_instance
-    @done = @project.items.done.apply_scopes(:milestone_is => params[:milestone], :order_by => 'updated_at DESC') 
+    @done = @project.items.done.apply_scopes(:milestone_is => params[:milestone], :order_by => 'updated_at DESC')
   end
 
   def stats
@@ -31,18 +31,21 @@ class ProjectsController < ApplicationController
   end
 
   def kanban
+    if request.xhr?
+      handle_item_drop
+      # We don't need to render anything, just stop the
+      # spinner once the AJAX response have been received
+      # by the client
+      render :nothing => true
+      return
+    end
+
     @project = find_instance
 
     if params[:lane]
       @lanes = @project.lanes.apply_scopes(:title_is => params[:lane])
     else
       @lanes = @project.lanes.visible
-    end
-
-    if request.xhr?
-      handle_item_drop
-      hobo_ajax_response
-      return
     end
   end
 
