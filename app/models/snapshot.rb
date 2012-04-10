@@ -6,26 +6,26 @@ class Snapshot < ActiveRecord::Base
     count :integer
     date :date
   end
-  
+
   belongs_to :lane
   belongs_to :milestone
 
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    ProjectMember.memberships.include?(lane.project_id)
   end
 
   def update_permitted?
-    acting_user.administrator?
+    ProjectMember.memberships.include?(lane.project_id)
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    ProjectMember.memberships.include?(lane.project_id)
   end
 
   def view_permitted?(field)
-    true
+    ProjectMember.view_memberships.include?(lane.project_id)
   end
 
 end
