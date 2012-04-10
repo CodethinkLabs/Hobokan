@@ -79,13 +79,11 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    logger.debug("Item#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
     project_id.nil? || ProjectMember.memberships.include?(project_id)
     true
    end
 
   def update_permitted?
-    logger.debug("Item#update_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
     ProjectMember.memberships.include?(project_id)
   end
 
@@ -94,7 +92,6 @@ class Item < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    logger.debug("Item#view_permitted? #{ProjectMember.view_memberships.inspect} project_id: #{project_id}")
     project_id.nil? || ProjectMember.view_memberships.include?(project_id)
   end
 

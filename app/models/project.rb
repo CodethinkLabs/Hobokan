@@ -42,23 +42,19 @@ class Project < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    logger.debug("Project#create_permitted? #{acting_user.signed_up?} project_id: #{id}")
     acting_user.signed_up?
   end
 
   def update_permitted?
-    logger.debug("Project#update_permitted? #{ProjectMember.admin_memberships.include?(id)} project_id: #{id}")
     ProjectMember.admin_memberships.include?(id)||
     acting_user.administrator?
   end
 
   def destroy_permitted?
-    logger.debug("Project#destroy_permitted? #{ProjectMember.admin_memberships.include?(id)} project_id: #{id}")
     ProjectMember.admin_memberships.include?(id)
   end
 
   def view_permitted?(field)
-    logger.debug("Project#view_permitted? #{ProjectMember.view_memberships.include?(id)} project_id: #{id}")
     id.nil? || ProjectMember.view_memberships.include?(id)
   end
 
