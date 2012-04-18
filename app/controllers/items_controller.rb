@@ -27,7 +27,6 @@ class ItemsController < ApplicationController
   def ajax_item
     if request.xhr?
       @item = find_instance
-      logger.debug("item: #{@item}")
       render :partial => "ajax_item", :locals => {:my_item => @item}
       return
     end
@@ -47,8 +46,13 @@ class ItemsController < ApplicationController
   def update
     hobo_update do
       if valid?
+        if request.xhr?
+          render :nothing => true
+          return
+        end
+
         item = find_instance
-         redirect_to :back
+        redirect_to :back
       end
     end
   end
