@@ -28,6 +28,19 @@ var drop_handler = function() {
   count_cards ();
 }
 
+/*
+ * Set the text of the task in the lane to the value of
+ * the task title entered in the update task dialog,
+ * and then close the dialog.
+ */
+var terminate_update_item_dialog = function(item_id) {
+  var dialog = jQuery('#item-dialog-s' + item_id);
+  var box = jQuery('#S' + item_id);
+  var title = dialog.find('#item_title');
+  jQuery(box.find('a')[1]).text(title.val());
+  hjq.dialog.close(dialog);
+}
+
 var get_item_details = function(board, item_id) {
   Hobo.ajaxRequest( "/items/" + item_id + "/ajax_item",
                     [],
