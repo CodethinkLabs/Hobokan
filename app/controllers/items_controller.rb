@@ -11,6 +11,12 @@ class ItemsController < ApplicationController
       if valid?
         @item.state = "created"
         @item.save
+        if request.xhr?
+          # render :nothing => true
+          render :partial => "ajax_box", :locals => {:my_item => @item}
+          return
+        end
+
         redirect_to :back
       end
     end
