@@ -29,16 +29,14 @@ var drop_handler = function() {
 }
 
 /*
- * Append a box for a new task onto its lane, and then
+ * Add a box for a new task onto its lane, and then
  * close the new task dialog
  */
 var terminate_new_item_dialog = function(transport) {
-  console.log("transport response: " + transport.responseText);
   var dialog = jQuery('#new-task-dialog');
   var lane_id = dialog.find('.item_lane').val();
-  console.log("lane_id: " + lane_id);
-  var lane = jQuery("#L" + lane_id);
-  lane.append(transport.responseText);
+  // Insert the new task just after the lane heading
+  jQuery('#L' + lane_id + ' h3').after(transport.responseText);
   hjq.dialog.close(dialog);
 }
 
