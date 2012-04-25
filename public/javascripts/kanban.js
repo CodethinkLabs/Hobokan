@@ -93,8 +93,33 @@ var get_item_details = function(board, item_id) {
 }
 
 jQuery("#cl-toggle").click( function() {
-  this.value = jQuery("#change-log").is(':visible') ? "Change Log" : "Hide Change Log";
-  jQuery("#change-log").toggle();
+  if (jQuery("#change-log").is(':visible')) {
+    this.value = "Change Log";
+    jQuery("#change-log").toggle();
+    return;
+  }
+
+    var href = jQuery(".project-link").attr("href");
+    console.log("project href: " + href);
+    Hobo.ajaxRequest( href + "/change_log",
+                    [],
+                    { params: { },
+                      action: 'change_log',
+                      controller: 'projects',
+                      method: 'get',
+                      message: "Please wait",
+
+                      onSuccess: function(transport) {
+                        jQuery("#change-log-div").empty;
+                        jQuery("#change-log-div").append(transport.responseText);
+                        jQuery("#change-log").toggle();
+                        jQuery("#cl-toggle").val("Hide Change Log");
+                      },
+
+                      onFailure: function(transport) {
+                      }
+                    } );
+
 });
 
 var laneheight = window.innerHeight - (jQuery('.navigation').height() * 4) - jQuery('.timeline').height();

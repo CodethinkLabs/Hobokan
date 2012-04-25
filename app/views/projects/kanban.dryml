@@ -31,7 +31,7 @@
 	          </span>
 	          <% date = date + 1 %>
             <% end %>
-            <% if days > 0 %>&nbsp;<% end %> 
+            <% if days > 0 %>&nbsp;<% end %>
             <% color = this.background_color %>
             <span style="border-bottom:none;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;"><name/>:<%= this.date.strftime("%d-%b") %>: <%= this.items.todo.count %> tasks</span></a>
           </div>
@@ -49,8 +49,7 @@
     </div>
 
       <aside id="change-log" style="width: 20%;display:none;">
-        <div style=" height:600px; overflow:auto;">
-          <change-log-view/>
+        <div id="change-log-div">
         </div>
       </aside>
     </section-group>

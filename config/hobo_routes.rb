@@ -91,6 +91,7 @@ Hobokan::Application.routes.draw do
   get 'projects/:id/kanban(.:format)' => 'projects#kanban', :as => 'project_kanban'
   get 'projects/:id/done(.:format)' => 'projects#done', :as => 'project_done'
   get 'projects/:id/stats(.:format)' => 'projects#stats', :as => 'project_stats'
+  get 'projects/:id/change_log(.:format)' => 'projects#change_log', :as => 'project_change_log'
 
 
   # Resource routes for controller "lanes"

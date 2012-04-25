@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   hobo_model_controller
 
   auto_actions :all
-  show_action :kanban, :done, :stats
+  show_action :kanban, :done, :stats, :change_log
 
   def index
     hobo_index Project.active.apply_scopes(:search   => [params[:search], :name, :state],
@@ -28,6 +28,11 @@ class ProjectsController < ApplicationController
 
     @todo.each { |todo| i = todo.created_at.to_date.cweek - 1 ; @started[i] = @started[i] + 1 }
     @done.each { |done| i = done.updated_at.to_date.cweek - 1 ; @finished[i] = @finished[i] + 1  }
+  end
+
+  def change_log
+    @project = find_instance
+    render :partial => "ajax_change_log", :locals => {:this=> @project}
   end
 
   def kanban
