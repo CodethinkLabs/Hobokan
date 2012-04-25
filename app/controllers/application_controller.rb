@@ -37,8 +37,9 @@ class ApplicationController < ActionController::Base
     end
 
     if old_lane.id != lane.id
-      position = old_lane.items.length
-      old_lane.items.each do |item|
+      items = Item.where(:lane_id => old_lane.id).where("state <> 'archived'").order("position DESC")
+      position = items.length
+      items.each do |item|
         item.position = position
         item.save
         position -= 1
