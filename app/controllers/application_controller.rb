@@ -22,8 +22,9 @@ class ApplicationController < ActionController::Base
     dropped.position = target
     dropped.save
 
-    position = lane.items.length
-    lane.items.each do |item|
+    items = Item.where(:lane_id => lane.id).where("state <> 'archived'").order("position DESC")
+    position = items.length
+    items.each do |item|
       if item != dropped
         if position == target
           item.position += 1
