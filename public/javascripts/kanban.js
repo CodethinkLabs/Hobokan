@@ -42,6 +42,12 @@ var terminate_new_item_dialog = function(transport) {
   // Insert the new task just after the lane heading
   jQuery('#L' + lane_id + ' h3').after(transport.responseText);
   hjq.dialog.close(dialog);
+  jQuery("#item_title").val("");
+  jQuery(".item_milestone").val("Choose Milestone");
+  jQuery(".item_lane").val("Choose Lane");
+  jQuery("#item_text").val("");
+  jQuery(".project-members-view .items").remove();
+  jQuery("#item_doable").attr("checked", false);
 }
 
 /*
