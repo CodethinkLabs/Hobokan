@@ -45,6 +45,7 @@ var terminate_new_item_dialog = function(transport) {
 
   // Insert the new task just after the lane heading
   jQuery('#L' + lane_id + ' h3').after(transport.responseText);
+  count_cards();
   hjq.dialog.close(dialog);
 
   // Initialize the fields in the dialog
