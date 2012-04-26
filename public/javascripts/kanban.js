@@ -59,11 +59,10 @@ var terminate_new_item_dialog = function(transport) {
  * the task title entered in the update task dialog,
  * and then close the dialog.
  */
-var terminate_update_item_dialog = function(item_id) {
-  var dialog = jQuery('#item-dialog-s' + item_id);
+var terminate_update_item_dialog = function(transport, item_id) {
   var box = jQuery('#S' + item_id);
-  var title = dialog.find('#item_title');
-  jQuery(box.find('a')[1]).text(title.val());
+  box.replaceWith(transport.responseText);
+  var dialog = jQuery('#item-dialog-s' + item_id);
   hjq.dialog.close(dialog);
 }
 
