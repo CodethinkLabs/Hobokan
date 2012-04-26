@@ -48,7 +48,7 @@ class Item < ActiveRecord::Base
   scope :todo, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.todo = 't' "
   scope :done, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.todo != 't' "
 
-  before_create :enqueue_item, :set_lane, :set_updated_by
+  before_create :set_lane, :enqueue_item, :set_updated_by
   before_save :set_updated_by
 
   def set_updated_by

@@ -39,6 +39,10 @@ var drop_handler = function() {
 var terminate_new_item_dialog = function(transport) {
   var dialog = jQuery('#new-task-dialog');
   var lane_id = dialog.find('.item_lane').val();
+  if (lane_id == '') {
+    lane_id = jQuery(".kb-lane")[0].id.substr(1);
+  }
+
   // Insert the new task just after the lane heading
   jQuery('#L' + lane_id + ' h3').after(transport.responseText);
   hjq.dialog.close(dialog);
