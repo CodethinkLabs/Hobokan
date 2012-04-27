@@ -38,17 +38,17 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if request.xhr?
-      handle_item_drop
-      hobo_ajax_response
-      return
-    end
-
     @item = find_instance
   end
 
-
   def update
+    @item = find_instance
+    if @item.lane.id != params[:item][:lane_id]
+      @item.lane = Lane.find(params[:item][:lane_id])
+      @item.enqueue_item
+      Lane.move_item(current_user, @item)
+    end
+
     hobo_update do
       if valid?
         if request.xhr?

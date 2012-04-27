@@ -37,7 +37,11 @@ class ProjectsController < ApplicationController
 
   def kanban
     if request.xhr?
-      handle_item_drop
+      dropped = Item.find(params[:item_id])
+      dropped.lane = Lane.find(params[:lane_id])
+      dropped.position = params[:item_position].to_i
+      Lane.move_item(current_user, dropped)
+
       # We don't need to render anything, just stop the
       # spinner once the AJAX response have been received
       # by the client

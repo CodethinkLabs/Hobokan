@@ -11,42 +11,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :prepare_for_mobile
 
-  def handle_item_drop
-    id = params[:item_id]
-    target = params[:item_position].to_i
-    lane = Lane.find(params[:lane_id])
-
-    dropped = Item.find(id)
-    old_lane = dropped.lane
-    dropped.lane = lane
-    dropped.position = target
-    dropped.save
-
-    items = Item.where(:lane_id => lane.id).where("state <> 'archived'").order("position DESC")
-    position = items.length
-    items.each do |item|
-      if item != dropped
-        if position == target
-          item.position += 1
-        else
-          item.position = position
-        end
-        item.save
-      end
-      position -= 1
-    end
-
-    if old_lane.id != lane.id
-      items = Item.where(:lane_id => old_lane.id).where("state <> 'archived'").order("position DESC")
-      position = items.length
-      items.each do |item|
-        item.position = position
-        item.save
-        position -= 1
-      end
-    end
-  end
-
 private
 
   def mobile_device?

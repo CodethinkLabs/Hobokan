@@ -63,14 +63,23 @@ var terminate_new_item_dialog = function(transport) {
 }
 
 /*
- * Set the text of the task in the lane to the value of
- * the task title entered in the update task dialog,
- * and then close the dialog.
+ * Replace the card in the lane with the amended card,
+ * or move it to a new lane if the lane changed.
+ * Then close the dialog.
  */
 var terminate_update_item_dialog = function(transport, item_id) {
-  var box = jQuery('#S' + item_id);
-  box.replaceWith(transport.responseText);
   var dialog = jQuery('#item-dialog-s' + item_id);
+  var lane_id = dialog.find('.item_lane').val();
+  var box = jQuery('#S' + item_id);
+  var current_lane_id = box.parent().attr("id").substr(1);
+
+  if (current_lane_id != lane_id) {
+    box.remove();
+    jQuery('#L' + lane_id + ' h3').after(transport.responseText);
+  } else {
+    box.replaceWith(transport.responseText);
+  }
+
   hjq.dialog.close(dialog);
 }
 
