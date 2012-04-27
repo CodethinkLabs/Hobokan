@@ -76,6 +76,7 @@ var terminate_update_item_dialog = function(transport, item_id) {
   if (current_lane_id != lane_id) {
     box.remove();
     jQuery('#L' + lane_id + ' h3').after(transport.responseText);
+    count_cards();
   } else {
     box.replaceWith(transport.responseText);
   }
