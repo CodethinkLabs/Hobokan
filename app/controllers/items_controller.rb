@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
         @item.state = "created"
         @item.save
         if request.xhr?
-          render :partial => "ajax_box", :locals => {:my_item => @item}
+          render :partial => "ajax_box"
           return
         end
 
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   def ajax_item
     if request.xhr?
       @item = find_instance
-      render :partial => "ajax_item", :locals => {:my_item => @item}
+      render :partial => "ajax_item"
       return
     end
   end
@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
     hobo_update do
       if valid?
         if request.xhr?
-          render :partial => "ajax_box", :locals => {:my_item => @item}
+          render :partial => "ajax_box"
           return
         end
 
