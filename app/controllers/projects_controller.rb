@@ -50,6 +50,7 @@ class ProjectsController < ApplicationController
     end
 
     @project = find_instance
+    @milestones = @project.milestones.current.all << "No Milestones"
 
     if params[:lane]
       @lanes = @project.lanes.apply_scopes(:title_is => params[:lane])

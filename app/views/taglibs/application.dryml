@@ -81,7 +81,7 @@
     <% if this.lane.todo && this.milestone.date <= Date.today %> <set border = "border-left:4px solid red;#{border}"/> <% end %>
   <% else %>
     <set color="#{this.lane.background_color}"/>
-    <set target = "" />
+    <set target = "No Milestones" />
   <% end %>
   <% if params[:milestone] == nil || params[:milestone] == target %>
     <set style="width:#{boxwidth};background-color:#{color};#{border}"/>
