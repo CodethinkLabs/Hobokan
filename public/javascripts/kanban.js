@@ -130,7 +130,7 @@ jQuery("#cl-toggle").click( function() {
                       message: "Please wait",
 
                       onSuccess: function(transport) {
-                        jQuery("#change-log-div").empty;
+                        jQuery("#change-log-div").empty();
                         jQuery("#change-log-div").append(transport.responseText);
                         jQuery("#change-log").toggle();
                         jQuery("#cl-toggle").val("Hide Change Log");
