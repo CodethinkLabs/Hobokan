@@ -24,6 +24,10 @@ $ heroku config:add SECRET_TOKEN=a.random.alphanumeric.string.of.at.least.30.cha
 
 It should now be possible to create first admin user on the heroku instance, then invite users, create projects etc
 
+There's a preliminary mailing list at you can join at
+
+http://vlists.pepperfish.net/cgi-bin/mailman/listinfo/hobokan-dev-ppfm.net 
+
 TODO
 ====
 Lots... we've been dogfooding this at Codethink for months, but there's plenty of room for improvement.
