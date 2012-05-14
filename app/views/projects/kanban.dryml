@@ -7,7 +7,13 @@
 	  <div class="filter" style="float:left;"><filter-menu param-name="milestone" options="&@this.milestones.current.all" no-filter="All Milestones" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="lane" options="&@this.lanes.all" no-filter="Board" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="user" options="&@this.project_members.all" no-filter="User" /></div>
-      <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+      <if test="&current_user.is_a?(User)">
+        <new-task-dialog/>
+        <hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+      </if>
+      <else>
+        <br /> <br /> <!-- This is a dirty hack because the absence of an 'Add a task' button moved the timeline to the end of the filters-->
+      </else>
       <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
 	  <div id="edit-item-dialog"></div>
 
@@ -54,7 +60,11 @@
       </aside>
     </section-group>
 
-    <javascript name="jquery.dragsort"/>
     <javascript name="kanban"/>
+    <if test="&current_user.is_a?(User)">
+      <javascript name="jquery.dragsort"/>
+      <javascript name="kanban_dragdrop"/>
+    </if>
+
   </content:>
 </show-page>

@@ -5,7 +5,9 @@
   </a>
   <section-group>
     <section>
-      <a action="edit" style="float:right;">Edit Project</a>
+      <if test="&current_user.is_a?(User)">
+        <a action="edit" style="float:right;">Edit Project</a>
+      </if>
       <field-list skip="items, project_members">
         <details-view:><if><this.to-html.html-safe/></if></details-view:>
         <milestones-view:><table-plus fields="name, description, date"/></milestones-view:>

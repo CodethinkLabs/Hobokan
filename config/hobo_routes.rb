@@ -63,6 +63,29 @@ Hobokan::Application.routes.draw do
   post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
 
 
+  # Lifecycle routes for controller "users"
+  put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
+  get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'
+  put 'users/:id/reset_password(.:format)' => 'users#do_reset_password', :as => 'do_user_reset_password'
+  get 'users/:id/reset_password(.:format)' => 'users#reset_password', :as => 'user_reset_password'
+
+  # Resource routes for controller "users"
+  get 'users(.:format)' => 'users#index', :as => 'users'
+  get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
+  get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
+  post 'users(.:format)' => 'users#create', :as => 'create_user'
+  put 'users/:id(.:format)' => 'users#update', :as => 'update_user', :constraints => { :id => %r([^/.?]+) }
+  delete 'users/:id(.:format)' => 'users#destroy', :as => 'destroy_user', :constraints => { :id => %r([^/.?]+) }
+
+  # Show action routes for controller "users"
+  get 'users/:id/account(.:format)' => 'users#account', :as => 'user_account'
+
+  # User routes for controller "users"
+  match 'login(.:format)' => 'users#login', :as => 'user_login'
+  get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
+  match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+
+
   # Resource routes for controller "milestones"
   get 'milestones/new(.:format)', :as => 'new_milestone'
   get 'milestones/:id/edit(.:format)' => 'milestones#edit', :as => 'edit_milestone'
@@ -70,6 +93,28 @@ Hobokan::Application.routes.draw do
   post 'milestones(.:format)' => 'milestones#create', :as => 'create_milestone'
   put 'milestones/:id(.:format)' => 'milestones#update', :as => 'update_milestone', :constraints => { :id => %r([^/.?]+) }
   delete 'milestones/:id(.:format)' => 'milestones#destroy', :as => 'destroy_milestone', :constraints => { :id => %r([^/.?]+) }
+
+
+  # Lifecycle routes for controller "items"
+  put 'items/:id/archive(.:format)' => 'items#do_archive', :as => 'do_item_archive'
+  get 'items/:id/archive(.:format)' => 'items#archive', :as => 'item_archive'
+  put 'items/:id/restore(.:format)' => 'items#do_restore', :as => 'do_item_restore'
+  get 'items/:id/restore(.:format)' => 'items#restore', :as => 'item_restore'
+
+  # Resource routes for controller "items"
+  get 'items/new(.:format)', :as => 'new_item'
+  get 'items/:id/edit(.:format)' => 'items#edit', :as => 'edit_item'
+  get 'items/:id(.:format)' => 'items#show', :as => 'item', :constraints => { :id => %r([^/.?]+) }
+  post 'items(.:format)' => 'items#create', :as => 'create_item'
+  put 'items/:id(.:format)' => 'items#update', :as => 'update_item', :constraints => { :id => %r([^/.?]+) }
+  delete 'items/:id(.:format)' => 'items#destroy', :as => 'destroy_item', :constraints => { :id => %r([^/.?]+) }
+
+  # Owner routes for controller "items"
+  get 'projects/:project_id/items/new(.:format)' => 'items#new_for_project', :as => 'new_item_for_project'
+  post 'projects/:project_id/items(.:format)' => 'items#create_for_project', :as => 'create_item_for_project'
+
+  # Show action routes for controller "items"
+  get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
 
 
   # Lifecycle routes for controller "projects"

@@ -92,7 +92,7 @@ class Item < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    project_id.nil? || ProjectMember.view_memberships.include?(project_id)
+    project_id.nil? || ProjectMember.view_memberships.include?(project_id) || project.public_viewable
   end
 
 end

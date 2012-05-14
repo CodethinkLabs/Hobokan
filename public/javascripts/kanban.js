@@ -147,5 +147,4 @@ if (laneheight < 300) laneheight = 300;
 laneheight = laneheight + "px";
 jQuery(".kb-lane").css("height", laneheight);
 
-jQuery(".kb-lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});
 count_cards();

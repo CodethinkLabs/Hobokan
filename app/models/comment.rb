@@ -28,7 +28,7 @@ class Comment < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    ProjectMember.view_memberships.include?(item.project_id)
+    ProjectMember.view_memberships.include?(item.project_id) || item.project.public_viewable
   end
 
 end

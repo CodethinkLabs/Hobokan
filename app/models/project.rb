@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   fields do
     name :string
     details :markdown
+    public_viewable :boolean, :default => false
     timestamps
   end
 
@@ -21,7 +22,8 @@ class Project < ActiveRecord::Base
   end
 
   scope :active, :conditions => "state = 'running'"
-
+  scope :publicviewable, :conditions => "public_viewable = 't'"
+  scope :publichidden,   :conditions => "public_viewable = 'f'"
   children :lanes
   children :project_members
 
@@ -55,7 +57,7 @@ class Project < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    id.nil? || ProjectMember.view_memberships.include?(id)
+    id.nil? || ProjectMember.view_memberships.include?(id) || public_viewable
   end
 
 end

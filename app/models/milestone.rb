@@ -34,7 +34,7 @@ class Milestone < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    ProjectMember.view_memberships.include?(project_id)
+    ProjectMember.view_memberships.include?(project_id) || project.public_viewable
   end
 
 end

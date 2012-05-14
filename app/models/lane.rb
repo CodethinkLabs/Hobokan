@@ -80,7 +80,7 @@ class Lane < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    project.project_members.count == 0 || ProjectMember.view_memberships.include?(project_id)
+    project.project_members.count == 0 || ProjectMember.view_memberships.include?(project_id) || project.public_viewable
   end
 
 end

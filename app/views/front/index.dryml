@@ -17,30 +17,30 @@
     </header>
 
     <section-group>
-    <if test="&User.count != 0">
-      <div style="width:80%;padding-right:10px;">
-      <a href="/projects/new" style="float:right;">Create a project</a>
-       <section>
-        <do with="&current_user">
-          <repeat:project_members>
-            <if test="&this.items.todo">
-              <div class="kb-frame">
-	          <h3><a href="/projects/#{this.project.id}/kanban" >#{this.project.name}</a></h3>
-              <repeat:items.todo>
-                <kanban-card lanewidth="50%" boxwidth="15%"/>
-              </repeat:items.todo>
-              </div>
-            </if>
-          </repeat:project_members>
-        </do>
-      </section>
-      </div>
-      <if test="&current_user.administrator">
-        <aside with="&current_user" style="width:20%;">
-           <change-log-view/>
-        </aside>
+      <if test="&User.count != 0 and current_user.is_a?(User)">
+        <div style="width:80%;padding-right:10px;">
+          <a href="/projects/new" style="float:right;">Create a project</a>
+          <section>
+            <do with="&current_user">
+              <repeat:project_members>
+                <if test="&this.project.state == 'running' and this.items.todo">
+                  <div class="kb-frame">
+	                  <h3><a href="/projects/#{this.project.id}/kanban" >#{this.project.name}</a></h3>
+                    <repeat:items.todo>
+                      <kanban-card lanewidth="50%" boxwidth="15%"/>
+                    </repeat:items.todo>
+                  </div>
+                </if>
+              </repeat:project_members>
+            </do>
+          </section>
+        </div>
+        <if test="&current_user.administrator">
+          <aside with="&current_user" style="width:20%;">
+            <change-log-view/>
+          </aside>
+        </if>
       </if>
-    </if>
     </section-group>
 
     <javascript name="kanban"/>
