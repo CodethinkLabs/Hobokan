@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :except => [:login, :forgot_password, :accept_invitation, :do_accept_invitation, :reset_password,
 :do_reset_password] do
-     # login_required unless User.count == 0
+     login_required unless User.count == 0
      set_request_environment
   end
 
