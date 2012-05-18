@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120518100023) do
+ActiveRecord::Schema.define(:version => 20120518123100) do
 
   create_table "comments", :force => true do |t|
     t.text     "detail"
@@ -98,11 +98,11 @@ ActiveRecord::Schema.define(:version => 20120518100023) do
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "details"
-    t.boolean  "public_viewable", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state",           :default => "running"
     t.datetime "key_timestamp"
+    t.boolean  "public_viewable", :default => false
   end
 
   add_index "projects", ["state"], :name => "index_projects_on_state"
