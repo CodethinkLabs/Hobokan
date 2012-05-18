@@ -5,7 +5,6 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&Comment"><ht key="comment.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
@@ -36,9 +35,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="comment.actions.new">New Comment</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -92,12 +88,6 @@
             <record-flags fields="" param/>
 
             <a:user param="creator-link"/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="comment.actions.edit" name="#{name(:no_wrapper => true)}">
-                Edit Comment
-              </ht>
-            </a>
           </header>
 
           <section param="content-body">
@@ -208,7 +198,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:lane param="parent-link">&laquo; <ht key="item.actions.back_to_parent" parent="Lane" name="&this">Back to <name/></ht></a:lane>
             <h2 param="heading">
               <ht key="item.show.heading" name="#{name(:no_wrapper => true)}">
                 Item <name/>
@@ -227,7 +216,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, result, position, state, milestone, project" param/>
+            <field-list fields="start_date, end_date, text, result, position, state, lane, milestone, project" param/>
           </section>
     </content:>
 

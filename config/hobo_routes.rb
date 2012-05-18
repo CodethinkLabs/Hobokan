@@ -50,15 +50,6 @@ Hobokan::Application.routes.draw do
   get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
 
 
-  # Resource routes for controller "comments"
-  get 'comments(.:format)' => 'comments#index', :as => 'comments'
-  get 'comments/new(.:format)', :as => 'new_comment'
-  get 'comments/:id/edit(.:format)' => 'comments#edit', :as => 'edit_comment'
-  get 'comments/:id(.:format)' => 'comments#show', :as => 'comment', :constraints => { :id => %r([^/.?]+) }
-  post 'comments(.:format)' => 'comments#create', :as => 'create_comment'
-  put 'comments/:id(.:format)' => 'comments#update', :as => 'update_comment', :constraints => { :id => %r([^/.?]+) }
-  delete 'comments/:id(.:format)' => 'comments#destroy', :as => 'destroy_comment', :constraints => { :id => %r([^/.?]+) }
-
   # Owner routes for controller "comments"
   post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
 
