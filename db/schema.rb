@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210220629) do
+ActiveRecord::Schema.define(:version => 20120426080719) do
 
   create_table "comments", :force => true do |t|
     t.text      "detail"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20120210220629) do
     t.integer   "project_id"
     t.string    "background_color"
     t.string    "color",            :default => "#000000"
+    t.boolean   "todo",             :default => true
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"

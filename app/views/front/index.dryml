@@ -1,6 +1,7 @@
 <page title="Home">
   <body: class="front-page"/>
   <content:>
+  <div id="edit-item-dialog"></div>
 
     <header class="content-header">
       <section class="welcome-message">
@@ -17,36 +18,32 @@
 
     <section-group>
     <if test="&User.count != 0">
-      <div style="width:25%;padding-right:10px;">
-        <h3>My Projects</h3>
-        <collection with="&current_user.projects.active">
-          <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
-        </collection>
-        <a:projects action="new">
-          <ht key="project.actions.new">New Project</ht>
-        </a:projects>
-      </div>
-      <div style="width:40%;padding-right:10px;">
+      <div style="width:80%;padding-right:10px;">
+      <a href="/projects/new" style="float:right;">Create a project</a>
        <section>
-        <h3>My Tasks</h3>
-        <table-plus with="&current_user.items" fields="project, id, title, lane.title" without-search-form>
-          <lane-title-heading:>Status</lane-title-heading:>
-          <title-heading:>Description</title-heading>
-          <id-heading:>Task</id-heading:>
-          <id-view:>S<this/></id-view:>
-          <project-view:>
-            <a href="/projects/#{this.id}/kanban" >#{this.name}</a>
-          </project-view:>
-        </table-plus>
+        <do with="&current_user">
+          <repeat:project_members>
+            <if test="&this.items.todo">
+              <div class="kb-frame">
+	          <h3><a href="/projects/#{this.project.id}/kanban" >#{this.project.name}</a></h3>
+              <repeat:items.todo>
+                <kanban-card lanewidth="50%" boxwidth="15%"/>
+              </repeat:items.todo>
+              </div>
+            </if>
+          </repeat:project_members>
+        </do>
       </section>
       </div>
       <if test="&current_user.administrator">
         <aside with="&current_user" style="width:20%;">
-          <change-log-view/>
+           <change-log-view/>
         </aside>
       </if>
     </if>
     </section-group>
+
+    <javascript name="kanban"/>
   </content:>
 </page>
 

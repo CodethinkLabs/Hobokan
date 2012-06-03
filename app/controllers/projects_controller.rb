@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   hobo_model_controller
 
   auto_actions :all
-  show_action :kanban, :done, :stats
+  show_action :kanban, :done, :stats, :change_log
 
   def index
     hobo_index Project.active.apply_scopes(:search   => [params[:search], :name, :state],
@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
 
   def done
     @project = find_instance
-    @done = @project.items.done.apply_scopes(:milestone_is => params[:milestone], :order_by => 'updated_at DESC') 
+    @done = @project.items.done.apply_scopes(:milestone_is => params[:milestone], :order_by => 'updated_at DESC')
   end
 
   def stats
@@ -30,20 +30,32 @@ class ProjectsController < ApplicationController
     @done.each { |done| i = done.updated_at.to_date.cweek - 1 ; @finished[i] = @finished[i] + 1  }
   end
 
-  def kanban
+  def change_log
     @project = find_instance
-    @items = @project.items.active.apply_scopes(:milestone_is => params[:milestone])
+    render :partial => "ajax_change_log", :locals => {:this=> @project}
+  end
+
+  def kanban
+    if request.xhr?
+      dropped = Item.find(params[:item_id])
+      dropped.lane = Lane.find(params[:lane_id])
+      dropped.position = params[:item_position].to_i
+      Lane.move_item(current_user, dropped)
+
+      # We don't need to render anything, just stop the
+      # spinner once the AJAX response have been received
+      # by the client
+      render :nothing => true
+      return
+    end
+
+    @project = find_instance
+    @milestones = @project.milestones.current.all << "No Milestones"
 
     if params[:lane]
       @lanes = @project.lanes.apply_scopes(:title_is => params[:lane])
     else
       @lanes = @project.lanes.visible
-    end
-
-    if request.xhr?
-      handle_item_drop
-      hobo_ajax_response
-      return
     end
   end
 
@@ -83,6 +95,15 @@ class ProjectsController < ApplicationController
         lane.title = "Done"
         lane.position = 5
         lane.background_color = "#999999"
+        lane.todo = false
+        lane.save
+
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Not going to fix"
+        lane.position = 0
+        lane.background_color = "#FFFFFF"
+        lane.todo = false
         lane.save
 
         p = ProjectMember.new

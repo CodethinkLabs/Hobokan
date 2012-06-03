@@ -14,4 +14,15 @@ class UserMailer < ActionMailer::Base
           :to      => user.email_address )
   end
 
+  def report(user, project)
+    @user, @project = user, project
+    mail( :subject => "Status report for #{project}",
+          :to      => user.email_address )
+  end
+
+  def status(user, project)
+    @user, @project = user, project
+    mail( :subject => "Status report for #{project}",
+          :to      => user.email_address )
+  end
 end

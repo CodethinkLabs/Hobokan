@@ -5,15 +5,6 @@
 Hobokan::Application.routes.draw do
 
 
-  # Resource routes for controller "comments"
-  get 'comments(.:format)' => 'comments#index', :as => 'comments'
-  get 'comments/new(.:format)', :as => 'new_comment'
-  get 'comments/:id/edit(.:format)' => 'comments#edit', :as => 'edit_comment'
-  get 'comments/:id(.:format)' => 'comments#show', :as => 'comment', :constraints => { :id => %r([^/.?]+) }
-  post 'comments(.:format)' => 'comments#create', :as => 'create_comment'
-  put 'comments/:id(.:format)' => 'comments#update', :as => 'update_comment', :constraints => { :id => %r([^/.?]+) }
-  delete 'comments/:id(.:format)' => 'comments#destroy', :as => 'destroy_comment', :constraints => { :id => %r([^/.?]+) }
-
   # Owner routes for controller "comments"
   post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
 
@@ -33,8 +24,8 @@ Hobokan::Application.routes.draw do
   delete 'items/:id(.:format)' => 'items#destroy', :as => 'destroy_item', :constraints => { :id => %r([^/.?]+) }
 
   # Owner routes for controller "items"
-  get 'lanes/:lane_id/items/new(.:format)' => 'items#new_for_lane', :as => 'new_item_for_lane'
-  post 'lanes/:lane_id/items(.:format)' => 'items#create_for_lane', :as => 'create_item_for_lane'
+  get 'projects/:project_id/items/new(.:format)' => 'items#new_for_project', :as => 'new_item_for_project'
+  post 'projects/:project_id/items(.:format)' => 'items#create_for_project', :as => 'create_item_for_project'
 
   # Show action routes for controller "items"
   get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
@@ -53,7 +44,7 @@ Hobokan::Application.routes.draw do
   post 'projects/:project_id/lanes(.:format)' => 'lanes#create_for_project', :as => 'create_lane_for_project'
 
   # Show action routes for controller "lanes"
-  get 'lanes/:id/kanban_lane(.:format)' => 'lanes#kanban_lane', :as => 'lane_kanban_lane'
+  get 'lanes/:id/show(.:format)' => 'lanes#show', :as => 'lane_show'
 
   # Reorder routes for controller "lanes"
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
@@ -87,6 +78,7 @@ Hobokan::Application.routes.draw do
   get 'projects/:id/kanban(.:format)' => 'projects#kanban', :as => 'project_kanban'
   get 'projects/:id/done(.:format)' => 'projects#done', :as => 'project_done'
   get 'projects/:id/stats(.:format)' => 'projects#stats', :as => 'project_stats'
+  get 'projects/:id/change_log(.:format)' => 'projects#change_log', :as => 'project_change_log'
 
 
   # Lifecycle routes for controller "users"

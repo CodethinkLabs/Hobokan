@@ -15,16 +15,17 @@ class Milestone < ActiveRecord::Base
   has_many :items
 
   default_scope :order => 'date ASC'
+  scope :current, lambda { |*args |{:conditions => [ "date > ?", (args.first || Date.today - 14.days) ] }}
+
+  validates_presence_of :date
 
   # --- Permissions --- #
 
   def create_permitted?
-    logger.debug("Milestone#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
     ProjectMember.memberships.include?(project_id)
   end
 
   def update_permitted?
-    logger.debug("Milestone#update_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
     ProjectMember.memberships.include?(project_id)
   end
 
@@ -33,7 +34,6 @@ class Milestone < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    logger.debug("Milestone#view_permitted? #{ProjectMember.view_memberships.inspect} project_id: #{project_id}")
     ProjectMember.view_memberships.include?(project_id)
   end
 

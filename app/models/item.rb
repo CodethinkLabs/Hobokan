@@ -31,7 +31,7 @@ class Item < ActiveRecord::Base
   belongs_to :milestone
 
   # acts_as_list :scope => :lane
-  set_default_order "position ASC"
+  set_default_order "position DESC"
 
   lifecycle do
     state :normal, :default => true
@@ -45,10 +45,10 @@ class Item < ActiveRecord::Base
   end
 
   scope :active, :conditions => "state != 'archived'"
-  scope :todo, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.title != 'Done'"
-  scope :done, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.title = 'Done'"
+  scope :todo, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.todo = 't' "
+  scope :done, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.todo != 't' "
 
-  before_create :enqueue_item, :set_updated_by, :set_project
+  before_create :set_lane, :enqueue_item, :set_updated_by
   before_save :set_updated_by
 
   def set_updated_by
@@ -61,12 +61,14 @@ class Item < ActiveRecord::Base
     self.updated_by = (member ? member : User.current)
   end
 
-  def set_project
-    self.project = lane.project
+  def set_lane
+    if self.lane == nil
+      self.lane = project.lanes.visible[0]
+    end
   end
 
   def enqueue_item
-    self.position = 0
+    self.position = lane.items.count + 1
   end
 
   def versions
@@ -77,12 +79,11 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    logger.debug("Item#create_permitted? #{ProjectMember.memberships.inspect} project_id: #{lane.project_id}")
-    project_id.nil? || ProjectMember.memberships.include?(lane.project_id)
+    project_id.nil? || ProjectMember.memberships.include?(project_id)
+    true
    end
 
   def update_permitted?
-    logger.debug("Item#update_permitted? #{ProjectMember.memberships.inspect} project_id: #{project_id}")
     ProjectMember.memberships.include?(project_id)
   end
 
@@ -91,7 +92,6 @@ class Item < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    logger.debug("Item#view_permitted? #{ProjectMember.view_memberships.inspect} project_id: #{project_id}")
     project_id.nil? || ProjectMember.view_memberships.include?(project_id)
   end
 

@@ -14,6 +14,11 @@
     </span>
 </def>
 
+<def tag='project-dropdown'>
+  <% projects = current_user.projects.active.map{ |p| p.id.to_s + '-' + p.name } %>
+  <select-menu class='project-dropdown' first-option="Choose project..." onchange="location.href = '/projects/' + encodeURIComponent(this.options[this.selectedIndex].value) + '/kanban'" options="&projects"/>
+</def>
+
 <extend tag="page">
   <old-page merge>
     <custom-scripts:>
@@ -21,32 +26,19 @@
     </custom-scripts>
     <header:>
       <account-nav if="&current_user.signed_up?"/>
-      <div style="padding:20px;text-align:left;"><a href="#{base_url}/"
-      style="color:white;font-size:18pt;float:left;padding-right:50px;">Hobokan</a>
-      <if test="&current_user.signed_up?">
-        <live-search if="&defined_route? :site_search"/>
-        <simple-collection with="&current_user.projects.active">
-          <a href="/projects/#{this.id}/kanban" style="color:white;padding-right:10px;"> #{this.name}</a>
-        </simple-collection>
-      </if></div>
     </header:>
   </old-page>
 </extend>
 
 <def tag="account-nav">
-  <span style="float:left;margin: -22px 5px 0 0;">
-    <% if mobile_device? %>
-      <a href="#{base_url}/?mobile=0" style="color:white;">Full Site</a>
-    <% else %>
-      <a href="#{base_url}/?mobile=1" style="color:white;">Mobile Site</a>
-    <% end %>
-  </span>
   <do with='&current_user'>
     <ul class='navigation account-nav' param>
+      <li><a href="/">Home</a></li>
+      <li><project-dropdown/></li>
       <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
       <if test='&logged_in?'>
-        <li class='nav-item' param='logged-in-as'><a to='&current_user'><t name='&name' key='hobo.actions.logged_in_as'>Logged in as <name/></t></a></li>
         <li class='nav-item' param='admin'><a href="&admin_users_url" if="&current_user.administrator?">User Admin</a></li>
+        <li class='nav-item' param='logged-in-as'><a to='&current_user'><t name='&name' key='hobo.actions.logged_in_as'>Logged in as <name/></t></a></li>
         <li class='nav-item' param='account'><a action='account'><t key='hobo.actions.account'>Account</t></a></li>
         <li class='nav-item' param='log-out'><a href='&logout_url'><t key='hobo.actions.logout'>Log out</t></a></li>
       </if>
@@ -54,6 +46,7 @@
         <li class='nav-item' param='log-in'><a href='&login_url'><t key='hobo.actions.login'>Log in</t></a></li>
         <li class='nav-item' param='sign-up' if='&signup_url'><a href='&signup_url'><t key='hobo.actions.signup'>Sign up</t></a></li>
       </else>
+      <live-search if="&defined_route? :site_search"/>
     </ul>
   </do>
 </def>
@@ -67,37 +60,49 @@
 <def tag="view" for="Date" attrs="format"><%= this.strftime("%d/%m/%y") %></def>
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
 
+<def attrs='size, rating' tag='gravatar'>
+  <% size ||= 80; rating ||= 'g'; default='retro'; digest = Digest::MD5.hexdigest(this.email_address) -%>
+  <a class='gravatar'><img class='gravatar' src='http://www.gravatar.com/avatar/#{digest}?s=#{size}&r=#{rating}&d=#{default}' merge-attrs/></a>
+</def>
 
 <def tag="select-many-in-project-members">
   <select-many merge options="&@item.project.project_members"/>
 </def>
 
-<def tag="kanban-lane" attrs="lanewidth,boxwidth">
+<def tag="kanban-card" attrs="boxwidth">
+  <% if this.doable %>
+     <set border = "border-right:4px solid green;"/>
+  <% else %>
+    <set border = ""/>
+  <% end %>
+  <% if this.milestone %>
+    <set color="#{this.milestone.background_color}"/>
+    <set target = "#{this.milestone.name}" />
+    <% if this.lane.todo && this.milestone.date <= Date.today %> <set border = "border-left:4px solid red;#{border}"/> <% end %>
+  <% else %>
+    <set color="#{this.lane.background_color}"/>
+    <set target = "No Milestones" />
+  <% end %>
+  <% if params[:milestone] == nil || params[:milestone] == target %>
+    <set style="width:#{boxwidth};background-color:#{color};#{border}"/>
+    <li class="box" id="S#{this.id}" style="#{style}">
+    <table><td><a href="/items/#{this.id}">S<this.id/> </a>
+    <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
+       <this.title/><repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
+    </a>
+       </td><td>
+       <repeat:project_members><do with="&this.user"><gravatar size="24"/></do></repeat:project_members></td></table>
+  </li>
+<% end %>
+</def>
+
+<def tag="kanban-lane" attrs="lanewidth,boxwidth,user">
   <ul class="kb-lane" id="L#{this.id}" style="width:#{lanewidth}">
-     <h3><a href="/lanes/#{this.id}/kanban_lane"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
+     <h3><a href="/lanes/#{this.id}/show"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
      <repeat:items.active>
-       <% if this.doable %>
-          <set border = "border-right:4px solid green;"/>
-       <% else %>
-         <set border = ""/>
+       <% if params[:user] == nil or ( this.project_members.user_is(params[:user]).length > 0 ) %>
+         <kanban-card boxwidth="&boxwidth"/>
        <% end %>
-       <% if this.milestone %>
-         <set color="#{this.milestone.background_color}"/>
-         <set target = "#{this.milestone.name}" />
-         <% if this.milestone.date <= Date.today %> <set border = "border:2px solid red;"/> <% end %>
-	   <% else %>
-         <set color="#{this.lane.background_color}"/>
-         <set target = "" />
-	   <% end %>
-       <% if params[:milestone] == nil || params[:milestone] == target %>
-         <set style="width:#{boxwidth};background-color:#{color};#{border}"/>
-         <li class="box" id="S#{this.id}" style="#{style}">
-         <a href="/items/#{this.id}">S<this.id/> </a>
-         <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
-            <this.title/> <repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
-         </a>
-       </li>
-	   <% end %>
      </repeat:items.active>
    </ul>
 </def>
@@ -135,13 +140,39 @@
 
 <def tag="new-task-dialog">
   <hjq-dialog id="new-task-dialog" title="Add a task" position="center" width="&800">
-      <form with="&@item || new_for_current_user(@lanes[0].items)">
-        <field-list: fields="title, milestone, text, doable">
+      <form with="&@item || new_for_current_user(@project.items)" owner="project" complete="terminate_new_item_dialog(request);">
+        <field-list: fields="title, milestone, lane, text, project_members, doable">
+          <project-members-view:>
+            <select-many merge options="&@project.project_members"/>
+          </project-members-view:>
           <milestone-view:>
             <select-one options="&@this.milestones"/>
           </milestone-view:>
+          <lane-view:>
+            <select-one options="&@this.lanes"/>
+          </lane-view:>
         </field-list>
       </form>
+  </hjq-dialog>
+</def>
+
+<def tag="amend-task-dialog">
+  <hjq-dialog id="&'item-dialog-s' + this.id.to_s" title="Edit task S#{this.id} created by #{this.user} at #{this.created_at}" position="center" width="&800">
+    <transition-buttons/>
+    <form with="&this" complete="&%q{terminate_update_item_dialog(request, '} + this.id.to_s + %q{');}" without-cancel>
+      <field-list: fields="title, milestone, lane, text, doable, project_members, result" >
+          <project-members-view:>
+            <select-many merge options="&@item.project.project_members"/>
+          </project-members-view:>
+        <lane-view:>
+          <select-one options="&@item.project.lanes"/>
+        </lane-view:>
+        <milestone-view:>
+          <select-one options="&@item.project.milestones" include-none="true"/>
+        </milestone-view:>
+      </field-list>
+      <submit: label="#{ht 'Item.actions.save', :default=>['Save'] }" style=""/>
+    </form>
   </hjq-dialog>
 </def>
 

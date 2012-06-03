@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   hobo_model_controller
 
-  auto_actions :all
+  auto_actions :none
 
   auto_actions_for :item, [:create]
 

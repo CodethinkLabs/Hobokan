@@ -1,23 +1,3 @@
-<def tag="select-project-members">
-  <select-many merge options="&@item.project.project_members"/>
-</def>
-
-<hjq-dialog id="&'item-dialog-s' + my_item.id.to_s" title="Edit a task" position="center" width="&800">
-  <transition-buttons/>
-  <form with="&my_item" without-cancel>
-    <field-list: fields="title, milestone, lane, text, doable, project_members, result" >
-      <project-members-view:>
-        <select-project-members/>
-      </project-members-view:>
-      <lane-view:>
-        <select-one options="&@item.project.lanes"/>
-      </lane-view:>
-       <milestone-view:>
-         <select-one options="&@item.project.milestones" include-none="true"/>
-       </milestone-view:>
-    </field-list>
-    <submit: label="#{ht 'Item.actions.save', :default=>['Save'] }" style=""/>
-  </form>
-</hjq-dialog>
+<amend-task-dialog />
 
 

@@ -55,15 +55,18 @@ class ProjectMember < ActiveRecord::Base
   def create_permitted?
     project.nil? ||
     project.project_members.count == 0 ||
-    ProjectMember.admin_memberships.include?(project_id)
+    ProjectMember.admin_memberships.include?(project_id) ||
+    acting_user.administrator?
   end
 
   def update_permitted?
-    ProjectMember.admin_memberships.include?(project_id)
+    ProjectMember.admin_memberships.include?(project_id) ||
+    acting_user.administrator?
   end
 
   def destroy_permitted?
-    ProjectMember.admin_memberships.include?(project_id)
+    ProjectMember.admin_memberships.include?(project_id) ||
+    acting_user.administrator?
   end
 
   def view_permitted?(field)

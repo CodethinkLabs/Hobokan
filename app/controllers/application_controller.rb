@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :prepare_for_mobile
 
+<<<<<<< HEAD
   def handle_item_drop
     id = params[:item_id]
     target = params[:item_position].to_i
@@ -36,6 +37,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+=======
+>>>>>>> 3e692651424f3c488ec81bd8893ac1f74f58f89b
 private
 
   def mobile_device?

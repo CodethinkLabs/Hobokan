@@ -3,30 +3,19 @@ class ItemsController < ApplicationController
   hobo_model_controller
 
   auto_actions :all, :except => :index
-  auto_actions_for :lane, [:new, :create]
+  auto_actions_for :project, [:new, :create]
   show_action :ajax_item
 
-  def new_for_lane
-    if request.xhr?
-      handle_item_drop
-      hobo_ajax_response
-      return
-    end
-
-    if !@item
-      @item = Item.new
-      @lane = Lane.user_find(current_user, params[:lane_id])
-      @item.lane = @lane
-    end
-  end
-
-  def create
+  def create_for_project
     hobo_create do
       if valid?
         @item.state = "created"
         @item.save
-        lane = @item.lane.project.lanes[0]
-        project = @item.lane.project
+        if request.xhr?
+          render :partial => "ajax_box"
+          return
+        end
+
         redirect_to :back
       end
     end
@@ -43,28 +32,32 @@ class ItemsController < ApplicationController
   def ajax_item
     if request.xhr?
       @item = find_instance
-      logger.debug("item: #{@item}")
-      render :partial => "ajax_item", :locals => {:my_item => @item}
+      render :partial => "ajax_item"
       return
     end
   end
 
   def edit
-    if request.xhr?
-      handle_item_drop
-      hobo_ajax_response
-      return
-    end
-
     @item = find_instance
   end
 
-
   def update
+    @item = find_instance
+    if @item.lane.id != params[:item][:lane_id]
+      @item.lane = Lane.find(params[:item][:lane_id])
+      @item.enqueue_item
+      Lane.move_item(current_user, @item)
+    end
+
     hobo_update do
       if valid?
+        if request.xhr?
+          render :partial => "ajax_box"
+          return
+        end
+
         item = find_instance
-         redirect_to :back
+        redirect_to :back
       end
     end
   end

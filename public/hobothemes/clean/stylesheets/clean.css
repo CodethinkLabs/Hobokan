@@ -19,7 +19,7 @@ html, body {color: #193440; background: url(../images/300-ACD3E6-fff.png) repeat
 
 /* Column Layout */
 
-.section-group       {display: table; width: 98%; padding-left: 20px;}
+.section-group       {display: table; width: 98%; padding-left: 10px;}
 .section-group-inner {display: table-row;}
 .section-group-inner > * {display: table-cell; vertical-align: top;}
 .aside {width: 50%;} /* works with % too */
@@ -29,7 +29,7 @@ html, body {color: #193440; background: url(../images/300-ACD3E6-fff.png) repeat
 
 body {
 	width: 99%;
-	margin: 0 auto 20px;
+	margin: 0 auto 0;
 	font: 12px "Verdana", "Trebuchet MS", Arial, sans-serif; line-height: 18px;
 }
 h1, h2, h3 {font-weight: normal;}
@@ -41,8 +41,7 @@ h5 {margin: 10px 0 5px;  font-size: 12px; line-height: 12px;}
 h6 {margin: 10px 0 5px;  font-size: 10px; line-height: 10px;}
 
 a {
-        padding: 10;
-	border-bottom: 1px dotted #ccc;
+    padding: 10;
 	color: #222; background: #fffff;
 	text-decoration: none; 
 }
@@ -146,9 +145,9 @@ form .actions input { margin: 0; }
 }
 #search-results-panel {
 	position: absolute; top: 35px; right: 25px; z-index: 50;
-	width: 350px; height: 500px; overflow: auto; 
+	width: 200px; height: 500px; overflow: auto;
 	padding: 0 20px 20px; border: 1px solid #ddd;
-	color: black; background: #f2f2f2;
+	color: black; background: #a4f800;
 }
 #search-results-panel .card.linkable a {color: black;}
 #search-spinner {background:black;border:1px solid #666666;opacity:0.6;padding:2px;position:absolute;right:4px;top:6px;}
@@ -162,13 +161,12 @@ form .actions input { margin: 0; }
 }
 
 .account-nav {
-    float:right;
     margin: -22px 5px 0 0;
 	font-size: 11px;
 }
 .account-nav li {
 	float: left; 
-	margin-left: 0; padding-left: 20px; 
+	margin-left: 0; padding-left: 10px;padding-right:10px; 
 	color: #ddd;
 	list-style: none;
 }
@@ -223,7 +221,7 @@ form .actions {margin: 10px 0; width: 100%; text-align: left;}
 	overflow: hidden; _zoom: 1;
 	margin: 10px 0;	padding: 12px; border: 1px solid #e8e8e8;
 	color: black;
-	background: #f5f5f5;
+	background: #a4f800;
 	position: relative;
 }
 .card h4 {margin-top: 0;}
@@ -331,6 +329,7 @@ table.app-summary td { padding: 2px;  border: 1px dotted #bbb; }
 table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3e6; }
 
 /* kanban */
-.kb-lane {background:#eeeeee; height:600px; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin-right:.5%; float:left;  display: inline; height:600; }
+.kb-lane {background:#eeeeee; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin-right:.5%; float:left;  display: inline; height:600; }
 .box { background:#22ff00; font-size: 120%; padding: 1em;  margin-bottom: .5em; display:inline-block; vertical-align: top; -moz-border-radius: 5px;border-radius: 5px;}
+.kb-frame {background:#eeeeee; width:98%; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin:.5%; float:left;  display: inline; height:600; }
 

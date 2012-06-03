@@ -1,0 +1,4 @@
+<show-page>
+  <p><%= @user %>,</p>
+  <table-plus with="&@project.lanes" fields="title, todo"/>
+</show-page>

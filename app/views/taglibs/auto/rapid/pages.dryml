@@ -5,7 +5,6 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&Comment"><ht key="comment.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
@@ -36,9 +35,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="comment.actions.new">New Comment</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -92,12 +88,6 @@
             <record-flags fields="" param/>
 
             <a:user param="creator-link"/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="comment.actions.edit" name="#{name(:no_wrapper => true)}">
-                Edit Comment
-              </ht>
-            </a>
           </header>
 
           <section param="content-body">
@@ -260,9 +250,9 @@
 
 
 
-<def tag="new-for-lane-page" polymorphic/>
-<def tag="new-for-lane-page" for="Item">
-  <page merge title="#{ht 'item.new_for_owner.title', :default=>['New Item for']} #{name :with => @lane}">
+<def tag="new-for-project-page" polymorphic/>
+<def tag="new-for-project-page" for="Item">
+  <page merge title="#{ht 'item.new_for_owner.title', :default=>['New Item for']} #{name :with => @project}">
     <body: class="new-for-owner-page  item" param/>
 
     <content: param>
@@ -276,13 +266,13 @@
           <ht key="item.new_for_owner.subheading">
             For:
           </ht>
-          <a with="&@lane"/>
+          <a with="&@project"/>
         </h3>
       </header>
 
       <section param="content-body">
-        <form owner="lane" method="post" param>
-          <field-list: skip="lane"/>
+        <form owner="project" method="post" param>
+          <field-list: skip="project"/>
           <submit: label="#{ht 'item.actions.create', :default=>['Create Item']}"/>
         </form>
       </section>
@@ -415,7 +405,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="" param/>
+            <record-flags fields="todo" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="lane.actions.edit" name="#{name(:no_wrapper => true)}">
@@ -434,12 +424,6 @@
               </h3>
 
               <collection:items param/>
-
-              <a:items action="new" if="&can_create?(@lane.items)" param="new-link">
-                <ht key="item.actions.new" count="1">
-                  New Item
-                </ht>
-              </a:items>
             </section>
           </section>
     </content:>
