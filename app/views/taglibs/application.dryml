@@ -1,12 +1,13 @@
+<!-- this file is included by front_site.dryml, admin_site.dryml et al, so
+you can place common code in this file. -->
+
 <!-- Global taglib - these tags are shared across all subsites -->
 
-<include src="rapid" gem="hobo"/>
-
-<include src="taglibs/auto/rapid/cards"/>
-<include src="taglibs/auto/rapid/pages"/>
-<include src="taglibs/auto/rapid/forms"/>
-
-<include gem="hobo-jquery" />
+<include gem='hobo_rapid'/>
+<include gem='hobo_jquery'/>
+<include gem='hobo_jquery_ui'/>
+<include gem='hobo_clean'/>
+<include gem='hobo_simple_color'/>
 
 <def tag='simple-collection'>
     <span class='#{model_id_class}' param='item' repeat='&select_viewable' style="align:right;">
@@ -21,9 +22,6 @@
 
 <extend tag="page">
   <old-page merge>
-    <custom-scripts:>
-      <hjq-assets/>
-    </custom-scripts>
     <header:>
       <account-nav if="&current_user.signed_up?"/>
     </header:>
@@ -50,9 +48,6 @@
     </ul>
   </do>
 </def>
-
-
-<set-theme name="clean"/>
 
 <def tag="nil-view"></def>
 <def tag="input" for="Date"><hjq-datepicker dateFormat="yy-mm-dd" firstDay="1" merge/></def>
