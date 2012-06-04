@@ -30,5 +30,21 @@ Hobokan::Application.configure do
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+
+  # Do not compress assets
+  config.assets.compress = false
+
+  # Expands the lines which load the assets
+  config.assets.debug = true
+
+  # By default, rails-dev-tweaks also applies to XHR, but that's not a great default for Hobo
+  config.dev_tweaks.autoload_rules do
+    keep :all
+
+    skip '/favicon.ico'
+    skip :assets
+    keep :xhr
+    keep :forced
+  end
 end
 
