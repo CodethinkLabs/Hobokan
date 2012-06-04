@@ -13,7 +13,7 @@
           </a>
         </h3>
 
-        <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+        <new-task-dialog/><button dialog="#new-task-dialog">Add a task</button>
         <div id="edit-item-dialog"></div>
 
         <div class="board" id="kb-board">

@@ -1,12 +1,12 @@
 <show-page>
   <content: replace>
 
-    <hjq-dialog id="add-comment-dialog" title="Add a Comment" position="center" width="&800">
+    <dialog-box id="add-comment-dialog" title="Add a Comment" position="center" width="&800">
       <form with="&@comment || new_for_current_user(@item.comments)" owner="item" without-cancel>
         <field-list: fields="detail"/>
         <submit: label="#{ht 'Comment.actions.add', :default=>['Add'] }"/>
       </form>
-    </hjq-dialog>
+    </dialog-box>
 
     <a:project action="kanban">
       &laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to <name/></ht>
@@ -22,7 +22,7 @@
           <result-view:><if><this.to-html.html-safe/></if></result-view>
         </field-list>
         <h2>Comments
-            <hjq-dialog-open-button dialog="#add-comment-dialog" style="float:right;">Add a Comment</hjq-dialog-open-button>
+            <button dialog="#add-comment-dialog" style="float:right;">Add a Comment</button>
         </h2>
         <table-plus with="&@comments" fields="created_at, detail, user">
           <header: replace/>
