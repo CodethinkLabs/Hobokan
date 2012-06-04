@@ -18,18 +18,15 @@ var drop_handler = function() {
   var startchar = "?"
   if (window.location.href.indexOf("?") != -1) startchar = "&"
 
-  Hobo.ajaxRequest( window.location.href + startchar +
-                    "lane_id=" + lane_id +
-                    "&item_id=" + item_id +
-                    "&item_position=" + item_position,
-                    [],
-                    { params: { lane_id: lane_id, item_id: item_id },
-                      action: 'show',
-                      controller: 'projects',
-                      method: 'get',
-                      message: "Please wait"
-                    } );
-  count_cards ();
+  $.ajax({
+	url: window.location.href + startchar +
+	     "lane_id=" + lane_id +
+	     "&item_id=" + item_id +
+	     "&item_position=" + item_position,
+	dataType: "json",
+	data: { lane_id: lane_id, item_id: item_id }
+	});
+	count_cards ();
 }
 
 /*

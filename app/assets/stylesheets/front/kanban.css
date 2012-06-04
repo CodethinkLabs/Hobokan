@@ -1,11 +1,11 @@
-html, body {color: #193440; background: url(../images/300-ACD3E6-fff.png) repeat-x #fff; }
-.page-header {color: white; background: url(../images/101-3B5F87-ACD3E6.png) repeat-x #3F606E;}
+html, body {color: #193440; background: url(300-ACD3E6-fff.png) repeat-x #fff; }
+.page-header {color: white; background: url(101-3B5F87-ACD3E6.png) repeat-x #3F606E;}
 .page-header .navigation.main-nav a {
-  background: url(../images/30-3E547A-242E42.png) repeat-x #242E42;
+  background: url(30-3E547A-242E42.png) repeat-x #242E42;
 }
 .page-header .navigation.main-nav li.current a {
   color: #222;
-  background: url(../images/30-DBE1E5-FCFEF5.png) repeat-x #FFFFFF;
+  background: url(30-DBE1E5-FCFEF5.png) repeat-x #FFFFFF;
   border-top: 1px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
@@ -103,8 +103,6 @@ form .actions input { margin: 0; }
 .field-with-errors input, .field-with-errors textarea, .field-with-errors select {border: 2px solid #BC1C3D;}
 
 #ajax-progress {
-	padding: 8px 20px 8px 40px;
-	border: 1px solid #444;
 	background: black url(../images/spinner.gif) no-repeat 10px 8px;
 	color: white;
 }
