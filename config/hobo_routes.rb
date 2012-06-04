@@ -16,7 +16,7 @@ Hobokan::Application.routes.draw do
   get 'items/:id/restore(.:format)' => 'items#restore', :as => 'item_restore'
 
   # Resource routes for controller "items"
-  get 'items/new(.:format)', :as => 'new_item'
+  get 'items/new(.:format)' => 'items#new', :as => 'new_item'
   get 'items/:id/edit(.:format)' => 'items#edit', :as => 'edit_item'
   get 'items/:id(.:format)' => 'items#show', :as => 'item', :constraints => { :id => %r([^/.?]+) }
   post 'items(.:format)' => 'items#create', :as => 'create_item'
@@ -32,7 +32,7 @@ Hobokan::Application.routes.draw do
 
 
   # Resource routes for controller "lanes"
-  get 'lanes/new(.:format)', :as => 'new_lane'
+  get 'lanes/new(.:format)' => 'lanes#new', :as => 'new_lane'
   get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
   get 'lanes/:id(.:format)' => 'lanes#show', :as => 'lane', :constraints => { :id => %r([^/.?]+) }
   post 'lanes(.:format)' => 'lanes#create', :as => 'create_lane'
@@ -51,7 +51,7 @@ Hobokan::Application.routes.draw do
 
 
   # Resource routes for controller "milestones"
-  get 'milestones/new(.:format)', :as => 'new_milestone'
+  get 'milestones/new(.:format)' => 'milestones#new', :as => 'new_milestone'
   get 'milestones/:id/edit(.:format)' => 'milestones#edit', :as => 'edit_milestone'
   get 'milestones/:id(.:format)' => 'milestones#show', :as => 'milestone', :constraints => { :id => %r([^/.?]+) }
   post 'milestones(.:format)' => 'milestones#create', :as => 'create_milestone'
@@ -67,7 +67,7 @@ Hobokan::Application.routes.draw do
 
   # Resource routes for controller "projects"
   get 'projects(.:format)' => 'projects#index', :as => 'projects'
-  get 'projects/new(.:format)', :as => 'new_project'
+  get 'projects/new(.:format)' => 'projects#new', :as => 'new_project'
   get 'projects/:id/edit(.:format)' => 'projects#edit', :as => 'edit_project'
   get 'projects/:id(.:format)' => 'projects#show', :as => 'project', :constraints => { :id => %r([^/.?]+) }
   post 'projects(.:format)' => 'projects#create', :as => 'create_project'
@@ -112,7 +112,7 @@ Hobokan::Application.routes.draw do
 
     # Resource routes for controller "admin/users"
     get 'users(.:format)' => 'users#index', :as => 'users'
-    get 'users/new(.:format)', :as => 'new_user'
+    get 'users/new(.:format)' => 'users#new', :as => 'new_user'
     get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
     get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
     post 'users(.:format)' => 'users#create', :as => 'create_user'
