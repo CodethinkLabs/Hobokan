@@ -7,8 +7,8 @@ class Lane < ActiveRecord::Base
   fields do
     title         :string
     position      :integer
-    background_color :string
-    color         :string, :default => '#000000'
+    background_color Color
+    color         Color, :default => '#000000'
     todo          :boolean, :default => true
     timestamps
   end

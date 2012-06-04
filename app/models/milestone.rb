@@ -6,8 +6,8 @@ class Milestone < ActiveRecord::Base
     name :string
     date :date
     description :text
-    background_color :string
-    color         :string, :default => '#000000'
+    background_color Color
+    color         Color, :default => '#000000'
     timestamps
   end
 

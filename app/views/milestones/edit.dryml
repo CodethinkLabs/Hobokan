@@ -10,10 +10,5 @@
       <submit label="#{ht 'milestone.actions.save', :default=>['Save']}"/>
     </form>
 
-    <javascript name="jquery.simple-color"/>
-	<script>
-	  jQuery('input[name*="color"]').simpleColor();
-    </script>
-
  </content:>
 </edit-page>
