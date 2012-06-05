@@ -1,5 +1,5 @@
 namespace :db do
-  desc "This task is called by the Heroku scheduler add-on"
+  desc "Fix for refactoring from project_member to user"
   task :pm => :environment do
     ItemAssignment.all.each do |i|
       p = ProjectMember.find(i.user_id)
