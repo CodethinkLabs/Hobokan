@@ -20,10 +20,10 @@ class User < ActiveRecord::Base
     timestamps
   end
 
-  has_many :item_assignments, :accessible => true, :dependent => :destroy
-  has_many :items, :through => :item_assignments, :scope => :active
-  has_many :project_members, :accessible => true
-  has_many :projects, :through => :project_members
+  has_many :item_assignments, :dependent => :destroy
+  has_many :items, :through => :item_assignments, :scope => :active, :accessible => true
+  has_many :project_members
+  has_many :projects, :through => :project_members, :accessible => true
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
@@ -49,11 +49,6 @@ class User < ActiveRecord::Base
     v = Version.arel_table
     #this is a nasty hack - item.position changes so often it clutters the log - so only take changes with an "e" in the field!?
     return Version.where(v[:modifications].matches("%lane_id%")).order("created_at DESC").limit(200)
-  end
-
-  def items
-    logger.debug("User#items #{project_members.map {|member| member.items}.flatten.inspect}")
-    project_members.map {|member| member.items}.flatten
   end
 
   # --- Signup lifecycle --- #

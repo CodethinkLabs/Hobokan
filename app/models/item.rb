@@ -21,7 +21,7 @@ class Item < ActiveRecord::Base
   # validates_date :start_date, :on_or_after => Date.today
   # validates_date :end_date, :on_or_after => Date.today
 
-  has_many :item_assignments, :dependent => :destroy
+  has_many :item_assignments
   has_many :users, :through => :item_assignments, :accessible => true
   has_many :comments
 

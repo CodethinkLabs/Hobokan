@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
   children :project_members
 
   has_many :lanes, :order => :position, :dependent => :destroy, :accessible => true
-  has_many :items, :dependent => :destroy
+  has_many :items, :dependent => :destroy, :accessible => true
   has_many :project_members
   has_many :users, :through => :project_members, :accessible => true
   has_many :milestones, :accessible => true

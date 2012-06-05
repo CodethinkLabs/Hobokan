@@ -22,16 +22,9 @@
       <a href="/projects/new" style="float:right;">Create a project</a>
        <section>
         <do with="&current_user">
-          <repeat:project_members>
-            <if test="&this.items.todo">
-              <div class="kb-frame">
-	          <h3><a href="/projects/#{this.project.id}/kanban" >#{this.project.name}</a></h3>
-              <repeat:items.todo>
-                <kanban-card lanewidth="50%" boxwidth="15%"/>
-              </repeat:items.todo>
-              </div>
-            </if>
-          </repeat:project_members>
+          <repeat:items.todo>
+            <kanban-card lanewidth="50%" boxwidth="15%"/>
+          </repeat:items.todo>
         </do>
       </section>
       </div>
