@@ -6,7 +6,7 @@
   <section-group>
     <section>
       <a action="edit" style="float:right;">Edit Project</a>
-      <field-list skip="items, project_members">
+      <field-list skip="items, users">
         <details-view:><if><this.to-html.html-safe/></if></details-view:>
         <milestones-view:><table-plus fields="name, description, date"/></milestones-view:>
       </field-list>
