@@ -73,7 +73,7 @@
 <def tag="form" for="Project">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, details, state, lanes, milestones, users" param/>
+    <field-list fields="name, details, state, items, lanes, milestones, users" param/>
     <div param="actions">
       <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -107,7 +107,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, administrator, role, state, item_assignments, project_members" param/>
+    <field-list fields="name, email_address, administrator, role, state, items, projects" param/>
     <div param="actions">
       <submit label="#{ht 'user.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
