@@ -7,7 +7,7 @@
 	  <div class="filter" style="float:left;"><filter-menu param-name="milestone" options="&@milestones" no-filter="All Milestones" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="lane" options="&@this.lanes.all" no-filter="Board" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="user" options="&@this.project_members.all" no-filter="User" /></div>
-      <new-task-dialog/><button dialog="#new-task-dialog">Add a task</button>
+      <new-task-dialog/><dialog-open-button dialog="#new-task-dialog">Add a task</dialog-open-button>
       <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
 	  <div id="edit-item-dialog"></div>
 
