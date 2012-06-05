@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
     timestamps
   end
 
+  has_many :item_assignments, :accessible => true, :dependent => :destroy
+  has_many :items, :through => :item_assignments, :scope => :active
   has_many :project_members, :accessible => true
   has_many :projects, :through => :project_members
 

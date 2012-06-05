@@ -22,7 +22,7 @@ class Item < ActiveRecord::Base
   # validates_date :end_date, :on_or_after => Date.today
 
   has_many :item_assignments, :dependent => :destroy
-  has_many :project_members, :through => :item_assignments, :accessible => true
+  has_many :users, :through => :item_assignments, :accessible => true
   has_many :comments
 
   belongs_to :user, :class_name => "User", :creator => true
@@ -79,20 +79,19 @@ class Item < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    project_id.nil? || ProjectMember.memberships.include?(project_id)
     true
    end
 
   def update_permitted?
-    ProjectMember.memberships.include?(project_id)
+    true
   end
 
   def destroy_permitted?
-    ProjectMember.memberships.include?(project_id)
+    true
   end
 
   def view_permitted?(field)
-    project_id.nil? || ProjectMember.view_memberships.include?(project_id)
+    true
   end
 
 end

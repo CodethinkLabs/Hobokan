@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426080719) do
+ActiveRecord::Schema.define(:version => 20120605163427) do
 
   create_table "comments", :force => true do |t|
     t.text      "detail"
@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(:version => 20120426080719) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "item_assignments", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "item_id"
-    t.integer   "project_member_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "item_id"
+    t.integer  "user_id"
   end
 
   add_index "item_assignments", ["item_id"], :name => "index_item_assignments_on_item_id"
-  add_index "item_assignments", ["project_member_id"], :name => "index_item_assignments_on_project_member_id"
+  add_index "item_assignments", ["user_id"], :name => "index_item_assignments_on_user_id"
 
   create_table "items", :force => true do |t|
     t.date      "start_date"

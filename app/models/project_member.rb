@@ -40,9 +40,6 @@ class ProjectMember < ActiveRecord::Base
     timestamps
   end
 
-  has_many :item_assignments, :accessible => true, :dependent => :destroy
-  has_many :items, :through => :item_assignments, :scope => :active
-
   belongs_to :project
   belongs_to :user
 
@@ -53,20 +50,15 @@ class ProjectMember < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    project.nil? ||
-    project.project_members.count == 0 ||
-    ProjectMember.admin_memberships.include?(project_id) ||
-    acting_user.administrator?
+    true
   end
 
   def update_permitted?
-    ProjectMember.admin_memberships.include?(project_id) ||
-    acting_user.administrator?
+    true
   end
 
   def destroy_permitted?
-    ProjectMember.admin_memberships.include?(project_id) ||
-    acting_user.administrator?
+    true
   end
 
   def view_permitted?(field)
