@@ -22,19 +22,19 @@ class Milestone < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    ProjectMember.memberships.include?(project_id)
+    true
   end
 
   def update_permitted?
-    ProjectMember.memberships.include?(project_id)
+    true
   end
 
   def destroy_permitted?
-    ProjectMember.memberships.include?(project_id)
+    true
   end
 
   def view_permitted?(field)
-    ProjectMember.view_memberships.include?(project_id)
+    true
   end
 
 end

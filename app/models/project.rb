@@ -42,20 +42,19 @@ class Project < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.signed_up?
+    true
   end
 
   def update_permitted?
-    ProjectMember.admin_memberships.include?(id)||
-    acting_user.administrator?
+    true
   end
 
   def destroy_permitted?
-    ProjectMember.admin_memberships.include?(id)
+    true
   end
 
   def view_permitted?(field)
-    id.nil? || ProjectMember.view_memberships.include?(id)
+    true
   end
 
 end

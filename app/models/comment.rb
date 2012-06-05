@@ -16,19 +16,19 @@ class Comment < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    ProjectMember.memberships.include?(item.project_id)
+    true
   end
 
   def update_permitted?
-    ProjectMember.memberships.include?(item.project_id)
+    true
   end
 
   def destroy_permitted?
-    ProjectMember.memberships.include?(item.project_id)
+    true
   end
 
   def view_permitted?(field)
-    ProjectMember.view_memberships.include?(item.project_id)
+    true
   end
 
 end
