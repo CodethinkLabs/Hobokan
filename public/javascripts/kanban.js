@@ -113,6 +113,17 @@ var get_item_details = function(board, item_id) {
                     } );
 }
 
+jQuery("#ms-toggle").click( function() {
+  if (jQuery("#timeline").is(':visible')) {
+    this.value = "Milestones";
+  }
+  else {
+	this.value = "Hide Milestones";
+  }
+  jQuery("#timeline").toggle();
+  return;
+});
+
 jQuery("#cl-toggle").click( function() {
   if (jQuery("#change-log").is(':visible')) {
     this.value = "Change Log";
