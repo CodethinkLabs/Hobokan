@@ -6,13 +6,11 @@ http://www.simple-kanban.com/ and https://github.com/dynamix/kanban
 
 Getting Started
 ===============
-The software is configured to run on Heroku - you'll need an account, keys, git etc, plus the Sendgrid and SSL add-ons. 
+The software is configured to run on Heroku - you'll need an account, keys, git etc, plus the Sendgrid and SSL add-ons.
 
-To create a new instance on Heroku, you'll need to do something like the following steps to create an initial database - 
-$ rm app/db/migrate/*
-$ rails generate hobo:migration
-$ rails generate vestal_versions:migration
-$ rake db:migrate
+To create a new instance on Heroku, you'll need to do something like the following steps to create an initial database -
+$ bundle install
+$ bundle rake db:migrate
 
 $ heroku create  #will return a name, say blue-sky-1234
 $ heroku rename --app blue-sky-1234 xx-kanban
@@ -24,12 +22,16 @@ $ heroku config:add SECRET_TOKEN=a.random.alphanumeric.string.of.at.least.30.cha
 
 It should now be possible to create first admin user on the heroku instance, then invite users, create projects etc
 
+There's a preliminary mailing list at you can join at
+
+http://vlists.pepperfish.net/cgi-bin/mailman/listinfo/hobokan-dev-ppfm.net
+
 TODO
 ====
 Lots... we've been dogfooding this at Codethink for months, but there's plenty of room for improvement.
 
-We're liberating the code to make it available for FLOSS projects, which means *at least* we'll need to provide public views of the kanban boards themselves, but will also lead to new requirements: as far as we know, using the kanban approach for FLOSS projects is new territory. 
+We're liberating the code to make it available for FLOSS projects, which means *at least* we'll need to provide public views of the kanban boards themselves, but will also lead to new requirements: as far as we know, using the kanban approach for FLOSS projects is new territory.
 
 License
 =======
-The code is licensed under the AFFERO GENERAL PUBLIC LICENSE V3 (http://www.gnu.org/licenses/agpl.html). Contact Codethink for commercial support options.  
+The code is licensed under the AFFERO GENERAL PUBLIC LICENSE V3 (http://www.gnu.org/licenses/agpl.html). Contact Codethink for commercial support options.
