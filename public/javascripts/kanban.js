@@ -6,7 +6,8 @@ var count_cards = function () {
 }
 
 var set_height = function() {
-  var laneheight = window.innerHeight - (jQuery('.navigation').height() * 4) - jQuery('.timeline').height();
+  var laneheight = window.innerHeight - (jQuery('.navigation').height() * 4);
+  if (jQuery("#timeline").is(':visible')) laneheight = laneheight - jQuery('.timeline').height();
   if (laneheight < 300) laneheight = 300;
   laneheight = laneheight + "px";
   jQuery(".kb-lane").css("height", laneheight);
@@ -128,6 +129,7 @@ jQuery("#ms-toggle").click( function() {
 	this.value = "Hide Milestones";
   }
   jQuery("#timeline").toggle();
+  set_height();
   return;
 });
 
