@@ -5,6 +5,13 @@ var count_cards = function () {
   });
 }
 
+var set_height = function() {
+  var laneheight = window.innerHeight - (jQuery('.navigation').height() * 4) - jQuery('.timeline').height();
+  if (laneheight < 300) laneheight = 300;
+  laneheight = laneheight + "px";
+  jQuery(".kb-lane").css("height", laneheight);
+}
+
 var drop_handler = function() {
   // Get the length of the lane, excluding the 'h3' heading
   var lane_length = jQuery(this).parent().children().length - 1;
@@ -153,10 +160,10 @@ jQuery("#cl-toggle").click( function() {
 
 });
 
-var laneheight = window.innerHeight - (jQuery('.navigation').height() * 4) - jQuery('.timeline').height();
-if (laneheight < 300) laneheight = 300;
-laneheight = laneheight + "px";
-jQuery(".kb-lane").css("height", laneheight);
-
 jQuery(".kb-lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});
 count_cards();
+set_height();
+
+jQuery(window).resize(function () {
+  set_height();
+});
