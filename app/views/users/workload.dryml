@@ -1,0 +1,14 @@
+<index-page >
+  <content: replace>
+    <h4>Workload</h4>
+    <collection with="&User.active">
+       <name/>:
+       <repeat:project_members.active>
+         <if test="&this.items.todo">
+           <this.project.name/>:
+           <repeat:items.todo>S<this.id/>,</repeat:items.todo>
+         </if>
+       </repeat:project_members.active>
+    </collection>
+  </content:>
+</index-page>
