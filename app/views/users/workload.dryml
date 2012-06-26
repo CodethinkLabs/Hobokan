@@ -6,7 +6,7 @@
        <repeat:project_members.active>
          <if test="&this.items.todo">
            <this.project.name/>:
-           <repeat:items.todo>S<this.id/>,</repeat:items.todo>
+           <repeat:items.todo><if test="&this.milestone"><span style="background-color:#{this.milestone.background_color}">S<this.id/></span></if></repeat:items.todo>
          </if>
        </repeat:project_members.active>
     </collection>
