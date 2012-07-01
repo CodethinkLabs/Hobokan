@@ -21,6 +21,7 @@ class Project < ActiveRecord::Base
   end
 
   scope :active, :conditions => "state = 'running'"
+  set_default_order "name ASC"
 
   children :lanes
   children :project_members

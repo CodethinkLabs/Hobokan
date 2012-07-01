@@ -5,6 +5,14 @@ var count_cards = function () {
   });
 }
 
+var set_height = function() {
+  var laneheight = window.innerHeight - (jQuery('.navigation').height() * 4);
+  if (jQuery("#timeline").is(':visible')) laneheight = laneheight - jQuery('.timeline').height();
+  if (laneheight < 300) laneheight = 300;
+  laneheight = laneheight + "px";
+  jQuery(".kb-lane").css("height", laneheight);
+}
+
 var drop_handler = function() {
   // Get the length of the lane, excluding the 'h3' heading
   var lane_length = jQuery(this).parent().children().length - 1;
@@ -113,6 +121,18 @@ var get_item_details = function(board, item_id) {
                     } );
 }
 
+jQuery("#ms-toggle").click( function() {
+  if (jQuery("#timeline").is(':visible')) {
+    this.value = "Milestones";
+  }
+  else {
+	this.value = "Hide Milestones";
+  }
+  jQuery("#timeline").toggle();
+  set_height();
+  return;
+});
+
 jQuery("#cl-toggle").click( function() {
   if (jQuery("#change-log").is(':visible')) {
     this.value = "Change Log";
@@ -142,10 +162,10 @@ jQuery("#cl-toggle").click( function() {
 
 });
 
-var laneheight = window.innerHeight - (jQuery('.navigation').height() * 4) - jQuery('.timeline').height();
-if (laneheight < 300) laneheight = 300;
-laneheight = laneheight + "px";
-jQuery(".kb-lane").css("height", laneheight);
-
 jQuery(".kb-lane",".board").dragsort({ dragBetween: true, dragEnd: drop_handler});
 count_cards();
+set_height();
+
+jQuery(window).resize(function () {
+  set_height();
+});

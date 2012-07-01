@@ -5,27 +5,8 @@
 Hobokan::Application.routes.draw do
 
 
-  # Lifecycle routes for controller "users"
-  put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
-  get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'
-  put 'users/:id/reset_password(.:format)' => 'users#do_reset_password', :as => 'do_user_reset_password'
-  get 'users/:id/reset_password(.:format)' => 'users#reset_password', :as => 'user_reset_password'
-
-  # Resource routes for controller "users"
-  get 'users(.:format)' => 'users#index', :as => 'users'
-  get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
-  get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
-  post 'users(.:format)' => 'users#create', :as => 'create_user'
-  put 'users/:id(.:format)' => 'users#update', :as => 'update_user', :constraints => { :id => %r([^/.?]+) }
-  delete 'users/:id(.:format)' => 'users#destroy', :as => 'destroy_user', :constraints => { :id => %r([^/.?]+) }
-
-  # Show action routes for controller "users"
-  get 'users/:id/account(.:format)' => 'users#account', :as => 'user_account'
-
-  # User routes for controller "users"
-  match 'login(.:format)' => 'users#login', :as => 'user_login'
-  get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
-  match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
+  # Owner routes for controller "comments"
+  post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
 
 
   # Lifecycle routes for controller "items"
@@ -50,8 +31,23 @@ Hobokan::Application.routes.draw do
   get 'items/:id/ajax_item(.:format)' => 'items#ajax_item', :as => 'item_ajax_item'
 
 
-  # Owner routes for controller "comments"
-  post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
+  # Resource routes for controller "lanes"
+  get 'lanes/new(.:format)', :as => 'new_lane'
+  get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
+  get 'lanes/:id(.:format)' => 'lanes#show', :as => 'lane', :constraints => { :id => %r([^/.?]+) }
+  post 'lanes(.:format)' => 'lanes#create', :as => 'create_lane'
+  put 'lanes/:id(.:format)' => 'lanes#update', :as => 'update_lane', :constraints => { :id => %r([^/.?]+) }
+  delete 'lanes/:id(.:format)' => 'lanes#destroy', :as => 'destroy_lane', :constraints => { :id => %r([^/.?]+) }
+
+  # Owner routes for controller "lanes"
+  get 'projects/:project_id/lanes/new(.:format)' => 'lanes#new_for_project', :as => 'new_lane_for_project'
+  post 'projects/:project_id/lanes(.:format)' => 'lanes#create_for_project', :as => 'create_lane_for_project'
+
+  # Show action routes for controller "lanes"
+  get 'lanes/:id/show(.:format)' => 'lanes#show', :as => 'lane_show'
+
+  # Reorder routes for controller "lanes"
+  post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
 
 
   # Resource routes for controller "milestones"
@@ -85,23 +81,30 @@ Hobokan::Application.routes.draw do
   get 'projects/:id/change_log(.:format)' => 'projects#change_log', :as => 'project_change_log'
 
 
-  # Resource routes for controller "lanes"
-  get 'lanes/new(.:format)', :as => 'new_lane'
-  get 'lanes/:id/edit(.:format)' => 'lanes#edit', :as => 'edit_lane'
-  get 'lanes/:id(.:format)' => 'lanes#show', :as => 'lane', :constraints => { :id => %r([^/.?]+) }
-  post 'lanes(.:format)' => 'lanes#create', :as => 'create_lane'
-  put 'lanes/:id(.:format)' => 'lanes#update', :as => 'update_lane', :constraints => { :id => %r([^/.?]+) }
-  delete 'lanes/:id(.:format)' => 'lanes#destroy', :as => 'destroy_lane', :constraints => { :id => %r([^/.?]+) }
+  # Index action routes for controller "users"
+  get 'users/workload(.:format)', :as => 'workload_users'
 
-  # Owner routes for controller "lanes"
-  get 'projects/:project_id/lanes/new(.:format)' => 'lanes#new_for_project', :as => 'new_lane_for_project'
-  post 'projects/:project_id/lanes(.:format)' => 'lanes#create_for_project', :as => 'create_lane_for_project'
+  # Lifecycle routes for controller "users"
+  put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
+  get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'
+  put 'users/:id/reset_password(.:format)' => 'users#do_reset_password', :as => 'do_user_reset_password'
+  get 'users/:id/reset_password(.:format)' => 'users#reset_password', :as => 'user_reset_password'
 
-  # Show action routes for controller "lanes"
-  get 'lanes/:id/show(.:format)' => 'lanes#show', :as => 'lane_show'
+  # Resource routes for controller "users"
+  get 'users(.:format)' => 'users#index', :as => 'users'
+  get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
+  get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
+  post 'users(.:format)' => 'users#create', :as => 'create_user'
+  put 'users/:id(.:format)' => 'users#update', :as => 'update_user', :constraints => { :id => %r([^/.?]+) }
+  delete 'users/:id(.:format)' => 'users#destroy', :as => 'destroy_user', :constraints => { :id => %r([^/.?]+) }
 
-  # Reorder routes for controller "lanes"
-  post 'lanes/reorder(.:format)', :as => 'reorder_lanes'
+  # Show action routes for controller "users"
+  get 'users/:id/account(.:format)' => 'users#account', :as => 'user_account'
+
+  # User routes for controller "users"
+  match 'login(.:format)' => 'users#login', :as => 'user_login'
+  get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
+  match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
   namespace :admin do
 

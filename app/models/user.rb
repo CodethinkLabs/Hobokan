@@ -16,10 +16,11 @@ class User < ActiveRecord::Base
     name          :string, :required, :unique
     email_address :email_address, :login => true
     administrator :boolean, :default => false
-    role enum_string(:client, :sales, :developer, :manager)
+    role enum_string(:client, :sales, :developer, :manager, :inactive)
     timestamps
   end
 
+  scope :active, :conditions => "state != 'inactive'"
   has_many :project_members, :accessible => true
   has_many :projects, :through => :project_members
 

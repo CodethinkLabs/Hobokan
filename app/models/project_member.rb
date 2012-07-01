@@ -42,6 +42,7 @@ class ProjectMember < ActiveRecord::Base
 
   has_many :item_assignments, :accessible => true, :dependent => :destroy
   has_many :items, :through => :item_assignments, :scope => :active
+  scope :active, :joins => "INNER JOIN projects ON project_members.project_id = projects.id", :conditions => "projects.state = 'running' "
 
   belongs_to :project
   belongs_to :user
