@@ -1,9 +1,12 @@
 <page title="Home">
   <body: class="front-page"/>
   <content:>
-  <div id="edit-item-dialog"></div>
-
     <header class="content-header">
+      <if test="&current_user.administrator">
+        <div class="filter" style="float:left;">
+          <filter-menu param-name="user" options="&User.all" no-filter="Choose user.." />
+        </div>
+      </if>
       <section class="welcome-message">
         <if test="&User.count == 0">
           <h1>Welcome to <app-name/></h1>
@@ -21,7 +24,11 @@
       <div style="width:80%;padding-right:10px;">
       <a href="/projects/new" style="float:right;">Create a project</a>
        <section>
-        <do with="&current_user">
+         <% @user = @current_user %>
+         <% if params[:user] %>
+           <% @user = User.find_by_name(params[:user]) %>
+         <% end %>
+         <do with="&@user">
           <repeat:project_members>
             <if test="&this.items.todo">
               <div class="kb-frame">
