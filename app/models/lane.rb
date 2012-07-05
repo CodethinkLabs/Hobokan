@@ -29,6 +29,9 @@ class Lane < ActiveRecord::Base
     old_lane = Lane.find(moved_item.lane_id_was)
     lane = moved_item.lane
     target = moved_item.position
+    if old_lane.id != lane.id
+      moved_item.end_date = Time.now.to_date
+    end
     moved_item.user_save(current_user)
 
     items = Item.where(:lane_id => lane.id).where("state <> 'archived'").order("position DESC")
