@@ -19,7 +19,7 @@
         <% if this.milestones.last %><% days = (this.milestones.last.date - Date.today).to_i %><% end %>
         <% if days < 1 %><% days = 1 %><% end %>
         <repeat:milestones>
-        <if test="&this.items.todo.count > 0">
+        <% if this.items.todo.count > 0 || this.date > Time.now.to_date %>
           <% days = (this.date - Date.today + 1).to_i %>
           <div><a href="/milestones/#{this.id}/edit" style="border-bottom:none;">
             <% date = Date.today %>
@@ -36,7 +36,7 @@
             <% color = this.background_color %>
             <span style="border-bottom:none;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;"><name/>:<%= this.date.strftime("%d-%b") %>: <%= this.items.todo.count %> tasks</span></a>
           </div>
-        </if>
+        <% end %>
         </repeat:milestones>
       </div>
       <br/>
