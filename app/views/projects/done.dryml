@@ -15,7 +15,8 @@
   </h3>
   <section-group>
     <section>
-      <count with="&@done"/>
+      <% wdays = ((Time.now.to_date - this.created_at.to_date)*5/7).round %>
+      <%= @done.count %> tasks / <%= wdays %> working days / <%= (wdays / 5).round %> weeks
       <table-plus with="&@done" fields="id, this, project-members, milestone, lane, end_date">
         <id-view:>S<this/></id-view:>
         <end-date-view:><if><%= this.strftime("%d/%m/%y") %></if></end-date-view:>
