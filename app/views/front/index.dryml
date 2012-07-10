@@ -4,7 +4,7 @@
     <header class="content-header">
       <if test="&current_user.administrator">
         <div class="filter" style="float:left;">
-          <filter-menu param-name="user" options="&User.all" no-filter="Choose user.." />
+          <filter-menu param-name="user" options="&User.active.all" no-filter="Choose user.." />
         </div>
       </if>
       <section class="welcome-message">
