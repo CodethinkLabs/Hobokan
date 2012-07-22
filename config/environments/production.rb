@@ -27,9 +27,7 @@ Hobokan::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
-  # Disable Rails's static asset server
-  # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -41,6 +39,13 @@ Hobokan::Application.configure do
     :host => ENV['DOMAIN']
   }
 
+  config.action_mailer.smtp_settings = {
+    :address        => "your.smtp.server",
+    :port           => "25",
+    :authentication => :plain,
+    :user_name      => "your.username",
+    :password       => "your.password"
+  }
 
   # Enable threaded mode
   # config.threadsafe!
