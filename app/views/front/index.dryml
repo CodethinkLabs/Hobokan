@@ -2,7 +2,7 @@
   <body: class="front-page"/>
   <content:>
     <header class="content-header">
-      <if test="&current_user.administrator">
+      <if test="(&User.count != 0) && &current_user.administrator">
         <div class="filter" style="float:left;">
           <filter-menu param-name="user" options="&User.all" no-filter="Choose user.." />
         </div>
