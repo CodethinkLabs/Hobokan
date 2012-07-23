@@ -13,13 +13,14 @@ Install build-essential, git, curl, ruby, rvm etc:
 
     git clone https://github.com/devcurmudgeon/Hobokan.git
     cd Hobokan
+    git checkout selfcontained
     bundle install
 
     export RAILS_ENV="production"
     export DOMAIN="your.server.domain"
     export SECRET_TOKEN="a.random.string.of.at.least.30.chars"
 
-Edit config/production.rb:
+Edit config/environments/production.rb:
 - set "config.serve_static_assets = true"
 - set up credentials for smtp :address, :username, :password
 
