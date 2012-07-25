@@ -16,7 +16,7 @@
 
 <def tag='project-dropdown'>
   <% projects = current_user.projects.active.map{ |p| p.id.to_s + '-' + p.name } %>
-  <select-menu class='project-dropdown' first-option="Choose project..." onchange="location.href = '/projects/' + encodeURIComponent(this.options[this.selectedIndex].value) + '/kanban'" options="&projects"/>
+  <select-menu class='project-dropdown' first-option="Choose project..." onchange="location.href = '/projects/' + encodeURIComponent(this.options[this.selectedIndex].value).split('-')[0] + '/kanban'" options="&projects"/>
 </def>
 
 <extend tag="page">
