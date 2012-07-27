@@ -81,7 +81,7 @@ var terminate_update_item_dialog = function(transport, item_id) {
   var box = jQuery('#S' + item_id);
   var current_lane_id = box.parent().attr("id").substr(1);
 
-  if (current_lane_id != lane_id) {
+  if (current_lane_id && (current_lane_id != lane_id)) {
     box.remove();
     jQuery('#L' + lane_id + ' h3').after(transport.responseText);
     count_cards();

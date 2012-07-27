@@ -18,6 +18,7 @@
         </if>
       </section>
     </header>
+	<div id="edit-item-dialog"></div>
 
     <section-group>
     <if test="&User.count != 0">
