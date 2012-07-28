@@ -49,7 +49,7 @@
 <def tag="form" for="Lane">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="title, position, background_color, color, todo, project" param/>
+    <field-list fields="title, position, background_color, color, todo, closed, project" param/>
     <div param="actions">
       <submit label="#{ht 'lane.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
