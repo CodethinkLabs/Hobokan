@@ -10,6 +10,7 @@ class Lane < ActiveRecord::Base
     background_color :string
     color         :string, :default => '#000000'
     todo          :boolean, :default => true
+    closed        :boolean, :default => false
     timestamps
   end
 
