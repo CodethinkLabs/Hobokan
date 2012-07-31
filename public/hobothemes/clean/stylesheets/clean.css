@@ -329,13 +329,15 @@ table.app-summary td { padding: 2px;  border: 1px dotted #bbb; }
 table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3e6; }
 
 /* kanban */
-.kb-lane {background:#eeeeee; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin-right:.5%; float:left;  display: inline; height:600; }
+.kb-lane {background:#eeeeee; overflow:auto;  -moz-border-radius: 0px 0px 5px 5px;border-radius: 0px 0px 5px 5px; padding:.5%; margin-right:.5%; float:left;  display: inline; height:600; }
+.kb-header {background:#eeeeee; overflow:auto;  -moz-border-radius: 5px 5px 0px 0px;border-radius: 5px 5px 0px 0px; padding:.5%; margin-right:.5%; float:left;  display: inline; height:600; }
 .box { background:#22ff00; font-size: 120%; padding: 1em .2em 1em 1em;  margin-bottom: .5em; margin-right: .6em; display:inline-block; vertical-align: top; -moz-border-radius: 5px;border-radius: 5px;}
 .kb-frame {background:#eeeeee; width:98%; overflow:auto;  -moz-border-radius: 5px;border-radius: 5px; padding:.5%; margin:.5%; float:left;  display: inline; height:600; }
 
-ul.kb-lane h3 {
+ul.kb-header h3 {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	padding: 5px;
+	margin: 0px;
 }
 

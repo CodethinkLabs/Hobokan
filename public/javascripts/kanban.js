@@ -1,7 +1,8 @@
 var count_cards = function () {
 
   jQuery(".lane-count").text(function () {
-    return jQuery(this).parent().parent().parent().children().size() - 1;
+	var lane_id = jQuery(this).parent().parent().parent().attr('id');
+    return jQuery( '.kb-lane').filter("#" + lane_id).children().size();
   });
 }
 

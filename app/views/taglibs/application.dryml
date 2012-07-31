@@ -99,7 +99,6 @@
 
 <def tag="kanban-lane" attrs="lanewidth,boxwidth,user">
   <ul class="kb-lane" id="L#{this.id}" style="width:#{lanewidth}">
-     <h3 style="background-color: #{this.background_color};"><a href="/lanes/#{this.id}/show"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
      <repeat:items.active>
        <% if params[:user] == nil or ( this.project_members.user_is(params[:user]).length > 0 ) %>
          <kanban-card boxwidth="&boxwidth"/>
