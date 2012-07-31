@@ -45,7 +45,7 @@ class Item < ActiveRecord::Base
   end
 
   scope :active, :conditions => "state != 'archived'"
-  scope :todo, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.closed != 't' "
+  scope :todo, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.todo = 't' "
   scope :done, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.closed = 't' "
 
   before_create :set_lane, :enqueue_item, :set_updated_by
