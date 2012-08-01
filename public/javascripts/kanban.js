@@ -52,8 +52,8 @@ var terminate_new_item_dialog = function(transport) {
     lane_id = jQuery(".kb-lane")[0].id.substr(1);
   }
 
-  // Insert the new task just after the lane heading
-  jQuery('#L' + lane_id + ' h3').after(transport.responseText);
+  // Insert the new task at beginning of list
+  jQuery('.kb-lane').filter("#L" + lane_id).prepend(transport.responseText);
   count_cards();
   hjq.dialog.close(dialog);
 
@@ -84,7 +84,7 @@ var terminate_update_item_dialog = function(transport, item_id) {
 
   if (current_lane_id && (current_lane_id != lane_id)) {
     box.remove();
-    jQuery('#L' + lane_id + ' h3').after(transport.responseText);
+    jQuery('.kb-lane').filter("#L" + lane_id).prepend(transport.responseText);
     count_cards();
   } else {
     box.replaceWith(transport.responseText);
