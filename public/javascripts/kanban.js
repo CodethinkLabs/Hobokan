@@ -15,8 +15,7 @@ var set_height = function() {
 }
 
 var drop_handler = function() {
-  // Get the length of the lane, excluding the 'h3' heading
-  var lane_length = jQuery(this).parent().children().length - 1;
+  var lane_length = jQuery(this).parent().children().length;
   // The positions of the item rows in the database are from 1 to
   // the lane length in descending order, whereas in the kanban
   // board they start at 0 and go in ascending order.
