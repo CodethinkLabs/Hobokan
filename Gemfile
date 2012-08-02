@@ -40,7 +40,7 @@ gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
  end
 
 #  gem "hobo", ">= 1.3.0.RC"
-gem "hobo", :git => "git://github.com/tablatom/hobo.git", :branch => "rails3"
+gem "hobo", :git => "git://github.com/devcurmudgeon/hobo.git", :branch => "1-3-stable"
 gem "hobo-jquery", :git => "git://github.com/bryanlarsen/hobo-jquery.git", :branch => "rails3"
 
 #markdown
