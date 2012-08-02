@@ -185,4 +185,15 @@
   </hjq-dialog>
 </def>
 
+<def tag="card" for="Item">
+  <card class="item" param="default" merge>
+    <header: param>
+      <a><h4 param="heading">S<this.id/>: <name/></h4></a>
+    </header:>
+    <body: param>
+      <a:user param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
 
