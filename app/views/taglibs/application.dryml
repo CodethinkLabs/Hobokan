@@ -78,7 +78,9 @@
   <% if this.milestone %>
     <set color="#{this.milestone.background_color}"/>
     <set target = "#{this.milestone.name}" />
-    <set border="border-top: 4px solid #{this.lane.background_color};border-bottom: 4px solid #{this.lane.background_color};#{border}"/>
+    <% if current_page?("/") %>
+      <set border="border-top: 4px solid #{this.lane.background_color};border-bottom: 4px solid #{this.lane.background_color};#{border}"/>
+    <% end %>
     <% if this.lane.todo && this.milestone.date <= Date.today %> <set border = "border-left:4px solid red;#{border}"/> <% end %>
   <% else %>
     <set color="#{this.lane.background_color}"/>
