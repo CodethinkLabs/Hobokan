@@ -95,6 +95,7 @@ class ProjectsController < ApplicationController
         lane.title = "Done"
         lane.position = 5
         lane.background_color = "#999999"
+        lane.closed = true
         lane.todo = false
         lane.save
 
@@ -103,6 +104,7 @@ class ProjectsController < ApplicationController
         lane.title = "Not going to fix"
         lane.position = 0
         lane.background_color = "#FFFFFF"
+        lane.closed = true
         lane.todo = false
         lane.save
 
