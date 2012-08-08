@@ -13,7 +13,8 @@ class ProjectsController < ApplicationController
 
   def done
     @project = find_instance
-    @done = @project.items.done.apply_scopes(:milestone_is => params[:milestone], :order_by => 'end_date DESC')
+    @done = @project.items.done.apply_scopes(:milestone_is => params[:milestone],
+            :order_by => 'end_date DESC').paginate(:page => params[:page])
   end
 
   def stats
