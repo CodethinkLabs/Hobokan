@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
     @finished = Array.new(52,0)
 
     @todo.each { |todo| i = todo.created_at.to_date.cweek - 1 ; @started[i] = @started[i] + 1 }
-    @done.each { |done| i = done.updated_at.to_date.cweek - 1 ; @finished[i] = @finished[i] + 1  }
+    @done.each { |done| i = done.end_date.cweek - 1 ; @finished[i] = @finished[i] + 1  }
   end
 
   def change_log
