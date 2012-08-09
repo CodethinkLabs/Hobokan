@@ -21,7 +21,6 @@ Install build-essential, git, curl, ruby, rvm etc:
 
     git clone https://github.com/devcurmudgeon/Hobokan.git
     cd Hobokan
-    git checkout selfcontained
     bundle install
 
     export RAILS_ENV="production"
