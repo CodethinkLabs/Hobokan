@@ -48,8 +48,15 @@ class Item < ActiveRecord::Base
   scope :todo, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.todo = 't' "
   scope :done, :joins => "INNER JOIN lanes ON items.lane_id = lanes.id", :conditions => "lanes.closed = 't' "
 
+  before_validation :not_duplicate, :on_create => true
   before_create :set_lane, :enqueue_item, :set_updated_by
   before_save :set_updated_by
+
+  def not_duplicate
+    if Item.last.title == self.title
+      return false
+    end
+  end
 
   def set_updated_by
     if project.nil?

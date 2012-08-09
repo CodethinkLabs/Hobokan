@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 
   def create_for_project
     hobo_create do
-      if valid?
+      if valid? and @item.id != nil
         @item.state = "created"
         @item.save
         if request.xhr?
