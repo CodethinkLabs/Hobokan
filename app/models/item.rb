@@ -53,7 +53,7 @@ class Item < ActiveRecord::Base
   before_save :set_updated_by
 
   def not_duplicate
-    if Item.last.title == self.title
+    if Item.last != nil and Item.last.title == self.title
       return false
     end
   end
