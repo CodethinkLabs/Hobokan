@@ -1,0 +1,19 @@
+<show-page>
+<content:>
+  <section-group>
+    <section>
+      <if test="&current_user.administrator">
+        <div class="filter" style="float:left;">
+          <filter-menu param-name="user" options="&User.active.all" no-filter="Choose user.." />
+        </div>
+      </if>
+      <table-plus with="&@done" fields="id, title, project.name, project-members, milestone, lane, end_date">
+        <id-view:>S<this/></id-view:>
+        <end-date-view:><if><%= this.strftime("%d/%m/%y") %></if></end-date-view:>
+        <end-date-heading:>Updated</end-date-heading:>
+        <milestone-view:><if><%= this.name.split(' ')[0] %></if></milestone-view:>
+      </table-plus>
+    </section>
+  </section-group>
+</content:>
+</show-page>

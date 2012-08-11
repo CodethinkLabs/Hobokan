@@ -100,6 +100,7 @@ Hobokan::Application.routes.draw do
 
   # Show action routes for controller "users"
   get 'users/:id/account(.:format)' => 'users#account', :as => 'user_account'
+  get 'users/:id/done(.:format)' => 'users#done', :as => 'user_done'
 
   # User routes for controller "users"
   match 'login(.:format)' => 'users#login', :as => 'user_login'
