@@ -58,6 +58,10 @@ Hobokan::Application.routes.draw do
   put 'milestones/:id(.:format)' => 'milestones#update', :as => 'update_milestone', :constraints => { :id => %r([^/.?]+) }
   delete 'milestones/:id(.:format)' => 'milestones#destroy', :as => 'destroy_milestone', :constraints => { :id => %r([^/.?]+) }
 
+  # Owner routes for controller "milestones"
+  get 'projects/:project_id/milestones/new(.:format)' => 'milestones#new_for_project', :as => 'new_milestone_for_project'
+  post 'projects/:project_id/milestones(.:format)' => 'milestones#create_for_project', :as => 'create_milestone_for_project'
+
 
   # Lifecycle routes for controller "projects"
   put 'projects/:id/archive(.:format)' => 'projects#do_archive', :as => 'do_project_archive'

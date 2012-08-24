@@ -610,6 +610,38 @@
 
 
 
+<def tag="new-for-project-page" polymorphic/>
+<def tag="new-for-project-page" for="Milestone">
+  <page merge title="#{ht 'milestone.new_for_owner.title', :default=>['New Milestone for']} #{name :with => @project}">
+    <body: class="new-for-owner-page  milestone" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="milestone.new_for_owner.heading">
+            New Milestone
+          </ht>
+        </h2>
+        <h3 param="subheading">
+          <ht key="milestone.new_for_owner.subheading">
+            For:
+          </ht>
+          <a with="&@project"/>
+        </h3>
+      </header>
+
+      <section param="content-body">
+        <form owner="project" method="post" param>
+          <field-list: skip="project"/>
+          <submit: label="#{ht 'milestone.actions.create', :default=>['Create Milestone']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+
 
 
 <!-- ====== Project Pages ====== -->
