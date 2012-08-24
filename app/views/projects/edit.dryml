@@ -10,9 +10,9 @@
         <form>
           <field-list fields="name, details">
           </field-list>
-         <h2>Milestones</h2>
-         <input-many:milestones><field-list fields="name, date, description, background_color"/></input-many>
-          <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
+         <h2> Lanes</h2>
+         <input-many:lanes><field-list fields="title, position, todo, closed, background_color"/></input-many>
+         <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
          </form>
        </section>
        <aside style="width:33%">
@@ -21,9 +21,6 @@
          <field-list fields="users"/>
          <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
 
-         <h2> Lanes</h2>
-         <input-many:lanes><field-list fields="title, position, todo, closed, background_color"/></input-many>
-         <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
        </form>
      </aside>
    </section-group> 

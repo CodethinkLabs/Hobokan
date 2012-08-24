@@ -1,5 +1,14 @@
 <show-page>
+
 <content:>
+<hjq-dialog id="new-milestone-dialog" title="Add a Milestone" position="center" width="&800">
+  <form with="&@milestone || new_for_current_user(@project.milestones)" owner="project">
+    <field-list: fields="name,description, date, background-color">
+    </field-list>
+  </form>
+</hjq-dialog>
+
+
   <a action="kanban">
     &laquo; Back to <name/> kanban
   </a>
@@ -8,12 +17,22 @@
       <a action="edit" style="float:right;">Edit Project</a>
       <field-list skip="items, project_members">
         <details-view:><if><this.to-html.html-safe/></if></details-view:>
-        <milestones-view:><table-plus fields="name, description, date"/></milestones-view:>
+        <milestones-view:>
+          <hjq-dialog-open-button dialog="#new-milestone-dialog" style="float:right;">Add a Milestone</hjq-dialog-open-button>
+          <table-plus fields="this, items.count, date">
+            <items-count-heading:>Tasks</items-count-heading:>
+          </table-plus>
+        </milestones-view:>
       </field-list>
     </section>
     <aside style="width:50%;">
       <change-log-view/>
     </aside>
   </section-group>
+
+  <javascript name="jquery.simple-color"/>
+  <script>
+	jQuery('input[name*="color"]').simpleColor();
+  </script>
 </content:>
 </show-page>
