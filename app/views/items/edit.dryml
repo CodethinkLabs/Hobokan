@@ -12,7 +12,7 @@
         </h3>
         <section>
           <h3>Edit Task</h3>
-          <transition-buttons/>
+          <transition-buttons style="float:right;"/>
           <form>
             <field-list: fields="title, text, result, doable"/>
             <actions: replace>
@@ -21,6 +21,9 @@
           </form>
         </section>
     </section>
+    <aside id="changelog" style="width=50%">
+      <change-log-view/>
+    </aside>
    </section-group>
   </content:>
 </edit-page>
