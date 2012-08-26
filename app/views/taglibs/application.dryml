@@ -148,7 +148,7 @@
             <select-many merge options="&@project.project_members"/>
           </project-members-view:>
           <milestone-view:>
-            <select-one options="&@this.milestones"/>
+            <select-one options="&@this.milestones.future"/>
           </milestone-view:>
           <lane-view:>
             <select-one options="&@this.lanes"/>
@@ -170,7 +170,7 @@
           <select-one options="&@item.project.lanes"/>
         </lane-view:>
         <milestone-view:>
-          <select-one options="&@item.project.milestones" include-none="true"/>
+          <select-one options="&@item.project.milestones.future" include-none="true"/>
         </milestone-view:>
       </field-list>
       <submit: label="#{ht 'Item.actions.save', :default=>['Save'] }" style=""/>
