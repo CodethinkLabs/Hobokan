@@ -61,6 +61,6 @@ Hobokan::Application.configure do
   config.hobo.read_only_file_system = true
 
   # Uncomment this to use SSL
-  # config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
-  # config.middleware.use "ForceSSL"
+  config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
+  config.middleware.use "ForceSSL"
 end
