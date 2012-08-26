@@ -147,7 +147,7 @@ form .actions input { margin: 0; }
 	position: absolute; top: 35px; right: 25px; z-index: 50;
 	width: 200px; height: 500px; overflow: auto;
 	padding: 0 20px 20px; border: 1px solid #ddd;
-	color: black; background: #a4f800;
+	background: #006800;
 }
 #search-results-panel .card.linkable a {color: black;}
 #search-spinner {background:black;border:1px solid #666666;opacity:0.6;padding:2px;position:absolute;right:4px;top:6px;}
@@ -221,7 +221,7 @@ form .actions {margin: 10px 0; width: 100%; text-align: left;}
 	overflow: hidden; _zoom: 1;
 	margin: 10px 0;	padding: 12px; border: 1px solid #e8e8e8;
 	color: black;
-	background: #a4f800;
+	background: #006800;
 	position: relative;
 }
 .card h4 {margin-top: 0;}
