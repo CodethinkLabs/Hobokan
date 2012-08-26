@@ -22,7 +22,7 @@ gem "sqlite3", :group => :development
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
-gem 'rack-ssl', :require => 'rack/ssl'
+# gem 'rack-ssl', :require => 'rack/ssl'
 
 gem "cocaine", "~> 0.1.0"
 gem "validates_timeliness"
