@@ -86,6 +86,10 @@
     <set color="#{this.lane.background_color}"/>
     <set target = "No Milestones" />
   <% end %>
+  <% if params[:lane] != nil
+       boxwidth="15%"
+     end
+  %>
   <% if params[:milestone] == nil || params[:milestone] == target %>
     <set style="width:#{boxwidth};background-color:#{color};#{border}"/>
     <li class="box" id="S#{this.id}" style="#{style}">
@@ -93,10 +97,10 @@
     <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
        <this.title/> <repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
     </a>
-       </td><td>
-       <repeat:project_members><do with="&this.user"><gravatar size="24"/></do></repeat:project_members></td></table>
+    </td><td>
+    <repeat:project_members><do with="&this.user"><gravatar size="24"/></do></repeat:project_members></td></table>
   </li>
-<% end %>
+  <% end %>
 </def>
 
 <def tag="kanban-lane" attrs="lanewidth,boxwidth,user">
