@@ -52,13 +52,7 @@ class Item < ActiveRecord::Base
   before_save :set_updated_by
 
   def set_updated_by
-    if project.nil?
-      members = lane.project.project_members
-    else
-      members = project.project_members
-    end
-    member = members.find(:first, :conditions => "user_id = #{User.current.id}")
-    self.updated_by = (member ? member : User.current)
+    self.updated_by = acting_user
   end
 
   def set_lane
