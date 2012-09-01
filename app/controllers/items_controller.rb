@@ -24,7 +24,10 @@ class ItemsController < ApplicationController
   def do_archive
     item = find_instance
     item.state = "archived"
-    item.lane = item.project.lanes.last
+    if item.lane.closed == false
+      item.lane = item.project.lanes.last
+      item.end_date = Time.now.to_date
+    end
     item.save
     redirect_to :back
   end
