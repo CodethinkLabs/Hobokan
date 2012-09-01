@@ -2,11 +2,6 @@
   <body: class="front-page"/>
   <content:>
     <header class="content-header">
-      <if test="(&User.count != 0) && &current_user.administrator">
-        <div class="filter" style="float:left;">
-          <filter-menu param-name="user" options="&User.active.all" no-filter="Choose user.." />
-        </div>
-      </if>
       <section class="welcome-message">
         <if test="&User.count == 0">
           <h1>Welcome to <app-name/></h1>
@@ -23,6 +18,11 @@
     <section-group>
     <if test="&User.count != 0">
       <div style="width:80%;padding-right:10px;">
+      <if test="&current_user.administrator">
+        <span class="filter" style="float:left;">
+          <filter-menu param-name="user" options="&User.active.all" no-filter="Choose user.." />
+        </span>
+      </if>
       <a href="/projects/new" style="float:right;">Create a project</a>
        <section>
          <% @user = @current_user %>
