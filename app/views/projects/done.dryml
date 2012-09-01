@@ -16,7 +16,7 @@
   <section-group>
     <section>
       <% wdays = ((Time.now.to_date - this.created_at.to_date)*5/7).round %>
-      <%= @done.count %> tasks / <%= wdays %> working days / <%= (wdays / 5).round %> weeks
+      <%= @done.count %> tasks / <%= wdays %> working days - <%= (@done.count / wdays).round.to_int %> per day / <%= (wdays / 5).round %> weeks - <%= (@done.count / (wdays / 5) ).round.to_int %> per week
       <table-plus with="&@done" fields="id, this, project-members, milestone, lane, end_date">
         <id-view:><a href="/items/#{this}">S<this/> </a></id-view:>
         <this-view:><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;"><this.title/></a></this-view:>
