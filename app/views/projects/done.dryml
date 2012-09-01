@@ -18,7 +18,8 @@
       <% wdays = ((Time.now.to_date - this.created_at.to_date)*5/7).round %>
       <%= @done.count %> tasks / <%= wdays %> working days / <%= (wdays / 5).round %> weeks
       <table-plus with="&@done" fields="id, this, project-members, milestone, lane, end_date">
-        <id-view:>S<this/></id-view:>
+        <id-view:><a href="/items/#{this}">S<this/> </a></id-view:>
+        <this-view:><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;"><this.title/></a></this-view:>
         <end-date-view:><if><%= this.strftime("%d/%m/%y") %></if></end-date-view:>
         <end-date-heading:>Updated</end-date-heading:>
         <milestone-view:><if><%= this.name.split(' ')[0] %></if></milestone-view:>
@@ -29,5 +30,8 @@
       <change-log-view/>
     </aside>
   </section-group>
+
+  <javascript name="kanban"/>
+
 </content:>
 </show-page>
