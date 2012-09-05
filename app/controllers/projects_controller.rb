@@ -15,6 +15,11 @@ class ProjectsController < ApplicationController
     @project = find_instance
     @done = @project.items.done.apply_scopes(:milestone_is => params[:milestone],
             :order_by => 'end_date DESC').paginate(:page => params[:page])
+    @recent = Array.new
+    for i in 0..30
+      @recent[30 - i] = @project.items.done.apply_scopes(:milestone_is => params[:milestone], :end_date_is => Date.today - i.days,
+            :order_by => 'end_date DESC').paginate(:page => params[:page]).count
+    end
   end
 
   def stats
