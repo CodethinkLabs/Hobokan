@@ -62,7 +62,7 @@
 
 <def attrs='size, rating' tag='gravatar'>
   <% size ||= 80; rating ||= 'g'; default='retro'; digest = Digest::MD5.hexdigest(this.email_address) -%>
-  <a class='gravatar'><img class='gravatar' src='http://www.gravatar.com/avatar/#{digest}?s=#{size}&r=#{rating}&d=#{default}' merge-attrs/></a>
+  <a class='gravatar'><img class='gravatar' src='http://cdn.libravatar.org/avatar/#{digest}?s=#{size}&r=#{rating}&d=#{default}' merge-attrs/></a>
 </def>
 
 <def tag="select-many-in-project-members">
@@ -86,6 +86,10 @@
     <set color="#{this.lane.background_color}"/>
     <set target = "No Milestones" />
   <% end %>
+  <% if params[:lane] != nil
+       boxwidth="15%"
+     end
+  %>
   <% if params[:milestone] == nil || params[:milestone] == target %>
     <set style="width:#{boxwidth};background-color:#{color};#{border}"/>
     <li class="box" id="S#{this.id}" style="#{style}">
@@ -93,10 +97,10 @@
     <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
        <this.title/> <repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
     </a>
-       </td><td>
-       <repeat:project_members><do with="&this.user"><gravatar size="24"/></do></repeat:project_members></td></table>
+    </td><td>
+    <repeat:project_members><do with="&this.user"><gravatar size="24"/></do></repeat:project_members></td></table>
   </li>
-<% end %>
+  <% end %>
 </def>
 
 <def tag="kanban-lane" attrs="lanewidth,boxwidth,user">
@@ -148,7 +152,7 @@
             <select-many merge options="&@project.project_members"/>
           </project-members-view:>
           <milestone-view:>
-            <select-one options="&@this.milestones"/>
+            <select-one options="&@this.milestones.future"/>
           </milestone-view:>
           <lane-view:>
             <select-one options="&@this.lanes"/>
@@ -170,7 +174,7 @@
           <select-one options="&@item.project.lanes"/>
         </lane-view:>
         <milestone-view:>
-          <select-one options="&@item.project.milestones" include-none="true"/>
+          <select-one options="&@item.project.milestones.future" include-none="true"/>
         </milestone-view:>
       </field-list>
       <submit: label="#{ht 'Item.actions.save', :default=>['Save'] }" style=""/>

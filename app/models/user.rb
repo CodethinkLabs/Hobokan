@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   scope :active, :conditions => "state != 'inactive'"
   has_many :project_members, :accessible => true
   has_many :projects, :through => :project_members
+  default_scope :order => 'name ASC'
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that
