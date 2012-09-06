@@ -19,7 +19,7 @@
        <form>
          <h2> Project Members</h2>
          <field-list fields="users"/>
-         <submit label="#{ht 'project.actions.save', :default=>['Save']}"/>
+         <submit label="Save Project Members"/>
 
        </form>
      </aside>
