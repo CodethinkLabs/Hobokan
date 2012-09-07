@@ -16,7 +16,7 @@ class Milestone < ActiveRecord::Base
 
   default_scope :order => 'date ASC'
   scope :current, lambda { |*args |{:conditions => [ "date > ?", (args.first || Date.today - 14.days) ] }}
-  scope :future,  lambda { |*args |{:conditions => [ "date > ?", (args.first || Date.today) ] }}
+  scope :future,  lambda { |*args |{:conditions => [ "date > ?", (args.first || Date.today - 3.days) ] }}
 
   validates_presence_of :date
 
