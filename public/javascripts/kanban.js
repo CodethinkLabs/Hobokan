@@ -78,9 +78,11 @@ var terminate_new_item_dialog = function(transport) {
 var terminate_update_item_dialog = function(transport, item_id) {
   var dialog = jQuery('#item-dialog-s' + item_id);
   var lane_id = dialog.find('.item_lane').val();
+
+  hjq.dialog.close(dialog);
+
   var box = jQuery('#S' + item_id);
   var current_lane_id = box.parent().attr("id").substr(1);
-
   if (current_lane_id && (current_lane_id != lane_id)) {
     box.remove();
     jQuery('.kb-lane').filter("#L" + lane_id).prepend(transport.responseText);
@@ -88,8 +90,6 @@ var terminate_update_item_dialog = function(transport, item_id) {
   } else {
     box.replaceWith(transport.responseText);
   }
-
-  hjq.dialog.close(dialog);
 }
 
 var get_item_details = function(board, item_id) {
