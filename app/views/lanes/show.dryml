@@ -10,11 +10,20 @@
     <h2>
       <%= "#{this.project.name}:" %><name/>
     </h2>
+    <form>
+      <field-list fields="title, position, background-color">
+      </field-list>
+      <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
+    </form>
     <table-plus:items fields="id, this, user, created_at, updated_at">
       <id-view:><item-story-id/></id-view:>
       <created-at-view:><%= this.strftime("%d/%m/%y") %></created-at-view:>
       <updated-at-view:><%= this.strftime("%d/%m/%y") %></updated-at-view:>
     </table-plus>
-  </content:>
 
+    <javascript name="jquery.simple-color"/>
+	<script>
+	  jQuery('input[name*="color"]').simpleColor();
+    </script>
+  </content:>
 </show-page>
