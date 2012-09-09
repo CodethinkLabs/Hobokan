@@ -61,7 +61,7 @@
 <def tag="view" for="Time" attrs="format"><%= this && (format||= :default) && I18n.backend.localize(I18n.locale, this, format) %></def>
 
 <def attrs='size, rating' tag='gravatar'>
-  <% size ||= 80; rating ||= 'g'; default='retro'; digest = Digest::MD5.hexdigest(this.email_address) -%>
+  <% size ||= 80; rating ||= 'g'; default='wavatar'; digest = Digest::MD5.hexdigest(this.email_address) -%>
   <a class='gravatar'><img class='gravatar' src='http://cdn.libravatar.org/avatar/#{digest}?s=#{size}&r=#{rating}&d=#{default}' merge-attrs/></a>
 </def>
 
