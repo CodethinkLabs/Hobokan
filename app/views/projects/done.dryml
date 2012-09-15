@@ -15,8 +15,10 @@
   </h3>
   <section-group>
     <section>
-      <% wdays = ((Time.now.to_date - this.created_at.to_date)*5/7).round %>
-      <%= @done.count %> tasks / <%= wdays %> working days - <%= (@done.count / wdays).round.to_int %> per day / <%= (wdays / 5).round %> weeks - <%= (@done.count / (wdays / 5) ).round.to_int %> per week
+      <% wdays = ((Time.now.to_date - this.created_at.to_date)*5/7).round %><% if wdays == 0 %><% wdays = 1 %><% end %>
+      <% weeks = (wdays / 5).round %><% if weeks == 0 %><% weeks = 1 %><% end %>
+
+      <%= @done.count %> tasks / <%= wdays %> working days - <%= (@done.count / wdays).round.to_int %> per day / <%= weeks %> weeks - <%= (@done.count / weeks ).round.to_int %> per week
       <br/>
       <%= @recent %>
       <table-plus with="&@done" fields="id, this, project-members, milestone, lane, end_date">
