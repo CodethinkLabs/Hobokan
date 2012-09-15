@@ -72,6 +72,9 @@ class Item < ActiveRecord::Base
     if self.lane == nil
       self.lane = project.lanes.visible[0]
     end
+    if self.lane.closed
+      self.end_date = Date.today
+    end
   end
 
   def enqueue_item
