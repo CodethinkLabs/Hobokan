@@ -34,12 +34,10 @@ class UsersController < ApplicationController
       @user = User.find_by_name(params[:user])
     end
     @done = Array.new
-    pm = @user.project_members
-    pm.all.each do |apm|
-      @done = @done + apm.items.done.apply_scopes(:milestone_is => params[:milestone],
-              :order_by => 'end_date DESC')
-    end
-    @done.sort! { |a,b| b.end_date <=> a.end_date }
+    @done = Item.done.apply_scopes(:milestone_is => params[:milestone],
+                                   :order_by => 'end_date DESC',
+                                   :limit => 1000)
+    @done = @done.find_all { |item| (item.project_members.find_all {|pm| pm.user == @user } != []) }
     @done = @done.paginate(:page => params[:page])
   end
 
