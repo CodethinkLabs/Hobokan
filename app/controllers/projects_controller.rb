@@ -14,7 +14,15 @@ class ProjectsController < ApplicationController
   def done
     @project = find_instance
     @done = @project.items.done.apply_scopes(:milestone_is => params[:milestone],
-            :order_by => 'end_date DESC').paginate(:page => params[:page])
+            :order_by => 'end_date DESC')
+
+    if params[:user]
+      @user = User.find_by_name(params[:user])
+      @done = @done.find_all { |item| (item.project_members.find_all {|pm| pm.user == @user } != []) }
+    end
+    @count = @done.count
+    @done = @done.paginate(:page => params[:page])
+
     @recent = Array.new
     for i in 0..30
       @recent[30 - i] = @project.items.done.apply_scopes(:milestone_is => params[:milestone], :end_date_is => Date.today - i.days,
