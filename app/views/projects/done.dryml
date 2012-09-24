@@ -20,9 +20,11 @@
       <%= @count %> tasks / <%= wdays %> working days - <%= (@count / wdays).round.to_int %> per day / <%= weeks %> weeks - <%= (@count / weeks ).round.to_int %> per week
       <br/>
       <%= @recent %>
-      <table-plus with="&@done" fields="id, title, project-members, milestone, lane, end_date">
+      <table-plus with="&@done" fields="id, title, project-members, milestone, lane, created_at, end_date">
         <id-view:><a href="/items/#{this}">S<this/> </a></id-view:>
         <end-date-view:><if><%= this.strftime("%d/%m/%y") %></if></end-date-view:>
+        <created-at-view:><if><%= this.strftime("%d/%m/%y") %></if></created-at-view:>
+        <created-at-heading:>Created</created-at-heading:>
         <end-date-heading:>Updated</end-date-heading:>
         <milestone-view:><if><%= this.name.split(' ')[0] %></if></milestone-view:>
         <project-members-heading:>Who</project-members-heading:>
