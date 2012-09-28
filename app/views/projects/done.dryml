@@ -1,4 +1,4 @@
-<show-page>
+<show-page for="Project" full-title="#{this.name} : done">
 <content:>
   <a action="kanban">
     &laquo; Back to <name/> kanban
