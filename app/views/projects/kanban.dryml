@@ -34,7 +34,8 @@
             <% end %>
             <% if days > 0 %>&nbsp;<% end %>
             <% color = this.background_color %>
-            <span style="border-bottom:none;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;"><name/>:<%= this.date.strftime("%d-%b") %>: <% if this.items.todo.count > 0 %><%= this.items.todo.count %> tasks<% end %></span></a>
+            <% pending = this.items.count - this.items.done.count %>
+            <span style="border-bottom:none;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;"><name/>:<%= this.date.strftime("%d-%b") %>: <% if pending > 0 %><%= pending %> tasks<% end %></span></a>
           </div>
         <% end %>
         </repeat:milestones>
