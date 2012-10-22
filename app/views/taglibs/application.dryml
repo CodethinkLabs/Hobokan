@@ -97,8 +97,15 @@
     <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
        <this.title/> <repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
     </a>
-    </td><td>
-    <repeat:project_members><do with="&this.user"><gravatar size="24"/></do></repeat:project_members></td></table>
+    <% if this.end_date != nil and this.lane.todo %>
+      <% age = (Time.now.to_date - this.end_date).to_int; if age <= 1 then age = nil; end %>
+      <span style="font-size:40%;"><%= age %></span>
+    <% end %>
+    </td>
+    <td>
+      <repeat:project_members><do with="&this.user"><gravatar size="24"/></do></repeat:project_members>
+    </td>
+    </table>
   </li>
   <% end %>
 </def>
