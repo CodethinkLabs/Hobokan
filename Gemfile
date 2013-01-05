@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.0.12'
+gem 'rails', '~> 3.0.18'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -27,8 +27,6 @@ gem "sqlite3", :group => :development
 gem "cocaine", "~> 0.1.0"
 gem "validates_timeliness"
 
-# Force version 3.0.pre2 as 3.0.pre4 is broken
-# gem "will_paginate", "= 3.0.pre2"
 gem "will_paginate"
 gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 
