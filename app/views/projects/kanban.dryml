@@ -20,7 +20,7 @@
         <% if this.milestones.last %><% days = (this.milestones.last.date - Date.today).to_i %><% end %>
         <% if days < 1 %><% days = 1 %><% end %>
         <repeat:milestones>
-        <% if ( this.items.todo.count > 0 || this.date > Time.now.to_date ) && this.date < Time.now.to_date + 3.months %>
+        <% if ( this.items.todo.count > 0 || this.date > Time.now.to_date ) && this.date < Time.now.to_date + 4.months %>
           <% days = (this.date - Date.today + 1).to_i %>
           <div><a href="/milestones/#{this.id}/edit" style="border-bottom:none;">
             <% date = Date.today %>
