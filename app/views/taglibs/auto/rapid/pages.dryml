@@ -13,6 +13,159 @@
 
 
 
+<!-- ====== Bucket Pages ====== -->
+
+<def tag="index-page" for="Bucket">
+  <page merge title="#{ht 'bucket.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page bucket" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="bucket.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="bucket.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="bucket.actions.new">New Bucket</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Bucket">
+  <page merge title="#{ht 'bucket.new.title', :default=>[' New Bucket'] }">
+    <body: class="new-page bucket" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="bucket.new.heading">
+            New Bucket
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'bucket.actions.create', :default=>['Create Bucket']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Bucket">
+  <page merge title="#{ht 'bucket.show.title', :default=>['Bucket'], :name => name(:no_wrapper => true) }">
+
+    <body: class="show-page bucket" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="bucket.show.heading" name="#{name(:no_wrapper => true)}">
+                Bucket <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="done" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="bucket.actions.edit" name="#{name(:no_wrapper => true)}">
+                Edit Bucket
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <view:description param="description" />
+            <field-list fields="background_color, color, project" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Bucket">
+  <page merge title="#{ht 'bucket.edit.title', :default=>['Edit Bucket'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page bucket" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="bucket.edit.heading" name="#{name(:no_wrapper => true)}">
+            Edit Bucket
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'bucket.actions.delete', :default=>['Remove This Bucket']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+<def tag="new-for-project-page" polymorphic/>
+<def tag="new-for-project-page" for="Bucket">
+  <page merge title="#{ht 'bucket.new_for_owner.title', :default=>['New Bucket for']} #{name :with => @project}">
+    <body: class="new-for-owner-page  bucket" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="bucket.new_for_owner.heading">
+            New Bucket
+          </ht>
+        </h2>
+        <h3 param="subheading">
+          <ht key="bucket.new_for_owner.subheading">
+            For:
+          </ht>
+          <a with="&@project"/>
+        </h3>
+      </header>
+
+      <section param="content-body">
+        <form owner="project" method="post" param>
+          <field-list: skip="project"/>
+          <submit: label="#{ht 'bucket.actions.create', :default=>['Create Bucket']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Comment Pages ====== -->
 
 <def tag="index-page" for="Comment">
@@ -217,7 +370,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="start_date, end_date, text, result, position, state, milestone, project" param/>
+            <field-list fields="start_date, end_date, text, result, position, state, bucket, milestone, project" param/>
           </section>
     </content:>
 

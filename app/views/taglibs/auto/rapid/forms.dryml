@@ -1,5 +1,17 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="form" for="Bucket">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, description, done, background_color, color, project" param/>
+    <div param="actions">
+      <submit label="#{ht 'bucket.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Comment">
   <form merge param="default">
     <error-messages param/>
@@ -15,7 +27,7 @@
 <def tag="form" for="Item">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="start_date, end_date, title, text, result, doable, position, state, lane, milestone, project, project_members, user" param/>
+    <field-list fields="start_date, end_date, title, text, result, doable, position, state, bucket, lane, milestone, project, project_members, user" param/>
     <div param="actions">
       <submit label="#{ht 'item.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -73,7 +85,7 @@
 <def tag="form" for="Project">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, details, state, lanes, milestones, users" param/>
+    <field-list fields="name, details, state, buckets, lanes, milestones, users" param/>
     <div param="actions">
       <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
