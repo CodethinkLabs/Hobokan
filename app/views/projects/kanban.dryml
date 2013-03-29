@@ -8,6 +8,8 @@
 	  <div class="filter" style="float:left;"><filter-menu param-name="milestone" options="&@milestones" no-filter="All Milestones" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="lane" options="&@this.lanes.all" no-filter="Board" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="user" options="&@this.project_members.all" no-filter="All Users" /></div>
+      <new-milestone-dialog/><hjq-dialog-open-button dialog="#new-milestone-dialog">Add a milestone</hjq-dialog-open-button>
+      <new-bucket-dialog/><hjq-dialog-open-button dialog="#new-bucket-dialog">Add a bucket</hjq-dialog-open-button>
       <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
       <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
       <input type="submit" name="ms-toggle" value="Hide Milestones" id="ms-toggle" style="float:right;" />
@@ -62,6 +64,10 @@
       </aside>
     </section-group>
 
+    <javascript name="jquery.simple-color"/>
+    <script>
+  	  jQuery('input[name*="color"]').simpleColor();
+    </script>
     <javascript name="jquery.dragsort"/>
     <javascript name="kanban"/>
   </content:>

@@ -29,6 +29,7 @@ class Item < ActiveRecord::Base
   belongs_to :lane
   belongs_to :project
   belongs_to :milestone
+  belongs_to :bucket
 
   # acts_as_list :scope => :lane
   set_default_order "position DESC"

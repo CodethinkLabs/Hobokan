@@ -31,6 +31,7 @@ class Project < ActiveRecord::Base
   has_many :project_members
   has_many :users, :through => :project_members, :accessible => true
   has_many :milestones, :accessible => true
+  has_many :buckets, :accessible => true
 
   validates_length_of :name, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
 
