@@ -22,7 +22,7 @@
         <repeat:milestones>
         <% if ( this.items.todo.count > 0 || this.date > Time.now.to_date ) && this.date < Time.now.to_date + 4.months %>
           <% days = (this.date - Date.today + 1).to_i %>
-          <div><a href="/milestones/#{this.id}/edit" style="border-bottom:none;">
+          <div><a href="/milestones/#{this.id}" style="border-bottom:none;">
             <% date = Date.today %>
             <% color = this.background_color %>
             <% days.times do %>

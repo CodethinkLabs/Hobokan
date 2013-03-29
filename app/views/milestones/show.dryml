@@ -1,9 +1,9 @@
-<edit-page>
+<show-page>
   <content:>
     <div id="edit-item-dialog"></div>
     <a:project action="kanban">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to
     <name/></ht></a:project>
-    <h3>Edit Milestone</h3>
+    <h3>Milestone</h3>
     <error-messages/>
     <form>
       <field-list fields="name, date, description, background-color"/>
@@ -35,4 +35,4 @@
     <javascript name="kanban"/>
 
  </content:>
-</edit-page>
+</show-page>
