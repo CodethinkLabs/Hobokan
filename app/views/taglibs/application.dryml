@@ -163,7 +163,7 @@
       <form with="&@item || new_for_current_user(@project.items)" owner="project" complete="terminate_new_item_dialog(request);">
         <field-list: fields="bucket, title, milestone, lane, text, project_members, doable">
           <bucket-view:>
-            <select-one options="&@this.buckets.not_done" include-none="true"/>
+            <select-one options="&@this.buckets.not_done"/>
           </bucket-view:>
           <project-members-view:>
             <select-many merge options="&@this.project_members"/>
