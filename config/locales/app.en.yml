@@ -14,6 +14,8 @@ en:
         title: Summary
         text: Detail
         project_members: Assigned to
+      bucket:
+        description: Justification
     attribute_help:
       project:
         name: Enter a name for the project. Make it short and descriptive

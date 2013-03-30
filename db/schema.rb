@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329165453) do
+ActiveRecord::Schema.define(:version => 20130330095646) do
 
   create_table "buckets", :force => true do |t|
     t.string   "name"
-    t.text     "description"
+    t.string   "description"
+    t.boolean  "done",             :default => false
     t.string   "background_color"
     t.string   "color",            :default => "#000000"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_id"
-    t.boolean  "done",             :default => false
   end
 
   add_index "buckets", ["project_id"], :name => "index_buckets_on_project_id"

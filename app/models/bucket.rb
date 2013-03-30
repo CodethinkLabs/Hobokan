@@ -4,7 +4,7 @@ class Bucket < ActiveRecord::Base
 
   fields do
     name :string
-    description :text
+    description :string
     done :boolean, :default => false
     background_color :string
     color         :string, :default => '#000000'

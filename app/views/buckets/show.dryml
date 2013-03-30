@@ -1,38 +1,35 @@
 <show-page>
   <content:>
-    <div id="edit-item-dialog"></div>
-    <a:project action="kanban">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to
-    <name/></ht></a:project>
-    <h3>Bucket</h3>
-    <error-messages/>
-    <form>
-      <field-list fields="name, description, done, background-color"/>
-      <submit label="#{ht 'bucket.actions.save', :default=>['Save']}"/>
-    </form>
-    <br/>
-    <h3>To Do</h3>
-    <table-plus:items.todo fields="id, this, lane, project_members">
-      <header: replace/>
-      <thead: replace/>
-      <id-view:><a href="/items/#{this}">S<this/></a></id-view:>
-      <id-view:><a href="/items/#{this}">S<this/> </a></id-view:>
-      <this-view:><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;"><this.title/></a></this-view:>
-    </table-plus>
-    <br/>
-    <h2>Done</h2>
-    <table-plus:items.done fields="id, this, lane, project_members">
-      <header: replace/>
-      <thead: replace/>
-      <id-view:><a href="/items/#{this}">S<this/></a></id-view:>
-      <id-view:><a href="/items/#{this}">S<this/> </a></id-view:>
-      <this-view:><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;"><this.title/></a></this-view:>
-    </table-plus>
-
-    <javascript name="jquery.simple-color"/>
-	<script>
-	  jQuery('input[name*="color"]').simpleColor();
-    </script>
-    <javascript name="kanban"/>
-
+  <div id="edit-item-dialog"></div>
+  <a:project action="kanban">&laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to
+  <name/></ht></a:project>
+  <h3>Milestone</h3>
+  <error-messages/>
+  <form>
+    <field-list fields="name, description, done, background-color"/>
+    <submit label="#{ht 'bucket.actions.save', :default=>['Save']}"/>
+  </form>
+  <h3>To Do</h3>
+  <table-plus:items.todo fields="id, lane, project_members">
+    <header: replace/>
+    <thead: replace/>
+    <id-view:><a href="/items/#{this}">S<this/></a></id-view:>
+    <id-view:><a href="/items/#{this}">S<this/> </a></id-view:>
+    <this-view:><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;"><this.title/></a></this-view:>
+  </table-plus>
+  <br/>
+  <h2>Done</h2>
+  <table-plus:items.done fields="id, this, lane, project_members">
+    <header: replace/>
+    <thead: replace/>
+    <id-view:><a href="/items/#{this}">S<this/></a></id-view:>
+    <id-view:><a href="/items/#{this}">S<this/> </a></id-view:>
+    <this-view:><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;"><this.title/></a></this-view:>
+  </table-plus>
+  <javascript name="jquery.simple-color"/>
+  <script>
+    jQuery('input[name*="color"]').simpleColor();
+  </script>
+  <javascript name="kanban"/>
  </content:>
 </show-page>
