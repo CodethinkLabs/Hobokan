@@ -65,6 +65,8 @@ class ProjectsController < ApplicationController
 
     @project = find_instance
     @milestones = @project.milestones.current.all << "No Milestones"
+    @buckets = @project.buckets.not_done.all << "No Buckets"
+    @items = @project.items.apply_scopes(:bucket_is => params[:bucket], :milestone_is => params[:milestone])
 
     if params[:lane]
       @lanes = @project.lanes.apply_scopes(:title_is => params[:lane])

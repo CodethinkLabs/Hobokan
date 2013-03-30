@@ -75,23 +75,29 @@
   <% else %>
     <set border = ""/>
   <% end %>
+  <% if this.bucket %>
+    <set btarget = "#{this.bucket.name}" />
+  <% else %>
+    <set btarget = "No Buckets" />
+  <% end %>
+
   <% if this.milestone %>
     <set color="#{this.milestone.background_color}"/>
-    <set target = "#{this.milestone.name}" />
+    <set mtarget = "#{this.milestone.name}" />
     <% if current_page?("/") %>
       <set border="border-top: 4px solid #{this.lane.background_color};#{border}"/>
     <% end %>
     <% if this.lane.todo && this.milestone.date <= Date.today %> <set border = "border-left:4px solid red;#{border}"/> <% end %>
   <% else %>
     <set color="#{this.lane.background_color}"/>
-    <set target = "No Milestones" />
+    <set mtarget = "No Milestones" />
   <% end %>
   <% if params[:lane] != nil
        boxwidth="15%"
      end
   %>
   <% if this.bucket %> <set border = "border-bottom:4px solid #{this.bucket.background_color};#{border}"/> <% end %>
-  <% if params[:milestone] == nil || params[:milestone] == target %>
+  <% if (params[:milestone] == nil || params[:milestone] == mtarget) && (params[:bucket] == nil || params[:bucket] == btarget) %>
     <set style="width:#{boxwidth};background-color:#{color};#{border}"/>
     <li class="box" id="S#{this.id}" style="#{style}">
     <table><td><a href="/items/#{this.id}">S<this.id/> </a>
