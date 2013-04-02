@@ -15,7 +15,7 @@
       <section>
         <br/>
         <transition-buttons style="float:right;"/>
-        <field-list fields="id,title, milestone, text, user, project, project_members, result, lane, state">
+        <field-list fields="id, bucket, title, milestone, text, user, project, project_members, result, lane, state">
           <id-view:>S<this/></id-view:>
           <project-view:><a action="kanban"><this/></a></project-view:>
           <text-view:><if><this.to-html.html-safe/></if></text-view>
