@@ -96,11 +96,13 @@
        boxwidth="15%"
      end
   %>
-  <% if this.bucket %> <set border = "border-bottom:4px solid #{this.bucket.background_color};#{border}"/> <% end %>
   <% if (params[:milestone] == nil || params[:milestone] == mtarget) && (params[:bucket] == nil || params[:bucket] == btarget) %>
     <set style="width:#{boxwidth};background-color:#{color};#{border}"/>
     <li class="box" id="S#{this.id}" style="#{style}">
     <table><td><a href="/items/#{this.id}">S<this.id/> </a>
+    <% if this.bucket %>
+      <a href="/buckets/#{this.bucket.id}">[<%= this.bucket.name[0..5] %>]</a>
+    <% end %>
     <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
        <this.title/> <repeat:project_members>(<%= this.user.name.split(' ')[0] %>)</repeat:project_members>
     </a>
