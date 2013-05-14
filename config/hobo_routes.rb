@@ -5,6 +5,19 @@
 Hobokan::Application.routes.draw do
 
 
+  # Resource routes for controller "buckets"
+  get 'buckets/new(.:format)', :as => 'new_bucket'
+  get 'buckets/:id/edit(.:format)' => 'buckets#edit', :as => 'edit_bucket'
+  get 'buckets/:id(.:format)' => 'buckets#show', :as => 'bucket', :constraints => { :id => %r([^/.?]+) }
+  post 'buckets(.:format)' => 'buckets#create', :as => 'create_bucket'
+  put 'buckets/:id(.:format)' => 'buckets#update', :as => 'update_bucket', :constraints => { :id => %r([^/.?]+) }
+  delete 'buckets/:id(.:format)' => 'buckets#destroy', :as => 'destroy_bucket', :constraints => { :id => %r([^/.?]+) }
+
+  # Owner routes for controller "buckets"
+  get 'projects/:project_id/buckets/new(.:format)' => 'buckets#new_for_project', :as => 'new_bucket_for_project'
+  post 'projects/:project_id/buckets(.:format)' => 'buckets#create_for_project', :as => 'create_bucket_for_project'
+
+
   # Owner routes for controller "comments"
   post 'items/:item_id/comments(.:format)' => 'comments#create_for_item', :as => 'create_comment_for_item'
 
@@ -110,19 +123,6 @@ Hobokan::Application.routes.draw do
   match 'login(.:format)' => 'users#login', :as => 'user_login'
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
-
-
-  # Resource routes for controller "buckets"
-  get 'buckets/new(.:format)', :as => 'new_bucket'
-  get 'buckets/:id/edit(.:format)' => 'buckets#edit', :as => 'edit_bucket'
-  get 'buckets/:id(.:format)' => 'buckets#show', :as => 'bucket', :constraints => { :id => %r([^/.?]+) }
-  post 'buckets(.:format)' => 'buckets#create', :as => 'create_bucket'
-  put 'buckets/:id(.:format)' => 'buckets#update', :as => 'update_bucket', :constraints => { :id => %r([^/.?]+) }
-  delete 'buckets/:id(.:format)' => 'buckets#destroy', :as => 'destroy_bucket', :constraints => { :id => %r([^/.?]+) }
-
-  # Owner routes for controller "buckets"
-  get 'projects/:project_id/buckets/new(.:format)' => 'buckets#new_for_project', :as => 'new_bucket_for_project'
-  post 'projects/:project_id/buckets(.:format)' => 'buckets#create_for_project', :as => 'create_bucket_for_project'
 
   namespace :admin do
 
