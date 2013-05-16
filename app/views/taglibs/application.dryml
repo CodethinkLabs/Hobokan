@@ -205,7 +205,7 @@
     <form with="&this" complete="&%q{terminate_update_item_dialog(request, '} + this.id.to_s + %q{');}" without-cancel>
       <field-list: fields="bucket, title, milestone, lane, text, doable, project_members, result" >
           <bucket-view:>
-            <select-one options="&@item.project.buckets.not_done" include-none="true"/>
+            <select-one options="&@item.project.buckets" include-none="true"/>
           </bucket-view:>
           <project-members-view:>
             <select-many merge options="&@item.project.project_members"/>
