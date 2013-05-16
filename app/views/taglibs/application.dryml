@@ -193,7 +193,7 @@
 <def tag="new-bucket-dialog">
   <hjq-dialog id="new-bucket-dialog" title="Add a bucket" position="center" width="&800">
       <form with="&@bucket || new_for_current_user(@project.buckets)" owner="project">
-        <field-list: fields="name, description, done, background_color">
+        <field-list: fields="name, description">
         </field-list>
       </form>
   </hjq-dialog>

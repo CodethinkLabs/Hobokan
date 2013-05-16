@@ -6,7 +6,7 @@
   <h3>Milestone</h3>
   <error-messages/>
   <form>
-    <field-list fields="name, description, done, background-color"/>
+    <field-list fields="name, description, done"/>
     <submit label="#{ht 'bucket.actions.save', :default=>['Save']}"/>
   </form>
   <h3>To Do</h3>
