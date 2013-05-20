@@ -10,7 +10,7 @@
     <submit label="#{ht 'bucket.actions.save', :default=>['Save']}"/>
   </form>
   <h3>To Do</h3>
-  <table-plus:items.todo fields="id, lane, project_members">
+  <table-plus:items.todo fields="id, this, lane, project_members">
     <header: replace/>
     <thead: replace/>
     <id-view:><a href="/items/#{this}">S<this/></a></id-view:>
