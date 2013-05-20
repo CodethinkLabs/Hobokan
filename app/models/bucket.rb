@@ -14,6 +14,8 @@ class Bucket < ActiveRecord::Base
   belongs_to :project
   has_many :items
 
+  default_scope :order => 'name ASC'
+
   # --- Permissions --- #
 
   def create_permitted?
