@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   hobo_model_controller
 
   auto_actions :all
-  show_action :kanban, :done, :stats, :change_log
+  show_action :kanban, :triage, :done, :stats, :change_log
 
   def index
     hobo_index Project.active.apply_scopes(:search   => [params[:search], :name, :state],
@@ -75,6 +75,33 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def triage
+    if request.xhr?
+      dropped = Item.find(params[:item_id])
+      dropped.lane = Lane.find(params[:lane_id])
+      dropped.position = params[:item_position].to_i
+      Lane.move_item(current_user, dropped)
+
+      # We don't need to render anything, just stop the
+      # spinner once the AJAX response have been received
+      # by the client
+      render :nothing => true
+      return
+    end
+
+    @project = find_instance
+    @milestones = @project.milestones.current.all << "No Milestones"
+    @buckets = @project.buckets.not_done.all
+    @items = @project.items.apply_scopes(:bucket_is => params[:bucket], :milestone_is => params[:milestone])
+
+    if params[:lane]
+      @lanes = @project.lanes.apply_scopes(:title_is => params[:lane])
+    else
+      @lanes = @project.lanes.invisible
+    end
+  end
+
+
   def create
     hobo_create do
       if valid?
@@ -117,7 +144,34 @@ class ProjectsController < ApplicationController
 
         lane = Lane.new
         lane.project = this
-        lane.title = "Not going to fix"
+        lane.title = "Incoming"
+        lane.position = -3
+        lane.background_color = "#AAAAFF"
+        lane.closed = true
+        lane.todo = false
+        lane.save
+
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Needs Clarification"
+        lane.position = -2
+        lane.background_color = "#FFAAAA"
+        lane.closed = true
+        lane.todo = false
+        lane.save
+
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Can wait"
+        lane.position = -1
+        lane.background_color = "#FFFFDD"
+        lane.closed = true
+        lane.todo = false
+        lane.save
+
+        lane = Lane.new
+        lane.project = this
+        lane.title = "Priority"
         lane.position = 0
         lane.background_color = "#FFFFFF"
         lane.closed = true

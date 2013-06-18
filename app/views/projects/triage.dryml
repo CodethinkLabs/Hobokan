@@ -1,0 +1,45 @@
+<show-page for="Project" full-title="&@project.name">
+  <content: replace>
+  <section-group>
+    <div class="section content-body">
+      <h3>
+        <a style="float:left;padding-right:10px;"><name/></a>
+        <a action="done" style="font-size:50%;float:left;padding-right:10px;">(<%= this.items.done.count %> Done) </a>
+	  <div class="filter" style="float:left;"><filter-menu param-name="bucket" options="&@buckets" no-filter="Buckets" /></div>
+	  <div class="filter" style="float:left;"><filter-menu param-name="lane" options="&@this.lanes.all" no-filter="Lanes" /></div>
+	  <div class="filter" style="float:left;"><filter-menu param-name="user" options="&@this.project_members.all" no-filter="Users" /></div>
+      <new-bucket-dialog/><hjq-dialog-open-button dialog="#new-bucket-dialog">Add a bucket</hjq-dialog-open-button>
+      <new-task-dialog/><hjq-dialog-open-button dialog="#new-task-dialog">Add a task</hjq-dialog-open-button>
+      <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
+      <input type="submit" name="ms-toggle" value="Hide Milestones" id="ms-toggle" style="float:right;" />
+	  <div id="edit-item-dialog"></div>
+
+      </h3>
+
+      <div class="board" id="kb-board">
+        <% lanewidth = ((94 / @lanes.count)).to_s + "%" %>
+        <repeat with="&@lanes">
+          <span class="kb-header" id="L#{this.id}" style="width:#{lanewidth};">
+            <h3 style="background-color: #{this.background_color};"><a href="/lanes/#{this.id}/show"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
+          </span>
+        </repeat>
+        <repeat with="&@lanes">
+          <kanban-lane lanewidth="&lanewidth" boxwidth="auto"/>
+        </repeat>
+      </div>
+    </div>
+
+      <aside id="change-log" style="width: 20%;display:none;">
+        <div id="change-log-div">
+        </div>
+      </aside>
+    </section-group>
+
+    <javascript name="jquery.simple-color"/>
+    <script>
+  	  jQuery('input[name*="color"]').simpleColor();
+    </script>
+    <javascript name="jquery.dragsort"/>
+    <javascript name="kanban"/>
+  </content:>
+</show-page>

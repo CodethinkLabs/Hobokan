@@ -93,6 +93,7 @@ Hobokan::Application.routes.draw do
 
   # Show action routes for controller "projects"
   get 'projects/:id/kanban(.:format)' => 'projects#kanban', :as => 'project_kanban'
+  get 'projects/:id/triage(.:format)' => 'projects#triage', :as => 'project_triage'
   get 'projects/:id/done(.:format)' => 'projects#done', :as => 'project_done'
   get 'projects/:id/stats(.:format)' => 'projects#stats', :as => 'project_stats'
   get 'projects/:id/change_log(.:format)' => 'projects#change_log', :as => 'project_change_log'

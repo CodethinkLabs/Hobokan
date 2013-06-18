@@ -173,9 +173,6 @@
           <milestone-view:>
             <select-one options="&@this.milestones.future" include-none="true"/>
           </milestone-view:>
-          <lane-view:>
-            <select-one options="&@this.lanes.visible"/>
-          </lane-view:>
         </field-list>
       </form>
   </hjq-dialog>
