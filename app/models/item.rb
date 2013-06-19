@@ -70,7 +70,11 @@ class Item < ActiveRecord::Base
 
   def set_lane
     if self.lane == nil
-      self.lane = project.lanes.visible[0]
+      if project.lanes.triage[0]
+         self.lane = project.lanes.triage[0]
+      else
+        self.lane = project.lanes.visible[0]
+      end
     end
     self.end_date = Date.today
   end
