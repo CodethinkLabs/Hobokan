@@ -10,12 +10,11 @@
 	  <div class="filter" style="float:left;"><filter-menu param-name="bucket" options="&@buckets" no-filter="Buckets" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="lane" options="&@this.lanes.all" no-filter="Lanes" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="user" options="&@this.project_members.all" no-filter="Users" /></div>
-      <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
-      <input type="submit" name="ms-toggle" value="Hide Milestones" id="ms-toggle" style="float:right;" />
+      <input type="submit" name="ms-toggle" value="Hide Milestones" id="ms-toggle" />
+      <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" />
 	  <div id="edit-item-dialog"></div>
 
       </h3>
-
       <div class="timeline" id="timeline">
         <% days = 0 %>
         <% if this.milestones.last %><% days = (this.milestones.last.date - Date.today).to_i %><% end %>
@@ -42,7 +41,6 @@
         <% end %>
         </repeat:milestones>
       </div>
-      <br/>
 
       <div class="board" id="kb-board">
         <% lanewidth = ((94 / @lanes.count)).to_s + "%" %>
