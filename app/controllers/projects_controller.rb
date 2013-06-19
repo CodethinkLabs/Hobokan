@@ -97,7 +97,7 @@ class ProjectsController < ApplicationController
     if params[:lane]
       @lanes = @project.lanes.apply_scopes(:title_is => params[:lane])
     else
-      @lanes = @project.lanes.invisible
+      @lanes = @project.lanes.triage
     end
   end
 

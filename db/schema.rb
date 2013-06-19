@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130330095646) do
+ActiveRecord::Schema.define(:version => 20130618074010) do
 
   create_table "buckets", :force => true do |t|
     t.string   "name"
@@ -27,43 +27,43 @@ ActiveRecord::Schema.define(:version => 20130330095646) do
   add_index "buckets", ["project_id"], :name => "index_buckets_on_project_id"
 
   create_table "comments", :force => true do |t|
-    t.text      "detail"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "user_id"
-    t.integer   "item_id"
+    t.text     "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "item_id"
   end
 
   add_index "comments", ["item_id"], :name => "index_comments_on_item_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "item_assignments", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "item_id"
-    t.integer   "project_member_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_member_id"
+    t.integer  "item_id"
   end
 
   add_index "item_assignments", ["item_id"], :name => "index_item_assignments_on_item_id"
   add_index "item_assignments", ["project_member_id"], :name => "index_item_assignments_on_project_member_id"
 
   create_table "items", :force => true do |t|
-    t.date      "start_date"
-    t.date      "end_date"
-    t.string    "title"
-    t.text      "text"
-    t.integer   "position"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "lane_id"
-    t.string    "state",         :default => "normal"
-    t.timestamp "key_timestamp"
-    t.integer   "project_id"
-    t.text      "result"
-    t.integer   "milestone_id"
-    t.boolean   "doable"
-    t.integer   "user_id"
-    t.integer   "bucket_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "title"
+    t.text     "text"
+    t.text     "result"
+    t.boolean  "doable"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "lane_id"
+    t.integer  "project_id"
+    t.integer  "milestone_id"
+    t.string   "state",         :default => "normal"
+    t.datetime "key_timestamp"
+    t.integer  "bucket_id"
   end
 
   add_index "items", ["bucket_id"], :name => "index_items_on_bucket_id"
@@ -74,50 +74,50 @@ ActiveRecord::Schema.define(:version => 20130330095646) do
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
 
   create_table "lanes", :force => true do |t|
-    t.string    "title"
-    t.integer   "position"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "project_id"
-    t.string    "background_color"
-    t.string    "color",            :default => "#000000"
-    t.boolean   "todo",             :default => true
-    t.boolean   "closed",           :default => false
+    t.string   "title"
+    t.string   "background_color"
+    t.string   "color",            :default => "#000000"
+    t.boolean  "todo",             :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "position"
+    t.integer  "project_id"
+    t.boolean  "closed",           :default => false
   end
 
   add_index "lanes", ["project_id"], :name => "index_lanes_on_project_id"
 
   create_table "milestones", :force => true do |t|
-    t.string    "name"
-    t.date      "date"
-    t.string    "background_color"
-    t.string    "color",            :default => "#000000"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "project_id"
-    t.text      "description"
+    t.string   "name"
+    t.date     "date"
+    t.text     "description"
+    t.string   "background_color"
+    t.string   "color",            :default => "#000000"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
   end
 
   add_index "milestones", ["project_id"], :name => "index_milestones_on_project_id"
 
   create_table "project_members", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "project_id"
-    t.integer   "user_id"
-    t.boolean   "administrator", :default => true
+    t.boolean  "administrator", :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+    t.integer  "user_id"
   end
 
   add_index "project_members", ["project_id"], :name => "index_project_members_on_project_id"
   add_index "project_members", ["user_id"], :name => "index_project_members_on_user_id"
 
   create_table "projects", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.text      "details"
-    t.string    "state",         :default => "running"
-    t.timestamp "key_timestamp"
+    t.string   "name"
+    t.text     "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state",         :default => "running"
+    t.datetime "key_timestamp"
   end
 
   add_index "projects", ["state"], :name => "index_projects_on_state"
@@ -133,34 +133,34 @@ ActiveRecord::Schema.define(:version => 20130330095646) do
   add_index "snapshots", ["milestone_id"], :name => "index_snapshots_on_milestone_id"
 
   create_table "users", :force => true do |t|
-    t.string    "crypted_password",          :limit => 40
-    t.string    "salt",                      :limit => 40
-    t.string    "remember_token"
-    t.timestamp "remember_token_expires_at"
-    t.string    "name"
-    t.string    "email_address"
-    t.boolean   "administrator",                           :default => false
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "state",                                   :default => "invited"
-    t.timestamp "key_timestamp"
-    t.string    "role"
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.string   "remember_token"
+    t.datetime "remember_token_expires_at"
+    t.string   "name"
+    t.string   "email_address"
+    t.boolean  "administrator",                           :default => false
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "state",                                   :default => "invited"
+    t.datetime "key_timestamp"
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"
 
   create_table "versions", :force => true do |t|
-    t.integer   "versioned_id"
-    t.string    "versioned_type"
-    t.integer   "user_id"
-    t.string    "user_type"
-    t.string    "user_name"
-    t.text      "modifications"
-    t.integer   "number"
-    t.integer   "reverted_from"
-    t.string    "tag"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "versioned_id"
+    t.string   "versioned_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "user_name"
+    t.text     "modifications"
+    t.integer  "number"
+    t.integer  "reverted_from"
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
