@@ -108,7 +108,7 @@
     </a>
     <% if this.end_date != nil and this.lane.todo %>
       <% age = (Time.now.to_date - this.end_date).to_int; if age <= 1 then age = nil; end %>
-      <span style="font-size:40%;"><%= age %></span>
+      <span style="font-size:75%;"><%= age %></span>
     <% end %>
     </td>
     <td>

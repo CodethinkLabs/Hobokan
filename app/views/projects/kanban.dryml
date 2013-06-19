@@ -50,7 +50,7 @@
         <% lanewidth = ((94 / @lanes.count)).to_s + "%" %>
         <repeat with="&@lanes">
           <span class="kb-header" id="L#{this.id}" style="width:#{lanewidth};">
-            <h3 style="background-color: #{this.background_color};"><a href="/lanes/#{this.id}/show"><b><this/></b> <span class="lane-count" style="font-size:50%; float:right;">x</span> </a></h3>
+            <h3 style="background-color: #{this.background_color};"><a href="/lanes/#{this.id}/show"><b><this/></b> <span class="lane-count" style="font-size:75%; float:right;">x</span> </a></h3>
           </span>
         </repeat>
         <repeat with="&@lanes">
