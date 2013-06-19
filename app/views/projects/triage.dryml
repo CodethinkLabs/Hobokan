@@ -17,6 +17,35 @@
 
       </h3>
 
+      <div class="timeline" id="timeline">
+        <% days = 0 %>
+        <% if this.milestones.last %><% days = (this.milestones.last.date - Date.today).to_i %><% end %>
+        <% if days < 1 %><% days = 1 %><% end %>
+        <repeat:milestones>
+        <% if ( this.items.todo.count > 0 || this.date > Time.now.to_date ) && this.date < Time.now.to_date + 4.months %>
+          <% days = (this.date - Date.today + 1).to_i %>
+          <div><a href="/milestones/#{this.id}" style="border-bottom:none;">
+            <% date = Date.today %>
+            <% color = this.background_color %>
+            <% days.times do %>
+              <% color = this.background_color %>
+              <% if date.wday == 0 or date.wday == 6 %><% color = "#f2f2f2" %><% end %>
+              <span style="font-sze:65%;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;">
+                &nbsp;
+	          </span>
+	          <% date = date + 1 %>
+            <% end %>
+            <% if days > 0 %>&nbsp;<% end %>
+            <% color = this.background_color %>
+            <% pending = this.items.count - this.items.done.count %>
+            <span style="border-bottom:none;background-color:#{color};margin:1px;-moz-border-radius: 5px;border-radius: 5px;"><name/>:<%= this.date.strftime("%d-%b") %>: <% if pending > 0 %><%= pending %> tasks<% end %></span></a>
+          </div>
+        <% end %>
+        </repeat:milestones>
+      </div>
+      <br/>
+
+
       <div class="board" id="kb-board">
         <% lanewidth = ((94 / @lanes.count)).to_s + "%" %>
         <repeat with="&@lanes">
