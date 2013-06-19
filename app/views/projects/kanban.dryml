@@ -10,8 +10,6 @@
 	  <div class="filter" style="float:left;"><filter-menu param-name="bucket" options="&@buckets" no-filter="Buckets" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="lane" options="&@this.lanes.all" no-filter="Lanes" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="user" options="&@this.project_members.all" no-filter="Users" /></div>
-      <new-milestone-dialog/><hjq-dialog-open-button dialog="#new-milestone-dialog">Add a milestone</hjq-dialog-open-button>
-      <new-bucket-dialog/><hjq-dialog-open-button dialog="#new-bucket-dialog">Add a bucket</hjq-dialog-open-button>
       <input type="submit" name="cl-toggle" value="Change Log" id="cl-toggle" style="float:right;" />
       <input type="submit" name="ms-toggle" value="Hide Milestones" id="ms-toggle" style="float:right;" />
 	  <div id="edit-item-dialog"></div>
