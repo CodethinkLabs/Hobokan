@@ -4,7 +4,9 @@
     <div class="section content-body">
       <h3>
         <a style="float:left;padding-right:10px;"><name/></a>
-        <a action="triage" style="font-size:50%;float:left;padding-right:10px;">Triage</a>
+        <% if this.lanes.triage.count > 0 %>
+          <a action="triage" style="font-size:50%;float:left;padding-right:10px;">Triage</a>
+        <% end %>
         <a action="done" style="font-size:50%;float:left;padding-right:10px;">(<%= this.items.done.count %> Done) </a>
 	  <div class="filter" style="float:left;"><filter-menu param-name="milestone" options="&@milestones" no-filter="Milestones" /></div>
 	  <div class="filter" style="float:left;"><filter-menu param-name="bucket" options="&@buckets" no-filter="Buckets" /></div>
