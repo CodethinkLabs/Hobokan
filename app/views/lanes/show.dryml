@@ -7,6 +7,7 @@
     <a:project action="kanban">
       &laquo; <ht key="lane.actions.back_to_parent" parent="Project" name="&this">Back to <name/></ht>
     </a:project>
+    <div id="edit-item-dialog"></div>
     <h2>
       <%= "#{this.project.name}:" %><name/>
     </h2>
