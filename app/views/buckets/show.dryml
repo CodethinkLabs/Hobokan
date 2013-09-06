@@ -19,11 +19,15 @@
   </table-plus>
   <br/>
   <h2>Done</h2>
-  <table-plus:items.done fields="id, this, lane, project_members">
+  <table-plus:items.done fields="id, this, project_members, lane, created_at, end_date">
     <header: replace/>
     <thead: replace/>
     <id-view:><a href="/items/#{this}">S<this/></a></id-view:>
     <id-view:><a href="/items/#{this}">S<this/> </a></id-view:>
+    <end-date-view:><if><%= this.strftime("%d/%m/%y") %></if></end-date-view:>
+    <created-at-view:><if><%= this.strftime("%d/%m/%y") %></if></created-at-view:>
+    <created-at-heading:>Created</created-at-heading:>
+    <end-date-heading:>Updated</end-date-heading:>
     <this-view:><a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;"><this.title/></a></this-view:>
   </table-plus>
   <javascript name="jquery.simple-color"/>
