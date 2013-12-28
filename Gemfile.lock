@@ -79,6 +79,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    pg (0.17.1)
     polyglot (0.3.3)
     rack (1.2.7)
     rack-mount (0.6.14)
@@ -131,6 +132,7 @@ DEPENDENCIES
   cocaine (~> 0.1.0)
   hobo!
   hobo-jquery!
+  pg
   rails (~> 3.0.20)
   ruby-debug19
   sqlite3

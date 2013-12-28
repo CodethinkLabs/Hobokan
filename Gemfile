@@ -44,3 +44,4 @@ gem "hobo-jquery", :git => "git://github.com/bryanlarsen/hobo-jquery.git", :bran
 
 #markdown
 gem "bluecloth"
+gem "pg"
