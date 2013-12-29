@@ -101,15 +101,17 @@ Hobokan::Application.routes.draw do
 
   # Index action routes for controller "users"
   get 'users/workload(.:format)', :as => 'workload_users'
+  get 'users/admin(.:format)', :as => 'admin_users'
 
   # Lifecycle routes for controller "users"
   put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
   get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'
   put 'users/:id/reset_password(.:format)' => 'users#do_reset_password', :as => 'do_user_reset_password'
   get 'users/:id/reset_password(.:format)' => 'users#reset_password', :as => 'user_reset_password'
+  put 'users/:id/deactivate(.:format)' => 'users#do_deactivate', :as => 'do_user_deactivate'
+  get 'users/:id/deactivate(.:format)' => 'users#deactivate', :as => 'user_deactivate'
 
   # Resource routes for controller "users"
-  get 'users(.:format)' => 'users#index', :as => 'users'
   get 'users/:id/edit(.:format)' => 'users#edit', :as => 'edit_user'
   get 'users/:id(.:format)' => 'users#show', :as => 'user', :constraints => { :id => %r([^/.?]+) }
   post 'users(.:format)' => 'users#create', :as => 'create_user'

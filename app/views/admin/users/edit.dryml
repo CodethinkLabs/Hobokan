@@ -1,6 +1,7 @@
 <edit-page>
   <content:>
     <form>
+      <transition-buttons/>
       <field-list fields="name, email_address, role, administrator"/>
       <submit label="#{ht 'user.actions.save', :default=>['Save']}"/>
     </form>
