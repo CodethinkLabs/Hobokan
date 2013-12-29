@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
 
     state :invited, :default => true
     state :active
+    state :inactive
 
     create :invite,
            :available_to => "acting_user if acting_user.administrator?",
@@ -85,6 +86,12 @@ class User < ActiveRecord::Base
 
     transition :reset_password, { :active => :active }, :available_to => :key_holder,
                :params => [ :password, :password_confirmation ]
+
+    transition :deactivate, { :active => :inactive }, :available_to => "User.administrator" do
+      self.email_address = Date.today.to_s + self.email_address
+      self.save
+    end
+
 
   end
 

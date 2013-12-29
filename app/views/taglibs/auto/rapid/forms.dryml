@@ -159,4 +159,15 @@
     </div>
   </form>
 </def>
+<def tag="deactivate-form" polymorphic/>
+<def tag="deactivate-form" for="User">
+  <form lifecycle="deactivate" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.user.lifecycle.transitions.deactivate', :default=>['Deactivate']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 

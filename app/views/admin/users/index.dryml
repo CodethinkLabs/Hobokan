@@ -1,7 +1,7 @@
-<index-page without-new-form>
-  <after-count:>
+<index-page>
+  <content:>
     <a with="&User" action="invite">
       <t key="hobo.admin.invite_new_user">Invite a new user</t>
     </a>
-  </after-count:>
+  </content:>
 </index-page>

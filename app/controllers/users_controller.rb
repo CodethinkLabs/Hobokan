@@ -2,8 +2,8 @@ class UsersController < ApplicationController
 
   hobo_user_controller
 
-  auto_actions :all, :except => [ :new, :create ]
-  index_action :workload
+  auto_actions :all, :except => [ :new, :create, :index ]
+  index_action :workload, :admin
   show_action :done
 
   # Normally, users should be created via the user lifecycle, except

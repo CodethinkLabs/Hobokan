@@ -1,0 +1,6 @@
+<edit-page>
+  <content:>
+    <transition-buttons/>
+    <form fields="name, email_address, role, administrator"/>
+  </content:>
+</edit-page>

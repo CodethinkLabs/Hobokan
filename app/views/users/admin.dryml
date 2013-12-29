@@ -1,0 +1,19 @@
+<index-page>
+  <content:>
+    <a href="/admin/users/invite">
+      Invite a new user
+    </a>
+    <h2>Active Users</h2>
+    <table-plus with ="&User.active" fields="this, email_address, state" >
+      <controls:>
+        <transition-buttons/>
+      </controls:>
+    </table-plus>
+    <h2>Inactive Users</h2>
+    <table-plus with ="&User.inactive" fields="this, email_address, state" >
+      <controls:>
+        <transition-buttons/>
+      </controls:>
+    </table-plus>
+  </content:>
+</index-page>

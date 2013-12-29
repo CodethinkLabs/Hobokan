@@ -6,7 +6,6 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&User"><ht key="user.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -1157,6 +1156,29 @@
 
       <section param="content-body">
         <reset-password-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+<def tag="deactivate-page" polymorphic/>
+<def tag="deactivate-page" for="User">
+  <page title="#{ht 'user.deactivate.title', :default=>['Deactivate']}" merge>
+
+    <body: class="lifecycle-transition-page deactivate-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="user.deactivate.heading">
+            Deactivate
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <deactivate-form param="form"/>
       </section>
     </content:>
 
