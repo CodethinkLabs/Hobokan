@@ -43,7 +43,7 @@ To create a new instance on Heroku, you'll need to do something like the followi
 $ bundle install
 $ bundle rake db:migrate
 
-$ heroku create --stack bamboo  #will return a name, say blue-sky-1234
+$ heroku create #will return a name, say blue-sky-1234
 $ heroku rename --app blue-sky-1234 xx-kanban
 $ heroku addons:add sendgrid:starter --app xx-kanban
 $ git push git@heroku.com:xx-kanban.git master
@@ -52,17 +52,11 @@ $ heroku config:add DOMAIN=xx-kanban.heroku.com
 $ heroku config:add SECRET_TOKEN=a.random.alphanumeric.string.of.at.least.30.chars
 
 It should now be possible to create first admin user on the heroku instance, then invite users, create projects etc
-Note that Heroku autoconfigures sendgrid for bamboo *on git push*, hence the need to add sendgrid before pushing the code. 
+Note that Heroku autoconfigures sendgrid *on git push*, hence the need to add sendgrid before pushing the code. 
  
 There's a preliminary mailing list at you can join at
 
 http://vlists.pepperfish.net/cgi-bin/mailman/listinfo/hobokan-dev-ppfm.net
-
-TODO
-====
-Lots... we've been dogfooding this at Codethink for months, but there's plenty of room for improvement.
-
-We're liberating the code to make it available for FLOSS projects, which means *at least* we'll need to provide public views of the kanban boards themselves, but will also lead to new requirements: as far as we know, using the kanban approach for FLOSS projects is new territory.
 
 License
 =======
