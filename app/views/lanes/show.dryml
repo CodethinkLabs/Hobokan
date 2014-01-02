@@ -16,9 +16,11 @@
       </field-list>
       <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
     </form>
-    <div class="board" id="kb-board">
-      <kanban-lane lanewidth="100%" boxwidth="98%"/>
-    </div>
+    <table-plus with ="&this.items.active" fields="this, text, result, user">
+      <controls:>
+        <transition-buttons/>
+      </controls:>
+    </table-plus>
     <javascript name="jquery.dragsort"/>
     <javascript name="kanban"/>
     <javascript name="jquery.simple-color"/>
