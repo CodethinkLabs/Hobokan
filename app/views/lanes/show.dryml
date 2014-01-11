@@ -16,7 +16,10 @@
       </field-list>
       <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
     </form>
-    <table-plus with ="&this.items.active" fields="id, this, text, result, user">
+    <table-plus with="&this.items.active" fields="id, this, text, result, user">
+      <this-view: style="max-width:200px;"/>
+      <text-view: style="max-width:200px;"/>
+      <result-view: style="max-width:200px;"/>
       <id-view:>
         <a href="/items/#{this}">S<this/></a>
       </id-view:>
