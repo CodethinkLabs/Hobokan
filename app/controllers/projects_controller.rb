@@ -147,7 +147,7 @@ class ProjectsController < ApplicationController
         lane.title = "Incoming"
         lane.position = -3
         lane.background_color = "#AAAAFF"
-        lane.closed = true
+        lane.closed = false
         lane.todo = false
         lane.save
 
