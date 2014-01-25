@@ -65,6 +65,7 @@ class ProjectsController < ApplicationController
 
     @project = find_instance
     @milestones = @project.milestones.current.all << "No Milestones"
+    @mile = params[:milestone]
     @buckets = @project.buckets.not_done.all
     @items = @project.items.apply_scopes(:bucket_is => params[:bucket], :milestone_is => params[:milestone])
 
@@ -73,6 +74,7 @@ class ProjectsController < ApplicationController
     else
       @lanes = @project.lanes.visible
     end
+    
   end
 
   def triage
