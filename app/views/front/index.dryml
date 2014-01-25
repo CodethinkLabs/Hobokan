@@ -35,7 +35,8 @@
               <if test="&this.project.state == 'running'">
               <div class="kb-frame">
                 <h3><a href="/projects/#{this.project.id}/kanban" >#{this.project.name}</a></h3>
-                <table-plus with="&this.items.todo" 
+                <% @items = this.items.todo.apply_scopes(:order_by => :lane_id).reverse! %>
+                <table-plus with="&@items"
                 fields="id, this, lane, bucket, milestone, milestone.date"
                 without-search-form>
                   <this-view:>

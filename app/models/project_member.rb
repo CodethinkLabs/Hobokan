@@ -46,6 +46,7 @@ class ProjectMember < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :user
+  default_scope :order => "id DESC"
 
   def name
     user.name
