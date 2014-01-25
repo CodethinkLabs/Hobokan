@@ -33,10 +33,18 @@
           <repeat:project_members>
             <if test="&this.items.todo">
               <div class="kb-frame">
-	          <h3><a href="/projects/#{this.project.id}/kanban" >#{this.project.name}</a></h3>
-              <repeat:items.todo>
-                <kanban-card lanewidth="50%" boxwidth="15%"/>
-              </repeat:items.todo>
+                <h3><a href="/projects/#{this.project.id}/kanban" >#{this.project.name}</a></h3>
+                <table-plus with="&this.items.todo" 
+                fields="id, this, lane, bucket, milestone, milestone.date"
+                without-search-form>
+                  <this-view:>
+                    <a href="javascript:get_item_details(this, #{this.id});" style="border-bottom:none;">
+                      <this.title/>
+                    </a>
+                  </this-view:>
+                  <id-view:><a href="/items/#{this}">S<this/></a></id-view:>
+                  <milestone-date-heading:>Due</milestone-date-heading:>
+                </table-plus>
               </div>
             </if>
           </repeat:project_members>
