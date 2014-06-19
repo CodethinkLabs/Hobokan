@@ -1,6 +1,6 @@
 <index-page>
   <content:>
-    <a with="&User" action="invite">
+    <a with="&User.new" action="invite">
       <t key="hobo.admin.invite_new_user">Invite a new user</t>
     </a>
   </content:>
