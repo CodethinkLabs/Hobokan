@@ -37,7 +37,7 @@
       <li><project-dropdown/></li>
       <li param='dev-user-changer' if='&Rails.env.development?'><dev-user-changer/></li>
       <if test='&logged_in?'>
-        <li class='nav-item' param='admin'><a href="&admin_users_url" if="&current_user.administrator?">User Admin</a></li>
+        <li class='nav-item' param='admin'><a href="users/admin" if="&current_user.administrator?">User Admin</a></li>
         <li class='nav-item' param='logged-in-as'><a to='&current_user'><t name='&name' key='hobo.actions.logged_in_as'>Logged in as <name/></t></a></li>
         <li class='nav-item' param='account'><a action='account'><t key='hobo.actions.account'>Account</t></a></li>
         <li class='nav-item' param='log-out'><a href='&logout_url'><t key='hobo.actions.logout'>Log out</t></a></li>
