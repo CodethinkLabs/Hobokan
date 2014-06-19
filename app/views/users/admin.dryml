@@ -9,7 +9,13 @@
         <transition-buttons/>
       </controls:>
     </table-plus>
-    <h2>Inactive Users</h2>
+    <br/><h2>Invited Users</h2>
+    <table-plus with ="&User.invited" fields="this, email_address, state" >
+      <controls:>
+        <transition-buttons/>
+      </controls:>
+    </table-plus>
+    <br/><h2>Inactive Users</h2>
     <table-plus with ="&User.inactive" fields="this, email_address, state" >
       <controls:>
         <transition-buttons/>

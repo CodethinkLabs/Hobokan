@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
     timestamps
   end
 
-  scope :active, :conditions => "state != 'inactive'"
   has_many :project_members, :accessible => true
   has_many :projects, :through => :project_members
   default_scope :order => 'name ASC'
