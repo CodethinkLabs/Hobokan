@@ -58,6 +58,7 @@ Hobokan::Application.routes.draw do
 
   # Show action routes for controller "lanes"
   get 'lanes/:id/show(.:format)' => 'lanes#show', :as => 'lane_show'
+  get 'lanes/:id/clear(.:format)' => 'lanes#clear', :as => 'lane_clear'
 
   # Reorder routes for controller "lanes"
   post 'lanes/reorder(.:format)', :as => 'reorder_lanes'

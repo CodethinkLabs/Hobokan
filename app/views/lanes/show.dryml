@@ -11,12 +11,16 @@
     <h2>
       <%= "#{this.project.name}:" %><name/>
     </h2>
+
     <form>
       <field-list fields="title, position, background-color">
       </field-list>
       <submit label="#{ht 'lane.actions.save', :default=>['Save']}"/>
     </form>
+
+    <a href="/lanes/#{this.id}/clear" style="float:right; background:red;">Archive all items in this lane</a>
     <table-plus with="&this.items.active" fields="id, this, text, result, user">
+      <header: replace/>
       <this-view: style="max-width:200px;"/>
       <text-view: style="max-width:200px;"/>
       <result-view: style="max-width:200px;"/>
