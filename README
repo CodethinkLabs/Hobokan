@@ -43,13 +43,13 @@ To create a new instance on Heroku, you'll need to do something like the followi
 $ bundle install
 $ bundle rake db:migrate
 
-$ heroku create #will return a name, say blue-sky-1234
-$ heroku rename --app blue-sky-1234 xx-kanban
+$ heroku create xx-kanban
 $ heroku addons:add sendgrid:starter --app xx-kanban
 $ git push git@heroku.com:xx-kanban.git master
-$ heroku db:push --app xx-kanban
-$ heroku config:add DOMAIN=xx-kanban.heroku.com
-$ heroku config:add SECRET_TOKEN=a.random.alphanumeric.string.of.at.least.30.chars
+$ heroku config:add DOMAIN=xx-kanban.herokuapp.com --app xx-kanban
+$ heroku config:add SECRET_TOKEN=a.random.alphanumeric.string.of.at.least.30.chars --app xx-kanban
+$ heroku run rake db:migrate --app xx-kanban
+$ heroku run rails g hobo:migration --app xx-kanban
 
 It should now be possible to create first admin user on the heroku instance, then invite users, create projects etc
 Note that Heroku autoconfigures sendgrid *on git push*, hence the need to add sendgrid before pushing the code. 
