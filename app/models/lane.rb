@@ -24,7 +24,7 @@ class Lane < ActiveRecord::Base
 
   scope :visible, :conditions => "position > '0'"
   scope :invisible, :conditions => "position <= '0'"
-  scope :triage, :conditions => "position <= '1'"
+  scope :triage, :conditions => "position <= '1' and position > '-10'"
 
   def self.move_item(current_user, moved_item)
     logger.debug("current user: #{current_user}")
