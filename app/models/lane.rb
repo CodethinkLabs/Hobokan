@@ -23,8 +23,8 @@ class Lane < ActiveRecord::Base
   validates_length_of :title, :within => 4..50, :too_long => "pick a shorter name", :too_short => "pick a longer name"
 
   scope :visible, :conditions => "position > '0'"
-  scope :invisible, :conditions => "position <= '0'"
-  scope :triage, :conditions => "position <= '1' and position > '-10'"
+  scope :invisible, :conditions => "position = '0'"
+  scope :triage, :conditions => "position < '1' and position > '-10'"
 
   def self.move_item(current_user, moved_item)
     logger.debug("current user: #{current_user}")
